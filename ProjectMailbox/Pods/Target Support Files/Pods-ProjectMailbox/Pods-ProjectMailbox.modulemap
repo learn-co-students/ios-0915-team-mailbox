@@ -1,0 +1,6 @@
+framework module Pods_ProjectMailbox {
+  umbrella header "Pods-ProjectMailbox-umbrella.h"
+
+  export *
+  module * { export * }
+}

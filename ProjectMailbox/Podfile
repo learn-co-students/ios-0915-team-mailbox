@@ -1,0 +1,22 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '8.0'
+# Uncomment this line if you're using Swift
+use_frameworks!
+
+target 'ProjectMailbox' do
+
+pod 'Alamofire', '~> 3.0'
+pod "AFNetworking", "~> 2.0"
+pod 'Parse'
+pod 'MMDrawerController', '~> 0.5.7'
+
+end
+
+target 'ProjectMailboxTests' do
+
+end
+
+target 'ProjectMailboxUITests' do
+
+end
+
