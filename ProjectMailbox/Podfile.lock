@@ -22,6 +22,9 @@ PODS:
     - AFNetworking/NSURLSession
   - Alamofire (3.1.2)
   - Bolts/Tasks (1.5.0)
+  - JSQMessagesViewController (7.2.0):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - MMDrawerController (0.5.7):
     - MMDrawerController/Core (= 0.5.7)
     - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
@@ -40,6 +43,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Alamofire (~> 3.0)
+  - JSQMessagesViewController
   - MMDrawerController (~> 0.5.7)
   - Parse
 
@@ -47,6 +51,8 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   Parse: 54a965c8c19a6dde90284ab654dbcc77ef8c001b
 

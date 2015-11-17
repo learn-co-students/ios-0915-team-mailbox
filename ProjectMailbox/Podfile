@@ -9,6 +9,7 @@ pod 'Alamofire', '~> 3.0'
 pod "AFNetworking", "~> 2.0"
 pod 'Parse'
 pod 'MMDrawerController', '~> 0.5.7'
+pod 'JSQMessagesViewController'
 
 end
 
