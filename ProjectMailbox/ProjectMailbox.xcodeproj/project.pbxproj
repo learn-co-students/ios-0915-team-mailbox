@@ -20,7 +20,6 @@
 		5508F4D91BFB976F00D02E15 /* parse-library in Resources */ = {isa = PBXBuildFile; fileRef = 5508F4D81BFB976F00D02E15 /* parse-library */; };
 		5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4DD1BFBC22300D02E15 /* TMBUser.m */; };
 		5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E01BFBC23900D02E15 /* TMBGroup.m */; };
-		5508F4E41BFBC24600D02E15 /* TMBImageCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E31BFBC24600D02E15 /* TMBImageCard.m */; };
 		5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E61BFBC25300D02E15 /* TMBTextCard.m */; };
 		A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -30,12 +29,13 @@
 		A46CB1071BFCD3AE00D35BB3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */; };
 		A46CB1091BFCD3B800D35BB3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */; };
 		A46CB10B1BFCD3C100D35BB3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10A1BFCD3C100D35BB3 /* Security.framework */; };
-		A46CB10D1BFCD3C900D35BB3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10C1BFCD3C900D35BB3 /* StoreKit.framework */; };
 		A46CB10F1BFCD3D400D35BB3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */; };
 		A46CB1111BFCD3E300D35BB3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1101BFCD3E300D35BB3 /* libz.tbd */; };
 		A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
 		A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
+		A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; settings = {ASSET_TAGS = (); }; };
+		A46CB1201BFCE1C700D35BB3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB11F1BFCE1C700D35BB3 /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +79,6 @@
 		5508F4DD1BFBC22300D02E15 /* TMBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBUser.m; sourceTree = "<group>"; };
 		5508F4DF1BFBC23900D02E15 /* TMBGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBGroup.h; sourceTree = "<group>"; };
 		5508F4E01BFBC23900D02E15 /* TMBGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBGroup.m; sourceTree = "<group>"; };
-		5508F4E21BFBC24600D02E15 /* TMBImageCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageCard.h; sourceTree = "<group>"; };
-		5508F4E31BFBC24600D02E15 /* TMBImageCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageCard.m; sourceTree = "<group>"; };
 		5508F4E51BFBC25300D02E15 /* TMBTextCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCard.h; sourceTree = "<group>"; };
 		5508F4E61BFBC25300D02E15 /* TMBTextCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCard.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,12 +92,14 @@
 		A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A46CB10A1BFCD3C100D35BB3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		A46CB10C1BFCD3C900D35BB3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A46CB1101BFCD3E300D35BB3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A46CB1141BFCD40000D35BB3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A46CB1161BFCD40700D35BB3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		A46CB11A1BFCDDA300D35BB3 /* TMBImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageView.h; sourceTree = "<group>"; };
+		A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageView.m; sourceTree = "<group>"; };
+		A46CB11F1BFCE1C700D35BB3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "ProjectMailbox/parse-library/Parse.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +112,11 @@
 				A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */,
 				A46CB1111BFCD3E300D35BB3 /* libz.tbd in Frameworks */,
 				A46CB10F1BFCD3D400D35BB3 /* SystemConfiguration.framework in Frameworks */,
-				A46CB10D1BFCD3C900D35BB3 /* StoreKit.framework in Frameworks */,
 				A46CB10B1BFCD3C100D35BB3 /* Security.framework in Frameworks */,
 				A46CB1091BFCD3B800D35BB3 /* QuartzCore.framework in Frameworks */,
 				A46CB1071BFCD3AE00D35BB3 /* CoreLocation.framework in Frameworks */,
 				A46CB1051BFCD3A400D35BB3 /* CoreGraphics.framework in Frameworks */,
+				A46CB1201BFCE1C700D35BB3 /* Parse.framework in Frameworks */,
 				A46CB1031BFCD39A00D35BB3 /* CFNetwork.framework in Frameworks */,
 				A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */,
 				1CC625A91D94AF1EC3E1D5AB /* Pods_ProjectMailbox.framework in Frameworks */,
@@ -173,8 +173,8 @@
 				5508F4DD1BFBC22300D02E15 /* TMBUser.m */,
 				5508F4DF1BFBC23900D02E15 /* TMBGroup.h */,
 				5508F4E01BFBC23900D02E15 /* TMBGroup.m */,
-				5508F4E21BFBC24600D02E15 /* TMBImageCard.h */,
-				5508F4E31BFBC24600D02E15 /* TMBImageCard.m */,
+				A46CB11A1BFCDDA300D35BB3 /* TMBImageView.h */,
+				A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */,
 				A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */,
 				A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */,
 				A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */,
@@ -229,12 +229,12 @@
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A46CB11F1BFCE1C700D35BB3 /* Parse.framework */,
 				A46CB1161BFCD40700D35BB3 /* Accounts.framework */,
 				A46CB1141BFCD40000D35BB3 /* Social.framework */,
 				A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */,
 				A46CB1101BFCD3E300D35BB3 /* libz.tbd */,
 				A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */,
-				A46CB10C1BFCD3C900D35BB3 /* StoreKit.framework */,
 				A46CB10A1BFCD3C100D35BB3 /* Security.framework */,
 				A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */,
 				A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */,
@@ -316,6 +316,12 @@
 				TargetAttributes = {
 					5508F49E1BFB972300D02E15 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 2J9BMNCVTH;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					5508F4BA1BFB972300D02E15 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -430,10 +436,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
-				5508F4E41BFBC24600D02E15 /* TMBImageCard.m in Sources */,
 				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
+				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
@@ -579,11 +585,19 @@
 			baseConfigurationReference = A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ProjectMailbox/parse-library",
+				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -592,11 +606,19 @@
 			baseConfigurationReference = 774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ProjectMailbox/parse-library",
+				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

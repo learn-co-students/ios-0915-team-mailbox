@@ -11,6 +11,7 @@
 @interface TMBImageCardViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+
 @end
 
 @implementation TMBImageCardViewController
@@ -20,7 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
 }
 
 
@@ -63,14 +65,41 @@
     
 }
 
+
+
+- (void)postImage {
+    
+    UIImage *aImage = self.imageView.image;
+    
+    NSData *imageData = UIImagePNGRepresentation(aImage);
+    PFFile *imageFile = [PFFile fileWithData:imageData];
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            if (succeeded) {
+                PFObject* newPhotoObject = [PFObject objectWithClassName:@"Boards"];
+                [newPhotoObject setObject:imageFile forKey:@"profileImage"];
+                [newPhotoObject saveInBackground];
+            }
+        } else {
+            NSLog(@"ERROR UPLOADING PROFILE IMAGE");
+        }
+    }];
+    
+}
+
+
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.imageView.image = chosenImage;
+    [self postImage];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
