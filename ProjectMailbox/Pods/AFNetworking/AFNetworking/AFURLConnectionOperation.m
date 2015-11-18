@@ -459,6 +459,7 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
 - (void)operationDidStart {
     [self.lock lock];
     if (![self isCancelled]) {
+        NSURLSession *imageSession = [[NSURLSession alloc] init];
         self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
 
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];

@@ -22,6 +22,20 @@
 		5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E01BFBC23900D02E15 /* TMBGroup.m */; };
 		5508F4E41BFBC24600D02E15 /* TMBImageCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E31BFBC24600D02E15 /* TMBImageCard.m */; };
 		5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E61BFBC25300D02E15 /* TMBTextCard.m */; };
+		A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
+		A46CB1031BFCD39A00D35BB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */; };
+		A46CB1051BFCD3A400D35BB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */; };
+		A46CB1071BFCD3AE00D35BB3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */; };
+		A46CB1091BFCD3B800D35BB3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */; };
+		A46CB10B1BFCD3C100D35BB3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10A1BFCD3C100D35BB3 /* Security.framework */; };
+		A46CB10D1BFCD3C900D35BB3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10C1BFCD3C900D35BB3 /* StoreKit.framework */; };
+		A46CB10F1BFCD3D400D35BB3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */; };
+		A46CB1111BFCD3E300D35BB3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1101BFCD3E300D35BB3 /* libz.tbd */; };
+		A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
+		A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
+		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +85,21 @@
 		5508F4E61BFBC25300D02E15 /* TMBTextCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCard.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
 		A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.debug.xcconfig"; sourceTree = "<group>"; };
+		A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewStoryboard.storyboard; sourceTree = "<group>"; };
+		A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageCardViewController.h; sourceTree = "<group>"; };
+		A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageCardViewController.m; sourceTree = "<group>"; };
+		A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A46CB10A1BFCD3C100D35BB3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A46CB10C1BFCD3C900D35BB3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A46CB1101BFCD3E300D35BB3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A46CB1141BFCD40000D35BB3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		A46CB1161BFCD40700D35BB3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +107,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */,
+				A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */,
+				A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */,
+				A46CB1111BFCD3E300D35BB3 /* libz.tbd in Frameworks */,
+				A46CB10F1BFCD3D400D35BB3 /* SystemConfiguration.framework in Frameworks */,
+				A46CB10D1BFCD3C900D35BB3 /* StoreKit.framework in Frameworks */,
+				A46CB10B1BFCD3C100D35BB3 /* Security.framework in Frameworks */,
+				A46CB1091BFCD3B800D35BB3 /* QuartzCore.framework in Frameworks */,
+				A46CB1071BFCD3AE00D35BB3 /* CoreLocation.framework in Frameworks */,
+				A46CB1051BFCD3A400D35BB3 /* CoreGraphics.framework in Frameworks */,
+				A46CB1031BFCD39A00D35BB3 /* CFNetwork.framework in Frameworks */,
+				A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */,
 				1CC625A91D94AF1EC3E1D5AB /* Pods_ProjectMailbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +175,9 @@
 				5508F4E01BFBC23900D02E15 /* TMBGroup.m */,
 				5508F4E21BFBC24600D02E15 /* TMBImageCard.h */,
 				5508F4E31BFBC24600D02E15 /* TMBImageCard.m */,
+				A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */,
+				A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */,
+				A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */,
 				5508F4E51BFBC25300D02E15 /* TMBTextCard.h */,
 				5508F4E61BFBC25300D02E15 /* TMBTextCard.m */,
 				5508F4AB1BFB972300D02E15 /* Main.storyboard */,
@@ -185,6 +229,18 @@
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A46CB1161BFCD40700D35BB3 /* Accounts.framework */,
+				A46CB1141BFCD40000D35BB3 /* Social.framework */,
+				A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */,
+				A46CB1101BFCD3E300D35BB3 /* libz.tbd */,
+				A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */,
+				A46CB10C1BFCD3C900D35BB3 /* StoreKit.framework */,
+				A46CB10A1BFCD3C100D35BB3 /* Security.framework */,
+				A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */,
+				A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */,
+				A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */,
+				A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */,
+				A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */,
 				3F93F7AC4E86816E10108540 /* Pods_ProjectMailbox.framework */,
 			);
 			name = Frameworks;
@@ -296,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */,
 				5508F4B51BFB972300D02E15 /* LaunchScreen.storyboard in Resources */,
 				5508F4B21BFB972300D02E15 /* Assets.xcassets in Resources */,
 				5508F4D91BFB976F00D02E15 /* parse-library in Resources */,
@@ -374,6 +431,7 @@
 			files = (
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
 				5508F4E41BFBC24600D02E15 /* TMBImageCard.m in Sources */,
+				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
@@ -470,7 +528,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -508,7 +566,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -522,6 +580,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -534,6 +593,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
