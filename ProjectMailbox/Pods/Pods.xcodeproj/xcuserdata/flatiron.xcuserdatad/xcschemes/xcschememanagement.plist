@@ -6,83 +6,73 @@
 	<dict>
 		<key>AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>Alamofire.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>JSQMessagesViewController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>JSQSystemSoundPlayer.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MMDrawerController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-ProjectMailbox.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>432ECC54282C84882B482CCB4CF227FC</key>
+		<key>04AE9BCD30040E26B6830C5FDDC16B56</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4878C70B21CA37D7CB8A476BF986741B</key>
+		<key>1373844AF23998887D78AFA30E1EB51B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>708E01B006A9F88B3C13711562282B5E</key>
+		<key>39C9F0E90DD2CF057BE90124B2BC6979</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>95DB89A8BFC5FF0BF98458651D0163CD</key>
+		<key>56C07F6A71CBF798F34C84BD1FF52297</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>96D3562E47E4792B0A6093A0323EB398</key>
+		<key>5DCBE50E57D387BBD23606FE35FD1A0A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8A759F57254B6094CF99273E5ECEE8B</key>
+		<key>76B93D89A9621357ED9502782A96CEBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D8C82619D3BD30ED0059D54FD66B5366</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EDA125ADA52355B7CA6DF7BA96918357</key>
+		<key>F7D5717FC9AFB7CA90947BC47AE4FBCD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

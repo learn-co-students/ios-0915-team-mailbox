@@ -21,6 +21,9 @@
 		5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4DD1BFBC22300D02E15 /* TMBUser.m */; };
 		5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E01BFBC23900D02E15 /* TMBGroup.m */; };
 		5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E61BFBC25300D02E15 /* TMBTextCard.m */; };
+		5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */; };
+		5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */; };
+		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
 		A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
@@ -81,6 +84,12 @@
 		5508F4E01BFBC23900D02E15 /* TMBGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBGroup.m; sourceTree = "<group>"; };
 		5508F4E51BFBC25300D02E15 /* TMBTextCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCard.h; sourceTree = "<group>"; };
 		5508F4E61BFBC25300D02E15 /* TMBTextCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCard.m; sourceTree = "<group>"; };
+		5508F4E81BFBDD2E00D02E15 /* TMBSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSignInViewController.h; sourceTree = "<group>"; };
+		5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSignInViewController.m; sourceTree = "<group>"; };
+		5508F4EB1BFBDD4100D02E15 /* TMBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSignUpViewController.h; sourceTree = "<group>"; };
+		5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSignUpViewController.m; sourceTree = "<group>"; };
+		5508F4EE1BFC12A500D02E15 /* TMBFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFirstPageViewController.h; sourceTree = "<group>"; };
+		5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFirstPageViewController.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
 		A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.debug.xcconfig"; sourceTree = "<group>"; };
 		A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewStoryboard.storyboard; sourceTree = "<group>"; };
@@ -165,8 +174,16 @@
 		5508F4A11BFB972300D02E15 /* ProjectMailbox */ = {
 			isa = PBXGroup;
 			children = (
+				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
+				5508F4AB1BFB972300D02E15 /* Main.storyboard */,
 				5508F4A51BFB972300D02E15 /* AppDelegate.h */,
 				5508F4A61BFB972300D02E15 /* AppDelegate.m */,
+				5508F4EE1BFC12A500D02E15 /* TMBFirstPageViewController.h */,
+				5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */,
+				5508F4E81BFBDD2E00D02E15 /* TMBSignInViewController.h */,
+				5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */,
+				5508F4EB1BFBDD4100D02E15 /* TMBSignUpViewController.h */,
+				5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */,
 				5508F4A81BFB972300D02E15 /* ViewController.h */,
 				5508F4A91BFB972300D02E15 /* ViewController.m */,
 				5508F4DC1BFBC22300D02E15 /* TMBUser.h */,
@@ -180,9 +197,7 @@
 				A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */,
 				5508F4E51BFBC25300D02E15 /* TMBTextCard.h */,
 				5508F4E61BFBC25300D02E15 /* TMBTextCard.m */,
-				5508F4AB1BFB972300D02E15 /* Main.storyboard */,
 				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
-				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
 				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
 				5508F4A21BFB972300D02E15 /* Supporting Files */,
@@ -438,11 +453,14 @@
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
 				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
+				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
+				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
 				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
 				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
+				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
 				5508F4A41BFB972300D02E15 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,7 +602,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -605,7 +622,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
