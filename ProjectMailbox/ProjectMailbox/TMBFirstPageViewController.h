@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import <Parse/Parse.h>
+#import "TMBSignInViewController.h"
 
 @interface TMBFirstPageViewController : ViewController
 
