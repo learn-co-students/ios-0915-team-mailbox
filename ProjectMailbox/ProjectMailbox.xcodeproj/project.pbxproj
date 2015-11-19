@@ -26,6 +26,10 @@
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
 		A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		A44515141BFE6CFB00BDD502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515131BFE6CFB00BDD502 /* Foundation.framework */; };
+		A44515161BFE6D0B00BDD502 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515151BFE6D0B00BDD502 /* UIKit.framework */; };
+		A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
@@ -97,6 +101,11 @@
 		A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCardViewController.h; sourceTree = "<group>"; };
 		A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCardViewController.m; sourceTree = "<group>"; };
 		A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextCardStoryboard.storyboard; sourceTree = "<group>"; };
+		A44515131BFE6CFB00BDD502 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A44515151BFE6D0B00BDD502 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DoodleStoryboard.storyboard; sourceTree = "<group>"; };
+		A44515191BFE6D7800BDD502 /* TMBDoodleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBDoodleViewController.h; sourceTree = "<group>"; };
+		A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBDoodleViewController.m; sourceTree = "<group>"; };
 		A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewStoryboard.storyboard; sourceTree = "<group>"; };
 		A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageCardViewController.h; sourceTree = "<group>"; };
 		A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageCardViewController.m; sourceTree = "<group>"; };
@@ -121,6 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A44515161BFE6D0B00BDD502 /* UIKit.framework in Frameworks */,
+				A44515141BFE6CFB00BDD502 /* Foundation.framework in Frameworks */,
 				A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */,
 				A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */,
 				A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */,
@@ -205,6 +216,9 @@
 				A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */,
 				A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */,
 				A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */,
+				A44515191BFE6D7800BDD502 /* TMBDoodleViewController.h */,
+				A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */,
+				A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */,
 				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
 				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
@@ -252,6 +266,8 @@
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A44515151BFE6D0B00BDD502 /* UIKit.framework */,
+				A44515131BFE6CFB00BDD502 /* Foundation.framework */,
 				A46CB11F1BFCE1C700D35BB3 /* Parse.framework */,
 				A46CB1161BFCD40700D35BB3 /* Accounts.framework */,
 				A46CB1141BFCD40000D35BB3 /* Social.framework */,
@@ -382,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
+				A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */,
 				A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */,
 				5508F4B51BFB972300D02E15 /* LaunchScreen.storyboard in Resources */,
 				5508F4B21BFB972300D02E15 /* Assets.xcassets in Resources */,
@@ -464,6 +481,7 @@
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
 				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
+				A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */,
 				A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */,
 				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
 				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
