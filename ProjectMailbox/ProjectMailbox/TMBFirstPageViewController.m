@@ -30,29 +30,37 @@
     
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray
                                                     block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-                                                        
-                                                        
+                                                     
+                                                        if (!user) {
+                                                            [self facebookLoginErrorAlert];
+                                                            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                                                        } else if (user.isNew) {
+                                                            [self loadFacebookUserDetails];
+                                                            
+                                                            NSLog(@"User signed up and logged in through Facebook!");
+                                                        } else {
+                                                            [self loadFacebookUserDetails];
+                                                            
+                                                            NSLog(@"User logged in through Facebook!");
+                                                        }
                                                         
                                                     }];
     
     
     
-    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        if (!user) {
-            [self facebookLoginErrorAlert];
-            NSLog(@"Uh oh. The user cancelled the Facebook login.");
-        } else if (user.isNew) {
-            [self loadFacebookUserDetails];
-
-            NSLog(@"User signed up and logged in through Facebook!");
-        } else {
-            [self loadFacebookUserDetails];
-
-            NSLog(@"User logged in through Facebook!");
-        }
-    }];
-    
-    
+//    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+//        if (!user) {
+//            [self facebookLoginErrorAlert];
+//            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+//        } else if (user.isNew) {
+//            [self loadFacebookUserDetails];
+//
+//            NSLog(@"User signed up and logged in through Facebook!");
+//        } else {
+//            [self loadFacebookUserDetails];
+//            NSLog(@"User logged in through Facebook!");
+//        }
+//    }];
     
 }
 
@@ -60,12 +68,9 @@
     
     [self loginWithFacebook];
     
-    
-    
 }
 
 - (void)loadFacebookUserDetails {
-    
     
     NSDictionary *requestParameters = @{ @"fields": @"id, email, first_name, last_name, name" };
     
@@ -99,7 +104,7 @@
                                                           if (profilePictureData != nil) {
                                                               PFFile *profileFileObject = [PFFile fileWithData:profilePictureData];
                                                               
-                                                              PFUser *currentUser = [[PFUser alloc]init];
+                                                              PFUser *currentUser = [PFUser currentUser];
                                                               [currentUser setObject:profileFileObject forKey:@"profileImage"];
                                                               [currentUser setObject:userFirstName forKey:@"First_Name"];
                                                               [currentUser setObject:userLastName forKey:@"Last_Name"];

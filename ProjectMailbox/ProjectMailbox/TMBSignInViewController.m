@@ -106,6 +106,8 @@
     }];
     
     [controller addAction:okAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)showSuccessAlert {
@@ -118,7 +120,7 @@
     
     [controller addAction:okAction];
     
-    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 //- (void)textFieldShouldReturn:(UITextField *)textField {
