@@ -1,15 +1,14 @@
 //
-//  TMBTextCard.h
+//  TMBTextCardViewController.h
 //  ProjectMailbox
 //
-//  Created by Joseph Kiley on 11/17/15.
+//  Created by Flatiron on 11/19/15.
 //  Copyright © 2015 Joseph Kiley. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface TMBTextCard : NSObject
+@interface TMBTextCardViewController : UIViewController
 
 @end

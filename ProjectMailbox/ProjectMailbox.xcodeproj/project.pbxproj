@@ -24,6 +24,8 @@
 		5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */; };
 		5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */; };
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
+		A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
@@ -92,6 +94,9 @@
 		5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFirstPageViewController.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
 		A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.debug.xcconfig"; sourceTree = "<group>"; };
+		A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCardViewController.h; sourceTree = "<group>"; };
+		A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCardViewController.m; sourceTree = "<group>"; };
+		A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextCardStoryboard.storyboard; sourceTree = "<group>"; };
 		A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewStoryboard.storyboard; sourceTree = "<group>"; };
 		A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageCardViewController.h; sourceTree = "<group>"; };
 		A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageCardViewController.m; sourceTree = "<group>"; };
@@ -197,6 +202,9 @@
 				A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */,
 				5508F4E51BFBC25300D02E15 /* TMBTextCard.h */,
 				5508F4E61BFBC25300D02E15 /* TMBTextCard.m */,
+				A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */,
+				A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */,
+				A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */,
 				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
 				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
@@ -373,6 +381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
 				A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */,
 				5508F4B51BFB972300D02E15 /* LaunchScreen.storyboard in Resources */,
 				5508F4B21BFB972300D02E15 /* Assets.xcassets in Resources */,
@@ -455,6 +464,7 @@
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
 				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
+				A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */,
 				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
 				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,

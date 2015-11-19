@@ -8,6 +8,14 @@
 
 #import "TMBTextCard.h"
 
+@interface TMBTextCard ()
+
+@property (nonatomic, strong) PFFile *currentFile;
+@property (nonatomic, strong) NSString *commentText;
+
+@end
+
+
 @implementation TMBTextCard
 
 @end
