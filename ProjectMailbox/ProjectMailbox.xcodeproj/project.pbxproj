@@ -20,15 +20,31 @@
 		5508F4D91BFB976F00D02E15 /* parse-library in Resources */ = {isa = PBXBuildFile; fileRef = 5508F4D81BFB976F00D02E15 /* parse-library */; };
 		5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4DD1BFBC22300D02E15 /* TMBUser.m */; };
 		5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E01BFBC23900D02E15 /* TMBGroup.m */; };
-		5508F4E41BFBC24600D02E15 /* TMBImageCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E31BFBC24600D02E15 /* TMBImageCard.m */; };
 		5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E61BFBC25300D02E15 /* TMBTextCard.m */; };
 		5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */; };
 		5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */; };
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
-		55D913651BFCE70D00A0CE24 /* TMBMakeGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D913641BFCE70D00A0CE24 /* TMBMakeGroupViewController.m */; };
-		55D913691BFCE94E00A0CE24 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D913661BFCE94E00A0CE24 /* FBSDKCoreKit.framework */; };
-		55D9136A1BFCE94E00A0CE24 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D913671BFCE94E00A0CE24 /* FBSDKLoginKit.framework */; };
-		55D9136B1BFCE94E00A0CE24 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D913681BFCE94E00A0CE24 /* FBSDKShareKit.framework */; };
+		A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		A44515141BFE6CFB00BDD502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515131BFE6CFB00BDD502 /* Foundation.framework */; };
+		A44515161BFE6D0B00BDD502 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515151BFE6D0B00BDD502 /* UIKit.framework */; };
+		A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
+		A46CB1031BFCD39A00D35BB3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */; };
+		A46CB1051BFCD3A400D35BB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */; };
+		A46CB1071BFCD3AE00D35BB3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */; };
+		A46CB1091BFCD3B800D35BB3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */; };
+		A46CB10B1BFCD3C100D35BB3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10A1BFCD3C100D35BB3 /* Security.framework */; };
+		A46CB10F1BFCD3D400D35BB3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */; };
+		A46CB1111BFCD3E300D35BB3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1101BFCD3E300D35BB3 /* libz.tbd */; };
+		A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
+		A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
+		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
+		A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; settings = {ASSET_TAGS = (); }; };
+		A46CB1201BFCE1C700D35BB3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB11F1BFCE1C700D35BB3 /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +88,6 @@
 		5508F4DD1BFBC22300D02E15 /* TMBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBUser.m; sourceTree = "<group>"; };
 		5508F4DF1BFBC23900D02E15 /* TMBGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBGroup.h; sourceTree = "<group>"; };
 		5508F4E01BFBC23900D02E15 /* TMBGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBGroup.m; sourceTree = "<group>"; };
-		5508F4E21BFBC24600D02E15 /* TMBImageCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageCard.h; sourceTree = "<group>"; };
-		5508F4E31BFBC24600D02E15 /* TMBImageCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageCard.m; sourceTree = "<group>"; };
 		5508F4E51BFBC25300D02E15 /* TMBTextCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCard.h; sourceTree = "<group>"; };
 		5508F4E61BFBC25300D02E15 /* TMBTextCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCard.m; sourceTree = "<group>"; };
 		5508F4E81BFBDD2E00D02E15 /* TMBSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSignInViewController.h; sourceTree = "<group>"; };
@@ -82,34 +96,33 @@
 		5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSignUpViewController.m; sourceTree = "<group>"; };
 		5508F4EE1BFC12A500D02E15 /* TMBFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFirstPageViewController.h; sourceTree = "<group>"; };
 		5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFirstPageViewController.m; sourceTree = "<group>"; };
-		55D913631BFCE70D00A0CE24 /* TMBMakeGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMakeGroupViewController.h; sourceTree = "<group>"; };
-		55D913641BFCE70D00A0CE24 /* TMBMakeGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMakeGroupViewController.m; sourceTree = "<group>"; };
-		55D913661BFCE94E00A0CE24 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		55D913671BFCE94E00A0CE24 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		55D913681BFCE94E00A0CE24 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		55D9136C1BFCEB5D00A0CE24 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		55D9136E1BFCEB6200A0CE24 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		55D913701BFCEB6F00A0CE24 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		55D913711BFCEB6F00A0CE24 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		55D913721BFCEB6F00A0CE24 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		55D913731BFCEB6F00A0CE24 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
-		55D913781BFCEBB400A0CE24 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
-		55D913791BFCEBB400A0CE24 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
-		55D9137A1BFCEBB400A0CE24 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		55D9137B1BFCEBB400A0CE24 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
-		55D9137C1BFCEBB400A0CE24 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		55D9137D1BFCEBB400A0CE24 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		55D9137E1BFCEBB400A0CE24 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		55D9137F1BFCEBB400A0CE24 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		55D913801BFCEBB400A0CE24 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		55D913811BFCEBB400A0CE24 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		55D913821BFCEBB400A0CE24 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
-		55D913831BFCEBB400A0CE24 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
-		55D913841BFCEBB400A0CE24 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		55D913851BFCEBB400A0CE24 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
-		55D913861BFCEBB400A0CE24 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = System/Library/Frameworks/WatchKit.framework; sourceTree = SDKROOT; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
 		A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.debug.xcconfig"; sourceTree = "<group>"; };
+		A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCardViewController.h; sourceTree = "<group>"; };
+		A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCardViewController.m; sourceTree = "<group>"; };
+		A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextCardStoryboard.storyboard; sourceTree = "<group>"; };
+		A44515131BFE6CFB00BDD502 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A44515151BFE6D0B00BDD502 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DoodleStoryboard.storyboard; sourceTree = "<group>"; };
+		A44515191BFE6D7800BDD502 /* TMBDoodleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBDoodleViewController.h; sourceTree = "<group>"; };
+		A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBDoodleViewController.m; sourceTree = "<group>"; };
+		A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewStoryboard.storyboard; sourceTree = "<group>"; };
+		A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageCardViewController.h; sourceTree = "<group>"; };
+		A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageCardViewController.m; sourceTree = "<group>"; };
+		A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A46CB10A1BFCD3C100D35BB3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A46CB1101BFCD3E300D35BB3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A46CB1141BFCD40000D35BB3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		A46CB1161BFCD40700D35BB3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		A46CB11A1BFCDDA300D35BB3 /* TMBImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageView.h; sourceTree = "<group>"; };
+		A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageView.m; sourceTree = "<group>"; };
+		A46CB11F1BFCE1C700D35BB3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "ProjectMailbox/parse-library/Parse.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,10 +130,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55D9136B1BFCE94E00A0CE24 /* FBSDKShareKit.framework in Frameworks */,
+				A44515161BFE6D0B00BDD502 /* UIKit.framework in Frameworks */,
+				A44515141BFE6CFB00BDD502 /* Foundation.framework in Frameworks */,
+				A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */,
+				A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */,
+				A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */,
+				A46CB1111BFCD3E300D35BB3 /* libz.tbd in Frameworks */,
+				A46CB10F1BFCD3D400D35BB3 /* SystemConfiguration.framework in Frameworks */,
+				A46CB10B1BFCD3C100D35BB3 /* Security.framework in Frameworks */,
+				A46CB1091BFCD3B800D35BB3 /* QuartzCore.framework in Frameworks */,
+				A46CB1071BFCD3AE00D35BB3 /* CoreLocation.framework in Frameworks */,
+				A46CB1051BFCD3A400D35BB3 /* CoreGraphics.framework in Frameworks */,
+				A46CB1201BFCE1C700D35BB3 /* Parse.framework in Frameworks */,
+				A46CB1031BFCD39A00D35BB3 /* CFNetwork.framework in Frameworks */,
+				A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */,
 				1CC625A91D94AF1EC3E1D5AB /* Pods_ProjectMailbox.framework in Frameworks */,
-				55D913691BFCE94E00A0CE24 /* FBSDKCoreKit.framework in Frameworks */,
-				55D9136A1BFCE94E00A0CE24 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,18 +200,25 @@
 				5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */,
 				5508F4EB1BFBDD4100D02E15 /* TMBSignUpViewController.h */,
 				5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */,
-				55D913631BFCE70D00A0CE24 /* TMBMakeGroupViewController.h */,
-				55D913641BFCE70D00A0CE24 /* TMBMakeGroupViewController.m */,
 				5508F4A81BFB972300D02E15 /* ViewController.h */,
 				5508F4A91BFB972300D02E15 /* ViewController.m */,
 				5508F4DC1BFBC22300D02E15 /* TMBUser.h */,
 				5508F4DD1BFBC22300D02E15 /* TMBUser.m */,
 				5508F4DF1BFBC23900D02E15 /* TMBGroup.h */,
 				5508F4E01BFBC23900D02E15 /* TMBGroup.m */,
-				5508F4E21BFBC24600D02E15 /* TMBImageCard.h */,
-				5508F4E31BFBC24600D02E15 /* TMBImageCard.m */,
+				A46CB11A1BFCDDA300D35BB3 /* TMBImageView.h */,
+				A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */,
+				A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */,
+				A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */,
+				A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */,
 				5508F4E51BFBC25300D02E15 /* TMBTextCard.h */,
 				5508F4E61BFBC25300D02E15 /* TMBTextCard.m */,
+				A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */,
+				A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */,
+				A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */,
+				A44515191BFE6D7800BDD502 /* TMBDoodleViewController.h */,
+				A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */,
+				A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */,
 				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
 				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
@@ -235,30 +266,20 @@
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				55D913781BFCEBB400A0CE24 /* Contacts.framework */,
-				55D913791BFCEBB400A0CE24 /* ContactsUI.framework */,
-				55D9137A1BFCEBB400A0CE24 /* CoreAudio.framework */,
-				55D9137B1BFCEBB400A0CE24 /* CoreAudioKit.framework */,
-				55D9137C1BFCEBB400A0CE24 /* CoreImage.framework */,
-				55D9137D1BFCEBB400A0CE24 /* CoreLocation.framework */,
-				55D9137E1BFCEBB400A0CE24 /* CoreMedia.framework */,
-				55D9137F1BFCEBB400A0CE24 /* CoreVideo.framework */,
-				55D913801BFCEBB400A0CE24 /* MediaPlayer.framework */,
-				55D913811BFCEBB400A0CE24 /* NotificationCenter.framework */,
-				55D913821BFCEBB400A0CE24 /* Photos.framework */,
-				55D913831BFCEBB400A0CE24 /* PhotosUI.framework */,
-				55D913841BFCEBB400A0CE24 /* Social.framework */,
-				55D913851BFCEBB400A0CE24 /* WatchConnectivity.framework */,
-				55D913861BFCEBB400A0CE24 /* WatchKit.framework */,
-				55D913701BFCEB6F00A0CE24 /* AudioToolbox.framework */,
-				55D913711BFCEB6F00A0CE24 /* AudioUnit.framework */,
-				55D913721BFCEB6F00A0CE24 /* AVFoundation.framework */,
-				55D913731BFCEB6F00A0CE24 /* AVKit.framework */,
-				55D9136E1BFCEB6200A0CE24 /* AddressBookUI.framework */,
-				55D9136C1BFCEB5D00A0CE24 /* AddressBook.framework */,
-				55D913661BFCE94E00A0CE24 /* FBSDKCoreKit.framework */,
-				55D913671BFCE94E00A0CE24 /* FBSDKLoginKit.framework */,
-				55D913681BFCE94E00A0CE24 /* FBSDKShareKit.framework */,
+				A44515151BFE6D0B00BDD502 /* UIKit.framework */,
+				A44515131BFE6CFB00BDD502 /* Foundation.framework */,
+				A46CB11F1BFCE1C700D35BB3 /* Parse.framework */,
+				A46CB1161BFCD40700D35BB3 /* Accounts.framework */,
+				A46CB1141BFCD40000D35BB3 /* Social.framework */,
+				A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */,
+				A46CB1101BFCD3E300D35BB3 /* libz.tbd */,
+				A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */,
+				A46CB10A1BFCD3C100D35BB3 /* Security.framework */,
+				A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */,
+				A46CB1061BFCD3AE00D35BB3 /* CoreLocation.framework */,
+				A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */,
+				A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */,
+				A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */,
 				3F93F7AC4E86816E10108540 /* Pods_ProjectMailbox.framework */,
 			);
 			name = Frameworks;
@@ -334,6 +355,12 @@
 				TargetAttributes = {
 					5508F49E1BFB972300D02E15 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 2J9BMNCVTH;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					5508F4BA1BFB972300D02E15 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -370,6 +397,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
+				A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */,
+				A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */,
 				5508F4B51BFB972300D02E15 /* LaunchScreen.storyboard in Resources */,
 				5508F4B21BFB972300D02E15 /* Assets.xcassets in Resources */,
 				5508F4D91BFB976F00D02E15 /* parse-library in Resources */,
@@ -447,14 +477,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
-				5508F4E41BFBC24600D02E15 /* TMBImageCard.m in Sources */,
+				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
 				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
+				A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */,
+				A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */,
 				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
+				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
-				55D913651BFCE70D00A0CE24 /* TMBMakeGroupViewController.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
 				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
 				5508F4A41BFB972300D02E15 /* main.m in Sources */,
@@ -548,7 +580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -586,7 +618,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -598,15 +630,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ProjectMailbox/parse-library",
 				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -614,15 +650,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/ProjectMailbox/parse-library",
 				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
