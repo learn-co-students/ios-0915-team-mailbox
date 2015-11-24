@@ -41,19 +41,59 @@
         return;
     }
     
-    [PFUser logInWithUsername:userName password:password];
+    [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+        if (userName != nil) {
+            NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
+            
+            [usernameDefault setValue:userName forKey:@"user_name"];
+            
+            [usernameDefault synchronize];
+            
+            [self showSuccessAlert];
+            
+        } else {
+            
+            [self showErrorAlert];
+        }
+        
+    }];
+
     
-    if (userName != nil) {
-        NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
-        
-        [usernameDefault setValue:userName forKey:@"user_name"];
-        
-        [usernameDefault synchronize];
+//    NSOperationQueue *backgroundThread = [NSOperationQueue new];
+//    
+//    [backgroundThread addOperationWithBlock:^{
     
-    } else {
         
-        [self showErrorAlert];
-    }
+        
+//        [PFUser logInWithUsername:userName password:password];
+//        
+//        if (userName != nil) {
+//            NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
+//            
+//            [usernameDefault setValue:userName forKey:@"user_name"];
+//            
+//            [usernameDefault synchronize];
+//            
+//        } else {
+//            
+//            [self showErrorAlert];
+//        }
+    
+    
+//    
+//    [PFUser logInWithUsername:userName password:password];
+//    
+//    if (userName != nil) {
+//        NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
+//        
+//        [usernameDefault setValue:userName forKey:@"user_name"];
+//        
+//        [usernameDefault synchronize];
+//    
+//    } else {
+//        
+//        [self showErrorAlert];
+//    }
     
 }
 
@@ -66,6 +106,21 @@
     }];
     
     [controller addAction:okAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)showSuccessAlert {
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert" message:@"You've Logged in!!!!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [controller addAction:okAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 //- (void)textFieldShouldReturn:(UITextField *)textField {

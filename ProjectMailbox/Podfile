@@ -9,6 +9,12 @@ pod 'AFNetworking'
 pod 'Parse'
 pod 'MMDrawerController', '~> 0.5.7'
 pod 'JSQMessagesViewController'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
+pod 'ParseFacebookUtilsV4'
+
+
 
 end
 
