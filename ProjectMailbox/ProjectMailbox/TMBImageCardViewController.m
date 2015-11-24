@@ -46,6 +46,9 @@
 
     NSLog(@"IN VIEW DID LOAD.........");
 
+    
+    // loggin in this app as Inga for now
+    
     if (![PFUser currentUser]){
         [PFUser logInWithUsernameInBackground:@"ingakyt@gmail.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
             NSLog(@"logged in user: %@ \nwith error: %@", user, error);
@@ -158,9 +161,10 @@
 
 
 
+    // this code saves the image selected from photo library or camera
 - (BOOL)shouldUploadImage:(UIImage *)anImage {
     
-    
+    // passing a UIImage and setting it to our library/camera image
     anImage = self.imageView.image;
     
     NSData *imageData = UIImagePNGRepresentation(anImage);
@@ -188,7 +192,7 @@
 
 
 
-
+    // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
     [self shouldUploadImage:self.image];
