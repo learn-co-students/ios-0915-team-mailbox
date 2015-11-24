@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D3EAB59D27FD213876F10BE"
+               BlueprintIdentifier = "E5023096D785120B45D79C92"
                BuildableName = "Pods_ProjectMailbox.framework"
                BlueprintName = "Pods-ProjectMailbox"
                ReferencedContainer = "container:Pods.xcodeproj">

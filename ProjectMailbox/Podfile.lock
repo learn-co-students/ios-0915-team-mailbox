@@ -36,8 +36,8 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
-  - Parse (1.9.1):
-    - Bolts/Tasks (>= 1.4.0)
+  - Parse (1.10.0):
+    - Bolts/Tasks (~> 1.5)
 
 DEPENDENCIES:
   - AFNetworking
@@ -51,6 +51,6 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
-  Parse: 54a965c8c19a6dde90284ab654dbcc77ef8c001b
+  Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
 
 COCOAPODS: 0.38.2
