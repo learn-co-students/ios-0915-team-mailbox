@@ -12,6 +12,7 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
 @interface TMBFirstPageViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 
 @end
 
@@ -20,6 +21,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if ([PFUser currentUser]) {
+        self.welcomeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Welcome, %@", nil), [[PFUser currentUser] username]];
+    } else {
+        self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
+    }
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    if (![PFUser currentUser]) {
+        TMBSignInViewController *signInViewController = [[TMBSignInViewController alloc]init];
+        
+        
+    }
 }
 
 - (void)loginWithFacebook {
@@ -45,22 +61,6 @@
                                                         }
                                                         
                                                     }];
-    
-    
-    
-//    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-//        if (!user) {
-//            [self facebookLoginErrorAlert];
-//            NSLog(@"Uh oh. The user cancelled the Facebook login.");
-//        } else if (user.isNew) {
-//            [self loadFacebookUserDetails];
-//
-//            NSLog(@"User signed up and logged in through Facebook!");
-//        } else {
-//            [self loadFacebookUserDetails];
-//            NSLog(@"User logged in through Facebook!");
-//        }
-//    }];
     
 }
 
@@ -114,6 +114,8 @@
                                                               [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                                                   if (error != nil) {
                                                                       [self facebookLoginErrorAlert];
+                                                                      [PFUser logOut];
+                                                                      return;
                                                                   }
                                                                   
                                                                   if (succeeded) {
@@ -127,10 +129,6 @@
                                                               }];
                                                           }
                                                           
-                                                          
-                                                          
-                                                          
-                                                          
                                                       }];
             
             [newTask resume];
@@ -138,6 +136,10 @@
   
                  }
              }];
+    
+}
+
+- (void)buildUserInterface {
     
 }
 

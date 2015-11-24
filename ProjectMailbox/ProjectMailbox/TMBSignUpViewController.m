@@ -83,6 +83,11 @@
     
 }
 
+- (IBAction)backButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)showErrorAlert {
     
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert" message:@"All fields are required" preferredStyle:UIAlertControllerStyleAlert];
@@ -103,6 +108,8 @@
     }];
     
     [controller addAction:okAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)showSuccessAlert {

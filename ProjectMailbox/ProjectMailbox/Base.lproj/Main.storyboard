@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="trK-IN-pyB">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--First Page View Controller-->
@@ -17,15 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySX-7K-rEo">
-                                <rect key="frame" x="30" y="383" width="130" height="50"/>
-                                <animations/>
-                                <state key="normal" title="Sign In" image="login-btn"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="wTW-4k-n5T"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sK8-tb-ygr">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sK8-tb-ygr">
                                 <rect key="frame" x="30" y="469" width="318" height="50"/>
                                 <animations/>
                                 <state key="normal" image="facebook-btn"/>
@@ -33,7 +25,7 @@
                                     <action selector="facebookButtonTapped:" destination="JQm-dL-tEy" eventType="touchUpInside" id="71C-Xq-EFy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABP-bl-jSc">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABP-bl-jSc">
                                 <rect key="frame" x="218" y="383" width="130" height="50"/>
                                 <animations/>
                                 <state key="normal" image="sign-up-btn"/>
@@ -41,9 +33,29 @@
                                     <segue destination="wEy-RQ-VW0" kind="show" id="UHq-5g-smb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySX-7K-rEo">
+                                <rect key="frame" x="30" y="383" width="130" height="50"/>
+                                <animations/>
+                                <state key="normal" title="Sign In" image="login-btn"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="wTW-4k-n5T"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="2Fm-Sz-8XQ" firstAttribute="top" secondItem="sK8-tb-ygr" secondAttribute="bottom" constant="148" id="2C1-Rd-Htx"/>
+                            <constraint firstItem="ySX-7K-rEo" firstAttribute="leading" secondItem="JMz-sf-zHz" secondAttribute="leadingMargin" constant="10" id="76Z-iE-gba"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sK8-tb-ygr" secondAttribute="trailing" constant="7" id="7px-Ho-OSC"/>
+                            <constraint firstItem="sK8-tb-ygr" firstAttribute="leading" secondItem="JMz-sf-zHz" secondAttribute="leadingMargin" constant="10" id="8N7-Kx-5JF"/>
+                            <constraint firstItem="ABP-bl-jSc" firstAttribute="top" secondItem="EOt-BG-fcp" secondAttribute="bottom" constant="319" id="9fF-B8-f5v"/>
+                            <constraint firstItem="sK8-tb-ygr" firstAttribute="top" secondItem="ABP-bl-jSc" secondAttribute="bottom" constant="36" id="Kkt-69-6m1"/>
+                            <constraint firstItem="ySX-7K-rEo" firstAttribute="top" secondItem="EOt-BG-fcp" secondAttribute="bottom" constant="319" id="SHD-HF-LAm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ABP-bl-jSc" secondAttribute="trailing" constant="7" id="aYP-b0-0qz"/>
+                            <constraint firstItem="ABP-bl-jSc" firstAttribute="leading" secondItem="ySX-7K-rEo" secondAttribute="trailing" constant="58" id="hLs-nz-WcM"/>
+                            <constraint firstItem="sK8-tb-ygr" firstAttribute="top" secondItem="ySX-7K-rEo" secondAttribute="bottom" constant="36" id="nXm-dr-VXs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="smx-wp-LEu"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -82,6 +94,14 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="signInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NP4-5a-R0c"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uq-0c-rIN">
+                                <rect key="frame" x="20" y="72" width="40" height="40"/>
+                                <animations/>
+                                <state key="normal" title="Button" image="close-btn"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hCA-gY-SBT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -153,6 +173,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qh-BX-tWs">
+                                <rect key="frame" x="20" y="72" width="40" height="40"/>
+                                <animations/>
+                                <state key="normal" title="Button" image="close-btn"/>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -212,6 +237,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close-btn" width="88" height="88"/>
         <image name="facebook-btn" width="622" height="114"/>
         <image name="login-btn" width="295" height="114"/>
         <image name="sign-up-btn" width="295" height="114"/>
