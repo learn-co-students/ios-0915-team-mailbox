@@ -5,7 +5,6 @@ use_frameworks!
 
 target 'ProjectMailbox' do
 
-pod 'AFNetworking'
 pod 'Parse'
 pod 'MMDrawerController', '~> 0.5.7'
 pod 'JSQMessagesViewController'
