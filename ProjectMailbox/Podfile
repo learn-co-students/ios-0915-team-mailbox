@@ -13,6 +13,7 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'ParseFacebookUtilsV4'
+#pod 'Spotify-iOS-SDK', :podspec => 'Spotify-iOS-SDK.podspec.json'
 
 
 
