@@ -12,6 +12,12 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
+// added for Spotify
+
+#import <Spotify/Spotify.h>
+#import <AVFoundation/AVFoundation.h>
+#import "TMBConstants.h"
+
 @interface AppDelegate ()
 
 @end
@@ -32,6 +38,16 @@
 
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
+    
+    //spotify auth setup 
+    [[SPTAuth defaultInstance] setClientID: SPOTIFY_CLIENT_ID];
+    [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString: SPOTIFY_REDIRECT_URL]];
+    [[SPTAuth defaultInstance] setRequestedScopes:@[SPTAuthStreamingScope]];
+    [SPTAuth defaultInstance].tokenSwapURL = [NSURL URLWithString: SPOTIFY_TOKEN_SWAP_URL];
+    [SPTAuth defaultInstance].tokenRefreshURL = [NSURL URLWithString: SPOTIFY_TOKEN_REFRESH_URL];
+    [SPTAuth defaultInstance].sessionUserDefaultsKey = @"SpotifySession";
+    
+    
     return YES;
 }
 
@@ -45,11 +61,50 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
+    
+    if ([[SPTAuth defaultInstance] canHandleURL:url]) {
+        [[SPTAuth defaultInstance] handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
+            
+            NSLog(@"In applicationOpenURLSourceApplicationAnnotation: %@", url);
+            
+            if (error != nil) {
+                NSLog(@"*** Auth error: %@", error);
+                return;
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SpotifyLoggedIn" object:nil];
+        }];
+        return YES;
+    }
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                           openURL:url
                                                 sourceApplication:sourceApplication
                                                        annotation:annotation];
 }
+
+
+//-(BOOL)application:(UIApplication *)application
+//           openURL:(NSURL *)url
+// sourceApplication:(NSString *)sourceApplication
+//        annotation:(id)annotation {
+//    
+//    // Ask SPTAuth if the URL given is a Spotify authentication callback
+//    if ([[SPTAuth defaultInstance] canHandleURL:url]) {
+//        [[SPTAuth defaultInstance] handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
+//            
+//            NSLog(@"In applicationOpenURLSourceApplicationAnnotation: %@", url);
+//            
+//            if (error != nil) {
+//                NSLog(@"*** Auth error: %@", error);
+//                return;
+//            }
+//            
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"SpotifyLoggedIn" object:nil];
+//        }];
+//        return YES;
+//    }
+//    return NO;
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

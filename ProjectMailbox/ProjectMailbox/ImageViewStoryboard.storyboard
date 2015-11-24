@@ -16,12 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80w-f8-h1g">
-                                <rect key="frame" x="0.0" y="421" width="414" height="315"/>
-                                <animations/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Iw-hg-kuX">
-                                <rect key="frame" x="20" y="150" width="335" height="75"/>
+                                <rect key="frame" x="20" y="28" width="335" height="75"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.81978553611902794" green="1" blue="0.83447385062349033" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
@@ -34,7 +30,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSz-6p-Fbb">
-                                <rect key="frame" x="20" y="248" width="335" height="75"/>
+                                <rect key="frame" x="20" y="126" width="335" height="75"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.86268759579990317" green="1" blue="0.85729236632393269" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
@@ -46,18 +42,41 @@
                                     <action selector="chosePhotoButtonTapped:" destination="n6u-5X-ZQT" eventType="touchUpInside" id="G3R-5I-xDr"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Comment" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DxV-Fe-nEZ">
+                                <rect key="frame" x="20" y="223" width="335" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80w-f8-h1g">
+                                <rect key="frame" x="0.0" y="394" width="375" height="273"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YdM-30-fQQ">
+                                <rect key="frame" x="85" y="269" width="204" height="50"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.38962998539132532" blue="0.12047779547631954" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Post Image &amp; Comment">
+                                    <color key="titleColor" red="1" green="0.9765693018052497" blue="0.955494575148925" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="postButtonTapped:" destination="n6u-5X-ZQT" eventType="touchUpInside" id="Rcr-KA-eXO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="B7Z-bG-akE"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imageView" destination="80w-f8-h1g" id="B1R-nR-o2X"/>
+                        <outlet property="textField" destination="DxV-Fe-nEZ" id="pBM-Uw-rSl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTS-e9-aj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="384.5" y="442.5"/>
+            <point key="canvasLocation" x="1196.5" y="442.5"/>
         </scene>
     </scenes>
 </document>

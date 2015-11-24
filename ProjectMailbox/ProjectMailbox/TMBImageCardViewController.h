@@ -9,8 +9,8 @@
 #import "ViewController.h"
 #import <Parse/Parse.h>
 
-
 @interface TMBImageCardViewController : ViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+- (id)initWithImage:(UIImage *)aImage;
 
 @end
