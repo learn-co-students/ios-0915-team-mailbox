@@ -58,6 +58,13 @@
                                     <action selector="postButtonTapped:" destination="n6u-5X-ZQT" eventType="touchUpInside" id="Rcr-KA-eXO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvp-Ac-GNe">
+                                <rect key="frame" x="119" y="351" width="136" height="30"/>
+                                <state key="normal" title="View Comments"/>
+                                <connections>
+                                    <segue destination="zqX-4d-mjD" kind="presentation" id="nqM-7Q-mh5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -72,5 +79,100 @@
             </objects>
             <point key="canvasLocation" x="1196.5" y="442.5"/>
         </scene>
+        <!--Image Card View Controller-->
+        <scene sceneID="Pf0-MW-9E9">
+            <objects>
+                <viewController id="zqX-4d-mjD" customClass="TMBImageCardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g7T-ho-LwG"/>
+                        <viewControllerLayoutGuide type="bottom" id="ChP-EN-E45"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AoV-OT-bMv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ePm-9J-X7U">
+                                <rect key="frame" x="20" y="144" width="335" height="249"/>
+                                <color key="backgroundColor" red="0.87846298649999999" green="0.89614583810000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current user name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kZ-qF-IYh">
+                                <rect key="frame" x="65" y="99" width="244" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y7z-4q-wxa">
+                                <rect key="frame" x="20" y="401" width="335" height="251"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="64" id="42u-m6-66z">
+                                        <rect key="frame" x="0.0" y="28" width="335" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="42u-m6-66z" id="08A-dH-8SU">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AjH-pa-dqZ">
+                                                    <rect key="frame" x="15" y="12" width="40" height="40"/>
+                                                    <color key="backgroundColor" red="0.87846298648625087" green="0.89614583807756376" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ba-WI-Ssl">
+                                                    <rect key="frame" x="70" y="12" width="257" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="e2w-W7-i4J">
+                                        <rect key="frame" x="0.0" y="92" width="335" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e2w-W7-i4J" id="Pj1-H5-205">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ztc-Sm-MAv">
+                                        <rect key="frame" x="0.0" y="136" width="335" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ztc-Sm-MAv" id="RKi-2p-26g">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="bubble_min.png" backIndicatorTransitionMaskImage="bubble_min.png" translatesAutoresizingMaskIntoConstraints="NO" id="LbF-yb-M9N">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Comments" id="ize-Jh-nEu">
+                                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="adN-mW-FtO">
+                                            <connections>
+                                                <action selector="doneButtonTapped:" destination="zqX-4d-mjD" id="6k7-qH-Kca"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="commentUserPhotoThumb" destination="AjH-pa-dqZ" id="ede-5c-JXe"/>
+                        <outlet property="commentedPhoto" destination="ePm-9J-X7U" id="V2X-Ej-QtO"/>
+                        <outlet property="currentUserNameLabel" destination="7kZ-qF-IYh" id="nhg-Dg-3WU"/>
+                        <outlet property="userCommentLabel" destination="9ba-WI-Ssl" id="F3N-t9-h9D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C46-tj-8iu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1646.5" y="442.5"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="bubble_min.png" width="48" height="35"/>
+    </resources>
 </document>

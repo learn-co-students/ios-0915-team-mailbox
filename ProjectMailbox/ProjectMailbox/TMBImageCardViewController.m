@@ -19,6 +19,11 @@
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
 
+@property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
+@property (weak, nonatomic) IBOutlet UIImageView *commentUserPhotoThumb;
+@property (weak, nonatomic) IBOutlet UILabel *userCommentLabel;
+
 @end
 
 
@@ -83,13 +88,14 @@
 
 
 
+- (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 
-//- (IBAction)cancelButtonTapped:(UIButton *)sender {
-//    
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//
-//}
-//
+}
+
+
+
 
 
 
