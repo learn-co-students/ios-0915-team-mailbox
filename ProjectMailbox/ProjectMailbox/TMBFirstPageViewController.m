@@ -21,23 +21,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController setNavigationBarHidden:YES];
+    
     if ([PFUser currentUser]) {
+        [self presentMainPage];
         self.welcomeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Welcome, %@", nil), [[PFUser currentUser] username]];
+
     } else {
         self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
     }
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    if (![PFUser currentUser]) {
-        TMBSignInViewController *signInViewController = [[TMBSignInViewController alloc]init];
+    if ([PFUser currentUser]) {
         
-        
-        
+        [self presentMainPage];
         
     }
+}
+
+- (void)presentMainPage {
+    
+    UIViewController *mainPage = [self.storyboard instantiateViewControllerWithIdentifier:@"MainPage"];
+    
+    mainPage.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    [self presentViewController:mainPage animated:YES completion:nil];
+    
 }
 
 - (void)loginWithFacebook {
@@ -69,6 +80,12 @@
 - (IBAction)facebookButtonTapped:(id)sender {
     
     [self loginWithFacebook];
+    
+    // Navigate to protected page (main page)
+    
+    if ([PFUser currentUser]) {
+        [self performSegueWithIdentifier:@"OpenApp" sender:nil];
+    }
     
 }
 
@@ -138,6 +155,16 @@
   
                  }
              }];
+    
+}
+
+- (IBAction)logOutButtonTapped:(id)sender {
+    
+    [PFUser logOut];
+    
+    NSLog(@"Current User is %@", [PFUser currentUser]);
+    
+    self.welcomeLabel.text = @"Welcome";
     
 }
 

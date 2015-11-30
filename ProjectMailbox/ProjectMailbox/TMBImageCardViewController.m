@@ -18,6 +18,7 @@
 @property (nonatomic, strong) PFFile *photoFile;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @end
 
@@ -57,6 +58,10 @@
     
 }
 
+- (IBAction)backButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 // this posts a comment manually, without database relationships

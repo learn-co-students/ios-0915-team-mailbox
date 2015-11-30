@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordField;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -76,10 +77,8 @@
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             [self showSuccessAlert];
-        }
+        } 
     }];
-    
-    
     
 }
 

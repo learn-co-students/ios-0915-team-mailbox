@@ -16,9 +16,6 @@ pod 'SimpleColorPicker'
 
 #pod 'Spotify-iOS-SDK', :podspec => 'Spotify-iOS-SDK.podspec.json'
 
->>>>>>> master
-
-
 end
 
 target 'ProjectMailboxTests' do

@@ -20,10 +20,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *bottomImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *topImageView;
-@property (weak, nonatomic) IBOutlet UIButton *eraseButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *photoButton;
 @property (strong, nonatomic) UIView *feedbackView;
 @property (strong, nonatomic) SimpleColorPickerView *simpleColorPickerView;
 @property (strong, nonatomic) UIColor *chosenColor;
@@ -120,13 +120,23 @@
 
 }
 
-- (IBAction)eraserPressed:(id)sender {
+- (IBAction)photoButtonPressed:(id)sender {
     
-    red = 255.0/255.0;
-    green = 255.0/255.0;
-    blue = 255.0/255.0;
-    opacity = 1.0;
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.bottomImageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
