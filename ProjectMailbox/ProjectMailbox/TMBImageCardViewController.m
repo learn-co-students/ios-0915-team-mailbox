@@ -70,16 +70,15 @@
      *        PARSE QUERY        *
      *****************************/
 
-    // query for an image, set the image to the view
-    
-    // store objects in an array  self.activities = objects
+    // goal: query for an image, set the image to the view
+    // goal: get comments related to that image & display them in a small table view
     
     PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
     [query includeKey:kTMBActivityPhotoKey];
     [query includeKey:kTMBActivityFromUserKey];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            // handle in the future
+            // handle error in the future
         }
 
         PFObject *anActivity = [objects firstObject];
@@ -88,20 +87,20 @@
         // set datastore to objects array
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
-         
             self.activities = [objects mutableCopy];
             [self.commentsTableView reloadData];
         }];
         
-    
+        // test: getting photo obj
         PFObject *anActivitysPhoto = anActivity[@"photo"];
         PFFile *imageFile = anActivitysPhoto[@"image"];
         
+        // test: user's first name set to label
         PFObject *aFromUser = anActivity[@"fromUser"];
         NSString *firstName = aFromUser[@"First_Name"];
         self.currentUserNameLabel.text = firstName;
 
-        
+        // setting the image view to photo obj above
         [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
             if (!error) {
                 UIImage *image = [UIImage imageWithData:result];
@@ -117,13 +116,9 @@
 
 
 
-
-
-
      
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
     
     NSUInteger numberOfComments = self.activities.count;
     NSLog(@"numberOfRows getting called: %lu", self.activities.count);
@@ -139,12 +134,12 @@
     
     NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
     
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
 
     NSUInteger rowOfIndexPath = indexPath.row;
-    PFObject *anActivity = self.activities[rowOfIndexPath];
     
+    // setting table rows to display comments
+    PFObject *anActivity = self.activities[rowOfIndexPath];
     cell.textLabel.text = anActivity[@"content"];
     
     return cell;
@@ -210,7 +205,7 @@
 
 
 /*****************************
- *          TO PARSE         *
+ *      SAVING TO PARSE      *
  *****************************/
 
 // this code saves the image selected from photo library or camera
