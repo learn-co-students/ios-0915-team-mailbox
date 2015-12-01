@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "TMBMainPageViewController.h"
 
 @interface TMBSignInViewController : ViewController
 

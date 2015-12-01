@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SimpleColorPickerView.h"
 
-@interface TMBDoodleViewController : UIViewController
+@interface TMBDoodleViewController : UIViewController {
+    
+    CGPoint lastPoint;
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat brush;
+    CGFloat opacity;
+    BOOL mouseSwiped;
+    
+}
 
 @end

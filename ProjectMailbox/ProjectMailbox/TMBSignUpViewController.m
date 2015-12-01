@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordField;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -76,11 +77,14 @@
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             [self showSuccessAlert];
-        }
+        } 
     }];
     
+}
+
+- (IBAction)backButtonTapped:(id)sender {
     
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showErrorAlert {
@@ -103,6 +107,8 @@
     }];
     
     [controller addAction:okAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)showSuccessAlert {

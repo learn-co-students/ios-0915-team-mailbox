@@ -21,12 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSAttributedString *usernameString = [[NSAttributedString alloc] init];
-//    NSAttributedString *passwordString = [[NSAttributedString alloc] init];
-//    [usernameString initWithString:@"Email Address" attributes:NSForegroundColorAttributeName];
-//    [passwordString initWithString:@"Password" attributes:NSForegroundColorAttributeName];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (IBAction)signInButtonTapped:(id)sender {
@@ -43,13 +37,27 @@
     
     [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (userName != nil) {
+            
+//          PFUser currentUser
             NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
             
             [usernameDefault setValue:userName forKey:@"user_name"];
             
             [usernameDefault synchronize];
             
+            NSLog(@"User has Logged in");
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInNotification" object:nil];
+            
             [self showSuccessAlert];
+            
+            
+            
+            // Navigate to protected page (main page)
+            
+//            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            
+//            TMBMainPageViewController *mainPage = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainPageViewController"];
             
         } else {
             
@@ -57,45 +65,14 @@
         }
         
     }];
-
-    
-//    NSOperationQueue *backgroundThread = [NSOperationQueue new];
-//    
-//    [backgroundThread addOperationWithBlock:^{
-    
-        
-        
-//        [PFUser logInWithUsername:userName password:password];
-//        
-//        if (userName != nil) {
-//            NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
-//            
-//            [usernameDefault setValue:userName forKey:@"user_name"];
-//            
-//            [usernameDefault synchronize];
-//            
-//        } else {
-//            
-//            [self showErrorAlert];
-//        }
-    
-    
-//    
-//    [PFUser logInWithUsername:userName password:password];
-//    
-//    if (userName != nil) {
-//        NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
-//        
-//        [usernameDefault setValue:userName forKey:@"user_name"];
-//        
-//        [usernameDefault synchronize];
-//    
-//    } else {
-//        
-//        [self showErrorAlert];
-//    }
     
 }
+
+- (IBAction)backButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)showErrorAlert {
     

@@ -15,15 +15,10 @@
 
 @implementation TMBTextCardViewController
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
 }
-
-
 
 - (IBAction)sendButtonTapped:(UIButton *)sender {
     
@@ -33,6 +28,11 @@
     [comment saveInBackground];
     
     
+}
+
+- (IBAction)backButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

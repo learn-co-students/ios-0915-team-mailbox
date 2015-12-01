@@ -12,6 +12,7 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
 @interface TMBFirstPageViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 
 @end
 
@@ -19,6 +20,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    if ([PFUser currentUser]) {
+        [self presentMainPage];
+        self.welcomeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Welcome, %@", nil), [[PFUser currentUser] username]];
+
+    } else {
+        self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+//    if ([PFUser currentUser]) {
+//        
+//        [self presentMainPage];
+//        
+//    }
+}
+
+- (void)presentMainPage {
+    
+    UIViewController *mainPage = [self.storyboard instantiateViewControllerWithIdentifier:@"MainPage"];
+    
+    mainPage.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    [self presentViewController:mainPage animated:YES completion:nil];
     
 }
 
@@ -46,27 +75,13 @@
                                                         
                                                     }];
     
-    
-    
-//    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-//        if (!user) {
-//            [self facebookLoginErrorAlert];
-//            NSLog(@"Uh oh. The user cancelled the Facebook login.");
-//        } else if (user.isNew) {
-//            [self loadFacebookUserDetails];
-//
-//            NSLog(@"User signed up and logged in through Facebook!");
-//        } else {
-//            [self loadFacebookUserDetails];
-//            NSLog(@"User logged in through Facebook!");
-//        }
-//    }];
-    
 }
 
 - (IBAction)facebookButtonTapped:(id)sender {
     
     [self loginWithFacebook];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInNotification" object:nil];
     
 }
 
@@ -114,6 +129,8 @@
                                                               [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                                                   if (error != nil) {
                                                                       [self facebookLoginErrorAlert];
+                                                                      [PFUser logOut];
+                                                                      return;
                                                                   }
                                                                   
                                                                   if (succeeded) {
@@ -127,10 +144,6 @@
                                                               }];
                                                           }
                                                           
-                                                          
-                                                          
-                                                          
-                                                          
                                                       }];
             
             [newTask resume];
@@ -138,6 +151,16 @@
   
                  }
              }];
+    
+}
+
+- (IBAction)logOutButtonTapped:(id)sender {
+    
+    [PFUser logOut];
+    
+    NSLog(@"Current User is %@", [PFUser currentUser]);
+    
+    self.welcomeLabel.text = @"Welcome";
     
 }
 
