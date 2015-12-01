@@ -11,7 +11,8 @@
 #import "PAPCache.h"
 
 
-@interface TMBImageCardViewController ()
+@interface TMBImageCardViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -21,8 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
-@property (weak, nonatomic) IBOutlet UIImageView *commentUserPhotoThumb;
-@property (weak, nonatomic) IBOutlet UILabel *userCommentLabel;
+@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 
 @end
 
@@ -48,11 +48,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSLog(@"IN VIEW DID LOAD.........");
-
     
-    // loggin in this app as Inga for now
+    NSLog(@"IN VIEW DID LOAD.........");
+    
+    self.commentsTableView.delegate = self;
+    self.commentsTableView.dataSource = self;
+    
+    
+
+    // loging in this app as Inga for now
     
     if (![PFUser currentUser]){
         [PFUser logInWithUsernameInBackground:@"ingakyt@gmail.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
@@ -60,30 +64,92 @@
         }];
     }
     
+    
+    
+    /*****************************
+     *        PARSE QUERY        *
+     *****************************/
+
+    // query for an image, set the image to the view
+    
+    // store objects in an array  self.activities = objects
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query includeKey:kTMBActivityPhotoKey];
+    [query includeKey:kTMBActivityFromUserKey];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            // handle in the future
+        }
+
+        PFObject *anActivity = [objects firstObject];
+        NSLog(@"anActivities comment: %@", anActivity[@"content"]);
+        
+        // set datastore to objects array
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+         
+            self.activities = [objects mutableCopy];
+            [self.commentsTableView reloadData];
+        }];
+        
+    
+        PFObject *anActivitysPhoto = anActivity[@"photo"];
+        PFFile *imageFile = anActivitysPhoto[@"image"];
+        
+        PFObject *aFromUser = anActivity[@"fromUser"];
+        NSString *firstName = aFromUser[@"First_Name"];
+        self.currentUserNameLabel.text = firstName;
+
+        
+        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:result];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    self.commentedPhoto.image = image;
+                }];
+            }
+        }];
+    }];
+    
+    
 }
 
 
 
-// this posts a comment manually, without database relationships
-
-//- (IBAction)postButtonTapped:(UIButton *)sender {
-    
-//    NSString *commentText = self.textField.text;
-//    // sends the comment to Parse
-//    PFObject *comment = [PFObject objectWithClassName:@"Image"];
-//    comment[@"comment"] = commentText;
-//    [comment saveInBackground];
-    
-    // displaying comments in a text box
-    
- //   self.textFieldView.text = ;
-    
-//    [self postImage];
-    
 
 
+
+     
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     
-//}
+    
+    NSUInteger numberOfComments = self.activities.count;
+    NSLog(@"numberOfRows getting called: %lu", self.activities.count);
+    
+    return numberOfComments;
+}
+
+
+
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
+    
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
+
+    NSUInteger rowOfIndexPath = indexPath.row;
+    PFObject *anActivity = self.activities[rowOfIndexPath];
+    
+    cell.textLabel.text = anActivity[@"content"];
+    
+    return cell;
+}
+
 
 
 
@@ -91,11 +157,8 @@
 - (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
-
+    
 }
-
-
-
 
 
 
@@ -106,7 +169,7 @@
     
     
     // simulators don't have a camera
-
+    
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
@@ -116,15 +179,17 @@
     } else {
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
-    [self presentViewController:picker animated:YES completion:NULL];
-    
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+        
     }
-
+    
 }
+
+
 
 
 
@@ -142,32 +207,13 @@
 
 
 
-// this posts an image manually, without database relationships
 
 
-//- (void)postImage {
-//    
-//    UIImage *aImage = self.imageView.image;
-//    
-//    NSData *imageData = UIImagePNGRepresentation(aImage);
-//    PFFile *imageFile = [PFFile fileWithData:imageData];
-//    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//            if (succeeded) {
-//                PFObject* newPhotoObject = [PFObject objectWithClassName:@"Image"];
-//                [newPhotoObject setObject:imageFile forKey:@"image"];
-//                [newPhotoObject saveInBackground];
-//            }
-//        } else {
-//            NSLog(@"ERROR UPLOADING PROFILE IMAGE");
-//        }
-//    }];
-//    
-//}
+/*****************************
+ *          TO PARSE         *
+ *****************************/
 
-
-
-    // this code saves the image selected from photo library or camera
+// this code saves the image selected from photo library or camera
 - (BOOL)shouldUploadImage:(UIImage *)anImage {
     
     // passing a UIImage and setting it to our library/camera image
@@ -175,7 +221,7 @@
     
     NSData *imageData = UIImagePNGRepresentation(anImage);
     self.photoFile = [PFFile fileWithData:imageData];
-
+    
     // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
     self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
         [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
@@ -190,19 +236,19 @@
             [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
         }
     }];
-
+    
     NSLog(@"IN SHOULD UPLOAD IMAGE BOOL .........");
-
+    
     return YES;
 }
 
 
 
-    // this code saves our image and its comment to Parse
+// this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
     [self shouldUploadImage:self.image];
-   
+    
     // Trim comment and save it in a dictionary for use later in our callback block
     NSDictionary *userInfo = [NSDictionary dictionary];
     NSString *trimmedComment = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -235,7 +281,7 @@
     [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"Photo uploaded");
-
+            
             [[PAPCache sharedCache] setAttributesForPhoto:photo likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
             
             // userInfo might contain any caption which might have been posted by the uploader
@@ -259,26 +305,25 @@
                     [[PAPCache sharedCache] incrementCommentCountForPhoto:photo];
                 }
             }
-//            
-//            [[NSNotificationCenter defaultCenter] postNotificationName:TMBTabBarControllerDidFinishEditingPhotoNotification object:photo];
+            //
+            //            [[NSNotificationCenter defaultCenter] postNotificationName:TMBTabBarControllerDidFinishEditingPhotoNotification object:photo];
         }else {
             NSLog(@"Photo failed to save: %@", error);
             // re-write this alert to newer syntax
             
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
-//            [alert show];
+            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+            //            [alert show];
         }
         [[UIApplication sharedApplication] endBackgroundTask:self.photoPostBackgroundTaskId];
-
+        
     }];
     
     
     // Dismiss this screen
     [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
     
-    
-    
 }
+
 
 
 
@@ -287,7 +332,6 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.imageView.image = chosenImage;
-//    [self postImage];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -307,15 +351,16 @@
 
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 

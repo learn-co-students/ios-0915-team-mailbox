@@ -11,6 +11,14 @@
 
 @interface TMBImageCardViewController : ViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+/// The class of the PFObject this table will use as a datasource
+@property (nonatomic, retain) NSString *className;
+
+/// The array of PFObjects that is the UITableView data source
+@property (nonatomic, strong) NSMutableArray *activities;
+
+@property (nonatomic, strong) PFObject *photo;
+
 - (id)initWithImage:(UIImage *)aImage;
 
 @end

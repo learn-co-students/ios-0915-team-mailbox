@@ -105,7 +105,7 @@
                                 <rect key="frame" x="20" y="401" width="335" height="251"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="64" id="42u-m6-66z">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" rowHeight="64" id="42u-m6-66z">
                                         <rect key="frame" x="0.0" y="28" width="335" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="42u-m6-66z" id="08A-dH-8SU">
@@ -144,7 +144,7 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="bubble_min.png" backIndicatorTransitionMaskImage="bubble_min.png" translatesAutoresizingMaskIntoConstraints="NO" id="LbF-yb-M9N">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LbF-yb-M9N">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Comments" id="ize-Jh-nEu">
@@ -161,10 +161,9 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="commentUserPhotoThumb" destination="AjH-pa-dqZ" id="ede-5c-JXe"/>
                         <outlet property="commentedPhoto" destination="ePm-9J-X7U" id="V2X-Ej-QtO"/>
+                        <outlet property="commentsTableView" destination="y7z-4q-wxa" id="0sd-FD-DeU"/>
                         <outlet property="currentUserNameLabel" destination="7kZ-qF-IYh" id="nhg-Dg-3WU"/>
-                        <outlet property="userCommentLabel" destination="9ba-WI-Ssl" id="F3N-t9-h9D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C46-tj-8iu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -172,7 +171,4 @@
             <point key="canvasLocation" x="1646.5" y="442.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="bubble_min.png" width="48" height="35"/>
-    </resources>
 </document>
