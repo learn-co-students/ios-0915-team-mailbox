@@ -46,6 +46,7 @@
 		A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
 		A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; settings = {ASSET_TAGS = (); }; };
+		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF31C03BC5C00F0F368 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEC1C03BC5C00F0F368 /* ParseCrashReporting.framework */; };
@@ -135,6 +136,8 @@
 		A46CB11A1BFCDDA300D35BB3 /* TMBImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageView.h; sourceTree = "<group>"; };
 		A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageView.m; sourceTree = "<group>"; };
 		A46CB11F1BFCE1C700D35BB3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "ProjectMailbox/parse-library/Parse.framework"; sourceTree = "<group>"; };
+		A4AC727C1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTableViewCommentCellTableViewCell.h; sourceTree = "<group>"; };
+		A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTableViewCommentCellTableViewCell.m; sourceTree = "<group>"; };
 		A4C03FE81C03BC3300F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.9.1/Bolts.framework"; sourceTree = "<group>"; };
 		A4C03FEB1C03BC5C00F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.9.1/Parse.framework"; sourceTree = "<group>"; };
@@ -322,6 +325,8 @@
 				A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */,
 				A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */,
 				A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */,
+				A4AC727C1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.h */,
+				A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */,
 				A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */,
 			);
 			name = "Post Image";
@@ -543,6 +548,7 @@
 				A445152E1C039D2300BDD502 /* PAPCache.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
+				A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
 				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
 				5508F4A41BFB972300D02E15 /* main.m in Sources */,

@@ -9,10 +9,12 @@
 #import "TMBImageCardViewController.h"
 #import "TMBConstants.h"
 #import "PAPCache.h"
+#import "TMBTableViewCommentCellTableViewCell.h"
 
 
 @interface TMBImageCardViewController () <UITableViewDelegate, UITableViewDataSource>
 
+//add photo view
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -20,9 +22,11 @@
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
 
+//detail view
 @property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
+
 
 @end
 
@@ -134,15 +138,26 @@
     
     NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
+    TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
 
     NSUInteger rowOfIndexPath = indexPath.row;
     
     // setting table rows to display comments
     PFObject *anActivity = self.activities[rowOfIndexPath];
-    cell.textLabel.text = anActivity[@"content"];
+//    cell.textLabel.text = anActivity[@"content"];
+    cell.userCommentLabel.text = anActivity[@"content"];
+    
+    
+    // user label displays fromUser name
+    PFObject *aFromUser = anActivity[@"fromUser"];
+    NSString *firstName = aFromUser[@"First_Name"];
+    cell.fromUserNameLabel.text = firstName;
+    
+    // set user profile photo next...
+
     
     return cell;
+    
 }
 
 
