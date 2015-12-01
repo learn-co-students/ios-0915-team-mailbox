@@ -47,13 +47,17 @@
             
             NSLog(@"User has Logged in");
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInNotification" object:nil];
+            
             [self showSuccessAlert];
+            
+            
             
             // Navigate to protected page (main page)
             
-            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            
-            TMBMainPageViewController *mainPage = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainPageViewController"];
+//            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            
+//            TMBMainPageViewController *mainPage = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainPageViewController"];
             
         } else {
             

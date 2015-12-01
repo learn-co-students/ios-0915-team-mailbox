@@ -9,15 +9,16 @@
 #import "TMBMainPageViewController.h"
 #import <MMDrawerController/MMDrawerController.h>
 
+@interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UIButton *menuButton;
+
+@end
+
 @implementation TMBMainPageViewController
 
 - (void)viewDidLoad {
     
-    UIViewController *leftDrawer = [[UIViewController alloc]init];
-    
-    UIViewController *center = [[UIViewController alloc]init];
-    
-    MMDrawerController *drawerController = [[MMDrawerController alloc]initWithCenterViewController:center leftDrawerViewController:leftDrawer];
     
 }
 
@@ -25,9 +26,14 @@
     
     [PFUser logOut];
     
-    [self performSegueWithIdentifier:@"ReturnToIntro" sender:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogOutNotification" object:nil];
     
 }
 
+- (IBAction)menuButtonTapped:(id)sender {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowHamburgerMenuNotification" object:nil];
+    
+}
 
 @end

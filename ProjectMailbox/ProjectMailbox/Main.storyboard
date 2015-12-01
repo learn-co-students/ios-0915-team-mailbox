@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4ch-vb-aOd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="t6V-2z-Cyb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--App View Controller-->
+        <scene sceneID="hcU-9T-IKt">
+            <objects>
+                <viewController id="t6V-2z-Cyb" customClass="AppViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tkh-uF-fYD"/>
+                        <viewControllerLayoutGuide type="bottom" id="qbl-ed-oeH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6iI-Vl-1yH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1T-md-SoO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="SnD-5e-IdN" kind="embed" id="Bly-7o-zzr"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y1T-md-SoO" firstAttribute="top" secondItem="6iI-Vl-1yH" secondAttribute="topMargin" id="9VX-an-hZV"/>
+                            <constraint firstItem="qbl-ed-oeH" firstAttribute="top" secondItem="Y1T-md-SoO" secondAttribute="bottom" id="9lo-AC-obK"/>
+                            <constraint firstItem="Y1T-md-SoO" firstAttribute="leading" secondItem="6iI-Vl-1yH" secondAttribute="leadingMargin" id="SHm-C0-ZvG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y1T-md-SoO" secondAttribute="trailing" id="ZRy-TX-Khe"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="containerView" destination="Y1T-md-SoO" id="fjV-zY-OS3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jp5-p5-EBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1731.5" y="410.5"/>
+        </scene>
         <!--First Page View Controller-->
         <scene sceneID="a6v-cU-LGw">
             <objects>
-                <viewController id="4ch-vb-aOd" customClass="TMBFirstPageViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstPage" id="4ch-vb-aOd" customClass="TMBFirstPageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hiI-qO-zvj"/>
                         <viewControllerLayoutGuide type="bottom" id="EDw-YL-IjJ"/>
@@ -16,6 +55,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWJ-yg-Dun">
+                                <rect key="frame" x="32" y="394" width="130" height="50"/>
+                                <animations/>
+                                <state key="normal" image="login-btn"/>
+                                <connections>
+                                    <segue destination="oMu-35-UeF" kind="presentation" identifier="signInSegue" id="1qj-qF-fPj"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INv-rr-wQb">
                                 <rect key="frame" x="216" y="394" width="130" height="50"/>
                                 <animations/>
@@ -45,14 +92,6 @@
                                 <state key="normal" title="Log Out"/>
                                 <connections>
                                     <action selector="logOutButtonTapped:" destination="4ch-vb-aOd" eventType="touchUpInside" id="7kW-sY-OIv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWJ-yg-Dun">
-                                <rect key="frame" x="32" y="394" width="130" height="50"/>
-                                <animations/>
-                                <state key="normal" image="login-btn"/>
-                                <connections>
-                                    <segue destination="oMu-35-UeF" kind="presentation" identifier="signInSegue" id="1qj-qF-fPj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -125,10 +164,66 @@
             </objects>
             <point key="canvasLocation" x="1725.5" y="1237.5"/>
         </scene>
+        <!--Main Page Content View Controller-->
+        <scene sceneID="Lbx-rJ-SG3">
+            <objects>
+                <viewController storyboardIdentifier="MainPage" id="vni-CP-wyX" customClass="TMBMainPageContentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qf3-r4-jkl"/>
+                        <viewControllerLayoutGuide type="bottom" id="dD5-G0-gq1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bvp-Fn-7kM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLF-QZ-qiS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="OVO-0E-Kg8" kind="embed" id="nXT-61-3yp"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z4h-Hl-4Hk">
+                                <rect key="frame" x="0.0" y="0.0" width="153" height="667"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="p27-IF-dQu" kind="embed" id="Soe-MS-HbZ"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="dD5-G0-gq1" firstAttribute="top" secondItem="XLF-QZ-qiS" secondAttribute="bottom" id="TdN-aP-TAO"/>
+                            <constraint firstAttribute="trailing" secondItem="XLF-QZ-qiS" secondAttribute="trailing" id="VjN-rz-kNP"/>
+                            <constraint firstItem="XLF-QZ-qiS" firstAttribute="leading" secondItem="bvp-Fn-7kM" secondAttribute="leading" id="ZbX-G3-f9f"/>
+                            <constraint firstItem="XLF-QZ-qiS" firstAttribute="top" secondItem="bvp-Fn-7kM" secondAttribute="top" id="xHv-1O-Kem"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="sx3-hA-7w0" appends="YES" id="T4j-NK-c0D"/>
+                        </connections>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="hamburgerMenuContainer" destination="Z4h-Hl-4Hk" id="4bU-Df-e3V"/>
+                        <outlet property="homeContainer" destination="XLF-QZ-qiS" id="odP-N9-6kb"/>
+                        <outlet property="homeContentTapGestureRecognizer" destination="sx3-hA-7w0" id="SYP-tb-emJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rkZ-aN-I6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="sx3-hA-7w0">
+                    <connections>
+                        <action selector="homeContentTapped:" destination="vni-CP-wyX" id="BwL-9o-Ix0"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2641.5" y="410.5"/>
+        </scene>
         <!--Main Page View Controller-->
         <scene sceneID="bJv-4b-zeK">
             <objects>
-                <viewController storyboardIdentifier="MainPage" id="Njn-VG-GoL" customClass="TMBMainPageViewController" sceneMemberID="viewController">
+                <viewController id="Njn-VG-GoL" customClass="TMBMainPageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zoc-BZ-akK"/>
                         <viewControllerLayoutGuide type="bottom" id="edl-bS-o53"/>
@@ -173,12 +268,28 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Qex-DZ-k9z"/>
+                    <navigationItem key="navigationItem" id="Qex-DZ-k9z">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="t1I-Cm-NSL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zqx-dn-Ere">
+                                <rect key="frame" x="16" y="6" width="38" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="6s1-R6-aXR"/>
+                                    <constraint firstAttribute="width" constant="38" id="QFO-Bx-dck"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="64x64"/>
+                                <connections>
+                                    <action selector="menuButtonTapped:" destination="Njn-VG-GoL" eventType="touchUpInside" id="C0V-3d-quY"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hW0-VI-9Vy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767.5" y="410.5"/>
+            <point key="canvasLocation" x="3089.5" y="410.5"/>
         </scene>
         <!--Image Card View Controller-->
         <scene sceneID="dnj-QP-HTr">
@@ -261,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fp-BQ-Guc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3308.5" y="410.5"/>
+            <point key="canvasLocation" x="3537.5" y="256.5"/>
         </scene>
         <!--Doodle View Controller-->
         <scene sceneID="8nx-kz-7JT">
@@ -341,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QzF-Io-XgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3109.5" y="-464.5"/>
+            <point key="canvasLocation" x="3537.5" y="-464.5"/>
         </scene>
         <!--Text Card View Controller-->
         <scene sceneID="qUb-Fp-5Yf">
@@ -399,7 +510,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z77-wu-5IQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767.5" y="1173.5"/>
+            <point key="canvasLocation" x="3543.5" y="1002.5"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="dB7-gO-wdG">
@@ -523,9 +634,85 @@
             </objects>
             <point key="canvasLocation" x="2186.5" y="2049.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="7sx-lC-lNQ">
+            <objects>
+                <viewController id="SnD-5e-IdN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C99-jz-ghq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zde-5g-FYM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MuO-So-G3A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="35U-To-sTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755.5" y="-402.5"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="pUz-w4-PS5">
+            <objects>
+                <viewController id="p27-IF-dQu" customClass="TMBSideMenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wDH-d4-U9T"/>
+                        <viewControllerLayoutGuide type="bottom" id="wgd-a0-m62"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SZH-pD-5JL">
+                        <rect key="frame" x="0.0" y="0.0" width="153" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="777-iL-PZk">
+                                <rect key="frame" x="20" y="69" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZD-ww-rQn">
+                                <rect key="frame" x="20" y="124" width="55" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="p27-IF-dQu" eventType="touchUpInside" id="MAr-34-ulu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="logoutButton" destination="YZD-ww-rQn" id="DgS-KY-m2U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WGf-1C-trN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2530.5" y="1237.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="L5m-hn-OYM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OVO-0E-Kg8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2fT-te-DII">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Njn-VG-GoL" kind="relationship" relationship="rootViewController" id="XcY-cb-pUx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Izb-9d-hzr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2762" y="1237.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="04 SignIn" width="275" height="81"/>
+        <image name="64x64" width="64" height="64"/>
         <image name="close-btn" width="88" height="88"/>
         <image name="facebook-btn" width="622" height="114"/>
         <image name="login-btn" width="295" height="114"/>

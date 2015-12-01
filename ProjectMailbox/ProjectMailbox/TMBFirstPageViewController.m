@@ -34,11 +34,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-    if ([PFUser currentUser]) {
-        
-        [self presentMainPage];
-        
-    }
+//    if ([PFUser currentUser]) {
+//        
+//        [self presentMainPage];
+//        
+//    }
 }
 
 - (void)presentMainPage {
@@ -81,11 +81,7 @@
     
     [self loginWithFacebook];
     
-    // Navigate to protected page (main page)
-    
-    if ([PFUser currentUser]) {
-        [self performSegueWithIdentifier:@"OpenApp" sender:nil];
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInNotification" object:nil];
     
 }
 
@@ -165,10 +161,6 @@
     NSLog(@"Current User is %@", [PFUser currentUser]);
     
     self.welcomeLabel.text = @"Welcome";
-    
-}
-
-- (void)buildUserInterface {
     
 }
 
