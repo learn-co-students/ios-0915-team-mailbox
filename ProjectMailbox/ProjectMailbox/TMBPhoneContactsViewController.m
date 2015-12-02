@@ -61,7 +61,7 @@
                         NSString *phone = [label.value stringValue];
                         
                         if ([phone length] > 0) {
-                            self.phoneNumber.text = phone;
+                            self.phoneNumberLabel.text = phone;
                             NSLog(@"PHONE NUMBER IS : %@", phone);
                             
                             [newContact.phones addObject:phone];
@@ -110,21 +110,28 @@
     
     
     
-    // access the first name
+    // accessing first and last name
     
-    self.firstName.text = contact.givenName;
+    NSString *contactFullName = [NSString stringWithFormat:@"%@ %@", contact.givenName, contact.familyName];
+    self.contactNameLabel.text = contactFullName;
 
     
     // add a check for phone numbers
         // if 0, alert like "no phone numbers!" or maybe check for email?
         // if theres more than one number, popup to ask them to select one?
-    self.phoneNumber.text = contact.phoneNumbers[0].value.stringValue;
+    self.phoneNumberLabel.text = contact.phoneNumbers[0].value.stringValue;
+    
+    
+    // accessing email
+    
+//    self.emailAddressLabel.text = contact.emailAddresses[0];
     
 
     
     
     // create hash of the phone number stored on the server
-    // text or email use --> share sheet,
+    
+    // text or email --> use share sheet
     
     
    
