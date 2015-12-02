@@ -58,6 +58,7 @@
 		A4AC728B1C0E9643000F05C8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72891C0E9643000F05C8 /* Contacts.framework */; };
 		A4AC728C1C0E9643000F05C8 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */; };
 		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; settings = {ASSET_TAGS = (); }; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF41C03BC5C00F0F368 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FED1C03BC5C00F0F368 /* ParseFacebookUtils.framework */; };
@@ -197,6 +198,8 @@
 		A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		A4AC728D1C0E97DA000F05C8 /* TMBPhoneContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBPhoneContactsViewController.h; sourceTree = "<group>"; };
 		A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBPhoneContactsViewController.m; sourceTree = "<group>"; };
+		A4AC72901C0F9225000F05C8 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		A4AC72911C0F9225000F05C8 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		A4C03FE81C03BC3300F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.9.1/Bolts.framework"; sourceTree = "<group>"; };
 		A4C03FEB1C03BC5C00F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.9.1/Parse.framework"; sourceTree = "<group>"; };
@@ -476,6 +479,8 @@
 				A4AC72831C0E834E000F05C8 /* TMBPhoneContactsTableViewController.m */,
 				A4AC728D1C0E97DA000F05C8 /* TMBPhoneContactsViewController.h */,
 				A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */,
+				A4AC72901C0F9225000F05C8 /* Contact.h */,
+				A4AC72911C0F9225000F05C8 /* Contact.m */,
 				A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */,
 			);
 			name = "Phone Contacts";
@@ -734,6 +739,7 @@
 				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
 				55EE00731C0BB94B00C46162 /* TMBMainPageViewController.m in Sources */,
 				A445152E1C039D2300BDD502 /* PAPCache.m in Sources */,
+				A4AC72921C0F9225000F05C8 /* Contact.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
 				A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */,

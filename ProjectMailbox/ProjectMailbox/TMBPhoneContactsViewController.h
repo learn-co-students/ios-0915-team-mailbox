@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AddressBookUI/AddressBookUI.h>
+#import <ContactsUI/ContactsUI.h>
 
-@interface TMBPhoneContactsViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface TMBPhoneContactsViewController : UIViewController <CNContactPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstName;
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumber;
