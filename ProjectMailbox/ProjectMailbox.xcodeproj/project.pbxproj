@@ -59,6 +59,21 @@
 		A4C03FF71C03BC5C00F0F368 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */; };
 		EA712A6F1C0E7AF000F096B4 /* SpotifyTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */; };
 		EA712A721C0E7B0D00F096B4 /* SpotifyTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */; };
+		EA712A731C0F907600F096B4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
+		EA712A741C0F908100F096B4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */; };
+		EA712A751C0F908D00F096B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */; };
+		EA712A761C0F909700F096B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */; };
+		EA712A771C0F90A500F096B4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10A1BFCD3C100D35BB3 /* Security.framework */; };
+		EA712A791C0F90BB00F096B4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A781C0F90BA00F096B4 /* StoreKit.framework */; };
+		EA712A7A1C0F90E300F096B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */; };
+		EA712A7B1C0F90F800F096B4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1101BFCD3E300D35BB3 /* libz.tbd */; };
+		EA712A7C1C0F912100F096B4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
+		EA712A7D1C0F912E00F096B4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
+		EA712A7E1C0F913900F096B4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
+		EA712A801C0F920400F096B4 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A7F1C0F920400F096B4 /* ParseUI.framework */; };
+		EA712A821C0F922E00F096B4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A811C0F922E00F096B4 /* Parse.framework */; };
+		EA712A841C0F923600F096B4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A831C0F923600F096B4 /* Bolts.framework */; };
+		EA712A881C0F941B00F096B4 /* SpotifyFeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA712A871C0F941B00F096B4 /* SpotifyFeature.storyboard */; };
 		EAB7236D1C03C33F0086E421 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7236C1C03C33F0086E421 /* ShareViewController.m */; };
 		EAB723701C03C33F0086E421 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAB7236E1C03C33F0086E421 /* MainInterface.storyboard */; };
 		EAB723741C03C33F0086E421 /* TMBSpotifyShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -197,6 +212,13 @@
 		EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackView.m; sourceTree = "<group>"; };
 		EA712A701C0E7B0C00F096B4 /* SpotifyTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrack.h; sourceTree = "<group>"; };
 		EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrack.m; sourceTree = "<group>"; };
+		EA712A781C0F90BA00F096B4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EA712A7F1C0F920400F096B4 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		EA712A811C0F922E00F096B4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
+		EA712A831C0F923600F096B4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
+		EA712A851C0F929300F096B4 /* TMBSpotifyShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TMBSpotifyShareExtension.entitlements; sourceTree = "<group>"; };
+		EA712A861C0F92A400F096B4 /* ProjectMailbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectMailbox.entitlements; sourceTree = "<group>"; };
+		EA712A871C0F941B00F096B4 /* SpotifyFeature.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SpotifyFeature.storyboard; sourceTree = "<group>"; };
 		EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TMBSpotifyShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB7236B1C03C33F0086E421 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		EAB7236C1C03C33F0086E421 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
@@ -259,6 +281,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA712A841C0F923600F096B4 /* Bolts.framework in Frameworks */,
+				EA712A821C0F922E00F096B4 /* Parse.framework in Frameworks */,
+				EA712A7E1C0F913900F096B4 /* Social.framework in Frameworks */,
+				EA712A7D1C0F912E00F096B4 /* Accounts.framework in Frameworks */,
+				EA712A7C1C0F912100F096B4 /* libsqlite3.tbd in Frameworks */,
+				EA712A7B1C0F90F800F096B4 /* libz.tbd in Frameworks */,
+				EA712A7A1C0F90E300F096B4 /* SystemConfiguration.framework in Frameworks */,
+				EA712A791C0F90BB00F096B4 /* StoreKit.framework in Frameworks */,
+				EA712A801C0F920400F096B4 /* ParseUI.framework in Frameworks */,
+				EA712A771C0F90A500F096B4 /* Security.framework in Frameworks */,
+				EA712A761C0F909700F096B4 /* QuartzCore.framework in Frameworks */,
+				EA712A751C0F908D00F096B4 /* CoreGraphics.framework in Frameworks */,
+				EA712A741C0F908100F096B4 /* CFNetwork.framework in Frameworks */,
+				EA712A731C0F907600F096B4 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +329,7 @@
 		5508F4A11BFB972300D02E15 /* ProjectMailbox */ = {
 			isa = PBXGroup;
 			children = (
+				EA712A861C0F92A400F096B4 /* ProjectMailbox.entitlements */,
 				A44515261C03951000BDD502 /* TMBConstants.h */,
 				A44515271C03951000BDD502 /* TMBConstants.m */,
 				A445152C1C039D2300BDD502 /* PAPCache.h */,
@@ -395,6 +432,9 @@
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA712A831C0F923600F096B4 /* Bolts.framework */,
+				EA712A811C0F922E00F096B4 /* Parse.framework */,
+				EA712A781C0F90BA00F096B4 /* StoreKit.framework */,
 				EAD1EAE71C05189D003BA462 /* Spotify.framework */,
 				A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */,
 				A4C03FEB1C03BC5C00F0F368 /* Parse.framework */,
@@ -453,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */,
+				EA712A871C0F941B00F096B4 /* SpotifyFeature.storyboard */,
 				EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */,
 				EA712A6D1C0E7AF000F096B4 /* SpotifyTrackView.h */,
 				EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */,
@@ -465,6 +506,8 @@
 		EAB7236A1C03C33F0086E421 /* TMBSpotifyShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				EA712A851C0F929300F096B4 /* TMBSpotifyShareExtension.entitlements */,
+				EA712A7F1C0F920400F096B4 /* ParseUI.framework */,
 				EAB723791C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.h */,
 				EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */,
 				EAB7236B1C03C33F0086E421 /* ShareViewController.h */,
@@ -564,10 +607,16 @@
 				TargetAttributes = {
 					5508F49E1BFB972300D02E15 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 2J9BMNCVTH;
+						DevelopmentTeam = F65NY3FY34;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
 							};
 						};
 					};
@@ -581,7 +630,15 @@
 					};
 					EAB723681C03C33F0086E421 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 2J9BMNCVTH;
+						DevelopmentTeam = F65NY3FY34;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -613,6 +670,7 @@
 			files = (
 				55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */,
 				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
+				EA712A881C0F941B00F096B4 /* SpotifyFeature.storyboard in Resources */,
 				A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */,
 				A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */,
 				5508F4B51BFB972300D02E15 /* LaunchScreen.storyboard in Resources */,
@@ -880,6 +938,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ProjectMailbox/ProjectMailbox.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -899,6 +958,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ProjectMailbox/ProjectMailbox.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -965,8 +1025,14 @@
 		EAB723751C03C3400086E421 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TMBSpotifyShareExtension/TMBSpotifyShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TMBSpotifyShareExtension",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -979,8 +1045,14 @@
 		EAB723761C03C3400086E421 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TMBSpotifyShareExtension/TMBSpotifyShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TMBSpotifyShareExtension",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";

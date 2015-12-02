@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G45-mA-bBF">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Spotify View Controller-->
+        <scene sceneID="JxW-mG-edE">
+            <objects>
+                <viewController id="G45-mA-bBF" customClass="TMBSpotifyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GF4-be-iOq"/>
+                        <viewControllerLayoutGuide type="bottom" id="kT9-UM-oGY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JbR-6A-nyG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spE-gp-Alg" customClass="SpotifyTrackView">
+                                <rect key="frame" x="16" y="20" width="207" height="184"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="207" id="Whu-XN-shR"/>
+                                    <constraint firstAttribute="height" constant="184" id="n52-eB-89w"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tzw-LF-fg5">
+                                <rect key="frame" x="239" y="617" width="116" height="30"/>
+                                <state key="normal" title="Spotify Login"/>
+                                <connections>
+                                    <action selector="spotifyLogInButtonTapped:" destination="G45-mA-bBF" eventType="touchUpInside" id="ep9-GV-lNe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcn-gr-F9t">
+                                <rect key="frame" x="28" y="617" width="30" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="G45-mA-bBF" eventType="touchUpInside" id="bWr-e3-c32"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="spE-gp-Alg" secondAttribute="leading" id="Aze-Wf-bWw"/>
+                            <constraint firstItem="spE-gp-Alg" firstAttribute="top" secondItem="GF4-be-iOq" secondAttribute="bottom" id="V8X-hj-HSz"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b6M-uX-t4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1105.5" y="1285.5"/>
+        </scene>
+    </scenes>
+</document>

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="n6u-5X-ZQT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Image Card View Controller-->
@@ -71,20 +70,9 @@
                                     <segue destination="zqX-4d-mjD" kind="presentation" id="nqM-7Q-mh5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoR-d7-Lg2">
-                                <rect key="frame" x="15" y="319" width="49" height="30"/>
-                                <state key="normal" title="Spotify"/>
-                                <connections>
-                                    <segue destination="e2h-hR-aR9" kind="show" id="3Ek-U2-5h9"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="zoR-d7-Lg2" firstAttribute="leading" secondItem="2xz-qh-rUq" secondAttribute="leadingMargin" constant="-1" id="4Se-Qe-wju"/>
-                            <constraint firstItem="zoR-d7-Lg2" firstAttribute="centerY" secondItem="2xz-qh-rUq" secondAttribute="centerY" id="xid-Uc-KmM"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="B7Z-bG-akE"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -96,53 +84,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTS-e9-aj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1196.5" y="442.5"/>
-        </scene>
-        <!--Spotify View Controller-->
-        <scene sceneID="4IB-jb-D6h">
-            <objects>
-                <viewController id="e2h-hR-aR9" customClass="TMBSpotifyViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Qw9-69-FAj"/>
-                        <viewControllerLayoutGuide type="bottom" id="91I-n6-hxk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="EUb-SY-IDS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x85-XZ-T4H" customClass="SpotifyTrackView">
-                                <rect key="frame" x="16" y="20" width="207" height="184"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="184" id="FXi-cp-0rC"/>
-                                    <constraint firstAttribute="width" constant="207" id="pJp-lM-2k1"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnK-fa-nCJ">
-                                <rect key="frame" x="239" y="617" width="116" height="30"/>
-                                <state key="normal" title="Spotify Login"/>
-                                <connections>
-                                    <action selector="spotifyLogInButtonTapped:" destination="e2h-hR-aR9" eventType="touchUpInside" id="Zw3-Ph-JTZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Jz-tR-AOl">
-                                <rect key="frame" x="28" y="617" width="30" height="30"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="playButtonTapped:" destination="e2h-hR-aR9" eventType="touchUpInside" id="GN8-E8-xj4"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="x85-XZ-T4H" firstAttribute="top" secondItem="Qw9-69-FAj" secondAttribute="bottom" id="155-8M-Bjp"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="x85-XZ-T4H" secondAttribute="leading" id="N0q-n3-dQG"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qdy-9b-OY1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1105.5" y="1285.5"/>
         </scene>
         <!--Image Card View Controller-->
         <scene sceneID="Pf0-MW-9E9">
