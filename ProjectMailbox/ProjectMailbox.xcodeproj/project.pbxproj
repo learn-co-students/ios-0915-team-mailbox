@@ -51,6 +51,13 @@
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
 		A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; settings = {ASSET_TAGS = (); }; };
 		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */; settings = {ASSET_TAGS = (); }; };
+		A4AC72841C0E834E000F05C8 /* TMBPhoneContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72831C0E834E000F05C8 /* TMBPhoneContactsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A4AC72871C0E890B000F05C8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72851C0E890B000F05C8 /* AddressBook.framework */; };
+		A4AC72881C0E890B000F05C8 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72861C0E890B000F05C8 /* AddressBookUI.framework */; };
+		A4AC728B1C0E9643000F05C8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72891C0E9643000F05C8 /* Contacts.framework */; };
+		A4AC728C1C0E9643000F05C8 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */; };
+		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF41C03BC5C00F0F368 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FED1C03BC5C00F0F368 /* ParseFacebookUtils.framework */; };
@@ -181,6 +188,15 @@
 		A46CB11F1BFCE1C700D35BB3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "ProjectMailbox/parse-library/Parse.framework"; sourceTree = "<group>"; };
 		A4AC727C1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTableViewCommentCellTableViewCell.h; sourceTree = "<group>"; };
 		A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTableViewCommentCellTableViewCell.m; sourceTree = "<group>"; };
+		A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = phoneContacts.storyboard; sourceTree = "<group>"; };
+		A4AC72821C0E834E000F05C8 /* TMBPhoneContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBPhoneContactsTableViewController.h; sourceTree = "<group>"; };
+		A4AC72831C0E834E000F05C8 /* TMBPhoneContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBPhoneContactsTableViewController.m; sourceTree = "<group>"; };
+		A4AC72851C0E890B000F05C8 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A4AC72861C0E890B000F05C8 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		A4AC72891C0E9643000F05C8 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		A4AC728D1C0E97DA000F05C8 /* TMBPhoneContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBPhoneContactsViewController.h; sourceTree = "<group>"; };
+		A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBPhoneContactsViewController.m; sourceTree = "<group>"; };
 		A4C03FE81C03BC3300F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.9.1/Bolts.framework"; sourceTree = "<group>"; };
 		A4C03FEB1C03BC5C00F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.9.1/Parse.framework"; sourceTree = "<group>"; };
@@ -210,6 +226,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4AC728B1C0E9643000F05C8 /* Contacts.framework in Frameworks */,
+				A4AC728C1C0E9643000F05C8 /* ContactsUI.framework in Frameworks */,
+				A4AC72871C0E890B000F05C8 /* AddressBook.framework in Frameworks */,
+				A4AC72881C0E890B000F05C8 /* AddressBookUI.framework in Frameworks */,
 				A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */,
 				A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */,
 				A4C03FF41C03BC5C00F0F368 /* ParseFacebookUtils.framework in Frameworks */,
@@ -310,6 +330,7 @@
 				5508F4DD1BFBC22300D02E15 /* TMBUser.m */,
 				5508F4DF1BFBC23900D02E15 /* TMBGroup.h */,
 				5508F4E01BFBC23900D02E15 /* TMBGroup.m */,
+				A4AC727F1C0E7F9F000F05C8 /* Phone Contacts */,
 				55EE00751C0BDE4900C46162 /* Login */,
 				A445151E1BFFA66900BDD502 /* Post Image */,
 				A445151F1BFFA67E00BDD502 /* Post Comment */,
@@ -390,6 +411,10 @@
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4AC72891C0E9643000F05C8 /* Contacts.framework */,
+				A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */,
+				A4AC72851C0E890B000F05C8 /* AddressBook.framework */,
+				A4AC72861C0E890B000F05C8 /* AddressBookUI.framework */,
 				EAD1EAE71C05189D003BA462 /* Spotify.framework */,
 				A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */,
 				A4C03FEB1C03BC5C00F0F368 /* Parse.framework */,
@@ -442,6 +467,18 @@
 				A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */,
 			);
 			name = "Post Comment";
+			sourceTree = "<group>";
+		};
+		A4AC727F1C0E7F9F000F05C8 /* Phone Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				A4AC72821C0E834E000F05C8 /* TMBPhoneContactsTableViewController.h */,
+				A4AC72831C0E834E000F05C8 /* TMBPhoneContactsTableViewController.m */,
+				A4AC728D1C0E97DA000F05C8 /* TMBPhoneContactsViewController.h */,
+				A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */,
+				A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */,
+			);
+			name = "Phone Contacts";
 			sourceTree = "<group>";
 		};
 		EAB7236A1C03C33F0086E421 /* TMBSpotifyShareExtension */ = {
@@ -593,6 +630,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */,
 				55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */,
 				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
 				A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */,
@@ -686,6 +724,7 @@
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
 				55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */,
 				EAB7237B1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */,
+				A4AC72841C0E834E000F05C8 /* TMBPhoneContactsTableViewController.m in Sources */,
 				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
 				A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */,
 				EAD1EABD1C051556003BA462 /* TMBSpotifyViewController.m in Sources */,
@@ -699,6 +738,7 @@
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
 				A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
+				A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */,
 				5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */,
 				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
 				55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */,
