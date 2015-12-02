@@ -158,6 +158,7 @@
 		5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSideMenuViewController.m; sourceTree = "<group>"; };
 		5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageContentViewController.h; sourceTree = "<group>"; };
 		5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMainPageContentViewController.m; sourceTree = "<group>"; };
+		559300061C0F958F0027195D /* ProjectMailbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectMailbox.entitlements; sourceTree = "<group>"; };
 		55A7E67E1C0C93B900D18009 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		55A7E6801C0CC80700D18009 /* TMBInviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBInviteFriendsViewController.h; sourceTree = "<group>"; };
 		55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBInviteFriendsViewController.m; sourceTree = "<group>"; };
@@ -217,7 +218,6 @@
 		EA712A811C0F922E00F096B4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		EA712A831C0F923600F096B4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
 		EA712A851C0F929300F096B4 /* TMBSpotifyShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TMBSpotifyShareExtension.entitlements; sourceTree = "<group>"; };
-		EA712A861C0F92A400F096B4 /* ProjectMailbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectMailbox.entitlements; sourceTree = "<group>"; };
 		EA712A871C0F941B00F096B4 /* SpotifyFeature.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SpotifyFeature.storyboard; sourceTree = "<group>"; };
 		EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TMBSpotifyShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB7236B1C03C33F0086E421 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 		5508F4A11BFB972300D02E15 /* ProjectMailbox */ = {
 			isa = PBXGroup;
 			children = (
-				EA712A861C0F92A400F096B4 /* ProjectMailbox.entitlements */,
+				559300061C0F958F0027195D /* ProjectMailbox.entitlements */,
 				A44515261C03951000BDD502 /* TMBConstants.h */,
 				A44515271C03951000BDD502 /* TMBConstants.m */,
 				A445152C1C039D2300BDD502 /* PAPCache.h */,
@@ -607,7 +607,7 @@
 				TargetAttributes = {
 					5508F49E1BFB972300D02E15 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = F65NY3FY34;
+						DevelopmentTeam = KZB34BK7R5;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -630,15 +630,7 @@
 					};
 					EAB723681C03C33F0086E421 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = F65NY3FY34;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-							com.apple.Keychain = {
-								enabled = 1;
-							};
-						};
+						DevelopmentTeam = KZB34BK7R5;
 					};
 				};
 			};
@@ -948,7 +940,7 @@
 				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.project-mailbox";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -968,7 +960,7 @@
 				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.project-mailbox";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1036,8 +1028,9 @@
 				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox.TMBSpotifyShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.project-mailbox.TMBSpotifyShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1056,8 +1049,9 @@
 				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ProjectMailbox.ProjectMailbox.TMBSpotifyShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.project-mailbox.TMBSpotifyShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

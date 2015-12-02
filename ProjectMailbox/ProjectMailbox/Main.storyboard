@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1T-md-SoO">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y1T-md-SoO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <animations/>
                                 <connections>
@@ -30,8 +30,12 @@
                         <constraints>
                             <constraint firstItem="Y1T-md-SoO" firstAttribute="top" secondItem="6iI-Vl-1yH" secondAttribute="topMargin" id="9VX-an-hZV"/>
                             <constraint firstItem="qbl-ed-oeH" firstAttribute="top" secondItem="Y1T-md-SoO" secondAttribute="bottom" id="9lo-AC-obK"/>
+                            <constraint firstItem="qbl-ed-oeH" firstAttribute="top" secondItem="Y1T-md-SoO" secondAttribute="bottom" id="AeV-ZI-8qM"/>
+                            <constraint firstItem="Y1T-md-SoO" firstAttribute="leading" secondItem="6iI-Vl-1yH" secondAttribute="leading" id="PhG-97-QiA"/>
                             <constraint firstItem="Y1T-md-SoO" firstAttribute="leading" secondItem="6iI-Vl-1yH" secondAttribute="leadingMargin" id="SHm-C0-ZvG"/>
+                            <constraint firstItem="Y1T-md-SoO" firstAttribute="top" secondItem="6iI-Vl-1yH" secondAttribute="top" id="UNE-pf-h3f"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Y1T-md-SoO" secondAttribute="trailing" id="ZRy-TX-Khe"/>
+                            <constraint firstAttribute="trailing" secondItem="Y1T-md-SoO" secondAttribute="trailing" id="tDc-04-ySC"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -176,13 +180,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLF-QZ-qiS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <animations/>
-                                <connections>
-                                    <segue destination="OVO-0E-Kg8" kind="embed" id="nXT-61-3yp"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z4h-Hl-4Hk">
                                 <rect key="frame" x="0.0" y="0.0" width="153" height="667"/>
                                 <animations/>
@@ -190,15 +187,26 @@
                                     <segue destination="p27-IF-dQu" kind="embed" id="Soe-MS-HbZ"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLF-QZ-qiS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <animations/>
+                                <connections>
+                                    <segue destination="OVO-0E-Kg8" kind="embed" id="nXT-61-3yp"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XLF-QZ-qiS" secondAttribute="trailing" id="Qcp-jO-efq"/>
                             <constraint firstItem="dD5-G0-gq1" firstAttribute="top" secondItem="XLF-QZ-qiS" secondAttribute="bottom" id="TdN-aP-TAO"/>
                             <constraint firstAttribute="trailing" secondItem="XLF-QZ-qiS" secondAttribute="trailing" id="VjN-rz-kNP"/>
                             <constraint firstItem="XLF-QZ-qiS" firstAttribute="leading" secondItem="bvp-Fn-7kM" secondAttribute="leading" id="ZbX-G3-f9f"/>
+                            <constraint firstItem="XLF-QZ-qiS" firstAttribute="leading" secondItem="bvp-Fn-7kM" secondAttribute="leading" id="mb5-dH-4zO"/>
+                            <constraint firstItem="XLF-QZ-qiS" firstAttribute="top" secondItem="bvp-Fn-7kM" secondAttribute="top" id="ncm-nU-aAp"/>
                             <constraint firstItem="XLF-QZ-qiS" firstAttribute="top" secondItem="bvp-Fn-7kM" secondAttribute="top" id="xHv-1O-Kem"/>
+                            <constraint firstItem="dD5-G0-gq1" firstAttribute="top" secondItem="XLF-QZ-qiS" secondAttribute="bottom" id="ynA-6E-Osh"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="sx3-hA-7w0" appends="YES" id="T4j-NK-c0D"/>
@@ -666,17 +674,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="777-iL-PZk">
-                                <rect key="frame" x="20" y="69" width="46" height="30"/>
+                                <rect key="frame" x="20" y="263" width="92" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Invite Friends"/>
+                                <connections>
+                                    <segue destination="f4f-9v-twU" kind="presentation" id="8tY-hR-99W"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZD-ww-rQn">
-                                <rect key="frame" x="20" y="124" width="55" height="30"/>
+                                <rect key="frame" x="20" y="545" width="55" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Log Out"/>
                                 <connections>
                                     <action selector="logoutButtonTapped:" destination="p27-IF-dQu" eventType="touchUpInside" id="MAr-34-ulu"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRj-8u-X0Y">
+                                <rect key="frame" x="20" y="329" width="87" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Leave Group"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4M-dh-oq0" userLabel="Profile Image">
+                                <rect key="frame" x="44" y="31" width="64" height="66"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYA-op-swc">
+                                <rect key="frame" x="37" y="121" width="79" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Se5-oY-4A1">
+                                <rect key="frame" x="39" y="150" width="75" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Edit Profile"/>
                             </button>
                         </subviews>
                         <animations/>
@@ -707,7 +739,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Izb-9d-hzr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2762" y="1237.5"/>
+            <point key="canvasLocation" x="2839.5" y="1237.5"/>
         </scene>
     </scenes>
     <resources>
@@ -718,4 +750,7 @@
         <image name="login-btn" width="295" height="114"/>
         <image name="sign-up-btn" width="295" height="114"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="8tY-hR-99W"/>
+    </inferredMetricsTieBreakers>
 </document>
