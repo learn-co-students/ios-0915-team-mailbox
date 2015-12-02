@@ -49,14 +49,16 @@
 		A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
 		A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
-		A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; settings = {ASSET_TAGS = (); }; };
-		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; };
+		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF41C03BC5C00F0F368 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FED1C03BC5C00F0F368 /* ParseFacebookUtils.framework */; };
 		A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */; };
 		A4C03FF61C03BC5C00F0F368 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEF1C03BC5C00F0F368 /* ParseTwitterUtils.framework */; };
 		A4C03FF71C03BC5C00F0F368 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */; };
+		EA712A6F1C0E7AF000F096B4 /* SpotifyTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */; };
+		EA712A721C0E7B0D00F096B4 /* SpotifyTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */; };
 		EAB7236D1C03C33F0086E421 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7236C1C03C33F0086E421 /* ShareViewController.m */; };
 		EAB723701C03C33F0086E421 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAB7236E1C03C33F0086E421 /* MainInterface.storyboard */; };
 		EAB723741C03C33F0086E421 /* TMBSpotifyShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -191,6 +193,10 @@
 		A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "parse-library-1.9.1/ParseUI.framework"; sourceTree = "<group>"; };
 		DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectMailbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E233FEDA584CB1D3E650CB43 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		EA712A6D1C0E7AF000F096B4 /* SpotifyTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackView.h; sourceTree = "<group>"; };
+		EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackView.m; sourceTree = "<group>"; };
+		EA712A701C0E7B0C00F096B4 /* SpotifyTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrack.h; sourceTree = "<group>"; };
+		EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrack.m; sourceTree = "<group>"; };
 		EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TMBSpotifyShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB7236B1C03C33F0086E421 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		EAB7236C1C03C33F0086E421 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
@@ -200,8 +206,8 @@
 		EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSpotifyShareExtensionAPIClient.m; sourceTree = "<group>"; };
 		EAB7237D1C03CD4F0086E421 /* TMBConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMBConstants.h; sourceTree = "<group>"; };
 		EAB7237E1C03CD870086E421 /* TMBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBConstants.m; sourceTree = "<group>"; };
-		EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSpotifyViewController.h; sourceTree = "<group>"; };
-		EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSpotifyViewController.m; sourceTree = "<group>"; };
+		EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBSpotifyViewController.h; path = ProjectMailbox/TMBSpotifyViewController.h; sourceTree = "<group>"; };
+		EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMBSpotifyViewController.m; path = ProjectMailbox/TMBSpotifyViewController.m; sourceTree = "<group>"; };
 		EAD1EAE71C05189D003BA462 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,6 +268,7 @@
 		5508F4961BFB972300D02E15 = {
 			isa = PBXGroup;
 			children = (
+				EA712A6A1C0E7A1A00F096B4 /* Spotify Feature */,
 				5508F4A11BFB972300D02E15 /* ProjectMailbox */,
 				EAB7236A1C03C33F0086E421 /* TMBSpotifyShareExtension */,
 				5508F4BE1BFB972300D02E15 /* ProjectMailboxTests */,
@@ -296,8 +303,6 @@
 				5508F4A61BFB972300D02E15 /* AppDelegate.m */,
 				EAB7237D1C03CD4F0086E421 /* TMBConstants.h */,
 				EAB7237E1C03CD870086E421 /* TMBConstants.m */,
-				EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */,
-				EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */,
 				55EE00711C0BB94B00C46162 /* TMBMainPageViewController.h */,
 				55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */,
 				5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */,
@@ -442,6 +447,19 @@
 				A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */,
 			);
 			name = "Post Comment";
+			sourceTree = "<group>";
+		};
+		EA712A6A1C0E7A1A00F096B4 /* Spotify Feature */ = {
+			isa = PBXGroup;
+			children = (
+				EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */,
+				EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */,
+				EA712A6D1C0E7AF000F096B4 /* SpotifyTrackView.h */,
+				EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */,
+				EA712A701C0E7B0C00F096B4 /* SpotifyTrack.h */,
+				EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */,
+			);
+			name = "Spotify Feature";
 			sourceTree = "<group>";
 		};
 		EAB7236A1C03C33F0086E421 /* TMBSpotifyShareExtension */ = {
@@ -690,6 +708,7 @@
 				A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */,
 				EAD1EABD1C051556003BA462 /* TMBSpotifyViewController.m in Sources */,
 				A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */,
+				EA712A6F1C0E7AF000F096B4 /* SpotifyTrackView.m in Sources */,
 				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
 				EAB7237F1C03CD870086E421 /* TMBConstants.m in Sources */,
 				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
@@ -701,6 +720,7 @@
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
 				5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */,
 				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
+				EA712A721C0E7B0D00F096B4 /* SpotifyTrack.m in Sources */,
 				55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */,
 				5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */,
 				5508F4A41BFB972300D02E15 /* main.m in Sources */,
