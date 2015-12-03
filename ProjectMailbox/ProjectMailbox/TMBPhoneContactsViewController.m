@@ -44,27 +44,32 @@
             NSPredicate *predicate = [CNContact predicateForContactsInContainerWithIdentifier:containerId];
             NSError *error;
             NSArray *cnContacts = [self.store unifiedContactsMatchingPredicate:predicate keysToFetch:keys error:&error];
+            
             if (error) {
+                
                 NSLog(@"error fetching contacts %@", error);
+                
             } else {
+                
                 for (CNContact *contact in cnContacts) {
+                    
                     // copy data to my custom Contacts class.
                     Contact *newContact = [[Contact alloc] init];
                     newContact.phones = [NSMutableArray new];
                     newContact.firstName = contact.givenName;
                     newContact.lastName = contact.familyName;
+                    
                     UIImage *image = [UIImage imageWithData:contact.imageData];
                     newContact.image = image;
+                    
                     for (CNLabeledValue *label in contact.phoneNumbers) {
-                        CNPhoneNumber *labelValue = label.value;
                         
                         NSString *phone = [label.value stringValue];
                         
                         if ([phone length] > 0) {
-                            self.phoneNumberLabel.text = phone;
                             NSLog(@"PHONE NUMBER IS : %@", phone);
                             
-                            [newContact.phones addObject:phone];
+                            [newContact.phones addObject:phone];  // just testing, not actually using it
                             NSLog(@"PHONES ARRAY IS : %@", newContact.phones);
 
                         }
@@ -119,14 +124,25 @@
     // add a check for phone numbers
         // if 0, alert like "no phone numbers!" or maybe check for email?
         // if theres more than one number, popup to ask them to select one?
+    NSLog(@"PHONE NUMBERS ARE %@", contact.phoneNumbers);
     self.phoneNumberLabel.text = contact.phoneNumbers[0].value.stringValue;
     
     
     // accessing email
     
-//    self.emailAddressLabel.text = contact.emailAddresses[0];
+    NSArray *emails = contact.emailAddresses;
+    NSLog(@"EMAILS ARE %@", emails);
+    self.emailAddressLabel.text = contact.emailAddresses[0].value;
     
+    
+    // accessing photo
+    
+    UIImage *image = [UIImage imageWithData:contact.imageData];
+    self.contactImageView.image = image;
 
+    
+    
+    
     
     
     // create hash of the phone number stored on the server
