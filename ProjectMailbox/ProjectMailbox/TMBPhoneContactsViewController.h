@@ -11,12 +11,6 @@
 
 @interface TMBPhoneContactsViewController : UIViewController <CNContactPickerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *contactNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *emailAddressLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *contactImageView;
-
 - (IBAction)showPicker:(UIButton *)sender;
-
 
 @end
