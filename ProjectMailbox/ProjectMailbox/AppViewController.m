@@ -8,6 +8,7 @@
 
 #import "AppViewController.h"
 
+
 @interface AppViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -33,9 +34,22 @@
 
 -(void)showMainPage
 {
-    UIViewController *homeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainPage"];
+    UIViewController *homeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainPageNav"];
     
-    [self setEmbeddedViewController:homeVC];
+    // create / Set Up MMDrawer
+    
+    UIViewController *leftMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBSideMenuViewController"];
+    
+    MMDrawerController *drawerController = [[MMDrawerController alloc] initWithCenterViewController:homeVC leftDrawerViewController:leftMenuVC];
+    [drawerController setMaximumRightDrawerWidth:150.0];
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    //[drawerController setDrawerVisualStateBlock:[MMDrawerVisualState swingingDoorVisualStateBlock]];
+    
+    [drawerController setShowsShadow:NO];
+    
+    [self setEmbeddedViewController:drawerController];
+    
 }
 
 -(void)showFirstPage
@@ -64,9 +78,9 @@
 -(void)handleShowHamburgerMenu:(NSNotification *)notification
 {
     
+    NSLog(@"Stuff is goign on ");
+    
 }
-
-
 
 -(void)setEmbeddedViewController:(UIViewController *)controller
 {
@@ -95,16 +109,5 @@
     }];
     [controller didMoveToParentViewController:self];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
