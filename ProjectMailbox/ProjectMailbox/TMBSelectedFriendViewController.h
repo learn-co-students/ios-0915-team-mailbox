@@ -7,7 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "Contact.h"
 
 @interface TMBSelectedFriendViewController : ViewController
+
+@property (nonatomic, strong) Contact *selectedContactPassed;
 
 @end

@@ -9,6 +9,11 @@
 #import "TMBSelectedFriendViewController.h"
 
 @interface TMBSelectedFriendViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *contactNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailAddressLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *contactImageView;
+
 
 @end
 
@@ -19,11 +24,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+    // passing names
+    
+    self.contactNameLabel.text = [NSString stringWithFormat:@"%@, %@",self.selectedContactPassed.firstName, self.selectedContactPassed.lastName];
+    
+    
+    // passing phone number
+    
+    self.phoneNumberLabel.text = self.selectedContactPassed.phoneNumbers[0].value.stringValue;
+    
+    
+    //passing email
+    
+    self.emailAddressLabel.text = self.selectedContactPassed.emailAddresses[0].value;
+    
+    
+    // passing photo
+
+    UIImage *image = [UIImage imageWithData:self.selectedContactPassed.imageData];
+    self.contactImageView.image = image;
+
 
 }
 
 
-
+//
 
 
 

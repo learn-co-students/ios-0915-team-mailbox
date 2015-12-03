@@ -100,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6uL-ye-8JK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="995.5" y="444.5"/>
+            <point key="canvasLocation" x="1050.5" y="444.5"/>
         </scene>
         <!--Selected Friend View Controller-->
         <scene sceneID="yfg-RI-hai">
@@ -121,7 +121,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12M-Gu-saI">
-                                <rect key="frame" x="87" y="299" width="201" height="21"/>
+                                <rect key="frame" x="87" y="300" width="201" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -165,6 +165,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="contactImageView" destination="4Nh-21-w2T" id="9Y3-nt-SAa"/>
+                        <outlet property="contactNameLabel" destination="iIC-by-Yf0" id="2v9-oQ-Xin"/>
+                        <outlet property="emailAddressLabel" destination="UfW-Ev-rVM" id="11c-vG-izY"/>
+                        <outlet property="phoneNumberLabel" destination="12M-Gu-saI" id="FG1-bU-Ihx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCv-2s-nin" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

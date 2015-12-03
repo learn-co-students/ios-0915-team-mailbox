@@ -9,11 +9,13 @@
 #import "TMBPhoneContactsViewController.h"
 #import "Contact.h"
 #import <UIKit/UIKit.h>
+#import "TMBSelectedFriendViewController.h"
 
 
 @interface TMBPhoneContactsViewController ()
 @property (strong) CNContactStore *store;
-@property (strong)  CNContactViewController *controller;
+@property (strong) CNContactPickerViewController *contactPicker;
+@property (strong) CNContact *selectedContact;
 @property(nonatomic, copy) NSString *contactIdentifier;
 
 @end
@@ -113,7 +115,7 @@
     
     NSLog(@"IN THE CONTACT PICKER DID SELECT CONTACT METHOD...........");
     
-    
+    self.selectedContact = contact;
     
     // accessing first and last name
     
@@ -142,6 +144,7 @@
 
     
     // either perform segue or (create new VC and push on nav controller)
+    [self performSegueWithIdentifier:@"selectedFriendVC" sender:nil];
     
     
     
@@ -150,7 +153,28 @@
     // text or email --> use share sheet. i don't wanna use share sheet.
     
     
-   
+}
+
+
+
+
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    NSString *identifierOfSegue = segue.identifier;
+    
+    NSLog(@"IN THE PREPARE FOR SEGUE METHOD ..................");
+    
+
+    if ([identifierOfSegue isEqualToString:@"selectedFriendVC"]) {
+
+        TMBSelectedFriendViewController *friendDVC = segue.destinationViewController;
+        friendDVC.selectedContactPassed = self.selectedContact;
+        
+    }
     
 }
 
@@ -159,14 +183,6 @@
 
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
