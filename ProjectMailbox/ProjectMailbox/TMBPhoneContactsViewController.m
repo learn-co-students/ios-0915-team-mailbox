@@ -88,7 +88,7 @@
 
 
 
-// woohoo works!
+
 - (IBAction)showPicker:(UIButton *)sender
 {
     CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
@@ -99,7 +99,7 @@
 
 
 
-// woohoo works!
+
 - (void)peoplePickerNavigationControllerDidCancel:(CNContactPickerViewController *)peoplePicker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -141,13 +141,13 @@
     self.contactImageView.image = image;
 
     
-    
+    // either perform segue or (create new VC and push on nav controller)
     
     
     
     // create hash of the phone number stored on the server
     
-    // text or email --> use share sheet
+    // text or email --> use share sheet. i don't wanna use share sheet.
     
     
    
