@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import <Parse/Parse.h>
 #import <Masonry/Masonry.h>
+#import <MMDrawerController/MMDrawerController.h>
+#import <MMDrawerController/MMDrawerVisualState.h>
+#import "AppDelegate.h"
 
 @interface AppViewController : ViewController
 

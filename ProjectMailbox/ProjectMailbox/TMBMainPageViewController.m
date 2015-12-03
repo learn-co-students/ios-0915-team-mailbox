@@ -7,7 +7,10 @@
 //
 
 #import "TMBMainPageViewController.h"
+#import <MMDrawerController/MMDrawerVisualState.h>
+#import <MMDrawerController/UIViewController+MMDrawerController.h>
 #import <MMDrawerController/MMDrawerController.h>
+#import <MMDrawerController/MMDrawerBarButtonItem.h>
 
 @interface ViewController ()
 
@@ -19,7 +22,10 @@
 
 - (void)viewDidLoad {
     
+    [super viewDidLoad];
     
+    [self setupLeftMenuButton];
+
 }
 
 - (IBAction)logOutButtonTapped:(id)sender {
@@ -30,10 +36,12 @@
     
 }
 
-- (IBAction)menuButtonTapped:(id)sender {
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowHamburgerMenuNotification" object:nil];
-    
+- (void)setupLeftMenuButton {
+    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton];
 }
 
+- (void)leftDrawerButtonPress:(id)leftDrawerButtonPress {
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
 @end
