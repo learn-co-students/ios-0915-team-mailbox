@@ -52,15 +52,11 @@
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
 		A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; };
 		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; };
-		A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */; settings = {ASSET_TAGS = (); }; };
 		A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */; };
 		A4AC72871C0E890B000F05C8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72851C0E890B000F05C8 /* AddressBook.framework */; };
 		A4AC72881C0E890B000F05C8 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72861C0E890B000F05C8 /* AddressBookUI.framework */; };
 		A4AC728B1C0E9643000F05C8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72891C0E9643000F05C8 /* Contacts.framework */; };
 		A4AC728C1C0E9643000F05C8 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */; };
-		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; settings = {ASSET_TAGS = (); }; };
-		A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; };
 		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; };
 		A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */; };
@@ -926,7 +922,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ProjectMailbox/ProjectMailbox.entitlements;
@@ -952,7 +947,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ProjectMailbox/ProjectMailbox.entitlements;
