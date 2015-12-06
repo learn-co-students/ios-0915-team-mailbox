@@ -32,9 +32,13 @@
     
 }
 
+//-(BOOL)prefersStatusBarHidden{
+//    return YES;
+//}
+
 -(void)showMainPage
 {
-    UIViewController *homeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainPageNav"];
+    UINavigationController *homeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainPageNav"];
     
     // create / Set Up MMDrawer
     
@@ -47,6 +51,8 @@
     //[drawerController setDrawerVisualStateBlock:[MMDrawerVisualState swingingDoorVisualStateBlock]];
     
     [drawerController setShowsShadow:NO];
+    [drawerController setStatusBarViewBackgroundColor: [UIColor clearColor]];
+
     
     [self setEmbeddedViewController:drawerController];
     

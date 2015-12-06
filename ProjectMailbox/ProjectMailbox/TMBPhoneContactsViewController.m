@@ -22,19 +22,13 @@
 
 @implementation TMBPhoneContactsViewController
 
-
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    
+
     self.store = [[CNContactStore alloc] init];   // do i need this store?
     
     NSLog(@"IN THE VIEW DID LOAD METHOD ..................");
-    
-    
-    
     
     [self.store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted == YES) {
@@ -97,18 +91,10 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 
-
-
-
-
 - (void)peoplePickerNavigationControllerDidCancel:(CNContactPickerViewController *)peoplePicker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
-
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     
@@ -117,14 +103,14 @@
     // either perform segue or (create new VC and push on nav controller)
     [self performSegueWithIdentifier:@"selectedFriendVC" sender:nil];
     
-    
     NSLog(@"IN THE CONTACT PICKER DID SELECT CONTACT METHOD...........");
     
 }
 
-
-
-
+- (IBAction)cancelButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Navigation
 
@@ -143,12 +129,5 @@
     NSLog(@"IN THE PREPARE FOR SEGUE METHOD ..................");
    
 }
-
-
-
-
-
-
-
 
 @end

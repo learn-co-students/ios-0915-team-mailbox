@@ -11,6 +11,8 @@
 @interface TMBSideMenuViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *usernameField;
 
 @end
 
@@ -18,7 +20,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.usernameField.text = [[PFUser currentUser] objectForKey:@"First_Name"];
     
+    PFFile *profilePictureObject = [[PFUser currentUser] objectForKey:@"profileImage"];
+    
+    if (profilePictureObject !=nil) {
+        [profilePictureObject getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+            if (data != nil) {
+                self.profileImage.image = [UIImage imageWithData:data];
+            }
+        }];
+    }
+
 }
 
 - (IBAction)logoutButtonTapped:(id)sender {
