@@ -69,6 +69,8 @@
 
     UIImage *image = [UIImage imageWithData:self.selectedContactPassed.imageData];
     self.contactImageView.image = image;
+    
+    // if there is no photo, make a default icon
 
 }
 
@@ -78,7 +80,21 @@
 
 - (IBAction)sendTextButtonTapped:(UIButton *)sender {
     
+    NSURL *phone = [NSURL URLWithString:@"sms:9175930409"]; // test with a real phone, no simulator ability
+    [[UIApplication sharedApplication] openURL:phone];
     
+    // messenger app launches
+    // dismiss the view to go back to selecting a friend via FB/email/Contacts
+    // switch to pending friend talbe view
+    // create a 'pending' user on Parse with hashed First, Last names
+    // when your friend registers with the app
+    
+    // include object id in your text message
+    // when you're registering, you can ask for friend's 'referral code' --> board object id
+    
+    
+    
+    // or use a share sheet, it's a LOT less code
 }
 
 

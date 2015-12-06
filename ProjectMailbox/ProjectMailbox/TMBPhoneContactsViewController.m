@@ -135,7 +135,7 @@
     if ([identifierOfSegue isEqualToString:@"selectedFriendVC"]) {
 
         TMBSelectedFriendViewController *friendDVC = segue.destinationViewController;
-        friendDVC.selectedContactPassed = self.selectedContact;
+        friendDVC.selectedContactPassed = (Contact *)self.selectedContact;
         
     }
     
