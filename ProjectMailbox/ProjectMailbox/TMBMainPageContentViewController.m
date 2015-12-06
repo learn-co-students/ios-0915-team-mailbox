@@ -10,10 +10,6 @@
 
 @interface TMBMainPageContentViewController ()
 
-@property (weak, nonatomic) IBOutlet UIView *hamburgerMenuContainer;
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *homeContentTapGestureRecognizer;
-@property (weak, nonatomic) IBOutlet UIView *homeContainer;
-
 @end
 
 @implementation TMBMainPageContentViewController
@@ -22,5 +18,7 @@
     [super viewDidLoad];
     
 }
+
+
 
 @end
