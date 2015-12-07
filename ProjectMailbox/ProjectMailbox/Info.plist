@@ -113,5 +113,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>phoneContacts</key>
+	<string>phoneContacts</string>
 </dict>
 </plist>
