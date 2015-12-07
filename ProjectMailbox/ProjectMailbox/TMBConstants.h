@@ -66,6 +66,21 @@ extern NSString *const kTMBActivityTypeComment;
 extern NSString *const kTMBActivityTypeJoined;
 
 
+#pragma mark - PFObject Board Class
+// Class key
+extern NSString *const kTMBBoardClassKey;
+
+// Field keys
+extern NSString *const kTMBBoardTypeKey;
+extern NSString *const kTMBBoardFromUserKey;
+extern NSString *const kTMBBoardToUserKey;
+extern NSString *const kTMBBoardContentKey;
+
+// Type values
+extern NSString *const kTMBBoardTypeFollow;
+extern NSString *const kTMBBoardTypeJoined;
+
+
 #pragma mark - PFObject User Class
 // Field keys
 extern NSString *const kTMBUserDisplayNameKey;

@@ -48,6 +48,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -111,6 +113,8 @@
     
 }
 
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -120,10 +124,14 @@
     return numberOfComments;
 }
 
+
+
 - (IBAction)backButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -151,11 +159,15 @@
     
 }
 
+
+
 - (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+
 
 - (IBAction)takePhotoButtonTapped:(UIButton *)sender {
 
@@ -179,6 +191,8 @@
     
 }
 
+
+
 - (IBAction)chosePhotoButtonTapped:(UIButton *)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -189,6 +203,8 @@
     [self presentViewController:picker animated:YES completion:NULL];
     
 }
+
+
 
 /*****************************
  *      SAVING TO PARSE      *
@@ -223,6 +239,8 @@
     return YES;
 }
 
+
+
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
@@ -241,7 +259,7 @@
     
     // Create a Photo object
     PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
-    PFUser *currentUser = [PFUser currentUser];
+//    PFUser *currentUser = [PFUser currentUser];
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
     [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
     
@@ -303,6 +321,8 @@
     
 }
 
+
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
@@ -312,10 +332,14 @@
     
 }
 
+
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+
 
 @end

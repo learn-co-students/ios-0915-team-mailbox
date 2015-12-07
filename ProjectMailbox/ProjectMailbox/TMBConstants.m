@@ -64,6 +64,22 @@ NSString *const kTMBActivityTypeFollow     = @"follow";
 NSString *const kTMBActivityTypeComment    = @"comment";
 NSString *const kTMBActivityTypeJoined     = @"joined";
 
+
+#pragma mark - Board Class
+// Class key
+NSString *const kTMBBoardClassKey = @"Board";
+
+// Field keys
+NSString *const kTMBBoardTypeKey        = @"type";
+NSString *const kTMBBoardFromUserKey    = @"fromUser";
+NSString *const kTMBBoardToUserKey      = @"toUser";
+NSString *const kTMBBoardContentKey     = @"content";
+
+// Type values
+NSString *const kTMBBoardTypeFollow     = @"follow";
+NSString *const kTMBBoardTypeJoined     = @"joined";
+
+
 #pragma mark - User Class
 // Field keys
 NSString *const kTMBUserDisplayNameKey                          = @"displayName";
