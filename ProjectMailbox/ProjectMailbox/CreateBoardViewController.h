@@ -8,7 +8,11 @@
 
 #import "ViewController.h"
 #import <Parse/Parse.h>
+#import <UIKit/UIKit.h>
 
 @interface CreateBoardViewController : ViewController
+
+@property (nonatomic, strong) NSArray *users;
+@property (nonatomic, strong) NSArray *allFriends;
 
 @end

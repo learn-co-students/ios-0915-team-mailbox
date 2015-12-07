@@ -48,8 +48,8 @@ class ChangePasswordViewController: UIViewController {
             } else {
                 let checkEmailAlert = UIAlertController(title: "Please check your email", message: "", preferredStyle: .Alert)
                 
-                let defaultAction = UIAlertAction(title: "Ok", style: .Default, handler: dismissViewControllerHandler())
-                checkEmailAlert.addAction(defaultAction)
+ //               let defaultAction = UIAlertAction(title: "Ok", style: .Default, handler: dismissViewControllerHandler())
+               // checkEmailAlert.addAction(defaultAction)
                 
                 self.presentViewController(checkEmailAlert, animated: true, completion: nil)
                 

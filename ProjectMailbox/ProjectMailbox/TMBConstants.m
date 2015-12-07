@@ -70,10 +70,11 @@ NSString *const kTMBActivityTypeJoined     = @"joined";
 NSString *const kTMBBoardClassKey = @"Board";
 
 // Field keys
-NSString *const kTMBBoardTypeKey        = @"type";
-NSString *const kTMBBoardFromUserKey    = @"fromUser";
-NSString *const kTMBBoardToUserKey      = @"toUser";
-NSString *const kTMBBoardContentKey     = @"content";
+NSString *const kTMBBoardTypeKey            = @"type";
+NSString *const kTMBBoardFromUserKey        = @"fromUser";
+NSString *const kTMBBoardToUserKey          = @"toUser";
+NSString *const kTMBBoardContentKey         = @"content";
+NSString *const kTMBBoardUsersKey           = @"users";
 
 // Type values
 NSString *const kTMBBoardTypeFollow     = @"follow";
@@ -82,6 +83,13 @@ NSString *const kTMBBoardTypeJoined     = @"joined";
 
 #pragma mark - User Class
 // Field keys
+NSString *const kTMBUserObjectIdKey        = @"objectId";
+NSString *const kTMBUserUsernameKey        = @"username";
+NSString *const kTMBUserFirstNameKey       = @"First_Name";
+NSString *const kTMBUserLastNameKey        = @"Last_Name";
+NSString *const kTMBUserEmailKey           = @"email";
+NSString *const kTMBUserProfileImageKey    = @"profileImage";
+
 NSString *const kTMBUserDisplayNameKey                          = @"displayName";
 NSString *const kTMBUserFacebookIDKey                           = @"facebookId";
 NSString *const kTMBUserPhotoIDKey                              = @"photoId";

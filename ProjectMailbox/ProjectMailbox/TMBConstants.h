@@ -75,6 +75,7 @@ extern NSString *const kTMBBoardTypeKey;
 extern NSString *const kTMBBoardFromUserKey;
 extern NSString *const kTMBBoardToUserKey;
 extern NSString *const kTMBBoardContentKey;
+extern NSString *const kTMBBoardUsersKey;
 
 // Type values
 extern NSString *const kTMBBoardTypeFollow;
@@ -83,6 +84,13 @@ extern NSString *const kTMBBoardTypeJoined;
 
 #pragma mark - PFObject User Class
 // Field keys
+extern NSString *const kTMBUserObjectIdKey;
+extern NSString *const kTMBUserUsernameKey;
+extern NSString *const kTMBUserFirstNameKey;
+extern NSString *const kTMBUserLastNameKey;
+extern NSString *const kTMBUserEmailKey;
+extern NSString *const kTMBUserProfileImageKey;
+
 extern NSString *const kTMBUserDisplayNameKey;
 extern NSString *const kTMBUserFacebookIDKey;
 extern NSString *const kTMBUserPhotoIDKey;

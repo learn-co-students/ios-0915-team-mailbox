@@ -8,9 +8,15 @@
 
 #import "CreateBoardViewController.h"
 #import "TMBConstants.h"
+#import "PAPUtility.h"
 
-@interface CreateBoardViewController ()
+@interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITextField *boardNameLabel;
+@property (strong, nonatomic) PFObject *myNewBoard;
+@property (weak, nonatomic) IBOutlet UITextField *searchFriendsTextField;
+@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
+
 
 @end
 
@@ -30,7 +36,24 @@
             NSLog(@"logged in user: %@ \nwith error: %@", user, error);
                 }];
     }
+    
+    
+    
+    
+    // QUERY FOR BOARDS CONTAINING USERS
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Board"];
+    [query whereKey:@"users" equalTo:PFUser.currentUser];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
+    }];
+    
+    
+    
+    
+    
+    
 }
 
 
@@ -38,57 +61,104 @@
 
 - (IBAction)createNewBoardTapped:(UIButton *)sender {
 
+    // get all users (query)
+    // get or create a board
+    // set array of users to board[@"users"]
+    // save board. see what it looks like in Parse!!!
+        // THEN you can start working on querying/finding boards associated with a user
+        // query forClass: @"board" whereKey:@"users" contains:PFUser.currentUser
+        // see if you get back the baord you expected
     
-    NSString *boardName = self.boardNameLabel.text;
     
-    //create a board object
-    
-    PFObject *boardNameObj = [PFObject objectWithClassName:@"Board"];
-    boardNameObj[@"boardName"] = boardName;
-    
-    [boardNameObj setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
-
-    
-    [boardNameObj saveInBackground];
     
 
+    
+    // QUERY FOR ALL USERS:
+    
+    PFQuery *query = [PFUser query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        // set datastore to objects array
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            self.users = [objects mutableCopy];
+            
+            NSArray *differentUsers = @[objects[0], objects[1]];
+            
+            NSLog(@" ......... ALL USERS ARE : %@", self.users);
+            
+            
+            
+            
+            // CREATING A BOARD WITH THE USERS ARRAY:
+            
+            NSString *boardName = self.boardNameLabel.text;
+            
+            self.myNewBoard = [PFObject objectWithClassName:@"Board"];
+            self.myNewBoard[@"boardName"] = boardName;
+            
+            [self.myNewBoard setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
+            [self.myNewBoard addUniqueObjectsFromArray:differentUsers forKey:kTMBBoardUsersKey];
+            
+            [self.myNewBoard saveInBackground];
+            
+            
+            
+        }];
+    }];
+    
+    
+    
+    
+    
+    
     
 }
 
 
 
 
-- (IBAction)addFriendButtonTapped:(UIButton *)sender {
+
+
+
+- (IBAction)searchFriendsButtonTapped:(UIButton *)sender {
     
-    
-    NSString *string = ...;
-    NSURL *URL = ...;
-    
-    UIActivityViewController *activityViewController =
-    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL]
-                                      applicationActivities:nil];
-    [navigationController presentViewController:activityViewController
-                                       animated:YES
-                                     completion:^{
-                                         // ...
-                                     }];
+    // do find friends with username first (request friends is nice to have)
     
     
     
     
-    if let streetName = "\(galleryObj["Street_name"]!)" as String?,
-        let postalCode = "\(galleryObj["Postal_code"]!)" as String?,
-        let state = "\(galleryObj["State"]!)" as String?,
-        let galleryName = "\(galleryObj["Gallery_Name"])" as String? {
-            
-            let activityItem:String! = "\(galleryName)\n\(streetName), \(state), \(postalCode)"
-            
-            let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
-            
-            self.presentViewController(activityViewController, animated: true, completion: nil)
-        }
+    // FIND FRIENDS QUERY (FROM ALL GENERAL FRIENDS, not per board):
+    
+    // find using username
+    
+    PFQuery *friendsQuery = [PFUser query];
+    
+    // setting the textfield.text to the user name
+    NSString *friendUsername = self.searchFriendsTextField.text;
+    
+    [friendsQuery whereKey:@"username" equalTo:friendUsername];
+    
+    [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable friends, NSError * _Nullable error) {
+        
+        NSLog(@" ......... FOUND FRIENDS: %@", friends);
+        
+    }];
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
+
+
+
+
+
 
 
 
