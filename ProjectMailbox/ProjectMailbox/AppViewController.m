@@ -22,7 +22,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogOut:) name:@"UserDidLogOutNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogIn:) name:@"UserDidLogInNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowHamburgerMenu:) name:@"ShowHamburgerMenuNotification" object:nil];
     
     if ([PFUser currentUser]) {
         [self showMainPage];
@@ -79,13 +78,6 @@
     
     // switch to the home VC
     [self showMainPage];
-}
-
--(void)handleShowHamburgerMenu:(NSNotification *)notification
-{
-    
-    NSLog(@"Stuff is goign on ");
-    
 }
 
 -(void)setEmbeddedViewController:(UIViewController *)controller
