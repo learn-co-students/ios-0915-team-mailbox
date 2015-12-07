@@ -179,7 +179,7 @@
                     <navigationItem key="navigationItem" id="Qex-DZ-k9z">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hbq-EZ-H10">
                             <connections>
-                                <action selector="addButtonTapped:" destination="Njn-VG-GoL" id="9Cw-SQ-25v"/>
+                                <action selector="addButtonTapped:" destination="Njn-VG-GoL" id="fS7-tI-Me5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -540,16 +540,20 @@
                                     <segue destination="TLi-Yy-Lqe" kind="presentation" id="Mah-hq-PyN"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4M-dh-oq0" userLabel="Profile Image">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4M-dh-oq0" userLabel="Profile Image">
                                 <rect key="frame" x="39" y="28" width="120" height="120"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="jsq-e5-ACE"/>
+                                    <constraint firstAttribute="height" constant="120" id="wjC-hT-CvS"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="r4M-dh-oq0" firstAttribute="leading" secondItem="SZH-pD-5JL" secondAttribute="leadingMargin" constant="19" id="eXy-6h-KtJ"/>
-                            <constraint firstItem="r4M-dh-oq0" firstAttribute="top" secondItem="wDH-d4-U9T" secondAttribute="bottom" constant="8" id="p69-5J-4V6"/>
+                            <constraint firstItem="r4M-dh-oq0" firstAttribute="leading" secondItem="SZH-pD-5JL" secondAttribute="leadingMargin" constant="25" id="eXy-6h-KtJ"/>
+                            <constraint firstItem="r4M-dh-oq0" firstAttribute="top" secondItem="wDH-d4-U9T" secondAttribute="bottom" constant="30" id="p69-5J-4V6"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -781,10 +785,64 @@
             </objects>
             <point key="canvasLocation" x="2584.5" y="1237.5"/>
         </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="PKl-TG-FjI">
+            <objects>
+                <viewController id="V6q-7s-0hp" customClass="ChangePasswordViewController" customModule="ProjectMailbox" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PFQ-Z2-2Jt"/>
+                        <viewControllerLayoutGuide type="bottom" id="aQn-hw-04M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0is-kX-JA4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fLj-1c-8V3">
+                                <rect key="frame" x="20" y="148" width="335" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pp0-Mf-5gd">
+                                <rect key="frame" x="14" y="363" width="335" height="75"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.59082665290000003" blue="0.75488000320000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="V6q-7s-0hp" eventType="touchUpInside" id="kPG-YO-iG1"/>
+                                    <action selector="showPicker:" destination="0w3-4f-Oit" eventType="touchUpInside" id="QSF-ZH-e7K"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VZ-Do-6C5">
+                                <rect key="frame" x="20" y="28" width="45" height="45"/>
+                                <animations/>
+                                <state key="normal" image="close-btn"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="tly-0G-WiV" eventType="touchUpInside" id="2FX-Pm-sU4"/>
+                                    <action selector="cancelButtonTapped:" destination="V6q-7s-0hp" eventType="touchUpInside" id="5mh-J9-eOf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="fLj-1c-8V3" id="b4I-03-CBI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aU1-zy-jT3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2584.5" y="-1086.5"/>
+        </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="WcB-j2-HlU">
             <objects>
-                <viewController id="TLi-Yy-Lqe" customClass="TMBEditProfileViewController" sceneMemberID="viewController">
+                <viewController id="TLi-Yy-Lqe" customClass="EditProfileViewController" customModule="ProjectMailbox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vmc-OF-UjD"/>
                         <viewControllerLayoutGuide type="bottom" id="Vja-eT-Bjv"/>
@@ -800,18 +858,66 @@
                                     <navigationItem title="Edit Profile" id="gYq-s4-IFu">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="UGW-fh-X50">
                                             <connections>
-                                                <action selector="closeButtonTapped:" destination="TLi-Yy-Lqe" id="r13-Tn-5wk"/>
+                                                <action selector="cancelButtonTapped:" destination="TLi-Yy-Lqe" id="Hnc-Qc-rY9"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Abd-OT-0Ee"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Abd-OT-0Ee">
+                                            <connections>
+                                                <action selector="saveButtonTapped:" destination="TLi-Yy-Lqe" id="YIg-4F-mfd"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lsa-R9-JZQ">
+                                <rect key="frame" x="67" y="82" width="240" height="128"/>
+                                <animations/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tE1-lh-qNg">
+                                <rect key="frame" x="20" y="307" width="335" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R6s-0W-Tzp">
+                                <rect key="frame" x="20" y="353" width="335" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJO-8I-eik">
+                                <rect key="frame" x="126" y="416" width="123" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Change Password"/>
+                                <connections>
+                                    <segue destination="V6q-7s-0hp" kind="presentation" id="TAN-Dz-4FM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKN-QI-cKM">
+                                <rect key="frame" x="138" y="224" width="98" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Change Photo"/>
+                                <connections>
+                                    <action selector="changePhotoButtonTapped:" destination="TLi-Yy-Lqe" eventType="touchUpInside" id="TUy-JK-ta0"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vaK-sX-NF2">
+                                <rect key="frame" x="20" y="262" width="335" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="emailField" destination="R6s-0W-Tzp" id="pYw-qR-Bxt"/>
+                        <outlet property="firstNameField" destination="vaK-sX-NF2" id="TbR-lb-mVI"/>
+                        <outlet property="lastNameField" destination="tE1-lh-qNg" id="XtU-Q7-8se"/>
+                        <outlet property="profileImageView" destination="Lsa-R9-JZQ" id="8Vg-m7-7oA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OsD-l4-voF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
