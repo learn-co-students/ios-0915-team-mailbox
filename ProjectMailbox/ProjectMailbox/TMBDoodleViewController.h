@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SimpleColorPickerView.h"
+#import <Parse/Parse.h>
 
 @interface TMBDoodleViewController : UIViewController {
     
