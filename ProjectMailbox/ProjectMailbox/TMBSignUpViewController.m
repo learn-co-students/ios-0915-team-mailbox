@@ -8,7 +8,8 @@
 
 #import "TMBSignUpViewController.h"
 
-@interface TMBSignUpViewController ()
+@interface TMBSignUpViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordField;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 
 
 @end
@@ -26,6 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.profileImage.contentMode = UIViewContentModeScaleAspectFit;
     self.repeatPasswordField.returnKeyType = UIReturnKeyDone;
     
 }
@@ -46,17 +49,38 @@
     }
 }
 
+- (IBAction)choosePhotoButtonTapped:(id)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.profileImage.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
 - (IBAction)signUpButtonTapped:(id)sender {
     
     [self.view endEditing:YES];
     
+    NSString *userName = self.usernameTextField.text;
     NSString *firstName = self.firstNameField.text;
     NSString *lastName = self.lastNameField.text;
-    NSString *userName = self.emailField.text;
+    NSString *email = self.emailField.text;
     NSString *password = self.passwordField.text;
     NSString *passwordRepeat = self.repeatPasswordField.text;
     
-    if (self.firstNameField.text.length == 0 || self.lastNameField.text.length == 0 || self.emailField.text.length == 0 || self.passwordField.text.length == 0 || self.repeatPasswordField.text.length == 0) {
+    if (self.usernameTextField.text.length == 0 || self.firstNameField.text.length == 0 || self.lastNameField.text.length == 0 || self.emailField.text.length == 0 || self.passwordField.text.length == 0 || self.repeatPasswordField.text.length == 0) {
         
         [self showErrorAlert];
     }
@@ -70,13 +94,14 @@
     
     newUser.username = userName;
     newUser.password = password;
-    newUser.email = userName;
+    newUser.email = email;
     [newUser setObject:firstName forKey:@"First_Name"];
     [newUser setObject:lastName forKey:@"Last_Name"];
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             [self showSuccessAlert];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidSignUpNotification" object:nil];
         } 
     }];
     

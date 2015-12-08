@@ -51,8 +51,6 @@
     
     [boardNameObj saveInBackground];
     
-
-    
 }
 
 
@@ -61,32 +59,32 @@
 - (IBAction)addFriendButtonTapped:(UIButton *)sender {
     
     
-    NSString *string = ...;
-    NSURL *URL = ...;
-    
-    UIActivityViewController *activityViewController =
-    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL]
-                                      applicationActivities:nil];
-    [navigationController presentViewController:activityViewController
-                                       animated:YES
-                                     completion:^{
-                                         // ...
-                                     }];
-    
-    
-    
-    
-    if let streetName = "\(galleryObj["Street_name"]!)" as String?,
-        let postalCode = "\(galleryObj["Postal_code"]!)" as String?,
-        let state = "\(galleryObj["State"]!)" as String?,
-        let galleryName = "\(galleryObj["Gallery_Name"])" as String? {
-            
-            let activityItem:String! = "\(galleryName)\n\(streetName), \(state), \(postalCode)"
-            
-            let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
-            
-            self.presentViewController(activityViewController, animated: true, completion: nil)
-        }
+//    NSString *string = ...;
+//    NSURL *URL = ...;
+//    
+//    UIActivityViewController *activityViewController =
+//    [[UIActivityViewController alloc] initWithActivityItems:@[string, URL]
+//                                      applicationActivities:nil];
+//    [navigationController presentViewController:activityViewController
+//                                       animated:YES
+//                                     completion:^{
+//                                         // ...
+//                                     }];
+//    
+//    
+//    
+//    
+//    if let streetName = "\(galleryObj["Street_name"]!)" as String?,
+//        let postalCode = "\(galleryObj["Postal_code"]!)" as String?,
+//        let state = "\(galleryObj["State"]!)" as String?,
+//        let galleryName = "\(galleryObj["Gallery_Name"])" as String? {
+//            
+//            let activityItem:String! = "\(galleryName)\n\(streetName), \(state), \(postalCode)"
+//            
+//            let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [activityItem], applicationActivities: nil)
+//            
+//            self.presentViewController(activityViewController, animated: true, completion: nil)
+//        }
 
 }
 

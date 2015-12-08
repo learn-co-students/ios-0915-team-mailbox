@@ -17,7 +17,6 @@
 		5508F4CB1BFB972300D02E15 /* ProjectMailboxUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4CA1BFB972300D02E15 /* ProjectMailboxUITests.m */; };
 		5508F4D91BFB976F00D02E15 /* parse-library in Resources */ = {isa = PBXBuildFile; fileRef = 5508F4D81BFB976F00D02E15 /* parse-library */; };
 		5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4DD1BFBC22300D02E15 /* TMBUser.m */; };
-		5508F4E11BFBC23900D02E15 /* TMBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E01BFBC23900D02E15 /* TMBBoard.m */; };
 		5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E61BFBC25300D02E15 /* TMBTextCard.m */; };
 		5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */; };
 		5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */; };
@@ -30,6 +29,7 @@
 		55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A7E67E1C0C93B900D18009 /* Main.storyboard */; };
 		55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */; };
 		55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6861C0E159C00D18009 /* AppViewController.m */; };
+		55D3EB131C1745E30044BEFD /* TMBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D3EB121C1745E30044BEFD /* TMBBoard.m */; };
 		55EE00731C0BB94B00C46162 /* TMBMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */; };
 		916A15FAAC6AF8C9D052011B /* Pods_ProjectMailbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */; };
 		A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */; };
@@ -62,8 +62,8 @@
 		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; };
 		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; };
 		A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */; };
-		A4AC72981C14B846000F05C8 /* AddNewBoardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72971C14B846000F05C8 /* AddNewBoardStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
-		A4AC729B1C14C253000F05C8 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729A1C14C253000F05C8 /* CreateBoardViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A4AC72981C14B846000F05C8 /* AddNewBoardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72971C14B846000F05C8 /* AddNewBoardStoryboard.storyboard */; };
+		A4AC729B1C14C253000F05C8 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729A1C14C253000F05C8 /* CreateBoardViewController.m */; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */; };
@@ -139,8 +139,6 @@
 		5508F4D81BFB976F00D02E15 /* parse-library */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "parse-library"; sourceTree = "<group>"; };
 		5508F4DC1BFBC22300D02E15 /* TMBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBUser.h; sourceTree = "<group>"; };
 		5508F4DD1BFBC22300D02E15 /* TMBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBUser.m; sourceTree = "<group>"; };
-		5508F4DF1BFBC23900D02E15 /* TMBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBBoard.h; sourceTree = "<group>"; };
-		5508F4E01BFBC23900D02E15 /* TMBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBBoard.m; sourceTree = "<group>"; };
 		5508F4E51BFBC25300D02E15 /* TMBTextCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCard.h; sourceTree = "<group>"; };
 		5508F4E61BFBC25300D02E15 /* TMBTextCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCard.m; sourceTree = "<group>"; };
 		5508F4E81BFBDD2E00D02E15 /* TMBSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSignInViewController.h; sourceTree = "<group>"; };
@@ -173,6 +171,9 @@
 		55A7E6851C0E159C00D18009 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
 		55A7E6861C0E159C00D18009 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
 		55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProjectMailbox-Bridging-Header.h"; sourceTree = "<group>"; };
+		55D3EB101C17416C0044BEFD /* TMBSpotifyShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TMBSpotifyShareExtension.entitlements; sourceTree = "<group>"; };
+		55D3EB111C1745E30044BEFD /* TMBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBBoard.h; sourceTree = "<group>"; };
+		55D3EB121C1745E30044BEFD /* TMBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBBoard.m; sourceTree = "<group>"; };
 		55EE00711C0BB94B00C46162 /* TMBMainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageViewController.h; sourceTree = "<group>"; };
 		55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMainPageViewController.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
@@ -355,6 +356,8 @@
 				5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */,
 				5508F4A81BFB972300D02E15 /* ViewController.h */,
 				5508F4A91BFB972300D02E15 /* ViewController.m */,
+				55D3EB111C1745E30044BEFD /* TMBBoard.h */,
+				55D3EB121C1745E30044BEFD /* TMBBoard.m */,
 				5508F4DC1BFBC22300D02E15 /* TMBUser.h */,
 				5508F4DD1BFBC22300D02E15 /* TMBUser.m */,
 				A4AC72961C14B7EE000F05C8 /* Add New Board */,
@@ -525,8 +528,6 @@
 		A4AC72961C14B7EE000F05C8 /* Add New Board */ = {
 			isa = PBXGroup;
 			children = (
-				5508F4DF1BFBC23900D02E15 /* TMBBoard.h */,
-				5508F4E01BFBC23900D02E15 /* TMBBoard.m */,
 				A4AC72991C14C253000F05C8 /* CreateBoardViewController.h */,
 				A4AC729A1C14C253000F05C8 /* CreateBoardViewController.m */,
 				A4AC72971C14B846000F05C8 /* AddNewBoardStoryboard.storyboard */,
@@ -537,6 +538,7 @@
 		EAB7236A1C03C33F0086E421 /* TMBSpotifyShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				55D3EB101C17416C0044BEFD /* TMBSpotifyShareExtension.entitlements */,
 				EAB723791C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.h */,
 				EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */,
 				EAB7236B1C03C33F0086E421 /* ShareViewController.h */,
@@ -636,9 +638,7 @@
 				TargetAttributes = {
 					5508F49E1BFB972300D02E15 = {
 						CreatedOnToolsVersion = 7.1.1;
-
 						DevelopmentTeam = KXY9EDFTF5;
-
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -662,6 +662,14 @@
 					EAB723681C03C33F0086E421 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = KXY9EDFTF5;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -793,13 +801,12 @@
 				EAD1EABD1C051556003BA462 /* TMBSpotifyViewController.m in Sources */,
 				A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */,
 				A4AC729B1C14C253000F05C8 /* CreateBoardViewController.m in Sources */,
-				5508F4E11BFBC23900D02E15 /* TMBBoard.m in Sources */,
-				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
 				5585F65F1C14D6E5003478C6 /* ChangePasswordViewController.swift in Sources */,
 				EAB7237F1C03CD870086E421 /* TMBConstants.m in Sources */,
 				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
 				55EE00731C0BB94B00C46162 /* TMBMainPageViewController.m in Sources */,
 				A445152E1C039D2300BDD502 /* PAPCache.m in Sources */,
+				55D3EB131C1745E30044BEFD /* TMBBoard.m in Sources */,
 				A4AC72921C0F9225000F05C8 /* Contact.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
@@ -981,9 +988,7 @@
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic;
-
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ProjectMailbox/ProjectMailbox-Bridging-Header.h";
@@ -1009,9 +1014,7 @@
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic;
-
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ProjectMailbox/ProjectMailbox-Bridging-Header.h";
@@ -1069,6 +1072,7 @@
 		EAB723751C03C3400086E421 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TMBSpotifyShareExtension/TMBSpotifyShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
@@ -1084,6 +1088,7 @@
 		EAB723761C03C3400086E421 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TMBSpotifyShareExtension/TMBSpotifyShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;

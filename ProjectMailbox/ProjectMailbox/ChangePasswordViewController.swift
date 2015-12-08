@@ -48,7 +48,9 @@ class ChangePasswordViewController: UIViewController {
             } else {
                 let checkEmailAlert = UIAlertController(title: "Please check your email", message: "", preferredStyle: .Alert)
                 
-                let defaultAction = UIAlertAction(title: "Ok", style: .Default, handler: dismissViewControllerHandler())
+                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
                 checkEmailAlert.addAction(defaultAction)
                 
                 self.presentViewController(checkEmailAlert, animated: true, completion: nil)
@@ -56,7 +58,6 @@ class ChangePasswordViewController: UIViewController {
             }
         }
         
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func dismissViewControllerHandler(alert: UIAlertAction!) {
