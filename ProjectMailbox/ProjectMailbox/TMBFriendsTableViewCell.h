@@ -12,6 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
 @property (weak, nonatomic) IBOutlet UILabel *fromUserNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *userCommentLabel;
 
 @end

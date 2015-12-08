@@ -9,16 +9,17 @@
 #import "CreateBoardViewController.h"
 #import "TMBConstants.h"
 #import "PAPUtility.h"
+#import "TMBFriendsTableViewCell.h"
 
 @interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextField *boardNameLabel;
 @property (strong, nonatomic) PFObject *myNewBoard;
 @property (weak, nonatomic) IBOutlet UITextField *searchFriendsTextField;
-@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
-
+@property (weak, nonatomic) IBOutlet UITableView *friendsTableView;
 
 @end
+
 
 @implementation CreateBoardViewController
 
@@ -27,6 +28,14 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    NSLog(@"IN VIEW DID LOAD.........");
+
+    
+    self.friendsTableView.delegate = self;
+    self.friendsTableView.dataSource = self;
+    
+
 
 
     // loging in this app as Inga for now
@@ -46,10 +55,19 @@
     [query whereKey:@"users" equalTo:PFUser.currentUser];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        
+        for (PFObject *object in objects ) {
+            
+            NSDate *test = [object updatedAt];
+            
+            NSLog(@" ..... THE UPDATED DATE IS %@",test);
+            
+        }
+        
+        
 
     }];
-    
-    
     
     
     
@@ -95,7 +113,11 @@
             NSString *boardName = self.boardNameLabel.text;
             
             self.myNewBoard = [PFObject objectWithClassName:@"Board"];
+            
+            
             self.myNewBoard[@"boardName"] = boardName;
+            
+    
             
             [self.myNewBoard setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
             [self.myNewBoard addUniqueObjectsFromArray:differentUsers forKey:kTMBBoardUsersKey];
@@ -141,6 +163,10 @@
     
     [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable friends, NSError * _Nullable error) {
         
+        self.allFriends = [friends mutableCopy];
+        
+        [self.friendsTableView reloadData];
+        
         NSLog(@" ......... FOUND FRIENDS: %@", friends);
         
     }];
@@ -159,6 +185,63 @@
 
 
 
+
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    NSUInteger numberOfFriends = self.allFriends.count;
+    NSLog(@"numberOfRows getting called: %lu", self.allFriends.count);
+    
+    NSLog(@" ......... IM IN THE TABLEVIEW NUMBER OF ROWS METHOD ......... ");
+    
+    return numberOfFriends;
+}
+
+
+
+
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
+    
+    TMBFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendsCell" forIndexPath:indexPath];    
+    NSUInteger rowOfIndexPath = indexPath.row;
+    
+    
+    
+    // setting table rows to display friends
+    
+    PFObject *aFriend = self.allFriends[rowOfIndexPath];
+    
+    NSString *firstName = aFriend[@"First_Name"];
+    NSString *lastName = aFriend[@"Last_Name"];
+    
+    cell.fromUserNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    
+    
+    
+    // setting user profile photo
+    
+    PFFile *imageFile = aFriend[@"profileImage"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            UIImage *profileImage = [UIImage imageWithData:data];
+            cell.userProfileImage.image = profileImage;
+        }
+    }];
+    
+    
+    
+    NSLog(@" ......... IM IN THE TABLEVIEW CELL FOR ROW METHOD ......... ");
+    
+    return cell;
+    
+    
+}
 
 
 
