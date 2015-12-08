@@ -18,6 +18,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchFriendsTextField;
 @property (weak, nonatomic) IBOutlet UITableView *friendsTableView;
 
+// Found a Friend View
+@property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
+@property (weak, nonatomic) IBOutlet UILabel *foundFriendUsernameLabel;
+@property (weak, nonatomic) IBOutlet UIView *foundFriendView;
+
 @end
 
 
@@ -35,6 +40,7 @@
     self.friendsTableView.delegate = self;
     self.friendsTableView.dataSource = self;
     
+    self.allFriends = [NSMutableArray new];
 
 
 
@@ -71,6 +77,15 @@
     
     
     
+    
+}
+
+
+
+
+
+- (IBAction)addFriendButtonTapped:(UIButton *)sender {
+
     
 }
 
@@ -145,31 +160,75 @@
 
 - (IBAction)searchFriendsButtonTapped:(UIButton *)sender {
     
-    // do find friends with username first (request friends is nice to have)
     
     
+    // FIND ALL PARSE USERS WITH THAT USER NAME:
     
     
-    // FIND FRIENDS QUERY (FROM ALL GENERAL FRIENDS, not per board):
-    
-    // find using username
-    
-    PFQuery *friendsQuery = [PFUser query];
+    PFQuery *friendQuery = [PFUser query];
     
     // setting the textfield.text to the user name
     NSString *friendUsername = self.searchFriendsTextField.text;
     
-    [friendsQuery whereKey:@"username" equalTo:friendUsername];
+    [friendQuery whereKey:@"username" equalTo:friendUsername];
     
-    [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable friends, NSError * _Nullable error) {
+    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable friendObjects, NSError * _Nullable error) {
         
-        self.allFriends = [friends mutableCopy];
+        NSArray *foundFriends = [friendObjects mutableCopy];
         
-        [self.friendsTableView reloadData];
         
-        NSLog(@" ......... FOUND FRIENDS: %@", friends);
+        
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+                // adding found frinds to the ALL friends array
+                [self.allFriends addObject:foundFriends[0]];
+                NSLog(@" ......... ALL FRIENDS ARRAY IS: %@", self.allFriends);
+            
+            
+            [self.friendsTableView reloadData];
+
+
+            }];
+        
+        
+
+        
+        
+        
+        NSLog(@" ......... FOUND FRIENDS: %@", friendObjects);
+        
+        
+        
+        
+        // setting foundFriends View to display a friend
+        
+        PFObject *aFriend = foundFriends[0];
+        
+        NSString *firstName = aFriend[@"First_Name"];
+        NSString *lastName = aFriend[@"Last_Name"];
+        
+        self.foundFriendUsernameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+        
+        
+        
+        // setting user profile photo
+        
+        PFFile *imageFile = aFriend[@"profileImage"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *profileImage = [UIImage imageWithData:data];
+                self.foundFriendImage.image = profileImage;
+            }
+        }];
+        
+
+        
+        
+        
         
     }];
+    
     
     
     
