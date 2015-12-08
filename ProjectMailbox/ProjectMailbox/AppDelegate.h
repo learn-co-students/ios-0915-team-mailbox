@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <MMDrawerController/MMDrawerController.h>
+#import <MMDrawerController/MMDrawerVisualState.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

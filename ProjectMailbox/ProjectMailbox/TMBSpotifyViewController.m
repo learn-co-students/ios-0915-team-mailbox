@@ -7,16 +7,11 @@
 //
 
 #import "TMBSpotifyViewController.h"
-#import <AVFoundation/AVFoundation.h>
-#import <Spotify/Spotify.h>
 
 @interface TMBSpotifyViewController ()
 
-//@property (nonatomic, strong) SPTSession *session;
-//@property (nonatomic, strong) SPTAudioStreamingController *player;
-
-
 @end
+
 
 @implementation TMBSpotifyViewController
 
@@ -38,18 +33,18 @@
 //    NSLog(@"i may now do stuff with spotify");
 //        // trackID:@"7fEGUogfVroN6IQL6Q7atH"];
 //}
-//
+
 //- (IBAction)playButtonTapped:(UIButton *)sender {
 //    SPTSession *session = [[SPTAuth defaultInstance] session];
 //    [self playUsingSession:session withTrackID:@"7fEGUogfVroN6IQL6Q7atH"];
 //}
-//
+
 - (IBAction)spotifyLogInButtonTapped:(id)sender {
     NSURL *loginURL = [[SPTAuth defaultInstance] loginURL];
     [[UIApplication sharedApplication] openURL:loginURL];
 }
-//
-//
+
+
 //
 //
 //-(void)playUsingSession:(SPTSession *)session withTrackID:(NSString *)trackID {

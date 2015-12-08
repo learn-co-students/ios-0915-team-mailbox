@@ -11,7 +11,6 @@
 #import "PAPCache.h"
 #import "TMBTableViewCommentCellTableViewCell.h"
 
-
 @interface TMBImageCardViewController () <UITableViewDelegate, UITableViewDataSource>
 
 //add photo view
@@ -49,8 +48,6 @@
     return self;
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -58,8 +55,6 @@
     
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
-    
-    
 
     // loging in this app as Inga for now
     
@@ -68,9 +63,7 @@
             NSLog(@"logged in user: %@ \nwith error: %@", user, error);
         }];
     }
-    
-    
-    
+  
     /*****************************
      *        PARSE QUERY        *
      *****************************/
@@ -116,12 +109,8 @@
         }];
     }];
     
-    
 }
 
-
-
-     
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -135,9 +124,6 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -165,26 +151,15 @@
     
 }
 
-
-
-
-
 - (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
-
-
-
-
-
 - (IBAction)takePhotoButtonTapped:(UIButton *)sender {
-    
-    
+
     // simulators don't have a camera
-    
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
@@ -204,10 +179,6 @@
     
 }
 
-
-
-
-
 - (IBAction)chosePhotoButtonTapped:(UIButton *)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -217,12 +188,7 @@
     
     [self presentViewController:picker animated:YES completion:NULL];
     
-    
 }
-
-
-
-
 
 /*****************************
  *      SAVING TO PARSE      *
@@ -256,8 +222,6 @@
     
     return YES;
 }
-
-
 
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
@@ -339,10 +303,6 @@
     
 }
 
-
-
-
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
@@ -352,32 +312,10 @@
     
 }
 
-
-
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
-
-
-
-
-
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-
-
 
 @end

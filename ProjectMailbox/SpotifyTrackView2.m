@@ -1,29 +1,29 @@
 //
-//  SpotifyTrackView.m
+//  SpotifyTrackView2.m
 //  ProjectMailbox
 //
-//  Created by Jimena Almendares on 12/1/15.
+//  Created by Jimena Almendares on 12/7/15.
 //  Copyright © 2015 Joseph Kiley. All rights reserved.
 //
 
-#import "SpotifyTrackView.h"
-#import "SpotifyTrack.h"
+#import "SpotifyTrackView2.h"
+#import "SpotifyTrack2.h"
 #import "TMBSpotifyViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Spotify/Spotify.h>
 #import "SpotifyPlayerManager.h"
 
-@interface SpotifyTrackView () <SPTAudioStreamingPlaybackDelegate>
+@interface SpotifyTrackView2 () <SPTAudioStreamingPlaybackDelegate>
 
 @property (strong, nonatomic) UIImageView *coverArtImageView;
 @property (strong, nonatomic) UILabel *spotifyTrackTitle;
 @property (weak, nonatomic) UIButton *playPauseButton;
 
-@property (strong, nonatomic) SpotifyTrack *spotifyTrack;
+@property (strong, nonatomic) SpotifyTrack2 *spotifyTrack;
 
 @end
 
-@implementation SpotifyTrackView
+@implementation SpotifyTrackView2
 
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -43,23 +43,23 @@
 
 -(void)commonInitWithSpotifyTrack {
     
-    SpotifyTrack *track = [[SpotifyTrack alloc] init];
-    self.spotifyTrack = track;
+    SpotifyTrack2 *track2 = [[SpotifyTrack2 alloc] init];
+    self.spotifyTrack = track2;
     
     self.backgroundColor = [UIColor blackColor];
-
-//initialize image view
+    
+    //initialize image view
     CGRect imageViewRect = CGRectMake(0, 0, 207, 184);
     self.coverArtImageView = [[UIImageView alloc] initWithFrame:imageViewRect];
     [self addSubview:self.coverArtImageView];
     
-// set image from url for album art.
+    // set image from url for album art.
     NSURL *coverURL = [NSURL URLWithString: self.spotifyTrack.albumCoverURL];
     NSData *coverImageData = [NSData dataWithContentsOfURL:coverURL];
     UIImage *coverImage = [UIImage imageWithData:coverImageData];
     self.coverArtImageView.image = coverImage;
     
-// add spotify play/pause button
+    // add spotify play/pause button
     UIButton *playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage * playPauseImage = [UIImage imageNamed:@"Play icon"];
     [playPauseButton setImage:playPauseImage forState:UIControlStateNormal];
@@ -67,10 +67,9 @@
     playPauseButton.frame = CGRectMake(0, 0, 50, 50);
     [self addSubview:playPauseButton];
     [self bringSubviewToFront: playPauseButton];
-
+    
     self.playPauseButton = playPauseButton;
     NSLog(@"In initialization method.");
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStartPlaying:) name:SpotifyDidStartPlayingNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStopPlaying:) name:SpotifyDidStopPlayingNotificationName object:nil];
@@ -154,6 +153,5 @@
         [playerManager playTrackWithID:self.spotifyTrack.trackID];
     }
 }
-
 
 @end

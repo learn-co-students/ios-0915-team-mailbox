@@ -38,7 +38,6 @@
 
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
-    
     //spotify auth setup 
     [[SPTAuth defaultInstance] setClientID: SPOTIFY_CLIENT_ID];
     [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString: SPOTIFY_REDIRECT_URL]];
@@ -46,7 +45,6 @@
     [SPTAuth defaultInstance].tokenSwapURL = [NSURL URLWithString: SPOTIFY_TOKEN_SWAP_URL];
     [SPTAuth defaultInstance].tokenRefreshURL = [NSURL URLWithString: SPOTIFY_TOKEN_REFRESH_URL];
     [SPTAuth defaultInstance].sessionUserDefaultsKey = @"SpotifySession";
-    
     
     return YES;
 }

@@ -24,6 +24,9 @@
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
 		5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */; };
 		5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */; };
+		5585F65D1C14C7E3003478C6 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5585F65C1C14C7E3003478C6 /* libstdc++.6.0.9.tbd */; };
+		5585F65F1C14D6E5003478C6 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */; };
+		5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */; };
 		55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A7E67E1C0C93B900D18009 /* Main.storyboard */; };
 		55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */; };
 		55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6861C0E159C00D18009 /* AppViewController.m */; };
@@ -51,9 +54,16 @@
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
 		A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; };
 		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; };
+		A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */; };
+		A4AC72871C0E890B000F05C8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72851C0E890B000F05C8 /* AddressBook.framework */; };
+		A4AC72881C0E890B000F05C8 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72861C0E890B000F05C8 /* AddressBookUI.framework */; };
+		A4AC728B1C0E9643000F05C8 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72891C0E9643000F05C8 /* Contacts.framework */; };
+		A4AC728C1C0E9643000F05C8 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */; };
+		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; };
+		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; };
+		A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
-		A4C03FF41C03BC5C00F0F368 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FED1C03BC5C00F0F368 /* ParseFacebookUtils.framework */; };
 		A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */; };
 		A4C03FF61C03BC5C00F0F368 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEF1C03BC5C00F0F368 /* ParseTwitterUtils.framework */; };
 		A4C03FF71C03BC5C00F0F368 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */; };
@@ -80,6 +90,9 @@
 		EAB7237B1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */; };
 		EAB7237C1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */; };
 		EAB7237F1C03CD870086E421 /* TMBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7237E1C03CD870086E421 /* TMBConstants.m */; };
+		EACDA5CB1C161E440031268F /* SpotifyTrack2.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA5CA1C161E440031268F /* SpotifyTrack2.m */; };
+		EACDA5CE1C1620F60031268F /* SpotifyTrackView2.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA5CD1C1620F60031268F /* SpotifyTrackView2.m */; };
+		EACDA5D11C175E6C0031268F /* SpotifyPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA5D01C175E6C0031268F /* SpotifyPlayerManager.m */; };
 		EAD1EABD1C051556003BA462 /* TMBSpotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */; };
 		EAD1EAE81C05189D003BA462 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD1EAE71C05189D003BA462 /* Spotify.framework */; };
 		EAD1EAE91C051A42003BA462 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEC1C03BC5C00F0F368 /* ParseCrashReporting.framework */; };
@@ -158,12 +171,26 @@
 		5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSideMenuViewController.m; sourceTree = "<group>"; };
 		5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageContentViewController.h; sourceTree = "<group>"; };
 		5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMainPageContentViewController.m; sourceTree = "<group>"; };
+		5585F6481C14C563003478C6 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		5585F64A1C14C5B6003478C6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		5585F64C1C14C5BE003478C6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		5585F64E1C14C5C5003478C6 /* Concorde.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Concorde.framework; path = "Pods/../build/Debug-iphoneos/Concorde.framework"; sourceTree = "<group>"; };
+		5585F64F1C14C5C5003478C6 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		5585F6501C14C5C5003478C6 /* JSQMessagesViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQMessagesViewController.framework; path = "Pods/../build/Debug-iphoneos/JSQMessagesViewController.framework"; sourceTree = "<group>"; };
+		5585F6511C14C5C5003478C6 /* JSQSystemSoundPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQSystemSoundPlayer.framework; path = "Pods/../build/Debug-iphoneos/JSQSystemSoundPlayer.framework"; sourceTree = "<group>"; };
+		5585F6521C14C5C5003478C6 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = "Pods/../build/Debug-iphoneos/Masonry.framework"; sourceTree = "<group>"; };
+		5585F6531C14C5C5003478C6 /* MMDrawerController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMDrawerController.framework; path = "Pods/../build/Debug-iphoneos/MMDrawerController.framework"; sourceTree = "<group>"; };
+		5585F6541C14C5C5003478C6 /* SimpleColorPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleColorPicker.framework; path = "Pods/../build/Debug-iphoneos/SimpleColorPicker.framework"; sourceTree = "<group>"; };
+		5585F65C1C14C7E3003478C6 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		559300061C0F958F0027195D /* ProjectMailbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectMailbox.entitlements; sourceTree = "<group>"; };
 		55A7E67E1C0C93B900D18009 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		55A7E6801C0CC80700D18009 /* TMBInviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBInviteFriendsViewController.h; sourceTree = "<group>"; };
 		55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBInviteFriendsViewController.m; sourceTree = "<group>"; };
 		55A7E6851C0E159C00D18009 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
 		55A7E6861C0E159C00D18009 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
+		55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProjectMailbox-Bridging-Header.h"; sourceTree = "<group>"; };
 		55EE00711C0BB94B00C46162 /* TMBMainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageViewController.h; sourceTree = "<group>"; };
 		55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMainPageViewController.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +226,17 @@
 		A46CB11F1BFCE1C700D35BB3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "ProjectMailbox/parse-library/Parse.framework"; sourceTree = "<group>"; };
 		A4AC727C1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTableViewCommentCellTableViewCell.h; sourceTree = "<group>"; };
 		A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTableViewCommentCellTableViewCell.m; sourceTree = "<group>"; };
+		A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = phoneContacts.storyboard; sourceTree = "<group>"; };
+		A4AC72851C0E890B000F05C8 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A4AC72861C0E890B000F05C8 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		A4AC72891C0E9643000F05C8 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		A4AC728D1C0E97DA000F05C8 /* TMBPhoneContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBPhoneContactsViewController.h; sourceTree = "<group>"; };
+		A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBPhoneContactsViewController.m; sourceTree = "<group>"; };
+		A4AC72901C0F9225000F05C8 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		A4AC72911C0F9225000F05C8 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		A4AC72931C1098E2000F05C8 /* TMBSelectedFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSelectedFriendViewController.h; sourceTree = "<group>"; };
+		A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSelectedFriendViewController.m; sourceTree = "<group>"; };
 		A4C03FE81C03BC3300F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.9.1/Bolts.framework"; sourceTree = "<group>"; };
 		A4C03FEB1C03BC5C00F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.9.1/Parse.framework"; sourceTree = "<group>"; };
@@ -230,6 +268,12 @@
 		EAB7237E1C03CD870086E421 /* TMBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBConstants.m; sourceTree = "<group>"; };
 		EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBSpotifyViewController.h; path = ProjectMailbox/TMBSpotifyViewController.h; sourceTree = "<group>"; };
 		EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMBSpotifyViewController.m; path = ProjectMailbox/TMBSpotifyViewController.m; sourceTree = "<group>"; };
+		EACDA5C91C161E440031268F /* SpotifyTrack2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrack2.h; sourceTree = "<group>"; };
+		EACDA5CA1C161E440031268F /* SpotifyTrack2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrack2.m; sourceTree = "<group>"; };
+		EACDA5CC1C1620F60031268F /* SpotifyTrackView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackView2.h; sourceTree = "<group>"; };
+		EACDA5CD1C1620F60031268F /* SpotifyTrackView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackView2.m; sourceTree = "<group>"; };
+		EACDA5CF1C175E6C0031268F /* SpotifyPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyPlayerManager.h; sourceTree = "<group>"; };
+		EACDA5D01C175E6C0031268F /* SpotifyPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyPlayerManager.m; sourceTree = "<group>"; };
 		EAD1EAE71C05189D003BA462 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,9 +282,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5585F65D1C14C7E3003478C6 /* libstdc++.6.0.9.tbd in Frameworks */,
+				A4AC728B1C0E9643000F05C8 /* Contacts.framework in Frameworks */,
+				A4AC728C1C0E9643000F05C8 /* ContactsUI.framework in Frameworks */,
+				A4AC72871C0E890B000F05C8 /* AddressBook.framework in Frameworks */,
+				A4AC72881C0E890B000F05C8 /* AddressBookUI.framework in Frameworks */,
 				A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */,
 				A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */,
-				A4C03FF41C03BC5C00F0F368 /* ParseFacebookUtils.framework in Frameworks */,
 				A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				EAD1EAE91C051A42003BA462 /* ParseCrashReporting.framework in Frameworks */,
 				A4C03FF61C03BC5C00F0F368 /* ParseTwitterUtils.framework in Frameworks */,
@@ -329,6 +377,7 @@
 		5508F4A11BFB972300D02E15 /* ProjectMailbox */ = {
 			isa = PBXGroup;
 			children = (
+				55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */,
 				559300061C0F958F0027195D /* ProjectMailbox.entitlements */,
 				A44515261C03951000BDD502 /* TMBConstants.h */,
 				A44515271C03951000BDD502 /* TMBConstants.m */,
@@ -346,12 +395,15 @@
 				5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */,
 				5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */,
 				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
+				5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */,
+				5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */,
 				5508F4A81BFB972300D02E15 /* ViewController.h */,
 				5508F4A91BFB972300D02E15 /* ViewController.m */,
 				5508F4DC1BFBC22300D02E15 /* TMBUser.h */,
 				5508F4DD1BFBC22300D02E15 /* TMBUser.m */,
 				5508F4DF1BFBC23900D02E15 /* TMBGroup.h */,
 				5508F4E01BFBC23900D02E15 /* TMBGroup.m */,
+				A4AC727F1C0E7F9F000F05C8 /* Phone Contacts */,
 				55EE00751C0BDE4900C46162 /* Login */,
 				A445151E1BFFA66900BDD502 /* Post Image */,
 				A445151F1BFFA67E00BDD502 /* Post Comment */,
@@ -432,9 +484,21 @@
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EA712A831C0F923600F096B4 /* Bolts.framework */,
-				EA712A811C0F922E00F096B4 /* Parse.framework */,
-				EA712A781C0F90BA00F096B4 /* StoreKit.framework */,
+				5585F65C1C14C7E3003478C6 /* libstdc++.6.0.9.tbd */,
+				5585F64E1C14C5C5003478C6 /* Concorde.framework */,
+				5585F64F1C14C5C5003478C6 /* FBSDKShareKit.framework */,
+				5585F6501C14C5C5003478C6 /* JSQMessagesViewController.framework */,
+				5585F6511C14C5C5003478C6 /* JSQSystemSoundPlayer.framework */,
+				5585F6521C14C5C5003478C6 /* Masonry.framework */,
+				5585F6531C14C5C5003478C6 /* MMDrawerController.framework */,
+				5585F6541C14C5C5003478C6 /* SimpleColorPicker.framework */,
+				5585F64C1C14C5BE003478C6 /* FBSDKLoginKit.framework */,
+				5585F64A1C14C5B6003478C6 /* FBSDKCoreKit.framework */,
+				5585F6481C14C563003478C6 /* PassKit.framework */,
+				A4AC72891C0E9643000F05C8 /* Contacts.framework */,
+				A4AC728A1C0E9643000F05C8 /* ContactsUI.framework */,
+				A4AC72851C0E890B000F05C8 /* AddressBook.framework */,
+				A4AC72861C0E890B000F05C8 /* AddressBookUI.framework */,
 				EAD1EAE71C05189D003BA462 /* Spotify.framework */,
 				A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */,
 				A4C03FEB1C03BC5C00F0F368 /* Parse.framework */,
@@ -489,16 +553,36 @@
 			name = "Post Comment";
 			sourceTree = "<group>";
 		};
+		A4AC727F1C0E7F9F000F05C8 /* Phone Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				A4AC72931C1098E2000F05C8 /* TMBSelectedFriendViewController.h */,
+				A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */,
+				A4AC728D1C0E97DA000F05C8 /* TMBPhoneContactsViewController.h */,
+				A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */,
+				A4AC72901C0F9225000F05C8 /* Contact.h */,
+				A4AC72911C0F9225000F05C8 /* Contact.m */,
+				A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */,
+			);
+			name = "Phone Contacts";
+			sourceTree = "<group>";
+		};
 		EA712A6A1C0E7A1A00F096B4 /* Spotify Feature */ = {
 			isa = PBXGroup;
 			children = (
-				EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */,
 				EA712A871C0F941B00F096B4 /* SpotifyFeature.storyboard */,
+				EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */,
 				EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */,
 				EA712A6D1C0E7AF000F096B4 /* SpotifyTrackView.h */,
 				EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */,
+				EACDA5CC1C1620F60031268F /* SpotifyTrackView2.h */,
+				EACDA5CD1C1620F60031268F /* SpotifyTrackView2.m */,
+				EACDA5C91C161E440031268F /* SpotifyTrack2.h */,
+				EACDA5CA1C161E440031268F /* SpotifyTrack2.m */,
 				EA712A701C0E7B0C00F096B4 /* SpotifyTrack.h */,
 				EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */,
+				EACDA5CF1C175E6C0031268F /* SpotifyPlayerManager.h */,
+				EACDA5D01C175E6C0031268F /* SpotifyPlayerManager.m */,
 			);
 			name = "Spotify Feature";
 			sourceTree = "<group>";
@@ -607,7 +691,7 @@
 				TargetAttributes = {
 					5508F49E1BFB972300D02E15 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = KZB34BK7R5;
+						DevelopmentTeam = KXY9EDFTF5;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -630,7 +714,12 @@
 					};
 					EAB723681C03C33F0086E421 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = KZB34BK7R5;
+						DevelopmentTeam = KXY9EDFTF5;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -660,6 +749,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */,
 				55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */,
 				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
 				EA712A881C0F941B00F096B4 /* SpotifyFeature.storyboard in Resources */,
@@ -748,10 +838,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EACDA5CE1C1620F60031268F /* SpotifyTrackView2.m in Sources */,
+				5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */,
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
 				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
+				A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */,
 				55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */,
 				EAB7237B1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */,
 				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
@@ -760,20 +853,25 @@
 				A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */,
 				EA712A6F1C0E7AF000F096B4 /* SpotifyTrackView.m in Sources */,
 				5508F4E11BFBC23900D02E15 /* TMBGroup.m in Sources */,
+				5585F65F1C14D6E5003478C6 /* ChangePasswordViewController.swift in Sources */,
 				EAB7237F1C03CD870086E421 /* TMBConstants.m in Sources */,
 				A46CB11C1BFCDDA300D35BB3 /* TMBImageView.m in Sources */,
 				55EE00731C0BB94B00C46162 /* TMBMainPageViewController.m in Sources */,
 				A445152E1C039D2300BDD502 /* PAPCache.m in Sources */,
+				A4AC72921C0F9225000F05C8 /* Contact.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
 				A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
+				A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */,
 				5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */,
 				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
 				EA712A721C0E7B0D00F096B4 /* SpotifyTrack.m in Sources */,
 				55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */,
 				5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */,
+				EACDA5D11C175E6C0031268F /* SpotifyPlayerManager.m in Sources */,
 				5508F4A41BFB972300D02E15 /* main.m in Sources */,
+				EACDA5CB1C161E440031268F /* SpotifyTrack2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,6 +1028,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ProjectMailbox/ProjectMailbox.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -937,12 +1037,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/parse-library-1.9.1",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.project-mailbox";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ProjectMailbox/ProjectMailbox-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -950,6 +1054,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ProjectMailbox/ProjectMailbox.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -957,12 +1063,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/parse-library-1.9.1",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.project-mailbox";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ProjectMailbox/ProjectMailbox-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -1028,7 +1137,7 @@
 				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.project-mailbox.TMBSpotifyShareExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic.TMBSpotifyShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -1049,7 +1158,7 @@
 				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.project-mailbox.TMBSpotifyShareExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic.TMBSpotifyShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;

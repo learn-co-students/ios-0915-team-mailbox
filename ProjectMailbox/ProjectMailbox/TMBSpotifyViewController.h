@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <Spotify/Spotify.h>
 
 @interface TMBSpotifyViewController : UIViewController
+
 
 @end
