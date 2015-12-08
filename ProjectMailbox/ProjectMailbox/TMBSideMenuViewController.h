@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <MMDrawerController/MMDrawerController.h>
+#import <Parse/Parse.h>
 
 @interface TMBSideMenuViewController : ViewController
 

@@ -65,9 +65,17 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 let profileImageObject = PFFile(data:profileImageData!)
                 currentUser.setObject(profileImageObject!, forKey: "profileImage")
                 currentUser.saveInBackground()
-                
             }
         }
+        
+        let userDetailsChangedAlert = UIAlertController(title: "You've successfully changed your profile", message: "", preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        userDetailsChangedAlert.addAction(defaultAction)
+        
+        self.presentViewController(userDetailsChangedAlert, animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {

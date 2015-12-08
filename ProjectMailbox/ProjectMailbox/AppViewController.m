@@ -21,6 +21,7 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogOut:) name:@"UserDidLogOutNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidSignUpNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogIn:) name:@"UserDidLogInNotification" object:nil];
     
     if ([PFUser currentUser]) {
@@ -77,6 +78,13 @@
     [PFUser currentUser];
     
     // switch to the home VC
+    [self showMainPage];
+}
+
+- (void)handleUserDidSignUp:(NSNotification *)notification {
+    
+    [PFUser currentUser];
+    
     [self showMainPage];
 }
 
