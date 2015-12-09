@@ -16,8 +16,10 @@
 //add photo view
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *thumbnail;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, strong) PFFile *photoFile;
+@property (nonatomic, strong) PFFile *thumbFile;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier commentPostBackgroundTaskId;
@@ -30,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
+
 
 
 @end
@@ -163,8 +166,6 @@
     return numberOfComments;
 }
 
-
-
 - (IBAction)backButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -246,7 +247,10 @@
     anImage = self.imageView.image;
     
     NSData *imageData = UIImagePNGRepresentation(anImage);
+    NSData *thumbData = UIImagePNGRepresentation(self.thumbnail);
+    
     self.photoFile = [PFFile fileWithData:imageData];
+    self.thumbFile = [PFFile fileWithData:thumbData];
     
     // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
     self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
@@ -255,13 +259,19 @@
     
     [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self.thumbFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+                NSLog(@"\n\nsaved thumbFile\n\n");
+                
+                if (error) {
+                    NSLog(@"self.thumbnailFile saveInBackgroundWithBlock: %@", error);
+                }
             }];
         } else {
             [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
         }
     }];
+
     
     NSLog(@"IN SHOULD UPLOAD IMAGE BOOL .........");
     
@@ -270,6 +280,9 @@
 
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
+    
+    self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:414.0 maxHeight:368.0];
+    [self.delegate imageCardViewController:self didScaleThumbImage:self.thumbnail];
     
     [self shouldUploadImage:self.image];
     
@@ -283,12 +296,25 @@
                     nil];
     }
     
+    // from Joel
+    //
+    //
+    // NEED TO ADD SAVE FOR THUMBNAIL
+    //
+    //
+    //
     
     // Create a Photo object
-    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
+//    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
 //    PFUser *currentUser = [PFUser currentUser];
+//    [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
+//    [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
+    
+    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
     [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
+    [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
+
     
     // Photos are public, but may only be modified by the user who uploaded them
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
@@ -348,8 +374,6 @@
     
 }
 
-
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
@@ -359,12 +383,19 @@
     
 }
 
-
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
+}
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
+    
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (IBAction)sendButtonTapped:(id)sender {
@@ -437,6 +468,18 @@
 //    
 //    NSLog(@"Sending the data");
 
+
+-(UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+    CGFloat oldWidth = image.size.width;
+    CGFloat oldHeight = image.size.height;
+    
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+    
+    CGFloat newHeight = oldHeight * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
+    CGSize newSize = CGSizeMake(newWidth, newHeight);
+    
+    return [self imageWithImage:image scaledToSize:newSize];
 
 }
 
