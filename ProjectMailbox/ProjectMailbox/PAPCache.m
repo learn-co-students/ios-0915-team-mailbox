@@ -17,7 +17,7 @@
 @end
 
 @implementation PAPCache
-@synthesize cache;
+//@synthesize cache;
 
 #pragma mark - Initialization
 

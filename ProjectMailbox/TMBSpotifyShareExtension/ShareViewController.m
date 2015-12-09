@@ -9,6 +9,7 @@
 #import "ShareViewController.h"
 #import "TMBSpotifyShareExtensionAPIClient.h"
 
+
 @interface ShareViewController ()
 
 @property(strong, nonatomic) NSString *trackID;
@@ -50,6 +51,14 @@
                         
                         [TMBSpotifyShareExtensionAPIClient getAlbumCoverUrl:trackId withCompletionBlock:^(NSString *albumCoverLink) {
                             NSLog(@"ALBUMN COVER LINK: %@", albumCoverLink);
+                            
+//                            PFObject *newSpotifySong = [PFObject objectWithClassName:@"SpotifySong"];
+//                            newSpotifySong[@"TrackID"] = self.trackID;
+//                            newSpotifySong[@"TitleInfo"] = self.titleInfo;
+//                            newSpotifySong[@"AlbumCoverURL"] = self.albumCoverLink;
+//                            [newSpotifySong saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//                                NSLog(@"YAY!!!");
+//                            }];
                         }];
                     }
                 }];

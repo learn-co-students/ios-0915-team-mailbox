@@ -16,16 +16,23 @@
 //add photo view
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *thumbnail;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, strong) PFFile *photoFile;
+@property (nonatomic, strong) PFFile *thumbFile;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier commentPostBackgroundTaskId;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UITextField *commentField;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottomConstraint;
 
 //detail view
 @property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
+
 
 
 @end
@@ -44,11 +51,48 @@
         self.image = aImage;
         self.fileUploadBackgroundTaskId = UIBackgroundTaskInvalid;
         self.photoPostBackgroundTaskId = UIBackgroundTaskInvalid;
+        self.commentPostBackgroundTaskId = UIBackgroundTaskInvalid;
     }
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
 
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)keyboardWillShowOrHide:(NSNotification *)notification {
+    
+    CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if ([notification.name isEqualToString:UIKeyboardWillHideNotification]) {
+        finalFrame = CGRectZero;
+    }
+    
+    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        [UIView setAnimationCurve:curve];
+        self.commentViewBottomConstraint.constant = finalFrame.size.height + 50;
+        [self.view layoutIfNeeded];
+    }];
+    
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -113,8 +157,6 @@
     
 }
 
-
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -124,14 +166,10 @@
     return numberOfComments;
 }
 
-
-
 - (IBAction)backButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -159,15 +197,11 @@
     
 }
 
-
-
 - (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
-
-
 
 - (IBAction)takePhotoButtonTapped:(UIButton *)sender {
 
@@ -191,8 +225,6 @@
     
 }
 
-
-
 - (IBAction)chosePhotoButtonTapped:(UIButton *)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -203,8 +235,6 @@
     [self presentViewController:picker animated:YES completion:NULL];
     
 }
-
-
 
 /*****************************
  *      SAVING TO PARSE      *
@@ -217,7 +247,10 @@
     anImage = self.imageView.image;
     
     NSData *imageData = UIImagePNGRepresentation(anImage);
+    NSData *thumbData = UIImagePNGRepresentation(self.thumbnail);
+    
     self.photoFile = [PFFile fileWithData:imageData];
+    self.thumbFile = [PFFile fileWithData:thumbData];
     
     // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
     self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
@@ -226,23 +259,30 @@
     
     [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self.thumbFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+                NSLog(@"\n\nsaved thumbFile\n\n");
+                
+                if (error) {
+                    NSLog(@"self.thumbnailFile saveInBackgroundWithBlock: %@", error);
+                }
             }];
         } else {
             [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
         }
     }];
+
     
     NSLog(@"IN SHOULD UPLOAD IMAGE BOOL .........");
     
     return YES;
 }
 
-
-
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
+    
+    self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:414.0 maxHeight:368.0];
+    [self.delegate imageCardViewController:self didScaleThumbImage:self.thumbnail];
     
     [self shouldUploadImage:self.image];
     
@@ -256,12 +296,25 @@
                     nil];
     }
     
+    // from Joel
+    //
+    //
+    // NEED TO ADD SAVE FOR THUMBNAIL
+    //
+    //
+    //
     
     // Create a Photo object
-    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
+//    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
 //    PFUser *currentUser = [PFUser currentUser];
+//    [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
+//    [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
+    
+    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
     [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
+    [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
+
     
     // Photos are public, but may only be modified by the user who uploaded them
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
@@ -322,8 +375,6 @@
     
 }
 
-
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
@@ -333,14 +384,105 @@
     
 }
 
-
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
+    
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
+- (IBAction)sendButtonTapped:(id)sender {
+    
+    if (self.commentField.text != 0) {
+        PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
+        [newCommentObject setObject:self.commentField.text forKey:@"content"];
+        [newCommentObject setObject:[PFUser currentUser] forKey:@"fromUser"];
+        
+        [newCommentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                NSLog(@"Saved");
+            }
+            else{
+                // Error
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
 
+        
+//        PFObject *comment = [PFObject objectWithClassName:@"Activity"];
+//        [comment setObject:@"content" forKey:@"type"];
+//        [comment setObject:comment forKey:@"photo"];
+//        [comment setObject:[PFUser currentUser] forKey:@"fromUser"];
+//        [comment setObject:self.commentField.text forKey:@"content"];
+//        [comment saveInBackground];
+    }
+    
+    
+    
+    
+    
+//    NSDictionary *userInfo = [NSDictionary dictionary];
+//    NSString *trimmedComment = [self.commentField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    if (trimmedComment.length != 0) {
+//        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+//                    trimmedComment,
+//                    kTMBEditPhotoViewControllerUserInfoCommentKey,
+//                    nil];
+//        
+//        self.commentPostBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+//            [[UIApplication sharedApplication] endBackgroundTask:self.commentPostBackgroundTaskId];
+//        }];
+//    
+//        // userInfo might contain any caption which might have been posted by the uploader
+//        if (userInfo) {
+//            NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
+//            
+//            if (commentText && commentText.length != 0) {
+//                // create and save photo caption
+//                PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
+//                [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
+//                [comment setObject:comment forKey:kTMBActivityPhotoKey];
+//                [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
+//                [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
+//                [comment setObject:commentText forKey:kTMBActivityContentKey];
+//                
+//                PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+//                [ACL setPublicReadAccess:YES];
+//                comment.ACL = ACL;
+//                
+//                [comment saveInBackground];
+//                [[PAPCache sharedCache] incrementCommentCountForPhoto:comment];
+//            }
+//        }
+//        
+//    }
+//    
+////    [[UIApplication sharedApplication] endBackgroundTask:self.commentPostBackgroundTaskId];
+//    
+//    NSLog(@"Sending the data");
+
+//
+//-(UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+//    CGFloat oldWidth = image.size.width;
+//    CGFloat oldHeight = image.size.height;
+//    
+//    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+//    
+//    CGFloat newHeight = oldHeight * scaleFactor;
+//    CGFloat newWidth = oldWidth * scaleFactor;
+//    CGSize newSize = CGSizeMake(newWidth, newHeight);
+//    
+//    return [self imageWithImage:image scaledToSize:newSize];
+//
+//}
+}
 
 @end

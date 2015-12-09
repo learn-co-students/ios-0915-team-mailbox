@@ -49,10 +49,12 @@ class ChangePasswordViewController: UIViewController {
                 let checkEmailAlert = UIAlertController(title: "Please check your email", message: "", preferredStyle: .Alert)
                 
 
+
                 let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
                     self.dismissViewControllerAnimated(true, completion: nil)
                 })
                 checkEmailAlert.addAction(defaultAction)
+
 
                 
                 self.presentViewController(checkEmailAlert, animated: true, completion: nil)

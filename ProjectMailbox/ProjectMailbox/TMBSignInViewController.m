@@ -7,6 +7,7 @@
 //
 
 #import "TMBSignInViewController.h"
+#import "TMBSharedBoardID.h"
 
 @interface TMBSignInViewController ()
 
@@ -38,6 +39,7 @@
     [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (userName != nil) {
             
+//          PFUser currentUser
             NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
             
             [usernameDefault setValue:userName forKey:@"user_name"];
@@ -49,6 +51,40 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInNotification" object:nil];
             
             [self showSuccessAlert];
+            
+            
+            //get all boardIDs for current user
+            PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+            [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
+            [boardQuery selectKeys:@[@"objectId"]];
+            [boardQuery orderByDescending:@"lastViewed"];
+            [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                if (!error) {
+                    
+                    NSLog(@"\n\nobjects: %@",objects);
+                    PFObject *boardID = [objects firstObject];
+                    [TMBSharedBoardID sharedBoardID].boardID = [boardID valueForKey:@"objectId"];
+                    
+                    for (PFObject *object in objects) {
+                        
+                        NSString *boardIDinArray = [object valueForKey:@"objectId"];
+                        [[TMBSharedBoardID sharedBoardID].boardIDs addObject:boardIDinArray];
+                    }
+                    
+                    NSLog(@"\n\nboardID: %@\nboardIDs:\n%@\n\n",[TMBSharedBoardID sharedBoardID].boardID,[TMBSharedBoardID sharedBoardID].boardID);
+                    
+                } else {
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
+            
+            
+            
+            // Navigate to protected page (main page)
+            
+//            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            
+//            TMBMainPageViewController *mainPage = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainPageViewController"];
             
         } else {
             
