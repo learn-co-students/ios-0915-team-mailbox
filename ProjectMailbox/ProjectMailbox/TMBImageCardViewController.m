@@ -293,6 +293,7 @@
                     [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
                     [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
                     [comment setObject:commentText forKey:kTMBActivityContentKey];
+
                     
                     PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
                     [ACL setPublicReadAccess:YES];

@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) NSMutableArray *boardFriends;  // contains friends associated with a particular board
 @property (nonatomic, strong) NSMutableArray *allFriends;  // contains ALL friends
+@property (nonatomic, strong) NSMutableArray *combinedFriends;  // boardFriends + allFriends arrays
 
 @end
