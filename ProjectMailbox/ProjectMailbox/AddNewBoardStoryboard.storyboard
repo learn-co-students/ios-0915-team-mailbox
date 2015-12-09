@@ -125,7 +125,13 @@
                             <constraint firstItem="Fbz-LF-3v4" firstAttribute="top" secondItem="SmT-tA-1L0" secondAttribute="bottom" constant="24" id="Tgu-9r-dkk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create New Board" id="nSY-oT-ifp" userLabel="Create New Board"/>
+                    <navigationItem key="navigationItem" title="Create New Board" id="X5D-VF-iRk">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="KiK-Cz-rzb">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="dPn-pp-4IR" id="vJv-6e-gwF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="boardNameLabel" destination="L5f-em-Yyl" id="m8C-oT-fKb"/>

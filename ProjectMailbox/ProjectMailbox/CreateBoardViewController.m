@@ -107,6 +107,13 @@
 
 
 
+- (IBAction)cancelButtonTapped:(UIBarButtonItem *)sender {
+    
+    // delete the board with that board id
+}
+
+
+
 
 
 
@@ -223,6 +230,7 @@
     [follow setObject:newBoardUser forKey:kTMBActivityToUserKey];
     [follow saveInBackground];
 
+    
     // adding new board user to boardFriends array
     [self.boardFriends addObject:self.allFriends[0]];
     
@@ -265,6 +273,14 @@
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    
+    //  !!!!!!!!!! NEXT STEPS:  add objects to combinedFriends and set that to table cells
+    
+    
+    
     
     NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
     
