@@ -7,6 +7,8 @@
 //
 
 #import "TMBDoodleViewController.h"
+#import "PAPCache.h"
+#import "TMBConstants.h"
 
 #define FEEDBACK_VIEW_WIDTH 200
 #define FEEDBACK_VIEW_HEIGHT 200
@@ -27,6 +29,7 @@
 @property (strong, nonatomic) UIView *feedbackView;
 @property (strong, nonatomic) SimpleColorPickerView *simpleColorPickerView;
 @property (strong, nonatomic) UIColor *chosenColor;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier doodlePostBackgroundTaskId;
 
 @end
 
@@ -143,9 +146,36 @@
     
     UIGraphicsBeginImageContextWithOptions(self.bottomImageView.bounds.size, NO, 0.0);
     [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.frame.size.width, self.bottomImageView.frame.size.height)];
+    
     UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(saveImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
+    NSData* data = UIImageJPEGRepresentation(self.bottomImageView.image, 0.5f);
+    PFFile *imageFile = [PFFile fileWithData:data];
+    
+    // Save the image to Parse
+    
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // The image has now been uploaded to Parse. Associate it with a new object
+            PFObject* newPhotoObject = [PFObject objectWithClassName:@"Doodle"];
+            [newPhotoObject setObject:imageFile forKey:@"image"];
+            [newPhotoObject setObject:[PFUser currentUser] forKey:@"user"];
+            
+            [newPhotoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    NSLog(@"Saved");
+                }
+                else{
+                    // Error
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
+        }
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

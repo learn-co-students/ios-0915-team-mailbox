@@ -21,8 +21,8 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogOut:) name:@"UserDidLogOutNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidSignUpNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogIn:) name:@"UserDidLogInNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowHamburgerMenu:) name:@"ShowHamburgerMenuNotification" object:nil];
     
     if ([PFUser currentUser]) {
         [self showMainPage];
@@ -81,11 +81,11 @@
     [self showMainPage];
 }
 
--(void)handleShowHamburgerMenu:(NSNotification *)notification
-{
+- (void)handleUserDidSignUp:(NSNotification *)notification {
     
-    NSLog(@"Stuff is goign on ");
+    [PFUser currentUser];
     
+    [self showMainPage];
 }
 
 -(void)setEmbeddedViewController:(UIViewController *)controller

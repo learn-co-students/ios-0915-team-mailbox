@@ -34,11 +34,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
-//    if ([PFUser currentUser]) {
-//        
-//        [self presentMainPage];
-//        
-//    }
 }
 
 - (void)presentMainPage {

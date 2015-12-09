@@ -14,6 +14,7 @@ pod 'FBSDKShareKit'
 pod 'ParseFacebookUtilsV4'
 pod 'SimpleColorPicker'
 pod 'Masonry'
+pod 'Concorde'
 
 #pod 'Spotify-iOS-SDK', :podspec => 'Spotify-iOS-SDK.podspec.json'
 

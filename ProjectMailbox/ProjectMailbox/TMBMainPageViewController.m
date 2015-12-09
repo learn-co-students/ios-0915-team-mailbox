@@ -37,7 +37,7 @@
     
     UIAlertController * view=   [UIAlertController
                                  alertControllerWithTitle:@"Add to your Mosaic"
-                                 message:@"Select your choice"
+                                 message:@""
                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction* picture = [UIAlertAction
