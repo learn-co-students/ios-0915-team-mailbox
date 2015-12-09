@@ -1,10 +1,3 @@
-//
-//  SpotifyPlayerManager.m
-//  ProjectMailbox
-//
-//  Created by Jimena Almendares on 12/8/15.
-//  Copyright © 2015 Joseph Kiley. All rights reserved.
-//
 
 #import "SpotifyPlayerManager.h"
 #import <Spotify/Spotify.h>
@@ -19,6 +12,7 @@ NSString * const SpotifyDidTogglePausedNotificationName = @"SpotifyDidTogglePaus
 NSString * const SpotifyNotificationPausedStateKey = @"isPaused";
 
 
+
 @interface SpotifyPlayerManager () <SPTAudioStreamingPlaybackDelegate>
 
 @property (nonatomic, strong) SPTAudioStreamingController *player;
@@ -27,6 +21,7 @@ NSString * const SpotifyNotificationPausedStateKey = @"isPaused";
 @property (nonatomic, assign, readwrite) BOOL isPlaying;
 
 @end
+
 
 
 @implementation SpotifyPlayerManager
@@ -68,9 +63,22 @@ NSString * const SpotifyNotificationPausedStateKey = @"isPaused";
     return [NSURL URLWithString:[NSString stringWithFormat:@"spotify:track:%@", trackID]];
 }
 
+
 -(void)playTrackWithID:(NSString *)trackID
 {
+    if([self.player loggedIn] == NO) {
+        
+// Spotify login !!!
+        NSLog(@"Trying to login in Spotify Manager");
+        
+        NSURL *loginURL = [[SPTAuth defaultInstance] loginURL];
+        [[UIApplication sharedApplication] openURL:loginURL];
+        
+        
+    }
+    
     if([self.currentTrackID isEqualToString:trackID]) {
+        
         return;
     }
     
@@ -100,6 +108,7 @@ NSString * const SpotifyNotificationPausedStateKey = @"isPaused";
         }];
     }];
     
+    NSLog(@"trackID in -(void)playTrackWithID:(NSString *)trackID: %@", trackID);
     
     if(trackID) {
         [[NSNotificationCenter defaultCenter] postNotificationName:SpotifyDidStartPlayingNotificationName object:self userInfo:@{ SpotifyNotificationTrackIDKey: trackID }];
@@ -112,6 +121,7 @@ NSString * const SpotifyNotificationPausedStateKey = @"isPaused";
 -(void)togglePlayPause
 {
     BOOL newPauseState = !self.player.isPlaying;
+    
     self.isPlaying = newPauseState;
     
     [self ensurePlayerWithCompletion:^{
@@ -122,7 +132,7 @@ NSString * const SpotifyNotificationPausedStateKey = @"isPaused";
         }];
     }];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:SpotifyDidTogglePausedNotificationName object:self userInfo:@{ SpotifyNotificationPausedStateKey: @(newPauseState), SpotifyNotificationTrackIDKey: self.currentTrackID }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpotifyDidTogglePausedNotificationName object:self userInfo:@{ SpotifyNotificationPausedStateKey: @(!newPauseState), SpotifyNotificationTrackIDKey: self.currentTrackID }];
 }
 
 -(void)stop
@@ -133,6 +143,9 @@ NSString * const SpotifyNotificationPausedStateKey = @"isPaused";
 
 #pragma mark SPTAudioStreamingPlaybackDelegate
 
+- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStopPlayingTrack:(NSURL *)trackUri {
+    NSLog(@"Did stop playing track called");
+}
 
 
 @end

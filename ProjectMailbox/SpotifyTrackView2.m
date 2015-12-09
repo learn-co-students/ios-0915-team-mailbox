@@ -1,10 +1,3 @@
-//
-//  SpotifyTrackView2.m
-//  ProjectMailbox
-//
-//  Created by Jimena Almendares on 12/7/15.
-//  Copyright © 2015 Joseph Kiley. All rights reserved.
-//
 
 #import "SpotifyTrackView2.h"
 #import "SpotifyTrack2.h"
@@ -61,7 +54,7 @@
     
     // add spotify play/pause button
     UIButton *playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage * playPauseImage = [UIImage imageNamed:@"Play icon"];
+    UIImage * playPauseImage = [UIImage imageNamed:@"Play Icon"];
     [playPauseButton setImage:playPauseImage forState:UIControlStateNormal];
     [playPauseButton addTarget: self  action:@selector(playPauseButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     playPauseButton.frame = CGRectMake(0, 0, 50, 50);
@@ -70,7 +63,11 @@
     
     self.playPauseButton = playPauseButton;
     NSLog(@"In initialization method.");
-    
+
+// notification observer for login
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyLoggedInWithNotification:) name:@"SpotifyLoggedIn" object:nil];
+   
+// notification observers for player actions
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStartPlaying:) name:SpotifyDidStartPlayingNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStopPlaying:) name:SpotifyDidStopPlayingNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidTogglePaused:) name:SpotifyDidTogglePausedNotificationName object:nil];
@@ -98,6 +95,8 @@
 -(void)spotifyDidTogglePaused:(NSNotification *)notification
 {
     BOOL isNowPaused = [notification.userInfo[SpotifyNotificationPausedStateKey] boolValue];
+    NSLog(@"In View- isNowPaused: %d", isNowPaused);
+    
     NSString *trackID = notification.userInfo[SpotifyNotificationTrackIDKey];
     
     if(![trackID isEqualToString:self.spotifyTrack.trackID]) {
@@ -115,24 +114,18 @@
 
 -(void)updateUIForWhenOurTrackIsPlaying
 {
-    UIImage *pauseIcon = [UIImage imageNamed:@"Pause icon"];
+    UIImage *pauseIcon = [UIImage imageNamed:@"Pause Icon"];
     [self.playPauseButton setImage:pauseIcon forState:UIControlStateNormal];
 }
 
 -(void)updateUIForWhenOurTrackIsNotPlaying
 {
-    UIImage *playIcon = [UIImage imageNamed:@"Play icon"];
+    UIImage *playIcon = [UIImage imageNamed:@"Play Icon"];
     [self.playPauseButton setImage:playIcon forState:UIControlStateNormal];
 }
 
 
-//view life cycle methods to initialize spotify session
--(void)didMoveToSuperview {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyLoggedInWithNotification:) name:@"SpotifyLoggedIn" object:nil];
-    NSLog(@"In didMoveToSuperview method.");
-}
-
-
+//view life cycle method to remove observer spotify session
 -(void)removeFromSuperview {
     [super removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SpotifyLoggedIn" object:nil];
@@ -141,6 +134,8 @@
 -(void) spotifyLoggedInWithNotification:(NSNotification*)notification{
     NSLog(@"i have received a notification that spotify has logged in");
     NSLog(@"i may now do stuff with spotify");
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SpotifyDidStopPlayingNotificationName object:self userInfo:nil];
 }
 
 -(void)playPauseButtonTapped:(id)sender
@@ -150,7 +145,7 @@
         [playerManager togglePlayPause];
     }
     else {
-        [playerManager playTrackWithID:self.spotifyTrack.trackID];
+        [playerManager playTrackWithID: self.spotifyTrack.trackID];
     }
 }
 

@@ -1,10 +1,3 @@
-//
-//  SpotifyTrack2.m
-//  ProjectMailbox
-//
-//  Created by Jimena Almendares on 12/7/15.
-//  Copyright © 2015 Joseph Kiley. All rights reserved.
-//
 
 #import "SpotifyTrack2.h"
 

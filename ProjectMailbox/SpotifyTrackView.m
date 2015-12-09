@@ -1,10 +1,3 @@
-//
-//  SpotifyTrackView.m
-//  ProjectMailbox
-//
-//  Created by Jimena Almendares on 12/1/15.
-//  Copyright © 2015 Joseph Kiley. All rights reserved.
-//
 
 #import "SpotifyTrackView.h"
 #import "SpotifyTrack.h"
@@ -61,7 +54,7 @@
     
 // add spotify play/pause button
     UIButton *playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage * playPauseImage = [UIImage imageNamed:@"Play icon"];
+    UIImage * playPauseImage = [UIImage imageNamed:@"Play Icon"];
     [playPauseButton setImage:playPauseImage forState:UIControlStateNormal];
     [playPauseButton addTarget: self  action:@selector(playPauseButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     playPauseButton.frame = CGRectMake(0, 0, 50, 50);
@@ -71,7 +64,7 @@
     self.playPauseButton = playPauseButton;
     NSLog(@"In initialization method.");
     
-    
+// add NSNotificationCenter Observers
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStartPlaying:) name:SpotifyDidStartPlayingNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStopPlaying:) name:SpotifyDidStopPlayingNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidTogglePaused:) name:SpotifyDidTogglePausedNotificationName object:nil];
@@ -116,13 +109,13 @@
 
 -(void)updateUIForWhenOurTrackIsPlaying
 {
-    UIImage *pauseIcon = [UIImage imageNamed:@"Pause icon"];
+    UIImage *pauseIcon = [UIImage imageNamed:@"Pause Icon"];
     [self.playPauseButton setImage:pauseIcon forState:UIControlStateNormal];
 }
 
 -(void)updateUIForWhenOurTrackIsNotPlaying
 {
-    UIImage *playIcon = [UIImage imageNamed:@"Play icon"];
+    UIImage *playIcon = [UIImage imageNamed:@"Play Icon"];
     [self.playPauseButton setImage:playIcon forState:UIControlStateNormal];
 }
 
@@ -147,6 +140,7 @@
 -(void)playPauseButtonTapped:(id)sender
 {
     SpotifyPlayerManager *playerManager = [SpotifyPlayerManager sharedManager];
+    
     if([playerManager.currentTrackID isEqualToString:self.spotifyTrack.trackID]) {
         [playerManager togglePlayPause];
     }
