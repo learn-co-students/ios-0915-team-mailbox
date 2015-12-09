@@ -35,6 +35,7 @@
 
 }
 
+
 - (IBAction)logoutButtonTapped:(id)sender {
     
     [PFUser logOut];
@@ -47,6 +48,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation

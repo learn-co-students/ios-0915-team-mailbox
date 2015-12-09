@@ -17,6 +17,7 @@
 #import <Spotify/Spotify.h>
 #import <AVFoundation/AVFoundation.h>
 #import "TMBConstants.h"
+#import "TMBSharedBoardID.h"
 
 @interface AppDelegate ()
 
@@ -45,6 +46,9 @@
     [SPTAuth defaultInstance].tokenSwapURL = [NSURL URLWithString: SPOTIFY_TOKEN_SWAP_URL];
     [SPTAuth defaultInstance].tokenRefreshURL = [NSURL URLWithString: SPOTIFY_TOKEN_REFRESH_URL];
     [SPTAuth defaultInstance].sessionUserDefaultsKey = @"SpotifySession";
+    
+    //shared boardID singleton
+    [TMBSharedBoardID sharedBoardID];
     
     return YES;
 }

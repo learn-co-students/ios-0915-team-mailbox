@@ -188,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hW0-VI-9Vy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3063.5" y="410.5"/>
+            <point key="canvasLocation" x="2009.5" y="-360.5"/>
         </scene>
         <!--Image Card View Controller-->
         <scene sceneID="dnj-QP-HTr">
@@ -578,7 +578,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Njn-VG-GoL" kind="relationship" relationship="rootViewController" id="IBO-br-UAS"/>
+                        <segue destination="EYA-DM-K2s" kind="relationship" relationship="rootViewController" id="C02-e5-Imt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Izb-9d-hzr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -816,6 +816,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OsD-l4-voF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2584.5" y="-360.5"/>
+        </scene>
+        <!--Board Controller-->
+        <scene sceneID="I7F-JL-A5e">
+            <objects>
+                <collectionViewController id="EYA-DM-K2s" customClass="TMBBoardController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="yN9-AB-bsk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <collectionViewLayout key="collectionViewLayout" id="Je8-sa-UYv" customClass="TMBBoardLayout"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MediaCell" id="Gcq-eI-jRF" customClass="TMBBoardCell">
+                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hUI-nu-DFz">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <animations/>
+                                        </imageView>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="hUI-nu-DFz" firstAttribute="height" secondItem="Gcq-eI-jRF" secondAttribute="height" id="88m-5z-PMo"/>
+                                    <constraint firstItem="hUI-nu-DFz" firstAttribute="width" secondItem="Gcq-eI-jRF" secondAttribute="width" id="SbK-4D-luJ"/>
+                                    <constraint firstItem="hUI-nu-DFz" firstAttribute="centerY" secondItem="Gcq-eI-jRF" secondAttribute="centerY" id="WMm-cS-RzR"/>
+                                    <constraint firstItem="hUI-nu-DFz" firstAttribute="centerX" secondItem="Gcq-eI-jRF" secondAttribute="centerX" id="tij-qt-2Se"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="hUI-nu-DFz" id="URz-PD-uFG"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="EYA-DM-K2s" id="zzb-yd-rlY"/>
+                            <outlet property="delegate" destination="EYA-DM-K2s" id="lyV-Nv-Z9U"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="a1q-tv-Kzg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Sfu-OK-r4U">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="EYA-DM-K2s" id="XdW-aJ-xAW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PkD-bs-VhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3063.5" y="418.5"/>
         </scene>
     </scenes>
     <resources>

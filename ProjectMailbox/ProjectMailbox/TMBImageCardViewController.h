@@ -9,6 +9,16 @@
 #import "ViewController.h"
 #import <Parse/Parse.h>
 
+@class TMBImageCardViewController;
+
+@protocol TMBImageCardViewControllerDelegate <NSObject>
+
+@required
+
+-(void)imageCardViewController:(TMBImageCardViewController *)viewController didScaleThumbImage:(UIImage *)image;
+
+@end
+
 @interface TMBImageCardViewController : ViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 /// The class of the PFObject this table will use as a datasource
@@ -20,5 +30,10 @@
 @property (nonatomic, strong) PFObject *photo;
 
 - (id)initWithImage:(UIImage *)aImage;
+
+@property (nonatomic, weak) id<TMBImageCardViewControllerDelegate> delegate;
+
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size;
+-(UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
 
 @end
