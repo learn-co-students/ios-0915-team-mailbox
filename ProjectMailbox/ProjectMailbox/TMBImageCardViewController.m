@@ -33,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 
+@property (strong, nonatomic) PFObject *testing;
+
 
 
 @end
@@ -87,7 +89,7 @@
     
     [UIView animateWithDuration:duration animations:^{
         [UIView setAnimationCurve:curve];
-        self.commentViewBottomConstraint.constant = finalFrame.size.height + 50;
+        self.commentViewBottomConstraint.constant = finalFrame.size.height + 0;
         [self.view layoutIfNeeded];
     }];
     
@@ -101,6 +103,7 @@
     
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
+    
 
     // loging in this app as Inga for now
     
@@ -137,6 +140,7 @@
         
         // test: getting photo obj
         PFObject *anActivitysPhoto = anActivity[@"photo"];
+        self.testing = anActivitysPhoto;
         PFFile *imageFile = anActivitysPhoto[@"image"];
         
         // test: user's first name set to label
@@ -400,10 +404,16 @@
 
 - (IBAction)sendButtonTapped:(id)sender {
     
+    NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
+    
+    PFFile *test = [PFFile fileWithData:imageData];
+    
     if (self.commentField.text != 0) {
         PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
+        
         [newCommentObject setObject:self.commentField.text forKey:@"content"];
         [newCommentObject setObject:[PFUser currentUser] forKey:@"fromUser"];
+        [newCommentObject setObject:self.testing forKey:@"photo"];
         
         [newCommentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
@@ -414,73 +424,7 @@
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
         }];
-
-        
-//        PFObject *comment = [PFObject objectWithClassName:@"Activity"];
-//        [comment setObject:@"content" forKey:@"type"];
-//        [comment setObject:comment forKey:@"photo"];
-//        [comment setObject:[PFUser currentUser] forKey:@"fromUser"];
-//        [comment setObject:self.commentField.text forKey:@"content"];
-//        [comment saveInBackground];
     }
-    
-    
-    
-    
-    
-//    NSDictionary *userInfo = [NSDictionary dictionary];
-//    NSString *trimmedComment = [self.commentField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//    if (trimmedComment.length != 0) {
-//        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//                    trimmedComment,
-//                    kTMBEditPhotoViewControllerUserInfoCommentKey,
-//                    nil];
-//        
-//        self.commentPostBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-//            [[UIApplication sharedApplication] endBackgroundTask:self.commentPostBackgroundTaskId];
-//        }];
-//    
-//        // userInfo might contain any caption which might have been posted by the uploader
-//        if (userInfo) {
-//            NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
-//            
-//            if (commentText && commentText.length != 0) {
-//                // create and save photo caption
-//                PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
-//                [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
-//                [comment setObject:comment forKey:kTMBActivityPhotoKey];
-//                [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
-//                [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
-//                [comment setObject:commentText forKey:kTMBActivityContentKey];
-//                
-//                PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-//                [ACL setPublicReadAccess:YES];
-//                comment.ACL = ACL;
-//                
-//                [comment saveInBackground];
-//                [[PAPCache sharedCache] incrementCommentCountForPhoto:comment];
-//            }
-//        }
-//        
-//    }
-//    
-////    [[UIApplication sharedApplication] endBackgroundTask:self.commentPostBackgroundTaskId];
-//    
-//    NSLog(@"Sending the data");
-
-
--(UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
-    CGFloat oldWidth = image.size.width;
-    CGFloat oldHeight = image.size.height;
-    
-    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
-    
-    CGFloat newHeight = oldHeight * scaleFactor;
-    CGFloat newWidth = oldWidth * scaleFactor;
-    CGSize newSize = CGSizeMake(newWidth, newHeight);
-    
-    return [self imageWithImage:image scaledToSize:newSize];
-
 }
 
 @end
