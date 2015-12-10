@@ -36,12 +36,9 @@
 @property (strong, nonatomic) PFObject *testing;
 
 
-
 @end
 
-
 @implementation TMBImageCardViewController
-
 
 - (id)initWithImage:(UIImage *)aImage {
     self = [super initWithNibName:nil bundle:nil];
@@ -56,44 +53,6 @@
         self.commentPostBackgroundTaskId = UIBackgroundTaskInvalid;
     }
     return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
-- (void)keyboardWillShowOrHide:(NSNotification *)notification {
-    
-    CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    if ([notification.name isEqualToString:UIKeyboardWillHideNotification]) {
-        finalFrame = CGRectZero;
-    }
-    
-    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    [UIView animateWithDuration:duration animations:^{
-        [UIView setAnimationCurve:curve];
-        self.commentViewBottomConstraint.constant = finalFrame.size.height + 0;
-        [self.view layoutIfNeeded];
-    }];
-    
-    
 }
 
 - (void)viewDidLoad {
@@ -169,6 +128,43 @@
     
     return numberOfComments;
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)keyboardWillShowOrHide:(NSNotification *)notification {
+    
+    CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if ([notification.name isEqualToString:UIKeyboardWillHideNotification]) {
+        finalFrame = CGRectZero;
+    }
+    
+    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        [UIView setAnimationCurve:curve];
+        self.commentViewBottomConstraint.constant = finalFrame.size.height + 0;
+        [self.view layoutIfNeeded];
+    }];
+}
+
 
 - (IBAction)backButtonTapped:(id)sender {
     
