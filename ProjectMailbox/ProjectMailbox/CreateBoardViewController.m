@@ -41,7 +41,13 @@
     self.friendsTableView.dataSource = self;
     
     self.allFriends = [NSMutableArray new];
+    self.boardFriends = [NSMutableArray new];
+    self.combinedFriends = [NSMutableArray new];
 
+
+    
+    // hiding found frinds view:
+    self.foundFriendView.hidden = YES;
 
 
     // loging in this app as Inga for now
@@ -53,6 +59,23 @@
     }
     
     
+    
+    
+    
+    // creating new board:
+    self.myNewBoard = [PFObject objectWithClassName:@"Board"];
+    
+    [self.myNewBoard setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
+//    [self.myNewBoard setObject:self.boardFriends forKey:kTMBBoardUsersKey];   // takes an array
+    self.myNewBoard[@"boardName"] = @"My Board";
+
+    
+    [self.myNewBoard saveEventually];
+    
+    
+    
+    
+ 
     
     
     // QUERY FOR BOARDS CONTAINING USERS
@@ -84,74 +107,10 @@
 
 
 
-- (IBAction)addFriendButtonTapped:(UIButton *)sender {
-
+- (IBAction)cancelButtonTapped:(UIBarButtonItem *)sender {
     
+    // delete the board with that board id
 }
-
-
-
-
-- (IBAction)createNewBoardTapped:(UIButton *)sender {
-
-    // get all users (query)
-    // get or create a board
-    // set array of users to board[@"users"]
-    // save board. see what it looks like in Parse!!!
-        // THEN you can start working on querying/finding boards associated with a user
-        // query forClass: @"board" whereKey:@"users" contains:PFUser.currentUser
-        // see if you get back the baord you expected
-    
-    
-    
-
-    
-    // QUERY FOR ALL USERS:
-    
-    PFQuery *query = [PFUser query];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        // set datastore to objects array
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            self.users = [objects mutableCopy];
-            
-            NSArray *differentUsers = @[objects[0], objects[1]];
-            
-            NSLog(@" ......... ALL USERS ARE : %@", self.users);
-            
-            
-            
-            
-            // CREATING A BOARD WITH THE USERS ARRAY:
-            
-            NSString *boardName = self.boardNameLabel.text;
-            
-            self.myNewBoard = [PFObject objectWithClassName:@"Board"];
-            
-            
-            self.myNewBoard[@"boardName"] = boardName;
-            
-    
-            
-            [self.myNewBoard setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
-            [self.myNewBoard addUniqueObjectsFromArray:differentUsers forKey:kTMBBoardUsersKey];
-            
-            [self.myNewBoard saveInBackground];
-            
-            
-            
-        }];
-    }];
-    
-    
-    
-    
-    
-    
-
-}
-
 
 
 
@@ -192,9 +151,6 @@
             }];
         
         
-
-
-        
         
         
         NSLog(@" ......... FOUND FRIENDS: %@", friendObjects);
@@ -232,14 +188,64 @@
     
     
     
-    
-    
-    
-    
-    
-    
+    self.foundFriendView.hidden = NO;
+
 
 }
+
+
+
+
+
+
+
+
+- (IBAction)addFriendButtonTapped:(UIButton *)sender {
+    
+    // GOALS:
+    
+    // found Friend view is hidden by default in viewDidLoad
+    
+    // show found Friend view when found someone
+    
+    // ----->  show found Friend view when noone is found
+    
+    // hide found Friend view
+    
+    // ----->  reset the text view text to blank
+    
+    
+    
+    
+    // pushes to Parse: makes the FOUND FRIEND a 'follower' of the board:
+    // fromUser
+    // toUser
+    // type 'follow'
+    
+    PFUser *newBoardUser = self.allFriends[0]; // push to parse;
+    PFObject *follow = [PFObject objectWithClassName:@"Activity"];
+    [follow setObject:@"follow" forKey:@"type"];
+    [follow setObject:self.myNewBoard forKey:@"board"];
+    [follow setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
+    [follow setObject:newBoardUser forKey:kTMBActivityToUserKey];
+    [follow saveInBackground];
+
+    
+    // adding new board user to boardFriends array
+    [self.boardFriends addObject:self.allFriends[0]];
+    
+    [self.myNewBoard setObject:self.boardFriends forKey:kTMBBoardUsersKey];   // takes an array
+    [self.myNewBoard saveInBackground];
+
+    
+    self.foundFriendView.hidden = YES;
+    
+
+    
+    
+    
+}
+
 
 
 
@@ -264,7 +270,17 @@
 
 
 
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    
+    //  !!!!!!!!!! NEXT STEPS:  add objects to combinedFriends and set that to table cells
+    
+    
+    
     
     NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
     
@@ -302,6 +318,109 @@
     
     
 }
+
+
+
+
+
+
+
+- (IBAction)checkButtonTapped:(UIButton *)sender {
+    
+    // check - adds friend to board, so sets 'follow' to an empty string
+    // uncheck - removes friend from board
+    
+    // if user is a follower - display check
+    // if user is not a follower - display blank circle
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+- (IBAction)createNewBoardTapped:(UIButton *)sender {
+    
+    
+    // THIS METHOD REALLY UPDATES THE BOARD CREATED IN THE VIEWDIDLOAD
+    
+    
+    // if they named the board, updating the name
+    NSString *boardName = self.boardNameLabel.text;
+    self.myNewBoard[@"boardName"] = boardName;
+    
+    [self.myNewBoard saveEventually];
+    
+ 
+    
+    
+    
+    
+    // TOM'S NOTES:
+    // get all users (query)
+    // get or create a board
+    // set array of users to board[@"users"]
+    // save board. see what it looks like in Parse!!!
+    // THEN you can start working on querying/finding boards associated with a user
+    // query forClass: @"board" whereKey:@"users" contains:PFUser.currentUser
+    // see if you get back the baord you expected
+    
+    
+   
+    
+    // QUERY FOR ALL USERS:
+    
+//    PFQuery *query = [PFUser query];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        
+//        // set datastore to objects array
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            
+//            self.users = [objects mutableCopy];
+//            
+//            NSArray *differentUsers = @[objects[0], objects[1]];
+//            
+//            NSLog(@" ......... ALL USERS ARE : %@", self.users);
+//            
+//            
+//            
+//            
+//            // CREATING A BOARD WITH THE USERS ARRAY:
+//            
+//            NSString *boardName = self.boardNameLabel.text;
+//            
+//            self.myNewBoard = [PFObject objectWithClassName:@"Board"];
+//            
+//            
+//            self.myNewBoard[@"boardName"] = boardName;
+//            
+//            
+//            
+//            [self.myNewBoard setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
+//            [self.myNewBoard addUniqueObjectsFromArray:differentUsers forKey:kTMBBoardUsersKey];
+//            
+//            [self.myNewBoard saveInBackground];
+//            
+//            // make this method update the board rather than create it
+//            
+//        }];
+//    }];
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+
 
 
 

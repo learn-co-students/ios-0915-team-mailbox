@@ -69,7 +69,7 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SmT-tA-1L0" userLabel="Friends Table View">
-                                <rect key="frame" x="0.0" y="334" width="375" height="145"/>
+                                <rect key="frame" x="0.0" y="386" width="375" height="145"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendsCell" id="Jjm-xS-TxD" customClass="TMBFriendsTableViewCell">
@@ -90,12 +90,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeA-2D-psX">
-                                                    <rect key="frame" x="271" y="6" width="78" height="30"/>
-                                                    <state key="normal" title="Unchecked"/>
+                                                    <rect key="frame" x="208" y="6" width="144" height="30"/>
+                                                    <state key="normal" title="Checked/Unchecked"/>
+                                                    <connections>
+                                                        <action selector="checkButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="8La-jK-z5Y"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="checkButtonTapped" destination="CeA-2D-psX" id="uxd-zc-Teh"/>
                                             <outlet property="fromUserNameLabel" destination="gu4-Rz-udB" id="PFk-fj-Nr3"/>
                                             <outlet property="userProfileImage" destination="4u5-bK-iKE" id="oum-kT-RQH"/>
                                         </connections>
@@ -104,7 +108,7 @@
                                 <sections/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbz-LF-3v4">
-                                <rect key="frame" x="20" y="503" width="335" height="75"/>
+                                <rect key="frame" x="20" y="555" width="335" height="75"/>
                                 <color key="backgroundColor" red="1" green="0.59082665290000003" blue="0.75488000320000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                 <state key="normal" title="Create Board">
@@ -121,7 +125,13 @@
                             <constraint firstItem="Fbz-LF-3v4" firstAttribute="top" secondItem="SmT-tA-1L0" secondAttribute="bottom" constant="24" id="Tgu-9r-dkk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create New Board" id="nSY-oT-ifp" userLabel="Create New Board"/>
+                    <navigationItem key="navigationItem" title="Create New Board" id="X5D-VF-iRk">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="KiK-Cz-rzb">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="dPn-pp-4IR" id="vJv-6e-gwF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="boardNameLabel" destination="L5f-em-Yyl" id="m8C-oT-fKb"/>

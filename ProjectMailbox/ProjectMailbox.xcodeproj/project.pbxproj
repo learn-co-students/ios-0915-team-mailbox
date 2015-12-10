@@ -67,7 +67,7 @@
 		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; };
 		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; };
 		A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */; };
-		A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729D1C1606D1000F05C8 /* PAPUtility.m */; };
+		A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729D1C1606D1000F05C8 /* PAPUtility.m */; settings = {ASSET_TAGS = (); }; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */; };
