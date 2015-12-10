@@ -34,6 +34,10 @@
     
     [super viewDidLoad];
     
+    
+    [self queryAllParseUsers];
+    
+    
     NSLog(@"IN VIEW DID LOAD.........");
 
     
@@ -46,7 +50,7 @@
 
 
     
-    // hiding found frinds view:
+    // hiding found friends view:
     self.foundFriendView.hidden = YES;
 
 
@@ -189,6 +193,8 @@
     
     
     self.foundFriendView.hidden = NO;
+    
+    
 
 
 }
@@ -222,7 +228,7 @@
     // toUser
     // type 'follow'
     
-    PFUser *newBoardUser = self.allFriends[0]; // push to parse;
+    PFUser *newBoardUser = self.allFriends.lastObject; // push to parse;
     PFObject *follow = [PFObject objectWithClassName:@"Activity"];
     [follow setObject:@"follow" forKey:@"type"];
     [follow setObject:self.myNewBoard forKey:@"board"];
@@ -232,7 +238,7 @@
 
     
     // adding new board user to boardFriends array
-    [self.boardFriends addObject:self.allFriends[0]];
+    [self.boardFriends addObject:self.allFriends.lastObject];
     
     [self.myNewBoard setObject:self.boardFriends forKey:kTMBBoardUsersKey];   // takes an array
     [self.myNewBoard saveInBackground];
@@ -241,8 +247,7 @@
     self.foundFriendView.hidden = YES;
     
 
-    
-    
+
     
 }
 
@@ -275,9 +280,45 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+    //TESTING HELPER METHODS:
+    
+//    PFUser *currentUser = PFUser.currentUser;
+//    [self queryAllBoardsForUser:currentUser completion:^(NSArray *boards, NSError *error) {
+//        if (!error) {
+//            NSLog(@"************** %lu BOARD OBJECTS CAME BACK", boards.count);
+//        }
+//    }];
     
     
-    //  !!!!!!!!!! NEXT STEPS:  add objects to combinedFriends and set that to table cells
+    
+//    [self queryAllFriendsOnBoard:@"9pv7WduyJ0" completion:^(NSArray *friends, NSError *error) {
+//        if (!error) {
+//            NSLog(@"************** %lu BOARD OBJECTS CAME BACK", friends.count);
+//            NSLog(@"**************  BOARD OBJECTS ARE: %@", friends);
+//            
+//            NSArray *test = [friends valueForKey:kTMBBoardUsersKey];
+//            
+//            NSLog(@"************** %lu BOARD FRIENDS CAME BACK", test.count);
+//            NSLog(@"**************  BOARD FRIENDS ARRAY IS: %@",test);
+//
+//        }
+//    }];
+//    
+    
+
+    [self queryFriendsFollowingABoard:@"9pv7WduyJ0" completion:^(NSArray *friends, NSError *error) {
+        if (!error) {
+            NSLog(@"************** %lu BOARD OBJECTS CAME BACK", friends.count);
+            NSLog(@"**************  BOARD OBJECTS ARE: %@", friends);
+            
+            NSArray *test = [friends valueForKey:kTMBBoardUsersKey];
+            
+            NSLog(@"************** %lu BOARD FRIENDS CAME BACK", test.count);
+            NSLog(@"**************  BOARD FRIENDS ARRAY IS: %@",test);
+
+        }
+    }];
+    
     
     
     
@@ -344,13 +385,13 @@
 
 
 
-- (IBAction)createNewBoardTapped:(UIButton *)sender {
+- (IBAction)saveNewBoardTapped:(UIButton *)sender {
     
     
     // THIS METHOD REALLY UPDATES THE BOARD CREATED IN THE VIEWDIDLOAD
     
     
-    // if they named the board, updating the name
+    // if they named the board this updates the name
     NSString *boardName = self.boardNameLabel.text;
     self.myNewBoard[@"boardName"] = boardName;
     
@@ -372,52 +413,126 @@
     
     
    
-    
-    // QUERY FOR ALL USERS:
-    
-//    PFQuery *query = [PFUser query];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        
-//        // set datastore to objects array
-//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//            
-//            self.users = [objects mutableCopy];
-//            
-//            NSArray *differentUsers = @[objects[0], objects[1]];
-//            
-//            NSLog(@" ......... ALL USERS ARE : %@", self.users);
-//            
-//            
-//            
-//            
-//            // CREATING A BOARD WITH THE USERS ARRAY:
-//            
-//            NSString *boardName = self.boardNameLabel.text;
-//            
-//            self.myNewBoard = [PFObject objectWithClassName:@"Board"];
-//            
-//            
-//            self.myNewBoard[@"boardName"] = boardName;
-//            
-//            
-//            
-//            [self.myNewBoard setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
-//            [self.myNewBoard addUniqueObjectsFromArray:differentUsers forKey:kTMBBoardUsersKey];
-//            
-//            [self.myNewBoard saveInBackground];
-//            
-//            // make this method update the board rather than create it
-//            
-//        }];
-//    }];
-    
-    
-    
-    
-    
-    
+
     
 }
+
+
+
+
+
+
+/*****************************
+ *       HELPER METHODS      *
+ *****************************/
+
+
+
+// rewrite with completion block:
+-(NSArray *)queryAllParseUsers {
+    
+   __block NSArray *allUsers = [[NSArray alloc] init];
+    
+        PFQuery *query = [PFUser query];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    
+            // putting it on the main thread:
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                allUsers = [objects mutableCopy];
+                NSLog(@" ......... ALL USERS ARE : %@", allUsers);
+            }];
+        }];
+    
+    return allUsers;
+}
+
+
+
+
+
+
+// write methods:
+// need to add some friends to users first
+// (NSArray *)queryAllFriendsOnUser:(PFUser *)user {
+
+
+
+
+
+// let's try querying the users array first:
+// passing a board, getting back board objects
+- (void)queryAllFriendsOnBoard:(NSString *)boardID completion:(void(^)(NSArray *friends, NSError *error))completionBlock {
+    
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"objectId" equalTo:boardID];
+    
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boards, NSError * _Nullable error) {
+        
+        NSLog(@" ..... INSIDE PARSE CALL: %lu friends came back", boards.count);
+        
+        // get the user (friend) array
+        
+        completionBlock(boards, error);
+        
+    }];
+    
+}
+
+
+
+// let's try 'follow' type
+// doesn't work yet....
+
+- (void)queryFriendsFollowingABoard:(NSString *)boardID completion:(void(^)(NSArray *friends, NSError *error))completionBlock {
+    
+    PFQuery *activityQuery = [PFQuery queryWithClassName:@"Activity"];
+    [activityQuery whereKey:@"type" equalTo:@"follow"];
+    [activityQuery whereKey:@"objectId" equalTo:boardID];
+    
+    [activityQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        NSLog(@" ..... INSIDE PARSE CALL: %lu friends came back", objects.count);
+        
+        completionBlock(objects, error);
+        
+    }];
+    
+}
+
+
+
+
+
+
+
+
+//-(void) getAllBoardsForCurrentUserWithCompletion:( (NSArray *boards)completion  // Tom's example
+
+- (void)queryAllBoardsForUser:(PFUser *)user completion:(void(^)(NSArray *boards, NSError *error))completionBlock {
+    
+    NSLog(@" ..... BEFORE PARSE CALL ..... ");
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"users" equalTo:user];
+    
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boards, NSError * _Nullable error) {
+        
+        NSLog(@" ..... INSIDE PARSE CALL: %lu boards came back",boards.count);
+
+//        for (PFObject *object in objects ) {
+        
+//            NSDate *lastUpdated = [object updatedAt];
+//            NSLog(@" ..... THE UPDATED DATE IS %@",lastUpdated);
+//        }
+        
+        completionBlock(boards, error);
+
+    }];
+    
+        NSLog(@" ..... AFTER PARSE CALL ..... ");
+    
+}
+
+
 
 
 

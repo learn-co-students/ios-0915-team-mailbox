@@ -427,6 +427,7 @@
 				55D3EB121C1745E30044BEFD /* TMBBoard.m */,
 				5508F4DC1BFBC22300D02E15 /* TMBUser.h */,
 				5508F4DD1BFBC22300D02E15 /* TMBUser.m */,
+				A42EB5D51C18C9E8009A241B /* Create New Board */,
 				A4AC727F1C0E7F9F000F05C8 /* Phone Contacts */,
 				55EE00751C0BDE4900C46162 /* Login */,
 				A445151E1BFFA66900BDD502 /* Post Image */,
@@ -573,6 +574,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A42EB5D51C18C9E8009A241B /* Create New Board */ = {
+			isa = PBXGroup;
+			children = (
+				EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */,
+				EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */,
+				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
+				EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */,
+				EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */,
+			);
+			name = "Create New Board";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		A445151E1BFFA66900BDD502 /* Post Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -629,11 +643,6 @@
 				EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */,
 				EACDA5CF1C175E6C0031268F /* SpotifyPlayerManager.h */,
 				EACDA5D01C175E6C0031268F /* SpotifyPlayerManager.m */,
-				EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */,
-				EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */,
-				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
-				EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */,
-				EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */,
 			);
 			name = "Spotify Feature";
 			sourceTree = "<group>";
