@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281FA9C231DEFFC7733037CF /* Pods_TMBSpotifyShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DE5CC19FA46E6879D88876 /* Pods_TMBSpotifyShareExtension.framework */; };
 		5508F4A41BFB972300D02E15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4A31BFB972300D02E15 /* main.m */; };
 		5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4A61BFB972300D02E15 /* AppDelegate.m */; };
 		5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4A91BFB972300D02E15 /* ViewController.m */; };
@@ -67,12 +68,14 @@
 		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; };
 		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; };
 		A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */; };
-		A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729D1C1606D1000F05C8 /* PAPUtility.m */; settings = {ASSET_TAGS = (); }; };
+		A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729D1C1606D1000F05C8 /* PAPUtility.m */; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */; };
 		A4C03FF61C03BC5C00F0F368 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEF1C03BC5C00F0F368 /* ParseTwitterUtils.framework */; };
 		A4C03FF71C03BC5C00F0F368 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */; };
+		EA0A3BCF1C1944C90026E12F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0A3BCE1C1944C90026E12F /* AVFoundation.framework */; };
+		EA0A3BD21C1A01660026E12F /* ShareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0A3BD11C1A01660026E12F /* ShareTableViewController.m */; };
 		EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */; };
 		EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */; };
 		EA2A26BD1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */; };
@@ -145,6 +148,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15DE5CC19FA46E6879D88876 /* Pods_TMBSpotifyShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMBSpotifyShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A85112209E9F690313E6859 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5508F49F1BFB972300D02E15 /* ProjectMailbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectMailbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5508F4A31BFB972300D02E15 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 		5D03AF201C187B1600E2CDEB /* TMBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBConstants.h; sourceTree = "<group>"; };
 		5D03AF211C187B1600E2CDEB /* TMBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBConstants.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
+		9DDC310C866ED76301EDCC60 /* Pods-TMBSpotifyShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMBSpotifyShareExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMBSpotifyShareExtension/Pods-TMBSpotifyShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 		A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.debug.xcconfig"; sourceTree = "<group>"; };
 		A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCardViewController.h; sourceTree = "<group>"; };
 		A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCardViewController.m; sourceTree = "<group>"; };
@@ -264,8 +269,12 @@
 		A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "parse-library-1.9.1/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		A4C03FEF1C03BC5C00F0F368 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseTwitterUtils.framework; path = "parse-library-1.9.1/ParseTwitterUtils.framework"; sourceTree = "<group>"; };
 		A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "parse-library-1.9.1/ParseUI.framework"; sourceTree = "<group>"; };
+		C39B7AF4D7387D214A2FE176 /* Pods-TMBSpotifyShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMBSpotifyShareExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TMBSpotifyShareExtension/Pods-TMBSpotifyShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectMailbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E233FEDA584CB1D3E650CB43 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		EA0A3BCE1C1944C90026E12F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EA0A3BD01C1A01660026E12F /* ShareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareTableViewController.h; sourceTree = "<group>"; };
+		EA0A3BD11C1A01660026E12F /* ShareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareTableViewController.m; sourceTree = "<group>"; };
 		EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateBoardViewController.h; path = ProjectMailbox/CreateBoardViewController.h; sourceTree = "<group>"; };
 		EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBoardViewController.m; path = ProjectMailbox/CreateBoardViewController.m; sourceTree = "<group>"; };
 		EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBFriendsTableViewCell.h; path = ProjectMailbox/TMBFriendsTableViewCell.h; sourceTree = "<group>"; };
@@ -304,6 +313,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0A3BCF1C1944C90026E12F /* AVFoundation.framework in Frameworks */,
 				5585F65D1C14C7E3003478C6 /* libstdc++.6.0.9.tbd in Frameworks */,
 				A4AC728B1C0E9643000F05C8 /* Contacts.framework in Frameworks */,
 				A4AC728C1C0E9643000F05C8 /* ContactsUI.framework in Frameworks */,
@@ -365,6 +375,7 @@
 				EA712A751C0F908D00F096B4 /* CoreGraphics.framework in Frameworks */,
 				EA712A741C0F908100F096B4 /* CFNetwork.framework in Frameworks */,
 				EA712A731C0F907600F096B4 /* AudioToolbox.framework in Frameworks */,
+				281FA9C231DEFFC7733037CF /* Pods_TMBSpotifyShareExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +512,8 @@
 				774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */,
 				4A85112209E9F690313E6859 /* Pods.debug.xcconfig */,
 				E233FEDA584CB1D3E650CB43 /* Pods.release.xcconfig */,
+				C39B7AF4D7387D214A2FE176 /* Pods-TMBSpotifyShareExtension.debug.xcconfig */,
+				9DDC310C866ED76301EDCC60 /* Pods-TMBSpotifyShareExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -530,6 +543,7 @@
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA0A3BCE1C1944C90026E12F /* AVFoundation.framework */,
 				5585F65C1C14C7E3003478C6 /* libstdc++.6.0.9.tbd */,
 				5585F64E1C14C5C5003478C6 /* Concorde.framework */,
 				5585F64F1C14C5C5003478C6 /* FBSDKShareKit.framework */,
@@ -569,6 +583,7 @@
 				A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */,
 				A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */,
 				DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */,
+				15DE5CC19FA46E6879D88876 /* Pods_TMBSpotifyShareExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -646,6 +661,8 @@
 				55D3EB101C17416C0044BEFD /* TMBSpotifyShareExtension.entitlements */,
 				EAB723791C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.h */,
 				EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */,
+				EA0A3BD01C1A01660026E12F /* ShareTableViewController.h */,
+				EA0A3BD11C1A01660026E12F /* ShareTableViewController.m */,
 				EAB7236B1C03C33F0086E421 /* ShareViewController.h */,
 				EAB7236C1C03C33F0086E421 /* ShareViewController.m */,
 				EAB7236E1C03C33F0086E421 /* MainInterface.storyboard */,
@@ -719,9 +736,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAB723771C03C3400086E421 /* Build configuration list for PBXNativeTarget "TMBSpotifyShareExtension" */;
 			buildPhases = (
+				A71BF1E618D37D5A8CE0D377 /* Check Pods Manifest.lock */,
 				EAB723651C03C33F0086E421 /* Sources */,
 				EAB723661C03C33F0086E421 /* Frameworks */,
 				EAB723671C03C33F0086E421 /* Resources */,
+				B50FB1B3195333DF6006575C /* Embed Pods Frameworks */,
+				5DA03658BB0C1CAD7C21B3AD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -872,6 +892,51 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5DA03658BB0C1CAD7C21B3AD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TMBSpotifyShareExtension/Pods-TMBSpotifyShareExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A71BF1E618D37D5A8CE0D377 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B50FB1B3195333DF6006575C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TMBSpotifyShareExtension/Pods-TMBSpotifyShareExtension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E921470CCCFB031BC8FAB5A4 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -960,6 +1025,7 @@
 			files = (
 				EAB7237C1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */,
 				EAB7236D1C03C33F0086E421 /* ShareViewController.m in Sources */,
+				EA0A3BD21C1A01660026E12F /* ShareTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1190,6 +1256,7 @@
 		};
 		EAB723751C03C3400086E421 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C39B7AF4D7387D214A2FE176 /* Pods-TMBSpotifyShareExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TMBSpotifyShareExtension/TMBSpotifyShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1211,6 +1278,7 @@
 		};
 		EAB723761C03C3400086E421 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DDC310C866ED76301EDCC60 /* Pods-TMBSpotifyShareExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TMBSpotifyShareExtension/TMBSpotifyShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

@@ -10,7 +10,7 @@
 
 @implementation TMBSpotifyShareExtensionAPIClient
 
-+(void)getAlbumCoverUrl:(NSString *)trackID withCompletionBlock:(void (^)(NSString *albumCoverLink))completionBlock {
++(void)getAlbumCoverUrl:(NSString *)trackID withCompletionBlock:(void (^)(NSString *albumCoverLink, NSString *trackTitle))completionBlock {
     
     
     NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/tracks/%@", trackID];
@@ -27,6 +27,9 @@
         NSDictionary *albumDictionary = responseDictionary[@"album"];
         NSLog(@"albumDictionary: %@", albumDictionary);
         
+        NSString *trackTitle = albumDictionary[@"name"];
+        NSLog(@"trackTitle: %@", trackTitle);
+        
         NSArray *imagesArray =albumDictionary[@"images"];
         NSLog(@"imagesArray: %@", imagesArray);
         
@@ -37,7 +40,7 @@
         NSLog(@"albumCoverLink: %@", albumCoverLink);
         
         
-        completionBlock(albumCoverLink);
+        completionBlock(albumCoverLink, trackTitle);
     }];
     
     [albumCoverDataTask resume];

@@ -30,6 +30,7 @@
     // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
     
+    [Parse enableDataSharingWithApplicationGroupIdentifier:@"group.com.flatironschool.mosaic"];
     // Initialize Parse.
     [Parse setApplicationId:@"rQDnUltUD2fr1WN4XK1Dc8K3isG2ebpVeX1pLOF6"
                   clientKey:@"ivu9n1BAvIFtH9Kcu9s9aBuY7Tq3Ue8gNnjOGHq6"];

@@ -18,21 +18,21 @@
 
 @implementation SpotifyTrackView
 
--(instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self commonInitWithSpotifyTrack];
-    }
-    return self;
-}
-
--(instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self commonInitWithSpotifyTrack];
-    }
-    return self;
-}
+//-(instancetype)initWithFrame:(CGRect)frame {
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        [self commonInitWithSpotifyTrack];
+//    }
+//    return self;
+//}
+//
+//-(instancetype)initWithCoder:(NSCoder *)aDecoder {
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        [self commonInitWithSpotifyTrack];
+//    }
+//    return self;
+//}
 
 -(void)commonInitWithSpotifyTrack {
     
@@ -69,6 +69,42 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStopPlaying:) name:SpotifyDidStopPlayingNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidTogglePaused:) name:SpotifyDidTogglePausedNotificationName object:nil];
 }
+
+-(void)commonInitWithSpotifyTrack:(SpotifyTrack *)track {
+    
+    self.spotifyTrack = track;
+    
+    self.backgroundColor = [UIColor blackColor];
+    
+    //initialize image view
+    CGRect imageViewRect = CGRectMake(0, 0, 207, 184);
+    self.coverArtImageView = [[UIImageView alloc] initWithFrame:imageViewRect];
+    [self addSubview:self.coverArtImageView];
+    
+    // set image from url for album art.
+    NSURL *coverURL = [NSURL URLWithString: self.spotifyTrack.albumCoverURL];
+    NSData *coverImageData = [NSData dataWithContentsOfURL:coverURL];
+    UIImage *coverImage = [UIImage imageWithData:coverImageData];
+    self.coverArtImageView.image = coverImage;
+    
+    // add spotify play/pause button
+    UIButton *playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage * playPauseImage = [UIImage imageNamed:@"Play Icon"];
+    [playPauseButton setImage:playPauseImage forState:UIControlStateNormal];
+    [playPauseButton addTarget: self  action:@selector(playPauseButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    playPauseButton.frame = CGRectMake(0, 0, 50, 50);
+    [self addSubview:playPauseButton];
+    [self bringSubviewToFront: playPauseButton];
+    
+    self.playPauseButton = playPauseButton;
+    NSLog(@"In initialization method.");
+    
+    // add NSNotificationCenter Observers
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStartPlaying:) name:SpotifyDidStartPlayingNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidStopPlaying:) name:SpotifyDidStopPlayingNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyDidTogglePaused:) name:SpotifyDidTogglePausedNotificationName object:nil];
+}
+
 
 -(void)spotifyDidStartPlaying:(NSNotification *)notification
 {

@@ -10,6 +10,5 @@
 
 @interface TMBSpotifyShareExtensionAPIClient : NSObject
 
-+(void)getAlbumCoverUrl:(NSString *)trackID withCompletionBlock:(void (^)(NSString *albumCoverLink))completionBlock;
-
++(void)getAlbumCoverUrl:(NSString *)trackID withCompletionBlock:(void (^)(NSString *albumCoverLink, NSString *trackTitle))completionBlock;
 @end

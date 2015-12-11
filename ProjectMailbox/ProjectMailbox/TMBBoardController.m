@@ -11,6 +11,8 @@
 #import "Parse/Parse.h"
 #import "TMBImageCardViewController.h"
 #import "TMBSharedBoardID.h"
+#import "SpotifyTrack.h"
+#import "SpotifyTrackView.h"
 
 //#import "TMBSharedBoard.h" joel copy over - singleton not set up
 
@@ -138,6 +140,9 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
                     if (!error) {
                         for (PFObject *object in objects) {
+                            if(object[@"trackTitle"]) {
+                                //initialize custom spotify cell
+                            }
                             
                             PFFile *imageFile = object[@"thumbnail"];
                             [self.boardContent addObject:imageFile];
@@ -295,11 +300,11 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                  
                                  [self presentViewController:doodleVC animated:YES completion:nil];
                                  
-                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                        [view dismissViewControllerAnimated:YES completion:nil];
                                  
                              }];
-    
-    UIAlertAction* cancel = [UIAlertAction
+       NSLogPageSize()      4[k
+    f]p2l4tUIAlertAction* cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleCancel
                              handler:^(UIAlertAction * action)
@@ -308,6 +313,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                  
                              }];
     
+    //maybe add a Spotify link or an option to open the Spotify
     
     [view addAction:picture];
     [view addAction:text];

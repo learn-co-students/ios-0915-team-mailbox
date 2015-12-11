@@ -20,6 +20,10 @@ pod 'Concorde'
 
 end
 
+target 'TMBSpotifyShareExtension' do
+    pod 'Parse'
+end
+
 target 'ProjectMailboxTests' do
 
 end
