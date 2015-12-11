@@ -49,9 +49,10 @@
 
     [[PFUser currentUser] fetchInBackground];
     
-    
+
     [self queryCurrentUserFriendsWithCompletion:^(NSMutableArray *users, NSError *error) {
-        NSLog(@"DID IT WORK??? %@", users);
+        NSLog(@"DID IT WORK??? YAY!! %@", users);
+        [self.allFriendsTableView reloadData];
     }];
     
     
@@ -117,13 +118,14 @@
 - (IBAction)addFriendToAllFriendsButtonTapped:(UIButton *)sender {
     
     if (self.foundFriend) {
+        
         [self addingUserToAllFriendsOnParse:self.foundFriend completion:^(NSArray *allFriends, NSError *error) {
             NSLog(@"complete!");
             NSLog(@"%@", allFriends);
-            
         }];
         
-        [self.allFriendsLocal addObject:self.foundFriend];
+        [self.friendsForCurrentUser addObject:self.foundFriend];
+        [self.allFriendsTableView reloadData];
     }
     
     // hiding found friends view:
@@ -132,18 +134,16 @@
 
 
 
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    NSUInteger numberOfFriends = self.allFriendsLocal.count;
-    NSLog(@"numberOfRows getting called: %lu", self.allFriendsLocal.count);
+    NSUInteger numberOfFriends = self.friendsForCurrentUser.count;
+    NSLog(@"numberOfRows getting called: %lu", self.friendsForCurrentUser.count);
     
     NSLog(@" ......... IM IN THE TABLEVIEW NUMBER OF ROWS METHOD ......... ");
     
     return numberOfFriends;
 }
-
 
 
 
@@ -158,13 +158,10 @@
     
     // setting table rows to display friends
     
-    PFObject *aFriend = self.allFriendsLocal[rowOfIndexPath];
-    
+    PFObject *aFriend = self.friendsForCurrentUser[rowOfIndexPath];
     NSString *firstName = aFriend[@"First_Name"];
     NSString *lastName = aFriend[@"Last_Name"];
-    
-    cell.fromUserNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-    
+    cell.friendNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     
     // setting user profile photo
     
@@ -172,11 +169,13 @@
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
             UIImage *profileImage = [UIImage imageWithData:data];
-            cell.userProfileImage.image = profileImage;
+            cell.friendProfileImage.image = profileImage;
+            // puts image in a circle:
+            cell.friendProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+            cell.friendProfileImage.layer.cornerRadius = cell.friendProfileImage.frame.size.width / 2;
+            cell.friendProfileImage.clipsToBounds = YES;
         }
-
     }];
-    
     
     return cell;
 }
@@ -197,14 +196,9 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
         
         if (!error) {
-            
             for (PFUser *eachUser in [object objectForKey:@"allFriends"]) {
                 [self.friendsForCurrentUser addObject:eachUser];
-                
-                NSString *testString = eachUser[@"Last_Name"];
-                NSLog(@"**************  TEST STRING is: %@", testString);
                 }
-            
             completionBlock(self.friendsForCurrentUser, error);
         }
     }];

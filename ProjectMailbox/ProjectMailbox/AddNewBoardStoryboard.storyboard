@@ -217,6 +217,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="friendNameLabel" destination="lXW-g4-95C" id="ofF-kj-jKe"/>
+                                            <outlet property="friendProfileImage" destination="7hA-5y-kgT" id="jPQ-Bl-R3S"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
