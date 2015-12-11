@@ -39,6 +39,7 @@
 		5D03AF251C187E5C00E2CDEB /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; };
 		5D03AF261C187F8400E2CDEB /* PAPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A445152D1C039D2300BDD502 /* PAPCache.m */; };
 		916A15FAAC6AF8C9D052011B /* Pods_ProjectMailbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */; };
+		A42EB5D81C19D234009A241B /* TMBFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */; };
 		A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */; };
 		A44515141BFE6CFB00BDD502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515131BFE6CFB00BDD502 /* Foundation.framework */; };
@@ -214,6 +215,8 @@
 		5D03AF211C187B1600E2CDEB /* TMBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBConstants.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
 		A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.debug.xcconfig"; sourceTree = "<group>"; };
+		A42EB5D61C19D234009A241B /* TMBFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFindFriendsViewController.h; sourceTree = "<group>"; };
+		A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFindFriendsViewController.m; sourceTree = "<group>"; };
 		A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCardViewController.h; sourceTree = "<group>"; };
 		A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCardViewController.m; sourceTree = "<group>"; };
 		A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextCardStoryboard.storyboard; sourceTree = "<group>"; };
@@ -577,6 +580,8 @@
 		A42EB5D51C18C9E8009A241B /* Create New Board */ = {
 			isa = PBXGroup;
 			children = (
+				A42EB5D61C19D234009A241B /* TMBFindFriendsViewController.h */,
+				A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */,
 				EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */,
 				EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */,
 				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
@@ -906,6 +911,7 @@
 				5D03AF251C187E5C00E2CDEB /* TMBImageView.m in Sources */,
 				5D03AF241C187E3900E2CDEB /* TMBMainPageViewController.m in Sources */,
 				5D03AF231C187DCC00E2CDEB /* TMBConstants.m in Sources */,
+				A42EB5D81C19D234009A241B /* TMBFindFriendsViewController.m in Sources */,
 				EACDA5CE1C1620F60031268F /* SpotifyTrackView2.m in Sources */,
 				5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */,
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
