@@ -23,6 +23,7 @@
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
 		5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */; };
 		5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */; };
+		552687CF1C1A1DA9008D94DE /* TMBFullImageModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552687CE1C1A1DA9008D94DE /* TMBFullImageModalViewController.m */; };
 		5585F65D1C14C7E3003478C6 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5585F65C1C14C7E3003478C6 /* libstdc++.6.0.9.tbd */; };
 		5585F65F1C14D6E5003478C6 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */; };
 		5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */; };
@@ -67,7 +68,7 @@
 		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; };
 		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; };
 		A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */; };
-		A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729D1C1606D1000F05C8 /* PAPUtility.m */; settings = {ASSET_TAGS = (); }; };
+		A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729D1C1606D1000F05C8 /* PAPUtility.m */; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */; };
@@ -177,6 +178,8 @@
 		5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSideMenuViewController.m; sourceTree = "<group>"; };
 		5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageContentViewController.h; sourceTree = "<group>"; };
 		5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMainPageContentViewController.m; sourceTree = "<group>"; };
+		552687CD1C1A1DA9008D94DE /* TMBFullImageModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFullImageModalViewController.h; sourceTree = "<group>"; };
+		552687CE1C1A1DA9008D94DE /* TMBFullImageModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFullImageModalViewController.m; sourceTree = "<group>"; };
 		5585F6481C14C563003478C6 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		5585F64A1C14C5B6003478C6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		5585F64C1C14C5BE003478C6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -401,12 +404,13 @@
 			children = (
 				55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */,
 				559300061C0F958F0027195D /* ProjectMailbox.entitlements */,
+				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
+				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
+				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
 				A445152C1C039D2300BDD502 /* PAPCache.h */,
 				A445152D1C039D2300BDD502 /* PAPCache.m */,
 				A4AC729C1C1606D1000F05C8 /* PAPUtility.h */,
 				A4AC729D1C1606D1000F05C8 /* PAPUtility.m */,
-				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
-				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
 				5508F4A51BFB972300D02E15 /* AppDelegate.h */,
 				5508F4A61BFB972300D02E15 /* AppDelegate.m */,
 				55EE00711C0BB94B00C46162 /* TMBMainPageViewController.h */,
@@ -432,7 +436,6 @@
 				A445151E1BFFA66900BDD502 /* Post Image */,
 				A445151F1BFFA67E00BDD502 /* Post Comment */,
 				55EE00741C0BDE1600C46162 /* Doodle */,
-				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
 				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
 				5508F4A21BFB972300D02E15 /* Supporting Files */,
@@ -582,6 +585,8 @@
 				A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */,
 				A4AC727C1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.h */,
 				A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */,
+				552687CD1C1A1DA9008D94DE /* TMBFullImageModalViewController.h */,
+				552687CE1C1A1DA9008D94DE /* TMBFullImageModalViewController.m */,
 				A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */,
 			);
 			name = "Post Image";
@@ -925,6 +930,7 @@
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
 				5D03AF261C187F8400E2CDEB /* PAPCache.m in Sources */,
 				A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */,
+				552687CF1C1A1DA9008D94DE /* TMBFullImageModalViewController.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
 				A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */,
 				5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */,

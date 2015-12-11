@@ -27,6 +27,9 @@
     
     
     self.profileImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+    self.profileImage.clipsToBounds = YES;
+    
     self.usernameField.text = [[PFUser currentUser] objectForKey:@"First_Name"];
     
     PFFile *profilePictureObject = [[PFUser currentUser] objectForKey:@"profileImage"];

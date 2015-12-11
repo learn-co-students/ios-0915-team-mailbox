@@ -10,6 +10,7 @@
 #import "TMBConstants.h"
 #import "PAPCache.h"
 #import "TMBTableViewCommentCellTableViewCell.h"
+#import "TMBSharedBoardID.h"
 
 @interface TMBImageCardViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -33,6 +34,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 
+
+//board ID
+@property (nonatomic, strong) NSString *boardID;
 @property (strong, nonatomic) PFObject *testing;
 
 
@@ -63,13 +67,10 @@
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
     
-
-    // loging in this app as Inga for now
+    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
     if (![PFUser currentUser]){
-        [PFUser logInWithUsernameInBackground:@"ingakyt@gmail.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-        }];
+        NSLog(@"Not currently logged in");
     }
   
     /*****************************
@@ -105,7 +106,7 @@
         // test: user's first name set to label
         PFObject *aFromUser = anActivity[@"fromUser"];
         NSString *firstName = aFromUser[@"First_Name"];
-        self.currentUserNameLabel.text = firstName;
+        self.currentUserNameLabel.text = [NSString stringWithFormat:@"Posted by %@", firstName];
 
         // setting the image view to photo obj above
         [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
@@ -165,11 +166,11 @@
     }];
 }
 
-
-- (IBAction)backButtonTapped:(id)sender {
+- (IBAction)closeButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -181,7 +182,6 @@
     
     // setting table rows to display comments
     PFObject *anActivity = self.activities[rowOfIndexPath];
-//    cell.textLabel.text = anActivity[@"content"];
     cell.userCommentLabel.text = anActivity[@"content"];
     
     
@@ -194,12 +194,6 @@
 
     
     return cell;
-    
-}
-
-- (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -282,7 +276,9 @@
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
     self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:414.0 maxHeight:368.0];
-    [self.delegate imageCardViewController:self didScaleThumbImage:self.thumbnail];
+    [self.delegate imageCardViewController:self thumbForInstantView:self.thumbnail];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     [self shouldUploadImage:self.image];
     
@@ -296,25 +292,11 @@
                     nil];
     }
     
-    // from Joel
-    //
-    //
-    // NEED TO ADD SAVE FOR THUMBNAIL
-    //
-    //
-    //
-    
-    // Create a Photo object
-//    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
-//    PFUser *currentUser = [PFUser currentUser];
-//    [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
-//    [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
-    
     PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
     [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
     [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
-
+    [photo setObject:self.boardID forKey:@"board"];
     
     // Photos are public, but may only be modified by the user who uploaded them
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
@@ -346,7 +328,6 @@
                     [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
                     [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
                     [comment setObject:commentText forKey:kTMBActivityContentKey];
-
                     
                     PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
                     [ACL setPublicReadAccess:YES];
@@ -389,6 +370,7 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
     
     UIGraphicsBeginImageContext(size);
@@ -397,6 +379,26 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+
+    CGFloat oldWidth = image.size.width;
+    CGFloat oldHeight = image.size.height;
+    
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+    
+    CGFloat newHeight = oldHeight * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
+    CGSize newSize = CGSizeMake(newWidth, newHeight);
+    
+    return [self imageWithImage:image scaledToSize:newSize];
+}
+
+- (IBAction)imageTapped:(id)sender {
+    
+    
+    
 }
 
 - (IBAction)sendButtonTapped:(id)sender {
@@ -411,6 +413,8 @@
         [newCommentObject setObject:self.commentField.text forKey:@"content"];
         [newCommentObject setObject:[PFUser currentUser] forKey:@"fromUser"];
         [newCommentObject setObject:self.testing forKey:@"photo"];
+//        [newCommentObject setObject:s forKey:@"toUser"];
+        [newCommentObject setObject:@"comment" forKey:@"type"];
         
         [newCommentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
@@ -422,6 +426,8 @@
             }
         }];
     }
+    
+    
 
 }
 

@@ -12,7 +12,7 @@
 @interface TMBSharedBoardID : NSObject
 
 @property (nonatomic, copy) NSString *boardID;
-@property (nonatomic, copy) NSMutableArray *boardIDs;
+@property (nonatomic, copy) NSMutableDictionary *boards;
 
 + (instancetype)sharedBoardID;
 
