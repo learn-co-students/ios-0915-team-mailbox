@@ -13,70 +13,61 @@
 
 
 @interface TMBFindFriendsViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
 @property (weak, nonatomic) IBOutlet UILabel *foundFriendUsernameLabel;
 @property (weak, nonatomic) IBOutlet UIView *allFoundFriendView;
 @property (weak, nonatomic) IBOutlet UITableView *allFriendsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (nonatomic, strong) PFUser *foundFriend;
-@property (nonatomic, strong) NSMutableArray *allFriendsLocal;
 @property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
-
+@property (weak, nonatomic) IBOutlet UILabel *noUsersFoundLabel;
 
 @end
-
 
 
 
 @implementation TMBFindFriendsViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
+    [super viewDidLoad];
     
     NSLog(@"IN VIEW DID LOAD of FIND FREINDS VC.........");
     
-    self.allFriendsLocal = [NSMutableArray new];
     self.friendsForCurrentUser = [NSMutableArray new];
     
     self.allFriendsTableView.delegate = self;
     self.allFriendsTableView.dataSource = self;
-
     
-    // hiding found friends view:
+    // hiding found/notfound friends views:
     self.allFoundFriendView.hidden = YES;
+    self.noUsersFoundLabel.hidden = YES;
     
-
     [[PFUser currentUser] fetchInBackground];
     
-
     [self queryCurrentUserFriendsWithCompletion:^(NSMutableArray *users, NSError *error) {
         NSLog(@"DID IT WORK??? YAY!! %@", users);
         [self.allFriendsTableView reloadData];
     }];
     
-    
-    
 }
-
-
 
 
 
 - (IBAction)searchFriendButtonTapped:(UIButton *)sender {
     
-    
     // setting the textfield.text to the user name
     NSString *username = self.searchField.text;
-
     
     [self queryAllUsersWithUsername:username completion:^(NSArray *allFriends, NSError *error) {
     
-        if (!error) {
+        if (!error && allFriends.count > 0) {
             
             self.allFoundFriendView.hidden = NO;
+            self.noUsersFoundLabel.hidden = YES;
             
-            // setting foundFriends View to display a friend
+            // setting foundFriends View to display a friend:
             
             PFUser *aFriend = [allFriends firstObject];
             self.foundFriend = aFriend;
@@ -86,32 +77,34 @@
             
             self.foundFriendUsernameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
             
-            
-            // setting user profile photo
+            // setting user profile photo:
             
             PFFile *imageFile = aFriend[@"profileImage"];
             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 if (!error) {
                     UIImage *profileImage = [UIImage imageWithData:data];
                     self.foundFriendImage.image = profileImage;
+                    // puts image in a circle:
+                    self.foundFriendImage.contentMode = UIViewContentModeScaleAspectFill;
+                    self.foundFriendImage.layer.cornerRadius = self.foundFriendImage.frame.size.width / 2;
+                    self.foundFriendImage.clipsToBounds = YES;
+
                 }
             }];
             
-
             }
         
+        if (allFriends.count == 0) {
+            self.allFoundFriendView.hidden = YES;
+            self.noUsersFoundLabel.text = [NSString stringWithFormat:@"No friends found with username: %@", username];
+            self.noUsersFoundLabel.hidden = NO;
+        }
         
-        
-    }];
+        }];
     
-  
-  
+    self.searchField.text = @"";
     
 }
-
-
-
-
 
 
 
@@ -119,17 +112,50 @@
     
     if (self.foundFriend) {
         
-        [self addingUserToAllFriendsOnParse:self.foundFriend completion:^(NSArray *allFriends, NSError *error) {
+        [self addUserToAllFriendsOnParse:self.foundFriend completion:^(NSArray *allFriends, NSError *error) {
             NSLog(@"complete!");
             NSLog(@"%@", allFriends);
         }];
         
-        [self.friendsForCurrentUser addObject:self.foundFriend];
+        if ( ![self.friendsForCurrentUser containsObject:self.foundFriend] ) {
+        [self.friendsForCurrentUser addObject:self.foundFriend];   // this adds duplicate friends locally
+        }
+        
         [self.allFriendsTableView reloadData];
     }
     
     // hiding found friends view:
     self.allFoundFriendView.hidden = YES;
+    self.searchField.text = @"";
+    
+}
+
+
+
+- (IBAction)unfollowButtonTapped:(UIButton *)sender {
+
+    TMBFriendsTableViewCell *tappedCell = (TMBFriendsTableViewCell*)[[sender superview] superview];
+    
+    NSIndexPath *selectedIP = [self.allFriendsTableView indexPathForCell:tappedCell];
+    PFUser *aFriend = self.friendsForCurrentUser[selectedIP.row];
+    
+    
+    // do whatever parse stuff you need to delete the user
+    //   remove the object from the array thats powering your tableview
+    // also remove from local array
+
+    
+    [self removeUserFromAllFriendsOnParse:aFriend completion:^(NSArray *allFriends, NSError *error) {
+        if (!error) {
+            NSLog(@"friend removed!");
+        }
+    }];
+
+    [self.friendsForCurrentUser removeObject:aFriend];
+    
+    [self.allFriendsTableView deleteRowsAtIndexPaths:@[selectedIP] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self.allFriendsTableView reloadData];
 }
 
 
@@ -219,7 +245,7 @@
 }
 
 
-- (void)addingUserToAllFriendsOnParse:(PFUser *)user completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
+- (void)addUserToAllFriendsOnParse:(PFUser *)user completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
     
     PFObject *newFriend = user;
     PFUser *currentUser = [PFUser currentUser];
@@ -229,6 +255,20 @@
     }];
     
 }
+
+
+
+- (void)removeUserFromAllFriendsOnParse:(PFUser *)user completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
+    
+    PFObject *newFriend = user;
+    PFUser *currentUser = [PFUser currentUser];
+    [currentUser removeObject:newFriend forKey:@"allFriends"];
+    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        completionBlock([currentUser objectForKey:@"allFriends"], error);
+    }];
+    
+}
+
 
 
 
