@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogOut:) name:@"UserDidLogOutNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidSignUpNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogIn:) name:@"UserDidLogInNotification" object:nil];
@@ -32,9 +33,9 @@
     
 }
 
-//-(BOOL)prefersStatusBarHidden{
-//    return YES;
-//}
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 -(void)showMainPage
 {

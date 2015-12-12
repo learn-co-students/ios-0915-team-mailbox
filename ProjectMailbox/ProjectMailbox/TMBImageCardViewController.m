@@ -291,12 +291,12 @@
                     kTMBEditPhotoViewControllerUserInfoCommentKey,
                     nil];
     }
-    
+    PFObject *board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
     PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
     [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
     [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
-    [photo setObject:self.boardID forKey:@"board"];
+    [photo setObject:board forKey:@"board"];
     
     // Photos are public, but may only be modified by the user who uploaded them
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];

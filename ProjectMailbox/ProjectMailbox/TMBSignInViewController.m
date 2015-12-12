@@ -23,6 +23,9 @@
     [super viewDidLoad];
     
 }
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 - (IBAction)signInButtonTapped:(id)sender {
     
@@ -70,7 +73,6 @@
                     // get all boards for user and add to board dict singleton
                     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
                     [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
-                    [boardQuery selectKeys:@[@"objectId",@"boardName"]];
                     [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                         
                         if (!error) {
@@ -78,11 +80,10 @@
                             for (PFObject *object in objects) {
                                 
                                 NSString *boardID = [object valueForKey:@"objectId"];
-                                NSString *boardName = [object valueForKey:@"boardName"];
-                                [[TMBSharedBoardID sharedBoardID].boards setObject:boardName forKey:boardID];
+                                [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
                                 
                             }
-                            
+
                         } else {
                             
                             NSLog(@"Error: %@ %@", error, [error userInfo]);

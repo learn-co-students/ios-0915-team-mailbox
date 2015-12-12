@@ -45,13 +45,16 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     [super viewDidLoad];
     
-    //    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@""]];
+    UINavigationBar* navigationBar = self.navigationController.navigationBar;
+    [navigationBar setBarTintColor:[UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0]];
+    [navigationBar setTintColor:[UIColor whiteColor]];
+    navigationBar.translucent = NO;
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.tintColor = [UIColor grayColor];
+    self.refreshControl.tintColor = [UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0];
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [self.collectionView addSubview:self.refreshControl];
     self.collectionView.alwaysBounceVertical = YES;
@@ -75,7 +78,9 @@ static NSString * const reuseIdentifier = @"MediaCell";
         }
         
     }];
+    NSLog(@"here");
 }
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -237,18 +242,13 @@ static NSString * const reuseIdentifier = @"MediaCell";
 -(void)buildThemeColorsArray
 {
     
-    UIColor *c1 = [UIColor colorWithRed:121/255.0 green:92/255.0 blue:150/255.0 alpha:1.0];
-    UIColor *c2 = [UIColor colorWithRed:85/255.0 green:56/255.0 blue:106/255.0 alpha:1.0];
-    UIColor *c3 = [UIColor colorWithRed:221/255.0 green:221/255.0 blue:221/255.0 alpha:1.0];
-    UIColor *c4 = [UIColor colorWithRed:189/255.0 green:170/255.0 blue:208/255.0 alpha:1.0];
-    UIColor *c5 = [UIColor colorWithRed:188/255.0 green:103/255.0 blue:105/255.0 alpha:1.0];
-    UIColor *c6 = [UIColor colorWithRed:221/255.0 green:221/255.0 blue:221/255.0 alpha:1.0];
-    UIColor *c7 = [UIColor colorWithRed:221/255.0 green:221/255.0 blue:221/255.0 alpha:1.0];
-    UIColor *c8 = [UIColor colorWithRed:85/255.0 green:56/255.0 blue:106/255.0 alpha:1.0];
-    UIColor *c9 = [UIColor colorWithRed:188/255.0 green:103/255.0 blue:105/255.0 alpha:1.0];
-    UIColor *c10 = [UIColor colorWithRed:85/255.0 green:56/255.0 blue:106/255.0 alpha:1.0];
+    UIColor *c1 = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:1.0];
+    UIColor *c2 = [UIColor colorWithRed:189/255.0 green:189/255.0 blue:189/255.0 alpha:1.0];
+    UIColor *c3 = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1.0];
+    UIColor *c4 = [UIColor colorWithRed:231/255.0 green:231/255.0 blue:231/255.0 alpha:1.0];
+    UIColor *c5 = [UIColor colorWithRed:213/255.0 green:213/255.0 blue:213/255.0 alpha:1.0];
     
-    self.colors = @[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10];
+    self.colors = @[c1, c2, c3, c4, c5, c3, c3, c2, c5, c2];
     
 }
 - (IBAction)addButtonTapped:(id)sender {
