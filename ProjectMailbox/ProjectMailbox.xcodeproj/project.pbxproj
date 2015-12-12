@@ -30,6 +30,7 @@
 		55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A7E67E1C0C93B900D18009 /* Main.storyboard */; };
 		55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */; };
 		55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6861C0E159C00D18009 /* AppViewController.m */; };
+		55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */; };
 		55D3EB131C1745E30044BEFD /* TMBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D3EB121C1745E30044BEFD /* TMBBoard.m */; };
 		5D03AF151C1785DA00E2CDEB /* TMBBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03AF101C1785DA00E2CDEB /* TMBBoardController.m */; };
 		5D03AF161C1785DA00E2CDEB /* TMBBoardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03AF121C1785DA00E2CDEB /* TMBBoardLayout.m */; };
@@ -200,6 +201,8 @@
 		55A7E6851C0E159C00D18009 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
 		55A7E6861C0E159C00D18009 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
 		55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProjectMailbox-Bridging-Header.h"; sourceTree = "<group>"; };
+		55C6AE1D1C1B2DED00FD8A73 /* TMBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBCommentViewController.h; sourceTree = "<group>"; };
+		55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBCommentViewController.m; sourceTree = "<group>"; };
 		55D3EB101C17416C0044BEFD /* TMBSpotifyShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TMBSpotifyShareExtension.entitlements; sourceTree = "<group>"; };
 		55D3EB111C1745E30044BEFD /* TMBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBBoard.h; sourceTree = "<group>"; };
 		55D3EB121C1745E30044BEFD /* TMBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBBoard.m; sourceTree = "<group>"; };
@@ -404,6 +407,7 @@
 			children = (
 				55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */,
 				559300061C0F958F0027195D /* ProjectMailbox.entitlements */,
+				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
 				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
 				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
@@ -418,11 +422,13 @@
 				5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */,
 				5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */,
 				5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */,
-				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
 				5D03AF201C187B1600E2CDEB /* TMBConstants.h */,
 				5D03AF211C187B1600E2CDEB /* TMBConstants.m */,
+				55C6AE1D1C1B2DED00FD8A73 /* TMBCommentViewController.h */,
+				55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */,
 				5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */,
 				5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */,
+				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
 				5508F4A81BFB972300D02E15 /* ViewController.h */,
 				5508F4A91BFB972300D02E15 /* ViewController.m */,
 				5D03AF1C1C18610A00E2CDEB /* BoardID */,
@@ -436,7 +442,6 @@
 				A445151E1BFFA66900BDD502 /* Post Image */,
 				A445151F1BFFA67E00BDD502 /* Post Comment */,
 				55EE00741C0BDE1600C46162 /* Doodle */,
-				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
 				5508F4A21BFB972300D02E15 /* Supporting Files */,
 			);
@@ -907,6 +912,7 @@
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
 				EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */,
 				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
+				55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5D03AF171C1785DA00E2CDEB /* TMBBoardCell.m in Sources */,
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,

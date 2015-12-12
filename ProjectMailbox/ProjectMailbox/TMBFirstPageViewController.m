@@ -94,10 +94,10 @@
             NSString *userEmail = userData[@"email"];
             NSString *userFirstName = userData[@"first_name"];
             NSString *userLastName = userData[@"last_name"];
-            NSString *location = userData[@"location"][@"name"];
-            NSString *gender = userData[@"gender"];
-            NSString *birthday = userData[@"birthday"];
-            NSString *relationship = userData[@"relationship_status"];
+//            NSString *location = userData[@"location"][@"name"];
+//            NSString *gender = userData[@"gender"];
+//            NSString *birthday = userData[@"birthday"];
+//            NSString *relationship = userData[@"relationship_status"];
             
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
             
@@ -147,15 +147,7 @@
                  }
              }];
     
-}
-
-- (IBAction)logOutButtonTapped:(id)sender {
-    
-    [PFUser logOut];
-    
-    NSLog(@"Current User is %@", [PFUser currentUser]);
-    
-    self.welcomeLabel.text = @"Welcome";
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInNotification" object:nil];
     
 }
 

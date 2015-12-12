@@ -28,7 +28,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.profileImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+    self.profileImage.clipsToBounds = YES;
+    
     self.repeatPasswordField.returnKeyType = UIReturnKeyDone;
     
 }

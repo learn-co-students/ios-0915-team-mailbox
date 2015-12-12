@@ -20,7 +20,6 @@
 #import <MMDrawerController/MMDrawerController.h>
 #import <MMDrawerController/MMDrawerBarButtonItem.h>
 
-
 static NSInteger const kNumberOfSections = 1;
 static NSInteger const kItemsPerPage = 20;
 
@@ -34,6 +33,8 @@ static NSInteger const kItemsPerPage = 20;
 
 @property (nonatomic, strong) NSString *boardID;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UIImage *imageSelectedForOtherView;
+@property (nonatomic, strong) NSMutableArray *pfObjects;
 
 @end
 
@@ -44,6 +45,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.pfObjects = [NSMutableArray new];
     
     //    self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@""]];
     
@@ -63,8 +66,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
     self.collection = [NSMutableArray new];
     self.boardContent = [NSMutableArray new];
     
-    
-    
     [self buildThemeColorsArray];
     
     [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success){
@@ -81,6 +82,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
 {
     if (scrollView.contentOffset.y < -110 && ![self.refreshControl isRefreshing]) {
         [self.refreshControl beginRefreshing];
+        [self.collection removeAllObjects];
         [self refresh];
         
     }
@@ -149,6 +151,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
                             
                             PFFile *imageFile = object[@"thumbnail"];
                             [self.boardContent addObject:imageFile];
+                            [self.pfObjects addObject:object];
                             
                         }
                         
@@ -164,7 +167,15 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                 NSLog(@"image: %@",image);
                                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                     
+                                    
+                                    
+                            
+                                    
                                     [self.collection addObject:image];
+                                    
+                                    
+                                    
+                                    
                                     NSUInteger imageFileIndex = [self.collection indexOfObject:image];
                                     
                                     if (imageFileIndex < kItemsPerPage){
@@ -251,6 +262,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
     self.colors = @[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10];
     
 }
+
 - (IBAction)addButtonTapped:(id)sender {
     
     UIAlertController * view=   [UIAlertController
@@ -312,6 +324,20 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+        
+    TMBCommentViewController *destVC = segue.destinationViewController;
+//    TMBBoardCell *selectedCell = (TMBBoardCell *)sender;
+    NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
+    NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
+    self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
+    PFObject *selectedOBJ = self.pfObjects[selectedIndexPath.row];
+    
+    destVC.parseObjSelected = selectedOBJ;
+    
+    destVC.selectedImage = self.imageSelectedForOtherView;
 }
 
 @end

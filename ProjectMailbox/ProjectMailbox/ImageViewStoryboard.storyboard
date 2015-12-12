@@ -112,7 +112,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fei-kx-Uva">
                                         <rect key="frame" x="15" y="10" width="46" height="40"/>
                                         <state key="normal" title="Close">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="closeButtonTapped:" destination="zqX-4d-mjD" eventType="touchUpInside" id="aUk-Kz-x21"/>
@@ -137,12 +137,12 @@
                                         <rect key="frame" x="0.0" y="264" width="600" height="36"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H2X-xH-tVW">
-                                                <rect key="frame" x="8" y="2.5" width="510" height="30"/>
+                                                <rect key="frame" x="8" y="3" width="510" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEs-WO-Uq2">
-                                                <rect key="frame" x="556" y="2.5" width="36" height="30"/>
+                                                <rect key="frame" x="556" y="3" width="36" height="30"/>
                                                 <state key="normal" title="Send"/>
                                                 <connections>
                                                     <action selector="sendButtonTapped:" destination="zqX-4d-mjD" eventType="touchUpInside" id="bs7-bg-Rve"/>
@@ -165,7 +165,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ock-bZ-f4b" id="Zn0-dw-Jxj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uer name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRI-NY-C6Z">

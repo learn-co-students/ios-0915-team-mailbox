@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
+
 
 @end
 
@@ -22,6 +24,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)keyboardWillShowOrHide:(NSNotification *)notification {
+    
+    CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if ([notification.name isEqualToString:UIKeyboardWillHideNotification]) {
+        finalFrame = CGRectZero;
+    }
+    
+    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        [UIView setAnimationCurve:curve];
+        self.bottomViewBottomConstraint.constant = finalFrame.size.height + 0;
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (IBAction)signInButtonTapped:(id)sender {

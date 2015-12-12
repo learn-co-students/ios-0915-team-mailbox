@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TMBBoardLayout.h"
-
-
-
-
+#import "TMBCommentViewController.h"
 
 @interface TMBBoardController : UICollectionViewController
 
