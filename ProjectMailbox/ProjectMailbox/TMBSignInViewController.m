@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
+
 
 @end
 
@@ -22,6 +24,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void)keyboardWillShowOrHide:(NSNotification *)notification {
+    
+    CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if ([notification.name isEqualToString:UIKeyboardWillHideNotification]) {
+        finalFrame = CGRectZero;
+    }
+    
+    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:duration animations:^{
+        [UIView setAnimationCurve:curve];
+        self.bottomViewBottomConstraint.constant = finalFrame.size.height + 0;
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (IBAction)signInButtonTapped:(id)sender {
@@ -39,6 +77,7 @@
     [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (userName != nil) {
             
+            NSLog(@"\n\n\nlogInWithUsernameInBackground\n\n");
 //          PFUser currentUser
             NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
             
@@ -52,39 +91,50 @@
             
             [self showSuccessAlert];
             
-            
             //get all boardIDs for current user
-            PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-            [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
-            [boardQuery selectKeys:@[@"objectId"]];
-            [boardQuery orderByDescending:@"lastViewed"];
-            [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            PFQuery *boardQueryFromPhotoClass = [PFQuery queryWithClassName:@"Photo"];
+            [boardQueryFromPhotoClass whereKey:@"user" equalTo:PFUser.currentUser];
+            [boardQueryFromPhotoClass selectKeys:@[@"board"]];
+            [boardQueryFromPhotoClass orderByDescending:@"updatedAt"];
+            [boardQueryFromPhotoClass getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                
                 if (!error) {
                     
-                    NSLog(@"\n\nobjects: %@",objects);
-                    PFObject *boardID = [objects firstObject];
-                    [TMBSharedBoardID sharedBoardID].boardID = [boardID valueForKey:@"objectId"];
+                    // set boardID singleton for board with most recent photo
+                    PFObject *boardObject = object[@"board"];
+                    NSString *boardID = [boardObject valueForKey:@"objectId"];
+                    [TMBSharedBoardID sharedBoardID].boardID = boardID;
+                    NSLog(@"\n\n\n\nboardID: %@\n\n\n\n",boardID);
                     
-                    for (PFObject *object in objects) {
+                    // get all boards for user and add to board dict singleton
+                    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+                    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
+                    [boardQuery selectKeys:@[@"objectId",@"boardName"]];
+                    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                         
-                        NSString *boardIDinArray = [object valueForKey:@"objectId"];
-                        [[TMBSharedBoardID sharedBoardID].boardIDs addObject:boardIDinArray];
-                    }
-                    
-                    NSLog(@"\n\nboardID: %@\nboardIDs:\n%@\n\n",[TMBSharedBoardID sharedBoardID].boardID,[TMBSharedBoardID sharedBoardID].boardID);
+                        if (!error) {
+                            
+                            for (PFObject *object in objects) {
+                                
+                                NSString *boardID = [object valueForKey:@"objectId"];
+                                [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
+                                
+                            }
+                            
+                        } else {
+                            
+                            NSLog(@"Error: %@ %@", error, [error userInfo]);
+                        }
+                        
+                    }];
                     
                 } else {
+
                     NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }
+
             }];
             
-            
-            
-            // Navigate to protected page (main page)
-            
-//            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            
-//            TMBMainPageViewController *mainPage = [mainStoryBoard instantiateViewControllerWithIdentifier:@"MainPageViewController"];
             
         } else {
             
@@ -126,15 +176,5 @@
     
     [self presentViewController:controller animated:YES completion:nil];
 }
-
-//- (void)textFieldShouldReturn:(UITextField *)textField {
-//    
-//    if (textField == self.usernameTextField) {
-//        [self.usernameTextField becomeFirstResponder];
-//    } else if (textField == self.passwordTextField) {
-//        [self.usernameTextField resignFirstResponder];
-//    }
-//
-//}
 
 @end

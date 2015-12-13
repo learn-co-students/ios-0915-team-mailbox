@@ -26,12 +26,12 @@
     NSLog(@"shared board ID: %@",_boardID);
     return _boardID;
 }
--(NSMutableArray *)boardIDs
+-(NSMutableDictionary *)boards
 {
-    if (!_boardIDs) {
-        _boardIDs = [NSMutableArray new];
+    if (!_boards) {
+        _boards = [NSMutableDictionary new];
     }
-    return _boardIDs;
+    return _boards;
 }
 
 @end

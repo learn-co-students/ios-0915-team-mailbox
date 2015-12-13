@@ -10,6 +10,7 @@
 #import "TMBConstants.h"
 #import "PAPCache.h"
 #import "TMBTableViewCommentCellTableViewCell.h"
+#import "TMBSharedBoardID.h"
 
 @interface TMBImageCardViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -34,12 +35,15 @@
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 
 
+//board ID
+@property (nonatomic, strong) NSString *boardID;
+@property (nonatomic, strong) PFObject *board;
+@property (strong, nonatomic) PFObject *testing;
+
 
 @end
 
-
 @implementation TMBImageCardViewController
-
 
 - (id)initWithImage:(UIImage *)aImage {
     self = [super initWithNibName:nil bundle:nil];
@@ -54,6 +58,78 @@
         self.commentPostBackgroundTaskId = UIBackgroundTaskInvalid;
     }
     return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    NSLog(@"IN VIEW DID LOAD.........");
+    
+    self.commentsTableView.delegate = self;
+    self.commentsTableView.dataSource = self;
+    
+    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
+    self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
+    
+    if (![PFUser currentUser]){
+        NSLog(@"Not currently logged in");
+    }
+  
+    /*****************************
+     *        PARSE QUERY        *
+     *****************************/
+
+    // goal: query for an image, set the image to the view
+    // goal: get comments related to that image & display them in a small table view
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query includeKey:kTMBActivityPhotoKey];
+    [query includeKey:kTMBActivityFromUserKey];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            // handle error in the future
+        }
+
+        PFObject *anActivity = [objects firstObject];
+        NSLog(@"anActivities comment: %@", anActivity[@"content"]);
+        
+        // set datastore to objects array
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            self.activities = [objects mutableCopy];
+            [self.commentsTableView reloadData];
+        }];
+        
+        // getting photo obj
+        PFObject *anActivitysPhoto = anActivity[@"photo"];
+        self.testing = anActivitysPhoto;
+        PFFile *imageFile = anActivitysPhoto[@"image"];
+        
+        // test: user's first name set to label
+        PFObject *aFromUser = anActivity[@"fromUser"];
+        NSString *firstName = aFromUser[@"First_Name"];
+        self.currentUserNameLabel.text = [NSString stringWithFormat:@"Posted by %@", firstName];
+
+        // setting the image view to photo obj above
+        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:result];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    self.commentedPhoto.image = image;
+                }];
+            }
+        }];
+    }];
+    
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    NSUInteger numberOfComments = self.activities.count;
+    NSLog(@"numberOfRows getting called: %lu", self.activities.count);
+    
+    return numberOfComments;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,89 +163,16 @@
     
     [UIView animateWithDuration:duration animations:^{
         [UIView setAnimationCurve:curve];
-        self.commentViewBottomConstraint.constant = finalFrame.size.height + 50;
+        self.commentViewBottomConstraint.constant = finalFrame.size.height + 0;
         [self.view layoutIfNeeded];
     }];
-    
-    
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    NSLog(@"IN VIEW DID LOAD.........");
-    
-    self.commentsTableView.delegate = self;
-    self.commentsTableView.dataSource = self;
-
-    // loging in this app as Inga for now
-    
-    if (![PFUser currentUser]){
-        [PFUser logInWithUsernameInBackground:@"ingakyt@gmail.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-        }];
-    }
-  
-    /*****************************
-     *        PARSE QUERY        *
-     *****************************/
-
-    // goal: query for an image, set the image to the view
-    // goal: get comments related to that image & display them in a small table view
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
-    [query includeKey:kTMBActivityPhotoKey];
-    [query includeKey:kTMBActivityFromUserKey];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            // handle error in the future
-        }
-
-        PFObject *anActivity = [objects firstObject];
-        NSLog(@"anActivities comment: %@", anActivity[@"content"]);
-        
-        // set datastore to objects array
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            self.activities = [objects mutableCopy];
-            [self.commentsTableView reloadData];
-        }];
-        
-        // test: getting photo obj
-        PFObject *anActivitysPhoto = anActivity[@"photo"];
-        PFFile *imageFile = anActivitysPhoto[@"image"];
-        
-        // test: user's first name set to label
-        PFObject *aFromUser = anActivity[@"fromUser"];
-        NSString *firstName = aFromUser[@"First_Name"];
-        self.currentUserNameLabel.text = firstName;
-
-        // setting the image view to photo obj above
-        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
-            if (!error) {
-                UIImage *image = [UIImage imageWithData:result];
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    self.commentedPhoto.image = image;
-                }];
-            }
-        }];
-    }];
-    
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    NSUInteger numberOfComments = self.activities.count;
-    NSLog(@"numberOfRows getting called: %lu", self.activities.count);
-    
-    return numberOfComments;
-}
-
-- (IBAction)backButtonTapped:(id)sender {
+- (IBAction)closeButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -181,7 +184,6 @@
     
     // setting table rows to display comments
     PFObject *anActivity = self.activities[rowOfIndexPath];
-//    cell.textLabel.text = anActivity[@"content"];
     cell.userCommentLabel.text = anActivity[@"content"];
     
     
@@ -194,12 +196,6 @@
 
     
     return cell;
-    
-}
-
-- (IBAction)doneButtonTapped:(UIBarButtonItem *)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -281,8 +277,7 @@
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
-    self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:414.0 maxHeight:368.0];
-    [self.delegate imageCardViewController:self didScaleThumbImage:self.thumbnail];
+    self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:410.0 maxHeight:352.0];
     
     [self shouldUploadImage:self.image];
     
@@ -296,25 +291,11 @@
                     nil];
     }
     
-    // from Joel
-    //
-    //
-    // NEED TO ADD SAVE FOR THUMBNAIL
-    //
-    //
-    //
-    
-    // Create a Photo object
-//    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
-//    PFUser *currentUser = [PFUser currentUser];
-//    [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
-//    [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
-    
     PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
     [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
     [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
-
+    [photo setObject:self.board forKey:@"board"];
     
     // Photos are public, but may only be modified by the user who uploaded them
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
@@ -330,7 +311,14 @@
     // Save the Photo PFObject
     [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
+            
+            [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
+            
             NSLog(@"Photo uploaded");
+            
+            // run query
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
             
             [[PAPCache sharedCache] setAttributesForPhoto:photo likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
             
@@ -346,7 +334,6 @@
                     [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
                     [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
                     [comment setObject:commentText forKey:kTMBActivityContentKey];
-
                     
                     PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
                     [ACL setPublicReadAccess:YES];
@@ -368,10 +355,7 @@
         [[UIApplication sharedApplication] endBackgroundTask:self.photoPostBackgroundTaskId];
         
     }];
-    
-    
-    // Dismiss this screen
-    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+
     
 }
 
@@ -389,6 +373,7 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
     
     UIGraphicsBeginImageContext(size);
@@ -399,12 +384,40 @@
     return newImage;
 }
 
+- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+
+    CGFloat oldWidth = image.size.width;
+    CGFloat oldHeight = image.size.height;
+    
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+    
+    CGFloat newHeight = oldHeight * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
+    CGSize newSize = CGSizeMake(newWidth, newHeight);
+    
+    return [self imageWithImage:image scaledToSize:newSize];
+}
+
+- (IBAction)imageTapped:(id)sender {
+    
+    
+    
+}
+
 - (IBAction)sendButtonTapped:(id)sender {
+    
+    NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
+    
+    PFFile *test = [PFFile fileWithData:imageData];
     
     if (self.commentField.text != 0) {
         PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
+        
         [newCommentObject setObject:self.commentField.text forKey:@"content"];
         [newCommentObject setObject:[PFUser currentUser] forKey:@"fromUser"];
+        [newCommentObject setObject:self.testing forKey:@"photo"];
+//        [newCommentObject setObject:s forKey:@"toUser"];
+        [newCommentObject setObject:@"comment" forKey:@"type"];
         
         [newCommentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
@@ -415,74 +428,10 @@
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
         }];
-
-        
-//        PFObject *comment = [PFObject objectWithClassName:@"Activity"];
-//        [comment setObject:@"content" forKey:@"type"];
-//        [comment setObject:comment forKey:@"photo"];
-//        [comment setObject:[PFUser currentUser] forKey:@"fromUser"];
-//        [comment setObject:self.commentField.text forKey:@"content"];
-//        [comment saveInBackground];
     }
     
     
-    
-    
-    
-//    NSDictionary *userInfo = [NSDictionary dictionary];
-//    NSString *trimmedComment = [self.commentField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//    if (trimmedComment.length != 0) {
-//        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//                    trimmedComment,
-//                    kTMBEditPhotoViewControllerUserInfoCommentKey,
-//                    nil];
-//        
-//        self.commentPostBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-//            [[UIApplication sharedApplication] endBackgroundTask:self.commentPostBackgroundTaskId];
-//        }];
-//    
-//        // userInfo might contain any caption which might have been posted by the uploader
-//        if (userInfo) {
-//            NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
-//            
-//            if (commentText && commentText.length != 0) {
-//                // create and save photo caption
-//                PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
-//                [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
-//                [comment setObject:comment forKey:kTMBActivityPhotoKey];
-//                [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
-//                [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
-//                [comment setObject:commentText forKey:kTMBActivityContentKey];
-//                
-//                PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-//                [ACL setPublicReadAccess:YES];
-//                comment.ACL = ACL;
-//                
-//                [comment saveInBackground];
-//                [[PAPCache sharedCache] incrementCommentCountForPhoto:comment];
-//            }
-//        }
-//        
-//    }
-//    
-////    [[UIApplication sharedApplication] endBackgroundTask:self.commentPostBackgroundTaskId];
-//    
-//    NSLog(@"Sending the data");
 
-//
-//-(UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
-//    CGFloat oldWidth = image.size.width;
-//    CGFloat oldHeight = image.size.height;
-//    
-//    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
-//    
-//    CGFloat newHeight = oldHeight * scaleFactor;
-//    CGFloat newWidth = oldWidth * scaleFactor;
-//    CGSize newSize = CGSizeMake(newWidth, newHeight);
-//    
-//    return [self imageWithImage:image scaledToSize:newSize];
-//
-//}
 }
 
 @end

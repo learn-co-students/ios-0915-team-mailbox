@@ -20,7 +20,6 @@
 #import <MMDrawerController/MMDrawerController.h>
 #import <MMDrawerController/MMDrawerBarButtonItem.h>
 
-
 static NSInteger const kNumberOfSections = 1;
 static NSInteger const kItemsPerPage = 20;
 
@@ -33,7 +32,9 @@ static NSInteger const kItemsPerPage = 20;
 @property (nonatomic) NSUInteger queryCount;
 
 @property (nonatomic, strong) NSString *boardID;
-@property (nonatomic, strong) NSMutableArray *boardIDs;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UIImage *imageSelectedForOtherView;
+@property (nonatomic, strong) NSMutableArray *pfObjects;
 
 @end
 
@@ -41,151 +42,51 @@ static NSInteger const kItemsPerPage = 20;
 
 static NSString * const reuseIdentifier = @"MediaCell";
 
+#pragma mark - view did load
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
-    self.boardIDs = [TMBSharedBoardID sharedBoardID].boardIDs;
+    self.pfObjects = [NSMutableArray new];
     
-    NSLog(@"\n\nself.boardID: %@\nself.boardIDs:\n%@\n\n",self.boardID,self.boardIDs);
+    UINavigationBar* navigationBar = self.navigationController.navigationBar;
+    [navigationBar setBarTintColor:[UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0]];
+    [navigationBar setTintColor:[UIColor whiteColor]];
+    navigationBar.translucent = NO;
+    
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:self.refreshControl];
+    self.collectionView.alwaysBounceVertical = YES;
+    
+    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
     [self setupLeftMenuButton];
-
     
     self.collection = [NSMutableArray new];
     self.boardContent = [NSMutableArray new];
     
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.collectionView.contentInset = UIEdgeInsetsMake(0.5, 0.5, 0.5, 0.5);
-    
     [self buildThemeColorsArray];
-    [self prepareAndExecuteParseQuery];
-}
-
-- (void)setupLeftMenuButton {
-    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
-    [self.navigationItem setLeftBarButtonItem:leftDrawerButton];
-}
-
-- (void)leftDrawerButtonPress:(id)leftDrawerButtonPress {
-    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-}
-
--(void)imageCardViewController:(TMBImageCardViewController *)viewController didScaleThumbImage:(UIImage *)image
-{
-    [self.collection addObject:image];
-    [self.collectionView reloadData];
-}
-
--(void)prepareAndExecuteParseQuery
-{
     
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
+    [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success){
         
-        PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-        [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
-        [boardQuery selectKeys:@[@"objectId"]];
-        [boardQuery orderByDescending:@"lastViewed"];
-        // if board selected from drawer menu
+        if (success)  {
+            
+            NSLog(@"\n\n EVERYTHING IS COOL! \n\n");
+        }
         
-            // query board based on drawer menu choice
-            // [self queryParseToUpdateCollection];
-        
-        // else //
-        
-        
-            [boardQuery getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                
-                self.queriedBoardID = [object valueForKey:@"objectId"];
-                NSLog(@"\n\nself.queriedBoardID: %@\n\n",self.queriedBoardID);
-                [self queryParseToUpdateCollection];
-                
-            }];
-        
-        //
-        
-    } else {
-        // if user is not logged in, need to go back to login screen
-        NSLog(@"\n\nnot current user\ngo back to login screen\n\n");
-    }
+    }];
 }
-
-
-
--(void)queryParseToUpdateCollection
-{
-    
-    if ([self.queriedBoardID length] == 0) {
-        
-        return;
-        
-    } else {
-        
-        PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-        [boardQuery whereKey:@"objectId" equalTo:self.queriedBoardID];
-        
-        PFQuery *contentQuery = [PFQuery queryWithClassName:@"Photo"];
-        [contentQuery whereKey:@"board" matchesQuery:boardQuery];
-        [contentQuery orderByDescending:@"updatedAt"];
-        
-        [contentQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
-            if (number == 0) {
-                return;
-            } else {
-                [contentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-
-                    if (!error) {
-                        for (PFObject *object in objects) {
-                            
-                            PFFile *imageFile = object[@"thumbnail"];
-                            [self.boardContent addObject:imageFile];
-                        
-                        }
-                        
-                        NSOperationQueue *dataQueue = [[NSOperationQueue alloc] init];
-                        [dataQueue addOperationWithBlock:^{
-                            
-                            for (PFFile *imageFile in self.boardContent) {
-                                
-                                NSData *data = [imageFile getData];
-                                UIImage *image = [UIImage imageWithData:data];
-                                NSLog(@"image: %@",image);
-                                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                    
-                                    [self.collection addObject:image];
-                                    NSUInteger imageFileIndex = [self.collection indexOfObject:image];
-                                    
-                                    if (imageFileIndex < kItemsPerPage){
-                                        NSIndexPath *ip = [NSIndexPath indexPathForItem:imageFileIndex inSection:0];
-                                        [self.collectionView reloadItemsAtIndexPaths:@[ip]];
-                                    }else{
-                                        [self.collectionView reloadData];
-                                    }
-                                    
-                                }];
-                            }
-                            [self.boardContent removeAllObjects];
-                            
-                        }];
-                        
-                    } else {
-                        
-                        NSLog(@"Error: %@ %@", error, [error userInfo]);
-                    }
-                }];
-            }
-        }];
-    }
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
-
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -193,8 +94,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     return kNumberOfSections;
 }
-
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     NSUInteger neededColorCells = kItemsPerPage - (self.collection.count % kItemsPerPage);
@@ -205,8 +104,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     return self.collection.count + neededColorCells;
 }
-
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     TMBBoardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
@@ -225,33 +122,69 @@ static NSString * const reuseIdentifier = @"MediaCell";
     return cell;
 }
 
-
 -(UIColor *)colorForDummyCellAtRow:(NSUInteger)row
 {
     NSUInteger colorIndex = row % self.colors.count;
     return self.colors[colorIndex];
 }
-
-
 -(void)buildThemeColorsArray
 {
     
-    UIColor *c1 = [UIColor colorWithRed:0.349 green:0.573 blue:0.784 alpha:1]; /*#5992c8*/
-    UIColor *c2 = [UIColor colorWithRed:0.565 green:0.725 blue:0.835 alpha:1]; /*#90b9d5*/
-    UIColor *c3 = [UIColor colorWithRed:0.945 green:0.443 blue:0.475 alpha:1]; /*#f17179*/
-    UIColor *c4 = [UIColor colorWithRed:0.78 green:0.451 blue:0.243 alpha:1]; /*#c7733e*/
-    UIColor *c5 = [UIColor colorWithRed:0.863 green:0.341 blue:0.2 alpha:1]; /*#dc5733*/
+    UIColor *c1 = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:1.0];
+    UIColor *c2 = [UIColor colorWithRed:189/255.0 green:189/255.0 blue:189/255.0 alpha:1.0];
+    UIColor *c3 = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1.0];
+    UIColor *c4 = [UIColor colorWithRed:231/255.0 green:231/255.0 blue:231/255.0 alpha:1.0];
+    UIColor *c5 = [UIColor colorWithRed:213/255.0 green:213/255.0 blue:213/255.0 alpha:1.0];
     
-    self.colors = @[c1, c2, c3, c4, c5];
+    self.colors = @[c1, c2, c3, c4, c5, c3, c3, c2, c5, c2];
     
 }
 
-// added by Tim - necessary ? ? ?
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark - refresh collection
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    TMBImageCardViewController *destinationVC = segue.destinationViewController;
-    destinationVC.delegate = self;
+    if (scrollView.contentOffset.y < -110 && ![self.refreshControl isRefreshing]) {
+        [self.refreshControl beginRefreshing];
+        [self.collection removeAllObjects];
+        NSLog(@"\n\n\n\n\nself.collection:\n%@\n\n\n\n\n",self.collection);
+        [self refresh];
+        
+    }
 }
+
+- (void)refresh
+{
+    NSLog(@"entered refresh");
+    
+    [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success) {
+        
+        if (success) {
+            
+            [self.refreshControl endRefreshing];
+        }
+        
+    }];
+    
+}
+
+
+#pragma mark - side menu selection
+
+
+- (void)setupLeftMenuButton {
+    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton];
+}
+
+- (void)leftDrawerButtonPress:(id)leftDrawerButtonPress {
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+
+#pragma mark - alert and segue
+
 
 - (IBAction)addButtonTapped:(id)sender {
     
@@ -265,10 +198,9 @@ static NSString * const reuseIdentifier = @"MediaCell";
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  UIViewController *pictureVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBImageCardViewController"];
-                                  
+                                  TMBImageCardViewController *pictureVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBImageCardViewController"];
+                                  pictureVC.delegate = self;
                                   [self presentViewController:pictureVC animated:YES completion:nil];
-                                  
                                   [view dismissViewControllerAnimated:YES completion:nil];
                                   
                               }];
@@ -317,7 +249,180 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+        
+    TMBCommentViewController *destVC = segue.destinationViewController;
+    NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
+    NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
+    self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
+    PFObject *selectedOBJ = self.pfObjects[selectedIndexPath.row];
+    
+    destVC.parseObjSelected = selectedOBJ;
+    
+    destVC.selectedImage = self.imageSelectedForOtherView;
+}
 
 
+#pragma mark - queries
+
+
+-(void)imageCardViewController:(TMBImageCardViewController *)viewController passBoardIDforQuery:(NSString *)boardID
+{
+    [self queryParseToUpdateCollection:boardID successBlock:^(BOOL success) {
+        if (!success) {
+            // error updating collection
+        }
+    }];
+}
+
+-(void)queryParseToUpdateCollection:(NSString *)boardID successBlock:(void (^)(BOOL success))completionBlock
+{
+    
+    NSLog(@"Query parse started \n\n\n");
+    
+    if ([self.boardID length] == 0) {
+        
+        [self queryForCurrentUserBoards:^(BOOL success) {
+            if (success) {
+                [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success) {
+                    if (!success) {
+                        // user has no boards
+
+                    }
+                }];
+            } else {
+                
+                completionBlock(NO);
+            }
+        }];
+        
+        return;
+        
+    } else {
+        
+        PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+        [boardQuery whereKey:@"objectId" equalTo:self.boardID];
+        
+        PFQuery *contentQuery = [PFQuery queryWithClassName:@"Photo"];
+        [contentQuery whereKey:@"board" matchesQuery:boardQuery];
+        [contentQuery orderByDescending:@"updatedAt"];
+        
+        [contentQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+            if (number == 0) {
+                return;
+            } else {
+                [contentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                    
+                    if (!error) {
+                        for (PFObject *object in objects) {
+                            
+                            PFFile *imageFile = object[@"thumbnail"];
+                            [self.boardContent addObject:imageFile];
+                            [self.pfObjects addObject:object];
+                            
+                        }
+                        
+                        NSOperationQueue *dataQueue = [[NSOperationQueue alloc] init];
+                        [dataQueue addOperationWithBlock:^{
+                            
+                            [self.collection removeAllObjects];
+                            
+                            for (PFFile *imageFile in self.boardContent) {
+                                
+                                NSData *data = [imageFile getData];
+                                UIImage *image = [UIImage imageWithData:data];
+                                NSLog(@"image: %@",image);
+                                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                    
+                                    
+                                    [self.collection addObject:image];
+                                    
+                                    
+                                    
+                                    
+                                    NSUInteger imageFileIndex = [self.collection indexOfObject:image];
+                                    
+                                    if (imageFileIndex < kItemsPerPage){
+                                        NSIndexPath *ip = [NSIndexPath indexPathForItem:imageFileIndex inSection:0];
+                                        [self.collectionView reloadItemsAtIndexPaths:@[ip]];
+                                    }else{
+                                        [self.collectionView reloadData];
+                                    }
+                                    NSLog(@"\n\n\nboardContent.count: %lu\ncollection.count: %lu\n\n\n",(unsigned long)self.boardContent.count,self.collection.count);
+                                    if (self.boardContent.count == self.collection.count) {
+                                        [self.boardContent removeAllObjects];
+                                        NSLog(@"\n\n\n\n\ninside IF statement\n\n\n\n");
+                                        completionBlock(YES);
+                                        
+                                    }
+                                    
+                                }];
+                            }
+                            
+                            
+
+                        }];
+                        
+                    } else {
+                        
+                        completionBlock(NO);
+                        NSLog(@"Error: %@ %@", error, [error userInfo]);
+                    }
+                }];
+            }
+        }];
+    }
+}
+
+
+-(void)queryForCurrentUserBoards:(void (^)(BOOL success))completionBlock
+{
+    //get all boardIDs for current user
+    PFQuery *boardQueryFromPhotoClass = [PFQuery queryWithClassName:@"Photo"];
+    [boardQueryFromPhotoClass whereKey:@"user" equalTo:PFUser.currentUser];
+    [boardQueryFromPhotoClass selectKeys:@[@"board"]];
+    [boardQueryFromPhotoClass orderByDescending:@"updatedAt"];
+    [boardQueryFromPhotoClass getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        
+        if (!error) {
+            
+            // set boardID singleton for board with most recent photo
+            PFObject *boardObject = object[@"board"];
+            NSString *boardID = [boardObject valueForKey:@"objectId"];
+            [TMBSharedBoardID sharedBoardID].boardID = boardID;
+            self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
+            
+            // get all boards for user and add to board dict singleton
+            PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+            [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
+            [boardQuery selectKeys:@[@"objectId",@"boardName"]];
+            [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                
+                if (!error) {
+                    
+                    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
+                    for (PFObject *object in objects) {
+                        
+                        NSString *boardID = [object valueForKey:@"objectId"];
+                        [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
+                        
+                    }
+                    
+                } else {
+                    
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+                
+            }];
+            completionBlock(YES);
+            
+        } else {
+            
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            completionBlock(NO);
+        }
+        
+    }];
+}
 
 @end
