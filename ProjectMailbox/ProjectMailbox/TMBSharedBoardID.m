@@ -26,7 +26,7 @@
     NSLog(@"shared board ID: %@",_boardID);
     return _boardID;
 }
--(NSMutableDictionary *)boardIDs
+-(NSMutableDictionary *)boards
 {
     if (!_boards) {
         _boards = [NSMutableDictionary new];

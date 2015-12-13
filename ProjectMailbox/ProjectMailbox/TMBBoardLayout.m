@@ -39,7 +39,7 @@ static NSInteger const kItemsPerPattern = 10;
     self = [super initWithCoder:aDecoder];
     if (self)  {
         _contentWidth = 0;
-        _cellPadding = 0.5;
+        _cellPadding = 1;
         _layoutInformation = [NSMutableDictionary dictionary];
         _offsets = [NSMutableDictionary dictionaryWithDictionary:@{
                        @"xOffset" : [NSNumber numberWithFloat:0.0],
