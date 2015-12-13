@@ -147,7 +147,6 @@
     PFObject *anActivity = self.activities[rowOfIndexPath];
     cell.userCommentLabel.text = anActivity[@"content"];
     
-    
     // user label displays fromUser name
     PFObject *aFromUser = anActivity[@"fromUser"];
     NSString *firstName = aFromUser[@"First_Name"];
@@ -178,6 +177,8 @@
         [newCommentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 NSLog(@"Saved");
+                self.commentField.text = @"";
+ 
             }
             else{
                 // Error

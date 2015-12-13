@@ -98,7 +98,7 @@
             [self.commentsTableView reloadData];
         }];
         
-        // test: getting photo obj
+        // getting photo obj
         PFObject *anActivitysPhoto = anActivity[@"photo"];
         self.testing = anActivitysPhoto;
         PFFile *imageFile = anActivitysPhoto[@"image"];
