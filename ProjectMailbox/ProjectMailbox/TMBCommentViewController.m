@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
-@property (strong, nonatomic) NSString *photoParseText;
+@property (strong, nonatomic) PFFile *userPhotoFile;
 
 //board ID
 @property (nonatomic, strong) NSString *boardID;
@@ -49,21 +49,32 @@
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
     self.commentedPhoto.image = self.selectedImage;
-    self.photoParseText = [self.parseObjSelected valueForKey:@"objectId"];
     
     NSLog(@"What is this from viewDiDLoad: %@", self.parseObjSelected);
     
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
     
+    [self loadDataFromParse];
+
+}
+
+- (BOOL)prefersStatusBarHidden {
+    
+    return YES;
+}
+
+- (void)loadDataFromParse {
+    
     /*****************************
      *        PARSE QUERY        *
      *****************************/
-
+    
     // goal: get comments related to that image & display them in a table view
     
     PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
     [query includeKey:kTMBActivityPhotoKey];
+    [query whereKey:kTMBActivityPhotoKey equalTo:self.parseObjSelected];
     [query includeKey:kTMBActivityFromUserKey];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -82,13 +93,15 @@
         
         // getting photo obj
         PFObject *anActivitysPhoto = anActivity[@"photo"];
-        self.testing = anActivitysPhoto;
         PFFile *imageFile = anActivitysPhoto[@"image"];
         
         // test: user's first name set to label
         PFObject *aFromUser = anActivity[@"fromUser"];
         NSString *firstName = aFromUser[@"First_Name"];
         self.currentUserNameLabel.text = [NSString stringWithFormat:@"Posted by %@", firstName];
+        PFObject *fromUserProfilePhoto = aFromUser[@"fromUser"];
+        self.userPhotoFile = fromUserProfilePhoto[@"profileImage"];
+        
         
         // setting the image view to photo obj above
         [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
@@ -101,24 +114,6 @@
         }];
     }];
 
-    
-//    PFQuery *commentQuery = [PFQuery queryWithClassName:@"Activity"];
-//    [commentQuery whereKey:@"photo" equalTo:self.photoParseText];
-//    [commentQuery includeKey:@"fromUser"];
-//    [commentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-//        if (error) {
-//            
-//        } else {
-//            PFObject *commentActivity = [objects firstObject];
-//            NSLog(@"here's the content for this photo %@", commentActivity[@"content"]);
-//            
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                [self.activities addObject:[objects mutableCopy]];
-//                [self.commentsTableView reloadData];
-//            }];
-//        }
-//    }];
-//    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -171,7 +166,6 @@
     return numberOfComments;
 }
 
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
@@ -186,13 +180,26 @@
     
     // user label displays fromUser name
     PFObject *aFromUser = anActivity[@"fromUser"];
-    NSLog(@"aFromUser is %@", aFromUser);
     NSString *firstName = aFromUser[@"First_Name"];
-    NSLog(@"first name is %@", firstName);
     cell.fromUserNameLabel.text = firstName;
     
+    // get profile image
+    cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.size.width / 2;
+    cell.userProfileImage.clipsToBounds = YES;
+    PFObject *commentDataAtRow = self.activities[rowOfIndexPath];
+    PFObject *userDetails = commentDataAtRow[@"fromUser"];
+    PFFile *newUserPhotoFile = userDetails[@"profileImage"];
+    [newUserPhotoFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:data];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                cell.userProfileImage.image = image;
+    }];
+        }
+        
+    }];
     
-    // set user profile photo next...
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     return cell;
     
@@ -217,7 +224,9 @@
         [newCommentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 NSLog(@"Saved");
+                [self loadDataFromParse];
                 self.commentField.text = @"";
+                [self.view endEditing:YES];
  
             }
             else{
@@ -227,6 +236,13 @@
         }];
     }
 }
+
+- (IBAction)topViewTapped:(id)sender {
+    
+    [self.commentField resignFirstResponder];
+}
+
+
 
 
 @end

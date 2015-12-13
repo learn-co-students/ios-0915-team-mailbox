@@ -24,6 +24,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         imagePicker.delegate = self
         
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.contentMode = UIImage
+        
     }
     
     @IBAction func changePhotoButtonTapped(sender: AnyObject) {
