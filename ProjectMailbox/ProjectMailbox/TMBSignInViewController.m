@@ -77,6 +77,7 @@
     [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (userName != nil) {
             
+            NSLog(@"\n\n\nlogInWithUsernameInBackground\n\n");
 //          PFUser currentUser
             NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
             
@@ -116,8 +117,7 @@
                             for (PFObject *object in objects) {
                                 
                                 NSString *boardID = [object valueForKey:@"objectId"];
-                                NSString *boardName = [object valueForKey:@"boardName"];
-                                [[TMBSharedBoardID sharedBoardID].boards setObject:boardName forKey:boardID];
+                                [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
                                 
                             }
                             
@@ -129,10 +129,10 @@
                     }];
                     
                 } else {
-                    
+
                     NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }
-                
+
             }];
             
             

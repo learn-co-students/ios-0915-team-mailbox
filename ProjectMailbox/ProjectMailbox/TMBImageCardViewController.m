@@ -37,6 +37,7 @@
 
 //board ID
 @property (nonatomic, strong) NSString *boardID;
+@property (nonatomic, strong) PFObject *board;
 @property (strong, nonatomic) PFObject *testing;
 
 
@@ -68,6 +69,7 @@
     self.commentsTableView.dataSource = self;
     
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
+    self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
     
     if (![PFUser currentUser]){
         NSLog(@"Not currently logged in");
@@ -275,10 +277,7 @@
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
-    self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:414.0 maxHeight:368.0];
-    [self.delegate imageCardViewController:self thumbForInstantView:self.thumbnail];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:410.0 maxHeight:352.0];
     
     [self shouldUploadImage:self.image];
     
@@ -296,7 +295,7 @@
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
     [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
     [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
-    [photo setObject:self.boardID forKey:@"board"];
+    [photo setObject:self.board forKey:@"board"];
     
     // Photos are public, but may only be modified by the user who uploaded them
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
@@ -312,7 +311,14 @@
     // Save the Photo PFObject
     [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
+            
+            [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
+            
             NSLog(@"Photo uploaded");
+            
+            // run query
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
             
             [[PAPCache sharedCache] setAttributesForPhoto:photo likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
             
@@ -349,10 +355,7 @@
         [[UIApplication sharedApplication] endBackgroundTask:self.photoPostBackgroundTaskId];
         
     }];
-    
-    
-    // Dismiss this screen
-    [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+
     
 }
 
