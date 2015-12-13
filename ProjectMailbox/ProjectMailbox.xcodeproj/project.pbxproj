@@ -430,6 +430,7 @@
 				55C6AE1D1C1B2DED00FD8A73 /* TMBCommentViewController.h */,
 				55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */,
 				5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */,
+				5D03AF1A1C18610600E2CDEB /* TMBSharedBoardID.m */,
 				5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */,
 				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
 				5508F4A81BFB972300D02E15 /* ViewController.h */,
@@ -535,7 +536,6 @@
 			isa = PBXGroup;
 			children = (
 				5D03AF191C18610600E2CDEB /* TMBSharedBoardID.h */,
-				5D03AF1A1C18610600E2CDEB /* TMBSharedBoardID.m */,
 			);
 			name = BoardID;
 			sourceTree = "<group>";
