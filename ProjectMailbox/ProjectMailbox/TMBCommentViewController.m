@@ -7,7 +7,6 @@
 //
 
 #import "TMBCommentViewController.h"
-#import "TMBImageCardViewController.h"
 #import "TMBConstants.h"
 #import "PAPCache.h"
 #import "TMBTableViewCommentCellTableViewCell.h"
@@ -15,7 +14,6 @@
 
 @interface TMBCommentViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIImage *thumbnail;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -62,10 +60,10 @@
      *        PARSE QUERY        *
      *****************************/
 
-    // goal: get comments related to that image & display them in a small table view
+    // goal: get comments related to that image & display them in a table view
     
     PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
-    [query whereKey:@"photo" equalTo:self.photoParseText];
+    [query includeKey:kTMBActivityPhotoKey];
     [query includeKey:kTMBActivityFromUserKey];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -81,17 +79,46 @@
             self.activities = [objects mutableCopy];
             [self.commentsTableView reloadData];
         }];
+        
+        // getting photo obj
+        PFObject *anActivitysPhoto = anActivity[@"photo"];
+        self.testing = anActivitysPhoto;
+        PFFile *imageFile = anActivitysPhoto[@"image"];
+        
+        // test: user's first name set to label
+        PFObject *aFromUser = anActivity[@"fromUser"];
+        NSString *firstName = aFromUser[@"First_Name"];
+        self.currentUserNameLabel.text = [NSString stringWithFormat:@"Posted by %@", firstName];
+        
+        // setting the image view to photo obj above
+        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:result];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    self.commentedPhoto.image = image;
+                }];
+            }
+        }];
     }];
 
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
     
-    NSUInteger numberOfComments = self.activities.count;
-    NSLog(@"numberOfRows getting called: %lu", self.activities.count);
-    
-    return numberOfComments;
+//    PFQuery *commentQuery = [PFQuery queryWithClassName:@"Activity"];
+//    [commentQuery whereKey:@"photo" equalTo:self.photoParseText];
+//    [commentQuery includeKey:@"fromUser"];
+//    [commentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        if (error) {
+//            
+//        } else {
+//            PFObject *commentActivity = [objects firstObject];
+//            NSLog(@"here's the content for this photo %@", commentActivity[@"content"]);
+//            
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                [self.activities addObject:[objects mutableCopy]];
+//                [self.commentsTableView reloadData];
+//            }];
+//        }
+//    }];
+//    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -135,6 +162,15 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    NSUInteger numberOfComments = self.activities.count;
+    NSLog(@"numberOfRows getting called: %lu", self.activities.count);
+    
+    return numberOfComments;
+}
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -146,11 +182,15 @@
     
     PFObject *anActivity = self.activities[rowOfIndexPath];
     cell.userCommentLabel.text = anActivity[@"content"];
+    NSLog(@"anActivity is %@", anActivity);
     
     // user label displays fromUser name
     PFObject *aFromUser = anActivity[@"fromUser"];
+    NSLog(@"aFromUser is %@", aFromUser);
     NSString *firstName = aFromUser[@"First_Name"];
+    NSLog(@"first name is %@", firstName);
     cell.fromUserNameLabel.text = firstName;
+    
     
     // set user profile photo next...
 
