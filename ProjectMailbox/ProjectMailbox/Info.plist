@@ -93,7 +93,7 @@
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>AddNewBoardStoryboard</string>
 	<key>UIMainStoryboardFile</key>
 	<string>AddNewBoardStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>

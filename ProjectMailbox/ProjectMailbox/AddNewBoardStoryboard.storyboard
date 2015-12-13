@@ -16,37 +16,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name your Board" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="L5f-em-Yyl">
-                                <rect key="frame" x="20" y="93" width="335" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name Your Board" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="L5f-em-Yyl">
+                                <rect key="frame" x="28" y="127" width="318" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e0b-Ay-uXh">
-                                <rect key="frame" x="0.0" y="150" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="219" width="375" height="70"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for Friends with Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-W8-LWG">
-                                        <rect key="frame" x="28" y="40" width="245" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your friend's Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-W8-LWG">
+                                        <rect key="frame" x="28" y="20" width="245" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrV-c7-1Xd">
-                                        <rect key="frame" x="299" y="40" width="48" height="30"/>
+                                        <rect key="frame" x="299" y="20" width="48" height="30"/>
                                         <state key="normal" title="Search"/>
                                         <connections>
                                             <action selector="searchFriendsButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="Nr5-dU-yIn"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Find Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwK-pQ-G7T">
-                                        <rect key="frame" x="28" y="11" width="118" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZgF-tA-M8a" userLabel="foundFriendView">
-                                <rect key="frame" x="0.0" y="242" width="375" height="57"/>
+                                <rect key="frame" x="0.0" y="291" width="375" height="57"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrN-V6-heN">
                                         <rect key="frame" x="32" y="8" width="40" height="40"/>
@@ -56,59 +50,109 @@
                                         <rect key="frame" x="274" y="13" width="75" height="30"/>
                                         <state key="normal" title="Add Friend"/>
                                         <connections>
-                                            <action selector="addFriendButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="Yhy-BY-PKK"/>
+                                            <action selector="addFriendButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="I8P-bm-MlF"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c38-sx-Svp">
                                         <rect key="frame" x="85" y="18" width="171" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SmT-tA-1L0" userLabel="Friends Table View">
-                                <rect key="frame" x="0.0" y="386" width="375" height="145"/>
+                                <rect key="frame" x="0.0" y="367" width="375" height="184"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendsCell" id="Jjm-xS-TxD" customClass="TMBFriendsTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allFriendsCell" id="cfM-Ds-NKW" customClass="TMBFriendsTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jjm-xS-TxD" id="T4w-Zr-OIA">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cfM-Ds-NKW" id="3rn-Hm-qRn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4u5-bK-iKE">
-                                                    <rect key="frame" x="32" y="0.0" width="40" height="40"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd7-KU-3rS">
+                                                    <rect key="frame" x="32" y="1" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.71151400180000002" green="1" blue="0.94032241640000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uer name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu4-Rz-udB">
-                                                    <rect key="frame" x="87" y="9" width="168" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Qi-ga-jDS">
+                                                    <rect key="frame" x="87" y="10" width="168" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeA-2D-psX">
-                                                    <rect key="frame" x="208" y="6" width="144" height="30"/>
-                                                    <state key="normal" title="Checked/Unchecked"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ota-oB-mlv">
+                                                    <rect key="frame" x="257" y="7" width="90" height="30"/>
+                                                    <state key="normal" title="Add to Board"/>
                                                     <connections>
-                                                        <action selector="checkButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="8La-jK-z5Y"/>
+                                                        <action selector="addUserToBoardFriendsButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="5QQ-yQ-CnA"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="checkButtonTapped" destination="CeA-2D-psX" id="uxd-zc-Teh"/>
-                                            <outlet property="fromUserNameLabel" destination="gu4-Rz-udB" id="PFk-fj-Nr3"/>
-                                            <outlet property="userProfileImage" destination="4u5-bK-iKE" id="oum-kT-RQH"/>
+                                            <outlet property="addRemoveFriendButton" destination="Ota-oB-mlv" id="7vq-S9-ssU"/>
+                                            <outlet property="fromUserNameLabel" destination="3Qi-ga-jDS" id="z2p-XA-f4j"/>
+                                            <outlet property="userProfileImage" destination="dd7-KU-3rS" id="aQA-pz-IMd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="boardFriendsCell" id="ux8-zb-oHo" customClass="TMBFriendsTableViewCell">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ux8-zb-oHo" id="Ks5-yl-Tpp">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-1R-Z66">
+                                                    <rect key="frame" x="32" y="1" width="40" height="40"/>
+                                                    <color key="backgroundColor" red="0.71151400180000002" green="1" blue="0.94032241640000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzg-6i-SDE">
+                                                    <rect key="frame" x="87" y="10" width="168" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZy-uU-WQl">
+                                                    <rect key="frame" x="291" y="7" width="55" height="30"/>
+                                                    <state key="normal" title="Remove"/>
+                                                    <connections>
+                                                        <action selector="addUserToBoardFriendsButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="A4t-rn-aL0"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addRemoveFriendButton" destination="hZy-uU-WQl" id="6lU-qX-gz4"/>
+                                            <outlet property="fromUserNameLabel" destination="Vzg-6i-SDE" id="t2w-UF-fKJ"/>
+                                            <outlet property="userProfileImage" destination="g9k-1R-Z66" id="bxt-nf-7Ca"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BOARD NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3p-1e-7GH">
+                                <rect key="frame" x="74" y="91" width="227" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.26594646570000002" green="0.3860868274" blue="0.60373263889999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FRIEND SEARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZB-Xl-kuI">
+                                <rect key="frame" x="74" y="183" width="227" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.26594646570000002" green="0.3860868274" blue="0.60373263889999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No friends found with username X" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTM-W0-9Vp">
+                                <rect key="frame" x="107" y="299" width="160" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbz-LF-3v4">
-                                <rect key="frame" x="20" y="555" width="335" height="75"/>
+                                <rect key="frame" x="20" y="572" width="335" height="75"/>
                                 <color key="backgroundColor" red="1" green="0.59082665290000003" blue="0.75488000320000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                 <state key="normal" title="Save Board">
@@ -122,25 +166,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Fbz-LF-3v4" firstAttribute="top" secondItem="SmT-tA-1L0" secondAttribute="bottom" constant="24" id="Tgu-9r-dkk"/>
+                            <constraint firstItem="Fbz-LF-3v4" firstAttribute="top" secondItem="SmT-tA-1L0" secondAttribute="bottom" constant="21" id="Tgu-9r-dkk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create New Board" id="X5D-VF-iRk"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="allFoundFriendView" destination="ZgF-tA-M8a" id="JUs-ko-pOP"/>
+                        <outlet property="boardFriendsTableView" destination="SmT-tA-1L0" id="iOU-sy-gsa"/>
                         <outlet property="boardNameLabel" destination="L5f-em-Yyl" id="m8C-oT-fKb"/>
                         <outlet property="foundFriendImage" destination="GrN-V6-heN" id="29v-a8-d6S"/>
                         <outlet property="foundFriendUsernameLabel" destination="c38-sx-Svp" id="EC6-AY-Z1x"/>
-                        <outlet property="foundFriendView" destination="ZgF-tA-M8a" id="ID9-lL-oeH"/>
-                        <outlet property="friendsTableView" destination="SmT-tA-1L0" id="641-f3-Mt6"/>
-                        <outlet property="searchFriendsTextField" destination="Edx-W8-LWG" id="pyC-vb-lu6"/>
+                        <outlet property="noUsersFoundLabel" destination="aTM-W0-9Vp" id="KpY-Oy-TRr"/>
+                        <outlet property="searchField" destination="Edx-W8-LWG" id="aIF-lP-Yi6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiA-v3-C1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2444.5" y="1227.5"/>
         </scene>
-        <!--Find Friends View Controller-->
+        <!--Find Friends-->
         <scene sceneID="FOR-uW-2E8">
             <objects>
                 <viewController id="PHA-lw-zz9" customClass="TMBFindFriendsViewController" sceneMemberID="viewController">
@@ -181,8 +226,7 @@
                                         <rect key="frame" x="274" y="13" width="75" height="30"/>
                                         <state key="normal" title="Add Friend"/>
                                         <connections>
-                                            <action selector="addFriendButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="7Mo-NF-XqY"/>
-                                            <action selector="addFriendToAllFriendsButtonTapped:" destination="PHA-lw-zz9" eventType="touchUpInside" id="ukU-8B-yGj"/>
+                                            <action selector="addUserToAllFriendsButtonTapped:" destination="PHA-lw-zz9" eventType="touchUpInside" id="Fth-Qd-OUW"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqK-Ve-RVb">
@@ -206,16 +250,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-5y-kgT">
-                                                    <rect key="frame" x="32" y="0.0" width="40" height="40"/>
+                                                    <rect key="frame" x="32" y="1" width="40" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXW-g4-95C">
-                                                    <rect key="frame" x="87" y="9" width="168" height="21"/>
+                                                    <rect key="frame" x="87" y="10" width="168" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hc7-g9-MU9">
-                                                    <rect key="frame" x="297" y="6" width="60" height="30"/>
+                                                    <rect key="frame" x="290" y="6" width="60" height="30"/>
                                                     <state key="normal" title="Unfollow"/>
                                                     <connections>
                                                         <action selector="unfollowButtonTapped:" destination="PHA-lw-zz9" eventType="touchUpInside" id="Jtl-2F-mYk"/>
@@ -232,10 +276,16 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FIND YOUR FRIENDS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aes-jx-tEY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FRIEND SEARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aes-jx-tEY">
                                 <rect key="frame" x="74" y="86" width="227" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.26594646570489772" green="0.38608682744507822" blue="0.60373263886767681" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOUR FRIENDS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVN-4g-JdK">
+                                <rect key="frame" x="74" y="297" width="227" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.26594646570489772" green="0.38608682744507822" blue="0.60373263886767681" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No friends found with username X" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqv-oh-rYD">
@@ -250,7 +300,7 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="zf1-hT-c2c"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="nau-5n-XiH"/>
+                    <navigationItem key="navigationItem" title="Find Friends" id="nau-5n-XiH"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>

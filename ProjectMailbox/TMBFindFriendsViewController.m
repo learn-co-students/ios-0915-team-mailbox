@@ -108,7 +108,7 @@
 
 
 
-- (IBAction)addFriendToAllFriendsButtonTapped:(UIButton *)sender {
+- (IBAction)addUserToAllFriendsButtonTapped:(UIButton *)sender {
     
     if (self.foundFriend) {
         
@@ -118,7 +118,7 @@
         }];
         
         if ( ![self.friendsForCurrentUser containsObject:self.foundFriend] ) {
-        [self.friendsForCurrentUser addObject:self.foundFriend];   // this adds duplicate friends locally
+        [self.friendsForCurrentUser addObject:self.foundFriend];
         }
         
         [self.allFriendsTableView reloadData];
@@ -141,7 +141,6 @@
     
     
     // do whatever parse stuff you need to delete the user
-    //   remove the object from the array thats powering your tableview
     // also remove from local array
 
     
@@ -209,7 +208,7 @@
 
 
 /*****************************
- *       HELPER METHODS      *
+ *        QUERY METHODS      *
  *****************************/
 
 
