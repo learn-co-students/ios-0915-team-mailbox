@@ -266,7 +266,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
         
     TMBCommentViewController *destVC = segue.destinationViewController;
-//    TMBBoardCell *selectedCell = (TMBBoardCell *)sender;
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
     NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
     self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];

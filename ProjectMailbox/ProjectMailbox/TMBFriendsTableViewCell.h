@@ -10,8 +10,11 @@
 
 @interface TMBFriendsTableViewCell  : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *friendProfileImage;
+@property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *friendFollowUnfollowButton;
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
 @property (weak, nonatomic) IBOutlet UILabel *fromUserNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *checkButtonTapped;
+@property (weak, nonatomic) IBOutlet UIButton *addRemoveFriendButton;
 
 @end
