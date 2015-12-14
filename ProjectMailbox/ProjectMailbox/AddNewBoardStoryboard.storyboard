@@ -42,7 +42,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZgF-tA-M8a" userLabel="foundFriendView">
                                 <rect key="frame" x="0.0" y="291" width="375" height="57"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrN-V6-heN">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrN-V6-heN">
                                         <rect key="frame" x="32" y="8" width="40" height="40"/>
                                         <color key="backgroundColor" red="0.87846298649999999" green="0.89614583810000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
@@ -73,7 +73,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd7-KU-3rS">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd7-KU-3rS">
                                                     <rect key="frame" x="32" y="1" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.71151400180000002" green="1" blue="0.94032241640000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
@@ -87,7 +87,7 @@
                                                     <rect key="frame" x="257" y="7" width="90" height="30"/>
                                                     <state key="normal" title="Add to Board"/>
                                                     <connections>
-                                                        <action selector="addUserToBoardFriendsButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="5QQ-yQ-CnA"/>
+                                                        <action selector="addUserToBoardButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="OFe-PJ-S6k"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -105,7 +105,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-1R-Z66">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-1R-Z66">
                                                     <rect key="frame" x="32" y="1" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.71151400180000002" green="1" blue="0.94032241640000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
@@ -116,10 +116,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZy-uU-WQl">
-                                                    <rect key="frame" x="291" y="7" width="55" height="30"/>
+                                                    <rect key="frame" x="292" y="7" width="55" height="30"/>
                                                     <state key="normal" title="Remove"/>
                                                     <connections>
-                                                        <action selector="addUserToBoardFriendsButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="A4t-rn-aL0"/>
+                                                        <action selector="removeUserFromBoardButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="ga0-VK-0OU"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -169,7 +169,13 @@
                             <constraint firstItem="Fbz-LF-3v4" firstAttribute="top" secondItem="SmT-tA-1L0" secondAttribute="bottom" constant="21" id="Tgu-9r-dkk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create New Board" id="X5D-VF-iRk"/>
+                    <navigationItem key="navigationItem" title="Create New Board" id="X5D-VF-iRk">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="4nG-pH-Be2">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="dPn-pp-4IR" id="1bM-Ys-KIq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="allFoundFriendView" destination="ZgF-tA-M8a" id="JUs-ko-pOP"/>
@@ -218,7 +224,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sC6-Sf-Z16" userLabel="foundFriendView">
                                 <rect key="frame" x="0.0" y="200" width="375" height="57"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y85-Zt-Gj1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y85-Zt-Gj1">
                                         <rect key="frame" x="32" y="8" width="40" height="40"/>
                                         <color key="backgroundColor" red="0.87846298649999999" green="0.89614583810000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
@@ -249,7 +255,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-5y-kgT">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-5y-kgT">
                                                     <rect key="frame" x="32" y="1" width="40" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXW-g4-95C">
@@ -316,7 +322,7 @@
             </objects>
             <point key="canvasLocation" x="2444.5" y="465.5"/>
         </scene>
-        <!--Navigation-->
+        <!--Drawer-->
         <scene sceneID="MLT-jd-Ief">
             <objects>
                 <viewController id="JrL-V4-TEF" customClass="CreateBoardViewController" sceneMemberID="viewController">
@@ -345,7 +351,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Navigation" id="Jgp-yi-C6m"/>
+                    <navigationItem key="navigationItem" title="Drawer" id="Jgp-yi-C6m"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PgP-kk-gw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
