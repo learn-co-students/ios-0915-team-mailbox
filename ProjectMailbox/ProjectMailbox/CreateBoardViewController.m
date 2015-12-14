@@ -76,8 +76,27 @@
     //                }];
     //    }
     
+    [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
+        
+        for (PFObject *object in boardsCreatedByUser) {
+            
+            NSString *boardName = object[@"boardName"];
+            NSDate *updatedAt = [object updatedAt];
+            NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+        }
+    }];
     
+    [self queryAllBoardsContainingUser:[PFUser currentUser] completion:^(NSArray *boardsContainingUser, NSError *error) {
+        
+        for (PFObject *object in boardsContainingUser) {
     
+            NSString *boardName = object[@"boardName"];
+            NSDate *updatedAt = [object updatedAt];
+            NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+        }
+    }];
+    
+
 }
 
 
@@ -443,27 +462,26 @@
 
 
 
-- (void)queryAllBoardsForUser:(PFUser *)user completion:(void(^)(NSArray *boards, NSError *error))completionBlock {
+- (void)queryAllBoardsCreatedByUser:(PFUser *)user completion:(void(^)(NSArray *boardsCreatedByUser, NSError *error))completionBlock {
     
-    NSLog(@" ..... BEFORE PARSE CALL ..... ");
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-    [boardQuery whereKey:@"users" equalTo:user];
+    [boardQuery whereKey:@"fromUser" equalTo:user];
     
-    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boards, NSError * _Nullable error) {
-        
-        NSLog(@" ..... INSIDE PARSE CALL: %lu boards came back",boards.count);
-        
-        //        for (PFObject *object in objects ) {
-        
-        //            NSDate *lastUpdated = [object updatedAt];
-        //            NSLog(@" ..... THE UPDATED DATE IS %@",lastUpdated);
-        //        }
-        
-        completionBlock(boards, error);
-        
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsCreatedByUser, NSError * _Nullable error) {
+        completionBlock(boardsCreatedByUser, error);
     }];
+}
+
+
+
+- (void)queryAllBoardsContainingUser:(PFUser *)user completion:(void(^)(NSArray *boardsContainingUser, NSError *error))completionBlock {
     
-    NSLog(@" ..... AFTER PARSE CALL ..... ");
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"boardFriends" equalTo:PFUser.currentUser];
+    
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsContainingUser, NSError * _Nullable error) {
+        completionBlock(boardsContainingUser, error);
+    }];
 }
 
 - (IBAction)closeButtonTapped:(id)sender {
