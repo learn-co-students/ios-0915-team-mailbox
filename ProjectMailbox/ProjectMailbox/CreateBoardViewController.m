@@ -39,7 +39,6 @@
     
     [super viewDidLoad];
     
-    
     NSLog(@"IN VIEW DID LOAD CREATE BOARD VC.........");
 
     self.friendsForCurrentUser = [NSMutableArray new];
@@ -60,7 +59,7 @@
         [self.boardFriendsTableView reloadData];
     }];
     
-    [self createNewBoardonParseWithCompletion:^(NSString *objectId, NSError *error) {
+    [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
         if (!error) {
             NSLog(@"NEW BOARD CREATED");
             self.myNewBoardObjectId = self.myNewBoard.objectId;
@@ -87,7 +86,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         
         for (PFObject *object in objects ) {
-            
             NSDate *test = [object updatedAt];
 //            NSLog(@" ..... THE UPDATED DATE IS %@",test);
             }
@@ -161,7 +159,7 @@
     if (self.foundFriend) {
         
         [self addUserToAllFriendsOnParse:self.foundFriend completion:^(NSArray *allFriends, NSError *error) {
-            NSLog(@"complete!");
+            NSLog(@"added new user to friends!");
             NSLog(@"%@", allFriends);
         }];
         
@@ -169,8 +167,8 @@
             [self.friendsForCurrentUser addObject:self.foundFriend];
         }
         
-        [self addUsertoBoardFriendsOnParseWithCompletion:^(NSError *error) {
-            NSLog(@"complete!");
+        [self addUserToBoardFriendsOnParseWithCompletion:^(NSError *error) {
+            NSLog(@"added new user to board!");
         }];
         
         if ( ![self.boardFriends containsObject:self.foundFriend] ) {
@@ -192,17 +190,15 @@
 - (IBAction)addUserToBoardFriendsButtonTapped:(UIButton *)sender {
     
     // goal:
-    // add to board friends on parse - where is it adding to local array?
+    // add to board friends on parse and to local array
     // remove from allFriends local array
-    // change 'add to board' text to say 'remove from board'
-    
     
     TMBFriendsTableViewCell *tappedCell = (TMBFriendsTableViewCell*)[[sender superview] superview];
     
     NSIndexPath *selectedIP = [self.boardFriendsTableView indexPathForCell:tappedCell];
     PFUser *aFriend = self.friendsForCurrentUser[selectedIP.row];
 
-    [self addUsertoBoardFriendsOnParseWithCompletion:^(NSError *error) {
+    [self addUserToBoardFriendsOnParseWithCompletion:^(NSError *error) {
         if (!error) {
             NSLog(@"friend added to board!");
             
@@ -214,7 +210,7 @@
     [self.friendsForCurrentUser removeObject:aFriend];
     [self.boardFriends addObject:aFriend];
     
-    [self.boardFriendsTableView deleteRowsAtIndexPaths:@[selectedIP] withRowAnimation:UITableViewRowAnimationAutomatic];
+   // [self.boardFriendsTableView deleteRowsAtIndexPaths:@[selectedIP] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [self.boardFriendsTableView reloadData];
 
@@ -234,21 +230,24 @@
 }
 
 
-
+// error: [__NSArrayM objectAtIndex:]: index 3 beyond bounds [0 .. 2]
+// how to show 2 arrays in the table view?
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    PFObject *aFriend = self.friendsForCurrentUser[indexPath.row];
+    UITableViewCell *cellAsTableViewCell;
     
-    NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
-    
-    if(self.boardFriends.count > 0) {
+    if (self.boardFriends.count > 1) {
         
-    TMBFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"boardFriendsCell" forIndexPath:indexPath];
-    NSUInteger rowOfIndexPath = indexPath.row;
+    NSLog(@"cellForRowAtIndexPath boardFriendsCell: has been called with an indexPath of %@", indexPath);
+        
+    TMBFriendsTableViewCell *cell = [self.boardFriendsTableView dequeueReusableCellWithIdentifier:@"boardFriendsCell" forIndexPath:indexPath];
+    //NSUInteger rowOfIndexPath = indexPath.row;
     
     
     // setting table rows to display friends
     
-    PFObject *aFriend = self.boardFriends[rowOfIndexPath];
+    //PFObject *aFriend = self.boardFriends[rowOfIndexPath];
     NSString *firstName = aFriend[@"First_Name"];
     NSString *lastName = aFriend[@"Last_Name"];
     cell.fromUserNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
@@ -267,20 +266,22 @@
         }
     }];
 
-    return cell;
+        cellAsTableViewCell = cell;
         
     }
     
     
     else {
         
-        TMBFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allFriendsCell" forIndexPath:indexPath];
-        NSUInteger rowOfIndexPath = indexPath.row;
+        NSLog(@"cellForRowAtIndexPath allFriendsCell: has been called with an indexPath of %@", indexPath);
+        
+        TMBFriendsTableViewCell *cell = [self.boardFriendsTableView dequeueReusableCellWithIdentifier:@"allFriendsCell" forIndexPath:indexPath];
+        //NSUInteger rowOfIndexPath = indexPath.row;
         
         
         // setting table rows to display friends
         
-        PFObject *aFriend = self.friendsForCurrentUser[rowOfIndexPath];
+        //PFObject *aFriend = self.friendsForCurrentUser[rowOfIndexPath];
         NSString *firstName = aFriend[@"First_Name"];
         NSString *lastName = aFriend[@"Last_Name"];
         cell.fromUserNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
@@ -299,11 +300,11 @@
             }
         }];
         
-        return cell;
+        cellAsTableViewCell = cell;
 
     }
     
-    
+    return cellAsTableViewCell;
     
 }
 
@@ -311,9 +312,7 @@
 
 - (IBAction)saveNewBoardTapped:(UIButton *)sender {
     
-    
     // THIS METHOD REALLY UPDATES THE BOARD CREATED IN THE VIEWDIDLOAD
-    
     
     // if they named the board this updates the name
     NSString *boardName = self.boardNameLabel.text;
@@ -331,7 +330,7 @@
  *         PARSE CALLS       *
  *****************************/
 
-- (void)createNewBoardonParseWithCompletion:(void(^)(NSString *objectId, NSError *error))completionBlock {
+- (void)createNewBoardOnParseWithCompletion:(void(^)(NSString *objectId, NSError *error))completionBlock {
     
     self.myNewBoard = [PFObject objectWithClassName:@"Board"];
     [self.myNewBoard setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
@@ -441,9 +440,8 @@
 }
 
 
-- (void)addUsertoBoardFriendsOnParseWithCompletion:(void(^)(NSError *error))completionBlock {
+- (void)addUserToBoardFriendsOnParseWithCompletion:(void(^)(NSError *error))completionBlock {
     
-//    [self.boardFriends addObject:self.friendsForCurrentUser.lastObject];
     [self.myNewBoard addUniqueObject:self.friendsForCurrentUser.lastObject forKey:@"boardFriends"];
     [self.myNewBoard saveInBackground];
     
