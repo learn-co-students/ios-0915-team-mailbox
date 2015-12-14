@@ -42,7 +42,7 @@
 		5D03AF261C187F8400E2CDEB /* PAPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A445152D1C039D2300BDD502 /* PAPCache.m */; };
 		5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */; };
 		916A15FAAC6AF8C9D052011B /* Pods_ProjectMailbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */; };
-		A42EB5D81C19D234009A241B /* TMBFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A42EB5D81C19D234009A241B /* TMBFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */; };
 		A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */; };
 		A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */; };
 		A44515141BFE6CFB00BDD502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515131BFE6CFB00BDD502 /* Foundation.framework */; };

@@ -95,22 +95,35 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    NSLog(@"\n\n\n\nnumber of sections\n\n\n\n");
     return kNumberOfSections;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    NSLog(@"\n\n\n\nnumber of items in section: %li\n\n\n\n",(unsigned long)self.collection.count);
-    NSUInteger neededColorCells = kItemsPerPage - (self.collection.count % kItemsPerPage);
+    NSUInteger totalItems;
     
-    if(self.collection.count != 0 && neededColorCells == kItemsPerPage) {
-        neededColorCells = 0;
+    if (self.boardContent.count != 0) {
+        
+        if ((self.boardContent.count % kItemsPerPage) != 0) {
+            
+            totalItems = self.boardContent.count + (kItemsPerPage - (self.boardContent.count % kItemsPerPage));
+            
+        } else {
+            
+            totalItems = self.boardContent.count;
+        }
+        
+    } else {
+        
+        totalItems = self.collection.count;
+        
     }
     
-    return self.collection.count + neededColorCells;
+//    NSLog(@"\n\n\n\nself.boardContent.count: %li\nself.collection.count: %li\ntotalItemsForSection: %li\n\n\n\n",self.boardContent.count,self.collection.count,totalItems);
     
-//    return self.collection.count;
+    return totalItems;
+    
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     TMBBoardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
@@ -281,12 +294,13 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 -(void)imageCardViewController:(TMBImageCardViewController *)viewController passBoardIDforQuery:(NSString *)boardID
 {
-
-//    [self queryParseToUpdateCollection:boardID successBlock:^(BOOL success) {
-//        if (!success) {
-//            // error updating collection
-//        }
-//    }];
+    NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+    [self queryParseToUpdateCollection:boardID successBlock:^(BOOL success) {
+        if (!success) {
+            // error updating collection
+        }
+    }];
 }
 
 -(void)queryParseToUpdateCollection:(NSString *)boardID successBlock:(void (^)(BOOL success))completionBlock
@@ -298,14 +312,12 @@ static NSString * const reuseIdentifier = @"MediaCell";
         
         [self queryForCurrentUserBoards:^(BOOL success) {
             if (success) {
-                [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success) {
-                    if (!success) {
-                        // user has no boards
-
-                    }
-                }];
+                
+                [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success){ }];
+                
             } else {
                 
+                // user has no boards or error occurred
                 completionBlock(NO);
             }
         }];
@@ -338,36 +350,62 @@ static NSString * const reuseIdentifier = @"MediaCell";
                             
                         }
                         
-                        NSUInteger numberOfDummyCells = kItemsPerPage - (self.boardContent.count % kItemsPerPage);
+                        NSLog(@"\n\n\nself.boardContent.count: %li\n\n\n",self.boardContent.count);
+                        
+                        if (self.boardContent.count > kItemsPerPage && self.boardContent.count > self.collection.count) {
+                            
+                            NSUInteger totalItems;
+                            NSUInteger numberOfDummyItemsForUpdate;
+                            
+                            if ((self.boardContent.count % 20) == 0) {
+                                totalItems = self.boardContent.count;
+                            } else {
+                                totalItems = self.boardContent.count + (kItemsPerPage - (self.boardContent.count % kItemsPerPage));
+                            }
+                            numberOfDummyItemsForUpdate = totalItems - self.collection.count;
+                            
+                           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            
+                                NSLog(@"\n\n\n\nmainQueue pre build self.collection.count: %li\n\n\n\n",self.collection.count);
+
+                                    for (int i = 0; i < numberOfDummyItemsForUpdate; i++) {
+                                        [self.collection addObject:[UIImage imageNamed:@"placeholderForBoardCell"]];
+                                    }
+                                    [self.collectionView reloadData];
+
+                               NSLog(@"\n\n\n\nmainQueue self.collection.count: %li\n\n\n\n",self.collection.count);
+                                
+                            }];
+                        
+                        }
                         
                         NSOperationQueue *dataQueue = [[NSOperationQueue alloc] init];
                         [dataQueue addOperationWithBlock:^{
-                            
-                            [self.collection removeAllObjects];
                             
                             for (PFFile *imageFile in self.boardContent) {
                                 
                                 NSData *data = [imageFile getData];
                                 UIImage *image = [UIImage imageWithData:data];
                                 NSLog(@"image: %@",image);
+                                NSUInteger pfFileIndex = [self.boardContent indexOfObject:imageFile];
                                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                     
-                                    [self.collection addObject:image];
-                                    NSUInteger imageFileIndex = [self.collection indexOfObject:image];
-                                    if (imageFileIndex < kItemsPerPage){
+                                    [self.collection replaceObjectAtIndex:pfFileIndex withObject:image];
+                                    
+                                    if (pfFileIndex == 0){
+                                    
+                                        [self.collectionView reloadData];
                                         
-                                        NSIndexPath *ip = [NSIndexPath indexPathForItem:imageFileIndex inSection:0];
+                                    } else if (pfFileIndex < kItemsPerPage) {
+                                        
+                                        NSIndexPath *ip = [NSIndexPath indexPathForItem:pfFileIndex inSection:0];
                                         [self.collectionView reloadItemsAtIndexPaths:@[ip]];
                                         
-                                    }
-                                    
-                                    if (self.boardContent.count == self.collection.count) {
+                                    } else if (self.boardContent.count == pfFileIndex + 1) {
                                         
-                                        [self.boardContent removeAllObjects];
-                                        for (int i = 0; i < numberOfDummyCells; i++) {
-                                            [self.collection addObject:[UIImage imageNamed:@"placeholderForBoardCell"]];
-                                        }
+                                        
                                         [self.collectionView reloadData];
+                                        [self.boardContent removeAllObjects];
                                         completionBlock(YES);
                                         
                                     }
@@ -376,6 +414,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
                             }
                             
                         }];
+                        
                         
                     } else {
                         
