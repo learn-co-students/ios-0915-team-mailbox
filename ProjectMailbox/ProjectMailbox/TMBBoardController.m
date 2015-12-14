@@ -58,11 +58,11 @@ static NSString * const reuseIdentifier = @"MediaCell";
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
     
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.tintColor = [UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0];
-    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-    [self.collectionView addSubview:self.refreshControl];
-    self.collectionView.alwaysBounceVertical = YES;
+//    self.refreshControl = [[UIRefreshControl alloc] init];
+//    self.refreshControl.tintColor = [UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0];
+//    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+//    [self.collectionView addSubview:self.refreshControl];
+//    self.collectionView.alwaysBounceVertical = YES;
     
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
@@ -70,8 +70,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     self.collection = [NSMutableArray new];
     self.boardContent = [NSMutableArray new];
-    
     [self buildThemeColorsArray];
+    [self buildEmptyCollection];
     
     [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success){
         
@@ -81,7 +81,10 @@ static NSString * const reuseIdentifier = @"MediaCell";
         }
         
     }];
+    
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -96,32 +99,51 @@ static NSString * const reuseIdentifier = @"MediaCell";
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    NSUInteger neededColorCells = kItemsPerPage - (self.collection.count % kItemsPerPage);
+    NSUInteger totalItems;
     
-    if(self.collection.count != 0 && neededColorCells == kItemsPerPage) {
-        neededColorCells = 0;
+    if (self.boardContent.count != 0) {
+        
+        if ((self.boardContent.count % kItemsPerPage) != 0) {
+            
+            totalItems = self.boardContent.count + (kItemsPerPage - (self.boardContent.count % kItemsPerPage));
+            
+        } else {
+            
+            totalItems = self.boardContent.count;
+        }
+        
+    } else {
+        
+        totalItems = self.collection.count;
+        
     }
     
-    return self.collection.count + neededColorCells;
+//    NSLog(@"\n\n\n\nself.boardContent.count: %li\nself.collection.count: %li\ntotalItemsForSection: %li\n\n\n\n",self.boardContent.count,self.collection.count,totalItems);
+    
+    return totalItems;
+    
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     TMBBoardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    if(indexPath.row < self.collection.count) {
-        cell.imageView.image = self.collection[indexPath.row];
-        cell.backgroundColor = nil;
-        
-        
-    }
-    else {
-        cell.imageView.image = nil;
-        cell.backgroundColor = [self colorForDummyCellAtRow:indexPath.row];
-    }
+    cell.imageView.image = self.collection[indexPath.row];
+    cell.backgroundColor = [self colorForDummyCellAtRow:indexPath.row];
     
     return cell;
 }
 
+
+-(void)buildEmptyCollection
+{
+    if (self.collection.count == 0) {
+        for (int i = 0; i < kItemsPerPage; i++) {
+            [self.collection addObject:[UIImage imageNamed:@"placeholderForBoardCell"]];
+        }
+    }
+    
+}
 -(UIColor *)colorForDummyCellAtRow:(NSUInteger)row
 {
     NSUInteger colorIndex = row % self.colors.count;
@@ -145,27 +167,32 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y < -110 && ![self.refreshControl isRefreshing]) {
-        [self.refreshControl beginRefreshing];
-        [self.collection removeAllObjects];
-        NSLog(@"\n\n\n\n\nself.collection:\n%@\n\n\n\n\n",self.collection);
-        [self refresh];
-        
-    }
+  
+    
+//    if (scrollView.contentOffset.x < -50 && ![self.refreshControl isRefreshing]) {
+//        NSLog(@"\n\n\n\nscrollview offset\n\n\n\n");
+//                [self.refreshControl beginRefreshing];
+//                [self.collection removeAllObjects];
+//                NSLog(@"\n\n\n\n\nself.collection:\n%@\n\n\n\n\n",self.collection);
+//                [self refresh];
+//    }
+
 }
 
 - (void)refresh
 {
     NSLog(@"entered refresh");
     
-    [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success) {
-        
-        if (success) {
-            
-            [self.refreshControl endRefreshing];
-        }
-        
-    }];
+//    [self.refreshControl endRefreshing];
+    
+//    [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success) {
+//        
+//        if (success) {
+//            
+//            [self.refreshControl endRefreshing];
+//        }
+//        
+//    }];
     
 }
 
@@ -265,9 +292,10 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 #pragma mark - queries
 
-
 -(void)imageCardViewController:(TMBImageCardViewController *)viewController passBoardIDforQuery:(NSString *)boardID
 {
+    NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     [self queryParseToUpdateCollection:boardID successBlock:^(BOOL success) {
         if (!success) {
             // error updating collection
@@ -278,20 +306,18 @@ static NSString * const reuseIdentifier = @"MediaCell";
 -(void)queryParseToUpdateCollection:(NSString *)boardID successBlock:(void (^)(BOOL success))completionBlock
 {
     
-    NSLog(@"Query parse started \n\n\n");
+    NSLog(@"\n\n\nQuery parse started\n\n\n");
     
     if ([self.boardID length] == 0) {
         
         [self queryForCurrentUserBoards:^(BOOL success) {
             if (success) {
-                [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success) {
-                    if (!success) {
-                        // user has no boards
-
-                    }
-                }];
+                
+                [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success){ }];
+                
             } else {
                 
+                // user has no boards or error occurred
                 completionBlock(NO);
             }
         }];
@@ -313,6 +339,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
             } else {
                 [contentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                     
+                    NSLog(@"\n\n\nContent query parse started\n\n\n");
+                    
                     if (!error) {
                         for (PFObject *object in objects) {
                             
@@ -322,36 +350,62 @@ static NSString * const reuseIdentifier = @"MediaCell";
                             
                         }
                         
+                        NSLog(@"\n\n\nself.boardContent.count: %li\n\n\n",self.boardContent.count);
+                        
+                        if (self.boardContent.count > kItemsPerPage && self.boardContent.count > self.collection.count) {
+                            
+                            NSUInteger totalItems;
+                            NSUInteger numberOfDummyItemsForUpdate;
+                            
+                            if ((self.boardContent.count % 20) == 0) {
+                                totalItems = self.boardContent.count;
+                            } else {
+                                totalItems = self.boardContent.count + (kItemsPerPage - (self.boardContent.count % kItemsPerPage));
+                            }
+                            numberOfDummyItemsForUpdate = totalItems - self.collection.count;
+                            
+                           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            
+                                NSLog(@"\n\n\n\nmainQueue pre build self.collection.count: %li\n\n\n\n",self.collection.count);
+
+                                    for (int i = 0; i < numberOfDummyItemsForUpdate; i++) {
+                                        [self.collection addObject:[UIImage imageNamed:@"placeholderForBoardCell"]];
+                                    }
+                                    [self.collectionView reloadData];
+
+                               NSLog(@"\n\n\n\nmainQueue self.collection.count: %li\n\n\n\n",self.collection.count);
+                                
+                            }];
+                        
+                        }
+                        
                         NSOperationQueue *dataQueue = [[NSOperationQueue alloc] init];
                         [dataQueue addOperationWithBlock:^{
-                            
-                            [self.collection removeAllObjects];
                             
                             for (PFFile *imageFile in self.boardContent) {
                                 
                                 NSData *data = [imageFile getData];
                                 UIImage *image = [UIImage imageWithData:data];
                                 NSLog(@"image: %@",image);
+                                NSUInteger pfFileIndex = [self.boardContent indexOfObject:imageFile];
                                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                     
+                                    [self.collection replaceObjectAtIndex:pfFileIndex withObject:image];
                                     
-                                    [self.collection addObject:image];
+                                    if (pfFileIndex == 0){
                                     
-                                    
-                                    
-                                    
-                                    NSUInteger imageFileIndex = [self.collection indexOfObject:image];
-                                    
-                                    if (imageFileIndex < kItemsPerPage){
-                                        NSIndexPath *ip = [NSIndexPath indexPathForItem:imageFileIndex inSection:0];
-                                        [self.collectionView reloadItemsAtIndexPaths:@[ip]];
-                                    }else{
                                         [self.collectionView reloadData];
-                                    }
-                                    NSLog(@"\n\n\nboardContent.count: %lu\ncollection.count: %lu\n\n\n",(unsigned long)self.boardContent.count,self.collection.count);
-                                    if (self.boardContent.count == self.collection.count) {
+                                        
+                                    } else if (pfFileIndex < kItemsPerPage) {
+                                        
+                                        NSIndexPath *ip = [NSIndexPath indexPathForItem:pfFileIndex inSection:0];
+                                        [self.collectionView reloadItemsAtIndexPaths:@[ip]];
+                                        
+                                    } else if (self.boardContent.count == pfFileIndex + 1) {
+                                        
+                                        
+                                        [self.collectionView reloadData];
                                         [self.boardContent removeAllObjects];
-                                        NSLog(@"\n\n\n\n\ninside IF statement\n\n\n\n");
                                         completionBlock(YES);
                                         
                                     }
@@ -359,9 +413,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                 }];
                             }
                             
-                            
-
                         }];
+                        
                         
                     } else {
                         

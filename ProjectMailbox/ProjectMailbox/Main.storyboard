@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="t6V-2z-Cyb">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -508,7 +509,7 @@
                                         <rect key="frame" x="0.0" y="28" width="520" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="owc-vk-cos" id="LQk-f9-cJk">
-                                            <rect key="frame" x="0.0" y="0.0" width="520" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="520" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1004,40 +1005,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="commentImageScreen" translatesAutoresizingMaskIntoConstraints="NO" id="fYj-hJ-8it" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1q-U6-bKL" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-R8-W4Q">
-                                        <rect key="frame" x="15" y="50" width="570" height="240"/>
+                                        <rect key="frame" x="0.0" y="43" width="600" height="287.5"/>
                                         <color key="backgroundColor" red="0.87846298649999999" green="0.89614583810000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current user name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Art-fY-T4k">
-                                        <rect key="frame" x="228" y="10" width="143" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g38-3g-nDv">
-                                        <rect key="frame" x="15" y="10" width="46" height="40"/>
-                                        <state key="normal" title="Close">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g38-3g-nDv" userLabel="Close Button">
+                                        <rect key="frame" x="10" y="0.0" width="14" height="21"/>
+                                        <state key="normal" image="commentImageCloseButton">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="closeButtonTapped:" destination="tcj-97-xQZ" eventType="touchUpInside" id="FMC-jq-MRH"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current user name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Art-fY-T4k">
+                                        <rect key="frame" x="8" y="21" width="143" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="xgb-R8-W4Q" firstAttribute="centerX" secondItem="s1q-U6-bKL" secondAttribute="centerX" id="2Xw-UU-r8z"/>
-                                    <constraint firstItem="Art-fY-T4k" firstAttribute="height" secondItem="s1q-U6-bKL" secondAttribute="height" multiplier="0.1" id="43X-pN-vZS"/>
-                                    <constraint firstItem="xgb-R8-W4Q" firstAttribute="top" secondItem="Art-fY-T4k" secondAttribute="bottom" constant="10" id="LV8-wN-wEH"/>
-                                    <constraint firstItem="Art-fY-T4k" firstAttribute="centerX" secondItem="s1q-U6-bKL" secondAttribute="centerX" id="b7L-04-cKw"/>
-                                    <constraint firstItem="xgb-R8-W4Q" firstAttribute="width" secondItem="s1q-U6-bKL" secondAttribute="width" multiplier="0.95" id="iKs-UO-RlV"/>
-                                    <constraint firstItem="xgb-R8-W4Q" firstAttribute="height" secondItem="s1q-U6-bKL" secondAttribute="height" multiplier="0.8" id="j4N-Jk-uCT"/>
-                                    <constraint firstItem="Art-fY-T4k" firstAttribute="top" secondItem="s1q-U6-bKL" secondAttribute="top" constant="10" id="q8B-CC-miQ"/>
+                                    <constraint firstItem="xgb-R8-W4Q" firstAttribute="top" secondItem="Art-fY-T4k" secondAttribute="bottom" id="LV8-wN-wEH"/>
+                                    <constraint firstItem="Art-fY-T4k" firstAttribute="top" secondItem="g38-3g-nDv" secondAttribute="bottom" id="O2T-Wm-Mjl"/>
+                                    <constraint firstItem="Art-fY-T4k" firstAttribute="leading" secondItem="s1q-U6-bKL" secondAttribute="leading" constant="8" id="Pb6-Wd-4m9"/>
+                                    <constraint firstItem="g38-3g-nDv" firstAttribute="leading" secondItem="s1q-U6-bKL" secondAttribute="leading" constant="10" id="YXJ-Dt-Kbz"/>
+                                    <constraint firstItem="xgb-R8-W4Q" firstAttribute="width" secondItem="s1q-U6-bKL" secondAttribute="width" id="iKs-UO-RlV"/>
+                                    <constraint firstItem="g38-3g-nDv" firstAttribute="top" secondItem="s1q-U6-bKL" secondAttribute="top" id="xr4-VH-HHq"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="ZKb-cK-Fi0" appends="YES" id="HXp-vm-Q4j"/>
@@ -1062,7 +1066,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.03079350443" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="MPc-8K-RKZ" firstAttribute="trailing" secondItem="yQZ-yr-67W" secondAttribute="trailing" constant="-8" id="8UG-M2-ctw"/>
                                             <constraint firstItem="wfT-bH-djy" firstAttribute="width" secondItem="yQZ-yr-67W" secondAttribute="width" multiplier="0.85" id="OXc-oZ-wmY"/>
@@ -1070,38 +1074,43 @@
                                             <constraint firstItem="wfT-bH-djy" firstAttribute="centerY" secondItem="yQZ-yr-67W" secondAttribute="centerY" id="wmY-uB-Mj4"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-QT-xXD">
-                                        <rect key="frame" x="0.0" y="-8" width="600" height="264"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-QT-xXD">
+                                        <rect key="frame" x="0.0" y="-7" width="600" height="264"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" id="4el-Oo-qVK" customClass="TMBTableViewCommentCellTableViewCell">
                                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4el-Oo-qVK" id="QiW-Tz-0aA">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwp-nM-IvU">
-                                                            <rect key="frame" x="75" y="0.0" width="187" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i2c-rV-T6v" userLabel="User Profile Image">
+                                                            <rect key="frame" x="18" y="0.0" width="42" height="40"/>
+                                                            <color key="backgroundColor" red="0.71151400180000002" green="1" blue="0.94032241640000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9t-Fs-Ix2">
+                                                            <rect key="frame" x="70" y="8" width="506" height="28"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2c-rV-T6v" userLabel="User Profile Image">
-                                                            <rect key="frame" x="18" y="0.0" width="40" height="40"/>
-                                                            <color key="backgroundColor" red="0.71151400180000002" green="1" blue="0.94032241640000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9t-Fs-Ix2">
-                                                            <rect key="frame" x="75" y="15" width="517" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="i2c-rV-T6v" firstAttribute="width" secondItem="QiW-Tz-0aA" secondAttribute="width" multiplier="0.07" id="4Id-ld-tM5"/>
+                                                        <constraint firstItem="T9t-Fs-Ix2" firstAttribute="trailing" secondItem="QiW-Tz-0aA" secondAttribute="trailingMargin" constant="-16" id="AmN-ed-p9B"/>
+                                                        <constraint firstItem="i2c-rV-T6v" firstAttribute="top" secondItem="QiW-Tz-0aA" secondAttribute="topMargin" constant="-8" id="PEo-RM-xXR"/>
+                                                        <constraint firstItem="T9t-Fs-Ix2" firstAttribute="leading" secondItem="i2c-rV-T6v" secondAttribute="trailing" constant="10" id="c59-KG-ewg"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="T9t-Fs-Ix2" secondAttribute="bottom" id="c66-rS-gjA"/>
+                                                        <constraint firstItem="i2c-rV-T6v" firstAttribute="leading" secondItem="QiW-Tz-0aA" secondAttribute="leadingMargin" constant="10" id="ld9-u5-HKz"/>
+                                                        <constraint firstItem="T9t-Fs-Ix2" firstAttribute="top" secondItem="QiW-Tz-0aA" secondAttribute="topMargin" id="spY-EQ-l2u"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="i2c-rV-T6v" secondAttribute="height" multiplier="15:1" id="4QM-LP-IQK"/>
+                                                </constraints>
                                                 <connections>
-                                                    <outlet property="fromUserNameLabel" destination="jwp-nM-IvU" id="kyR-9n-8DJ"/>
                                                     <outlet property="userCommentLabel" destination="T9t-Fs-Ix2" id="UgC-Fd-txE"/>
                                                     <outlet property="userProfileImage" destination="i2c-rV-T6v" id="fiO-Ie-0Qp"/>
                                                 </connections>
@@ -1110,7 +1119,7 @@
                                         <sections/>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="yQZ-yr-67W" firstAttribute="centerX" secondItem="JwH-BN-dN9" secondAttribute="centerX" id="1O2-VQ-rgS"/>
@@ -1132,7 +1141,14 @@
                             <constraint firstItem="SZZ-yo-myL" firstAttribute="top" secondItem="JwH-BN-dN9" secondAttribute="bottom" id="LEK-hX-6Wc"/>
                             <constraint firstItem="JwH-BN-dN9" firstAttribute="height" secondItem="Nba-Hl-2eC" secondAttribute="height" multiplier="0.5" id="Nvv-nh-Hu4"/>
                             <constraint firstItem="s1q-U6-bKL" firstAttribute="centerX" secondItem="Nba-Hl-2eC" secondAttribute="centerX" id="P7B-Yd-rXE"/>
+                            <constraint firstItem="fYj-hJ-8it" firstAttribute="centerY" secondItem="Nba-Hl-2eC" secondAttribute="centerY" id="Pu6-UI-PaC"/>
+                            <constraint firstItem="xgb-R8-W4Q" firstAttribute="height" secondItem="Nba-Hl-2eC" secondAttribute="height" multiplier="0.479158" id="UFJ-9I-eVT"/>
+                            <constraint firstItem="g38-3g-nDv" firstAttribute="height" secondItem="Nba-Hl-2eC" secondAttribute="height" multiplier="0.0348641" id="UQf-Jy-Jss"/>
+                            <constraint firstItem="fYj-hJ-8it" firstAttribute="centerX" secondItem="Nba-Hl-2eC" secondAttribute="centerX" id="YHk-Eh-93x"/>
+                            <constraint firstItem="fYj-hJ-8it" firstAttribute="width" secondItem="Nba-Hl-2eC" secondAttribute="width" id="Ye9-kS-tdT"/>
                             <constraint firstItem="s1q-U6-bKL" firstAttribute="height" secondItem="Nba-Hl-2eC" secondAttribute="height" multiplier="0.5" id="f4G-3U-Sec"/>
+                            <constraint firstItem="Art-fY-T4k" firstAttribute="height" secondItem="Nba-Hl-2eC" secondAttribute="height" multiplier="0.0371331" id="gCs-Ye-T6O"/>
+                            <constraint firstItem="fYj-hJ-8it" firstAttribute="height" secondItem="Nba-Hl-2eC" secondAttribute="height" id="l6S-JN-PPU"/>
                             <constraint firstItem="JwH-BN-dN9" firstAttribute="top" secondItem="s1q-U6-bKL" secondAttribute="bottom" id="ndq-cC-7v9"/>
                             <constraint firstItem="s1q-U6-bKL" firstAttribute="width" secondItem="Nba-Hl-2eC" secondAttribute="width" id="sEa-fr-IdV"/>
                         </constraints>
@@ -1159,6 +1175,8 @@
     </scenes>
     <resources>
         <image name="close-btn" width="28" height="28"/>
+        <image name="commentImageCloseButton" width="14" height="14"/>
+        <image name="commentImageScreen" width="1242" height="2208"/>
         <image name="launchScreen-1" width="410" height="729"/>
         <image name="loginSmallButton" width="143" height="46"/>
         <image name="sideMenuScreen" width="410" height="729"/>

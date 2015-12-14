@@ -56,7 +56,16 @@
     self.commentsTableView.dataSource = self;
     
     [self loadDataFromParse];
+    
+    self.commentsTableView.estimatedRowHeight = 75;
+    self.commentsTableView.rowHeight = UITableViewAutomaticDimension;
 
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.commentsTableView reloadData];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -157,6 +166,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -166,9 +180,38 @@
     return numberOfComments;
 }
 
+//- (NSString *)getText
+//{
+//    return @"This is some long text that should wrap. It is multiple long sentences that may or may not have spelling and grammatical errors. Yep it should wrap quite nicely and serve as a nice example!";
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Create a reusable cell
+//    TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell"];
+//    if(cell == nil) {
+//        cell = [[TMBTableViewCommentCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentCell"];
+//        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//        cell.textLabel.numberOfLines = 0;
+//    }
+//    
+//    // Configure the cell for this indexPath
+//    cell.userCommentLabel.text = [self getText];
+//    
+//    return cell;
+//}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
+    
+    if(cell == nil) {
+        cell = [[TMBTableViewCommentCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentCell"];
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
+    }
+    
+    // Configure the cell for this indexPath
     
     NSUInteger rowOfIndexPath = indexPath.row;
     
@@ -204,6 +247,34 @@
     return cell;
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TMBTableViewCommentCellTableViewCell *cell = [[TMBTableViewCommentCellTableViewCell alloc] init];
+    
+    NSUInteger rowOfIndexPath = indexPath.row;
+    
+    // setting table rows to display comments
+    
+    PFObject *anActivity = self.activities[rowOfIndexPath];
+    cell.userCommentLabel.text = anActivity[@"content"];
+    
+    // Do the layout pass on the cell, which will calculate the frames for all the views based on the constraints
+    // (Note that the preferredMaxLayoutWidth is set on multi-line UILabels inside the -[layoutSubviews] method
+    // in the UITableViewCell subclass
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
+    
+    // Get the actual height required for the cell
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    
+    // Add an extra point to the height to account for the cell separator, which is added between the bottom
+    // of the cell's contentView and the bottom of the table view cell.
+    height += 0;
+    
+    return height;
+}
+
 
 - (IBAction)sendButtonTapped:(id)sender {
     
