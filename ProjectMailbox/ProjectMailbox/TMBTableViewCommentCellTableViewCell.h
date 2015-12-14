@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *fromUserNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userCommentLabel;
 
+
 @end

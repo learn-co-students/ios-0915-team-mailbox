@@ -24,12 +24,14 @@
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
 		5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */; };
 		5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */; };
+		552687CF1C1A1DA9008D94DE /* TMBFullImageModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552687CE1C1A1DA9008D94DE /* TMBFullImageModalViewController.m */; };
 		5585F65D1C14C7E3003478C6 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5585F65C1C14C7E3003478C6 /* libstdc++.6.0.9.tbd */; };
 		5585F65F1C14D6E5003478C6 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */; };
 		5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */; };
 		55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A7E67E1C0C93B900D18009 /* Main.storyboard */; };
 		55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */; };
 		55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6861C0E159C00D18009 /* AppViewController.m */; };
+		55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */; };
 		55D3EB131C1745E30044BEFD /* TMBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D3EB121C1745E30044BEFD /* TMBBoard.m */; };
 		5D03AF151C1785DA00E2CDEB /* TMBBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03AF101C1785DA00E2CDEB /* TMBBoardController.m */; };
 		5D03AF161C1785DA00E2CDEB /* TMBBoardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03AF121C1785DA00E2CDEB /* TMBBoardLayout.m */; };
@@ -39,7 +41,9 @@
 		5D03AF241C187E3900E2CDEB /* TMBMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */; };
 		5D03AF251C187E5C00E2CDEB /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; };
 		5D03AF261C187F8400E2CDEB /* PAPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A445152D1C039D2300BDD502 /* PAPCache.m */; };
+		5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */; };
 		916A15FAAC6AF8C9D052011B /* Pods_ProjectMailbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */; };
+		A42EB5D81C19D234009A241B /* TMBFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */; };
 		A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */; };
 		A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */; };
 		A44515141BFE6CFB00BDD502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515131BFE6CFB00BDD502 /* Foundation.framework */; };
@@ -181,6 +185,8 @@
 		5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSideMenuViewController.m; sourceTree = "<group>"; };
 		5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageContentViewController.h; sourceTree = "<group>"; };
 		5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMainPageContentViewController.m; sourceTree = "<group>"; };
+		552687CD1C1A1DA9008D94DE /* TMBFullImageModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFullImageModalViewController.h; sourceTree = "<group>"; };
+		552687CE1C1A1DA9008D94DE /* TMBFullImageModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFullImageModalViewController.m; sourceTree = "<group>"; };
 		5585F6481C14C563003478C6 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		5585F64A1C14C5B6003478C6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		5585F64C1C14C5BE003478C6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -201,6 +207,8 @@
 		55A7E6851C0E159C00D18009 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
 		55A7E6861C0E159C00D18009 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
 		55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProjectMailbox-Bridging-Header.h"; sourceTree = "<group>"; };
+		55C6AE1D1C1B2DED00FD8A73 /* TMBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBCommentViewController.h; sourceTree = "<group>"; };
+		55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBCommentViewController.m; sourceTree = "<group>"; };
 		55D3EB101C17416C0044BEFD /* TMBSpotifyShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TMBSpotifyShareExtension.entitlements; sourceTree = "<group>"; };
 		55D3EB111C1745E30044BEFD /* TMBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBBoard.h; sourceTree = "<group>"; };
 		55D3EB121C1745E30044BEFD /* TMBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBBoard.m; sourceTree = "<group>"; };
@@ -216,9 +224,13 @@
 		5D03AF1A1C18610600E2CDEB /* TMBSharedBoardID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSharedBoardID.m; sourceTree = "<group>"; };
 		5D03AF201C187B1600E2CDEB /* TMBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBConstants.h; sourceTree = "<group>"; };
 		5D03AF211C187B1600E2CDEB /* TMBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBConstants.m; sourceTree = "<group>"; };
+		5D8E30381C1DE8EF00610042 /* TMBCustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBCustomNavigationBar.h; sourceTree = "<group>"; };
+		5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBCustomNavigationBar.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
 		9DDC310C866ED76301EDCC60 /* Pods-TMBSpotifyShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMBSpotifyShareExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMBSpotifyShareExtension/Pods-TMBSpotifyShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 		A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.debug.xcconfig"; sourceTree = "<group>"; };
+		A42EB5D61C19D234009A241B /* TMBFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFindFriendsViewController.h; sourceTree = "<group>"; };
+		A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFindFriendsViewController.m; sourceTree = "<group>"; };
 		A445150E1BFE521400BDD502 /* TMBTextCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCardViewController.h; sourceTree = "<group>"; };
 		A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCardViewController.m; sourceTree = "<group>"; };
 		A44515111BFE525A00BDD502 /* TextCardStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TextCardStoryboard.storyboard; sourceTree = "<group>"; };
@@ -412,12 +424,14 @@
 			children = (
 				55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */,
 				559300061C0F958F0027195D /* ProjectMailbox.entitlements */,
+				5508F4B61BFB972300D02E15 /* Info.plist */,
+				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
+				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
+				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
 				A445152C1C039D2300BDD502 /* PAPCache.h */,
 				A445152D1C039D2300BDD502 /* PAPCache.m */,
 				A4AC729C1C1606D1000F05C8 /* PAPUtility.h */,
 				A4AC729D1C1606D1000F05C8 /* PAPUtility.m */,
-				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
-				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
 				5508F4A51BFB972300D02E15 /* AppDelegate.h */,
 				5508F4A61BFB972300D02E15 /* AppDelegate.m */,
 				55EE00711C0BB94B00C46162 /* TMBMainPageViewController.h */,
@@ -428,7 +442,10 @@
 				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
 				5D03AF201C187B1600E2CDEB /* TMBConstants.h */,
 				5D03AF211C187B1600E2CDEB /* TMBConstants.m */,
+				55C6AE1D1C1B2DED00FD8A73 /* TMBCommentViewController.h */,
+				55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */,
 				5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */,
+				5D03AF1A1C18610600E2CDEB /* TMBSharedBoardID.m */,
 				5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */,
 				5508F4A81BFB972300D02E15 /* ViewController.h */,
 				5508F4A91BFB972300D02E15 /* ViewController.m */,
@@ -438,13 +455,12 @@
 				55D3EB121C1745E30044BEFD /* TMBBoard.m */,
 				5508F4DC1BFBC22300D02E15 /* TMBUser.h */,
 				5508F4DD1BFBC22300D02E15 /* TMBUser.m */,
+				A42EB5D51C18C9E8009A241B /* Create New Board */,
 				A4AC727F1C0E7F9F000F05C8 /* Phone Contacts */,
 				55EE00751C0BDE4900C46162 /* Login */,
 				A445151E1BFFA66900BDD502 /* Post Image */,
 				A445151F1BFFA67E00BDD502 /* Post Comment */,
 				55EE00741C0BDE1600C46162 /* Doodle */,
-				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
-				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
 				5508F4A21BFB972300D02E15 /* Supporting Files */,
 			);
@@ -521,6 +537,8 @@
 		5D03AF181C1785DF00E2CDEB /* Board */ = {
 			isa = PBXGroup;
 			children = (
+				5D8E30381C1DE8EF00610042 /* TMBCustomNavigationBar.h */,
+				5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */,
 				5D03AF0F1C1785DA00E2CDEB /* TMBBoardController.h */,
 				5D03AF101C1785DA00E2CDEB /* TMBBoardController.m */,
 				5D03AF111C1785DA00E2CDEB /* TMBBoardLayout.h */,
@@ -535,7 +553,6 @@
 			isa = PBXGroup;
 			children = (
 				5D03AF191C18610600E2CDEB /* TMBSharedBoardID.h */,
-				5D03AF1A1C18610600E2CDEB /* TMBSharedBoardID.m */,
 			);
 			name = BoardID;
 			sourceTree = "<group>";
@@ -588,6 +605,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A42EB5D51C18C9E8009A241B /* Create New Board */ = {
+			isa = PBXGroup;
+			children = (
+				A42EB5D61C19D234009A241B /* TMBFindFriendsViewController.h */,
+				A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */,
+				EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */,
+				EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */,
+				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
+				EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */,
+				EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */,
+			);
+			name = "Create New Board";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		A445151E1BFFA66900BDD502 /* Post Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,6 +629,8 @@
 				A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */,
 				A4AC727C1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.h */,
 				A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */,
+				552687CD1C1A1DA9008D94DE /* TMBFullImageModalViewController.h */,
+				552687CE1C1A1DA9008D94DE /* TMBFullImageModalViewController.m */,
 				A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */,
 			);
 			name = "Post Image";
@@ -644,11 +678,6 @@
 				EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */,
 				EACDA5CF1C175E6C0031268F /* SpotifyPlayerManager.h */,
 				EACDA5D01C175E6C0031268F /* SpotifyPlayerManager.m */,
-				EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */,
-				EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */,
-				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
-				EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */,
-				EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */,
 			);
 			name = "Spotify Feature";
 			sourceTree = "<group>";
@@ -962,16 +991,19 @@
 				5D03AF251C187E5C00E2CDEB /* TMBImageView.m in Sources */,
 				5D03AF241C187E3900E2CDEB /* TMBMainPageViewController.m in Sources */,
 				5D03AF231C187DCC00E2CDEB /* TMBConstants.m in Sources */,
+				A42EB5D81C19D234009A241B /* TMBFindFriendsViewController.m in Sources */,
 				EACDA5CE1C1620F60031268F /* SpotifyTrackView2.m in Sources */,
 				5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */,
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
 				EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */,
 				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
+				55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5D03AF171C1785DA00E2CDEB /* TMBBoardCell.m in Sources */,
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
 				A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */,
 				EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */,
+				5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */,
 				55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */,
 				EAB7237B1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */,
 				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
@@ -990,6 +1022,7 @@
 				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
 				5D03AF261C187F8400E2CDEB /* PAPCache.m in Sources */,
 				A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */,
+				552687CF1C1A1DA9008D94DE /* TMBFullImageModalViewController.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,
 				A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */,
 				5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */,

@@ -46,10 +46,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Uber</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>uber://</string>
+				<string></string>
 			</array>
 		</dict>
 	</array>
@@ -93,7 +93,7 @@
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>AddNewBoardStoryboard</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
