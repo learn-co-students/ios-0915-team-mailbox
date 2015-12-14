@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *boardListingTableView;
 @property (nonatomic) NSInteger boardCount;
 @property (strong, nonatomic) NSMutableArray *userBoards;
+@property (strong, nonatomic) NSString *boardID;
 
 @end
 
@@ -25,11 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
     self.profileImage.clipsToBounds = YES;
-    
+    self.boardListingTableView.delegate = self;
+    self.boardListingTableView.dataSource = self;
     self.usernameField.text = [[PFUser currentUser] objectForKey:@"First_Name"];
     
     PFFile *profilePictureObject = [[PFUser currentUser] objectForKey:@"profileImage"];
@@ -46,9 +47,44 @@
         }];
     }
     
-    [self queryForBoardsWithUser];
+    self.userBoards = [NSMutableArray new];
+
+    [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
+        
+        for (PFObject *object in boardsCreatedByUser) {
+            
+            [self.userBoards addObject:object];
+            [self.boardListingTableView reloadData];
+            
+            NSString *boardName = object[@"boardName"];
+            NSDate *updatedAt = [object updatedAt];
+//            self.boardID = object.objectId;
+//            
+//            NSLog(@"========== BOARD OBJECT IS: %@", object);
+//            NSLog(@"========== BOARD OBJECT IDs ARE: %@", self.boardID);
+            NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+        }
+    }];
+    
+    [self queryAllBoardsContainingUser:[PFUser currentUser] completion:^(NSArray *boardsContainingUser, NSError *error) {
+        
+        for (PFObject *object in boardsContainingUser) {
+            
+            [self.userBoards addObject:object];
+            [self.boardListingTableView reloadData];
+
+            NSString *boardName = object[@"boardName"];
+            NSDate *updatedAt = [object updatedAt];
+//            self.boardID = object.objectId;
+//            
+//            NSLog(@"========== BOARD OBJECT IDs ARE: %@", self.boardID);
+            NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+        }
+    }];
+
     
 }
+
 
 - (IBAction)logoutButtonTapped:(id)sender {
     
@@ -58,36 +94,6 @@
     
 }
 
-- (void)queryForBoardsWithUser {
-    
-    self.userBoards = [NSMutableArray new];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Board"];
-    [query whereKey:@"users" equalTo:PFUser.currentUser];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        
-        NSLog(@"The objects is : %@", objects);
-        
-        for (PFObject *thing in objects) {
-            
-            TMBBoard *newboard = [TMBBoard newTMBoardFromPFObject:thing];
-            
-            
-            [self.userBoards addObject:newboard];
-        
-        }
-        
-        NSSortDescriptor *byDate = [NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:YES];
-        [self.userBoards sortUsingDescriptors:@[byDate]];
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.boardListingTableView reloadData];
-        }];
-        
-    }];
-    
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -97,17 +103,40 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell" forIndexPath:indexPath];
     
-    TMBBoard *boards = self.userBoards[indexPath.row];
+    PFObject *board = self.userBoards[indexPath.row];
     
-    cell.textLabel.text = boards.boardName;
+    cell.textLabel.text = board[@"boardName"];
+    
+    self.boardID = board.objectId;
+    NSLog(@"OOOOOOOOOOOOOOBJECT IDS %@", self.boardID);
     
     return cell;
-    
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)queryAllBoardsCreatedByUser:(PFUser *)user completion:(void(^)(NSArray *boardsCreatedByUser, NSError *error))completionBlock {
+    
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"fromUser" equalTo:user];
+    
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsCreatedByUser, NSError * _Nullable error) {
+        completionBlock(boardsCreatedByUser, error);
+    }];
 }
+
+
+
+- (void)queryAllBoardsContainingUser:(PFUser *)user completion:(void(^)(NSArray *boardsContainingUser, NSError *error))completionBlock {
+    
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"boardFriends" equalTo:PFUser.currentUser];
+    
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsContainingUser, NSError * _Nullable error) {
+        completionBlock(boardsContainingUser, error);
+    }];
+}
+
+
 
 @end
