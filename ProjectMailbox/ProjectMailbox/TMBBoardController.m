@@ -303,8 +303,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                         [view dismissViewControllerAnimated:YES completion:nil];
                                  
                              }];
-       NSLogPageSize()      4[k
-    f]p2l4tUIAlertAction* cancel = [UIAlertAction
+//       NSLogPageSize()
+    UIAlertAction* cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleCancel
                              handler:^(UIAlertAction * action)
