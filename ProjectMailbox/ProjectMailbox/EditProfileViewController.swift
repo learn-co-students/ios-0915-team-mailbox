@@ -26,7 +26,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
         profileImageView.clipsToBounds = true
-        profileImageView.contentMode = UIImage
+        profileImageView.contentMode = .ScaleAspectFit
         
     }
     
