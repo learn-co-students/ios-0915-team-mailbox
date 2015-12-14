@@ -292,6 +292,12 @@
     
 }
 
+- (IBAction)screenTapped:(id)sender {
+    
+    self.boardNameLabel.resignFirstResponder;
+    self.searchField.resignFirstResponder;
+    
+}
 
 
 - (IBAction)saveNewBoardTapped:(UIButton *)sender {
@@ -311,7 +317,11 @@
 - (IBAction)cancelButtonTapped:(UIBarButtonItem *)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
     [self.myNewBoard deleteEventually];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 
@@ -456,6 +466,16 @@
     NSLog(@" ..... AFTER PARSE CALL ..... ");
 }
 
+- (IBAction)closeButtonTapped:(id)sender {
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+    [self.myNewBoard deleteEventually];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
 
 
 //- (void)queryBoardFriendsWithCompletion:(void(^)(NSMutableArray *boardUsers, NSError *error))completionBlock {
