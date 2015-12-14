@@ -222,9 +222,9 @@
     NSLog(@"anActivity is %@", anActivity);
     
     // user label displays fromUser name
-    PFObject *aFromUser = anActivity[@"fromUser"];
-    NSString *firstName = aFromUser[@"First_Name"];
-    cell.fromUserNameLabel.text = firstName;
+//    PFObject *aFromUser = anActivity[@"fromUser"];
+//    NSString *firstName = aFromUser[@"First_Name"];
+//    cell.fromUserNameLabel.text = firstName;
     
     // get profile image
     cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.size.width / 2;
