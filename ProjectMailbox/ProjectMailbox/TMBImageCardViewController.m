@@ -182,6 +182,7 @@
     
 }
 
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -330,8 +331,6 @@
 
     
 }
-
-
 
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
     
