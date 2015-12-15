@@ -196,6 +196,7 @@
             UIImage *image = [UIImage imageWithData:data];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 cell.userProfileImage.image = image;
+                cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.size.width / 2;
     }];
         }
         
