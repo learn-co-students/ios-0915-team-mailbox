@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -65,28 +65,30 @@
                                     <constraint firstItem="yO6-1S-WsU" firstAttribute="centerY" secondItem="o5h-VB-XTY" secondAttribute="centerY" id="zGs-n7-lDd"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-Po-5yn">
-                                <rect key="frame" x="0.0" y="157" width="414" height="352"/>
-                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="iFK-PZ-1UR">
+                                <rect key="frame" x="9" y="42" width="396" height="105"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKo-D4-bZ6" userLabel="Bottom Buttons">
                                 <rect key="frame" x="2" y="511" width="410" height="225"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageChooseButton" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-pW-VCv">
-                                        <rect key="frame" x="0.0" y="0.0" width="204" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="32.5"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evT-Xb-L9s">
-                                        <rect key="frame" x="0.0" y="0.0" width="204" height="33"/>
-                                        <connections>
-                                            <action selector="chosePhotoButtonTapped:" destination="pbY-mX-lZy" eventType="touchUpInside" id="rmq-7x-Rcp"/>
-                                        </connections>
-                                    </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageTakePhotoButton" translatesAutoresizingMaskIntoConstraints="NO" id="m0k-4q-UyJ">
-                                        <rect key="frame" x="206" y="0.0" width="204" height="33"/>
+                                        <rect key="frame" x="206" y="0.0" width="204" height="32.5"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHS-ou-lit">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHS-ou-lit" userLabel="Take Photo Button">
                                         <rect key="frame" x="206" y="0.0" width="204" height="33"/>
                                         <connections>
                                             <action selector="takePhotoButtonTapped:" destination="pbY-mX-lZy" eventType="touchUpInside" id="67O-0u-Bvc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evT-Xb-L9s" userLabel="Choose Image Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="33"/>
+                                        <connections>
+                                            <action selector="chosePhotoButtonTapped:" destination="pbY-mX-lZy" eventType="touchUpInside" id="rmq-7x-Rcp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -101,11 +103,9 @@
                                     <constraint firstItem="m0k-4q-UyJ" firstAttribute="width" secondItem="pKo-D4-bZ6" secondAttribute="width" multiplier="0.4976" id="qUS-ow-czN"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="iFK-PZ-1UR">
-                                <rect key="frame" x="9" y="43" width="396" height="105"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-Po-5yn">
+                                <rect key="frame" x="0.0" y="157" width="414" height="352"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -113,7 +113,7 @@
                             <constraint firstItem="pKo-D4-bZ6" firstAttribute="centerY" secondItem="x3N-xp-X8b" secondAttribute="centerY" multiplier="1.695" id="210-5z-0Tc"/>
                             <constraint firstItem="o5h-VB-XTY" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" multiplier="0.956" id="4dn-NZ-8Bx"/>
                             <constraint firstItem="HLy-fd-chi" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" id="4x7-R0-VYb"/>
-                            <constraint firstItem="4aY-Po-5yn" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.4782" id="6E6-TS-GBd"/>
+                            <constraint firstItem="4aY-Po-5yn" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.4783" id="6E6-TS-GBd"/>
                             <constraint firstItem="iFK-PZ-1UR" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.1427" id="AHZ-fH-lKo"/>
                             <constraint firstItem="HLy-fd-chi" firstAttribute="centerY" secondItem="x3N-xp-X8b" secondAttribute="centerY" id="Bsm-Aw-x9E"/>
                             <constraint firstItem="o5h-VB-XTY" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.019" id="CCh-yV-sNB"/>
@@ -121,8 +121,10 @@
                             <constraint firstItem="4aY-Po-5yn" firstAttribute="top" secondItem="LPz-gU-uGZ" secondAttribute="bottom" multiplier="7.85" id="Jn7-HC-QEp"/>
                             <constraint firstItem="4aY-Po-5yn" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" id="PQs-7m-4cB"/>
                             <constraint firstItem="HLy-fd-chi" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" id="Qe0-Zk-JBY"/>
-                            <constraint firstItem="pKo-D4-bZ6" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.3057" id="Sg0-uF-aCp"/>
+                            <constraint firstItem="pKo-D4-bZ6" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.3058" id="Sg0-uF-aCp"/>
+                            <constraint firstItem="4aY-Po-5yn" firstAttribute="bottom" secondItem="pKo-D4-bZ6" secondAttribute="top" constant="-2" id="ag7-ug-n3V"/>
                             <constraint firstItem="pKo-D4-bZ6" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" multiplier="0.956" constant="14" id="clz-Aw-Lip"/>
+                            <constraint firstItem="pKo-D4-bZ6" firstAttribute="bottom" secondItem="gN7-GY-PaH" secondAttribute="top" id="geB-cb-z3Z"/>
                             <constraint firstItem="o5h-VB-XTY" firstAttribute="centerY" secondItem="x3N-xp-X8b" secondAttribute="centerY" multiplier="0.035" id="gk0-aK-ug2"/>
                             <constraint firstItem="4aY-Po-5yn" firstAttribute="centerX" secondItem="x3N-xp-X8b" secondAttribute="centerX" id="l7C-kG-Gn9"/>
                             <constraint firstItem="o5h-VB-XTY" firstAttribute="centerX" secondItem="x3N-xp-X8b" secondAttribute="centerX" id="nJ3-0B-qne"/>
@@ -130,6 +132,12 @@
                             <constraint firstItem="iFK-PZ-1UR" firstAttribute="centerX" secondItem="x3N-xp-X8b" secondAttribute="centerX" id="w7x-dY-TWv"/>
                             <constraint firstItem="iFK-PZ-1UR" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" multiplier="0.956" id="yIc-7N-08f"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jn7-HC-QEp"/>
+                                <exclude reference="210-5z-0Tc"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
