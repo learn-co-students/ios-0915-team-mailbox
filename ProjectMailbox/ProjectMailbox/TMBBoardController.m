@@ -225,7 +225,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  TMBImageCardViewController *pictureVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBImageCardViewController"];
+                                  UIStoryboard *imageCardStoryboard = [UIStoryboard storyboardWithName:@"ImageCard" bundle:nil];
+                                  TMBImageCardViewController *pictureVC = [imageCardStoryboard instantiateViewControllerWithIdentifier:@"TMBImageCardViewController"];
                                   pictureVC.delegate = self;
                                   [self presentViewController:pictureVC animated:YES completion:nil];
                                   [view dismissViewControllerAnimated:YES completion:nil];
@@ -334,6 +335,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
         [contentQuery orderByDescending:@"updatedAt"];
         
         [contentQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+            
+
             if (number == 0) {
                 return;
             } else {
@@ -344,9 +347,13 @@ static NSString * const reuseIdentifier = @"MediaCell";
                     if (!error) {
                         for (PFObject *object in objects) {
                             
+                            NSLog(@"\n\n\n\ngetting image file\n\n\n\n");
                             PFFile *imageFile = object[@"thumbnail"];
-                            [self.boardContent addObject:imageFile];
-                            [self.pfObjects addObject:object];
+                            if (imageFile) {
+                                [self.boardContent addObject:imageFile];
+                                [self.pfObjects addObject:object];
+                            }
+                            
                             
                         }
                         

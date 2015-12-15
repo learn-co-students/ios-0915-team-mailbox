@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="1897" y="411"/>
         </scene>
-        <!--Image Card View Controller-->
+        <!--View Controller-->
         <scene sceneID="dnj-QP-HTr">
             <objects>
-                <viewController storyboardIdentifier="TMBImageCardViewController" id="tly-0G-WiV" customClass="TMBImageCardViewController" sceneMemberID="viewController">
+                <viewController id="tly-0G-WiV" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cNm-5H-dbH"/>
                         <viewControllerLayoutGuide type="bottom" id="Luv-eN-oTH"/>
