@@ -137,40 +137,9 @@
     return numberOfComments;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (IBAction)imageViewTapped:(id)sender {
     
-    [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
-- (void)keyboardWillShowOrHide:(NSNotification *)notification {
-    
-    CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    if ([notification.name isEqualToString:UIKeyboardWillHideNotification]) {
-        finalFrame = CGRectZero;
-    }
-    
-    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    [UIView animateWithDuration:duration animations:^{
-        [UIView setAnimationCurve:curve];
-        self.commentViewBottomConstraint.constant = finalFrame.size.height + 0;
-        [self.view layoutIfNeeded];
-    }];
 }
 
 - (IBAction)closeButtonTapped:(id)sender {
@@ -413,38 +382,9 @@
 
 - (IBAction)imageTapped:(id)sender {
     
-    
+    [self.textView endEditing:YES];
     
 }
 
-- (IBAction)sendButtonTapped:(id)sender {
-    
-    NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
-    
-    PFFile *test = [PFFile fileWithData:imageData];
-    
-    if (self.commentField.text != 0) {
-        PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
-        
-        [newCommentObject setObject:self.commentField.text forKey:@"content"];
-        [newCommentObject setObject:[PFUser currentUser] forKey:@"fromUser"];
-        [newCommentObject setObject:self.testing forKey:@"photo"];
-//        [newCommentObject setObject:s forKey:@"toUser"];
-        [newCommentObject setObject:@"comment" forKey:@"type"];
-        
-        [newCommentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                NSLog(@"Saved");
-            }
-            else{
-                // Error
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];
-    }
-    
-    
-
-}
 
 @end
