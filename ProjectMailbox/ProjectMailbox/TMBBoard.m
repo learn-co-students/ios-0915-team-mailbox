@@ -20,7 +20,7 @@
     newBoard.updatedAt = [parseObject updatedAt];
     
     return newBoard;
-    
 }
+
 
 @end

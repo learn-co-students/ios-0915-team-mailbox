@@ -1,3 +1,4 @@
+
 //
 //  RWTCollectionViewController.m
 //  RWPinterest
@@ -277,6 +278,19 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
 }
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
+    NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
+    self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
+    if (selectedIndexPath.row < self.pfObjects.count){
+        return YES;
+    }else{
+        NSLog(@"selected empty cell, shouldPerformSegue: NO");
+        return NO;
+    }
+}
+
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
         
     TMBCommentViewController *destVC = segue.destinationViewController;
@@ -333,7 +347,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
         PFQuery *contentQuery = [PFQuery queryWithClassName:@"Photo"];
         [contentQuery whereKey:@"board" matchesQuery:boardQuery];
         [contentQuery orderByDescending:@"updatedAt"];
-        
         [contentQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
             
 
@@ -349,12 +362,14 @@ static NSString * const reuseIdentifier = @"MediaCell";
                             
                             NSLog(@"\n\n\n\ngetting image file\n\n\n\n");
                             PFFile *imageFile = object[@"thumbnail"];
+
                             if (imageFile) {
                                 [self.boardContent addObject:imageFile];
                                 [self.pfObjects addObject:object];
                             }
                             
                             
+
                         }
                         
                         NSLog(@"\n\n\nself.boardContent.count: %li\n\n\n",self.boardContent.count);

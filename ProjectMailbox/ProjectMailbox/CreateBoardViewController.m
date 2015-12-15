@@ -39,9 +39,8 @@
     
     [super viewDidLoad];
     
-    
     NSLog(@"IN VIEW DID LOAD CREATE BOARD VC.........");
-
+    
     self.friendsForCurrentUser = [NSMutableArray new];
     self.boardFriends = [NSMutableArray new];
     
@@ -52,7 +51,7 @@
     // hiding found/notfound friends views:
     self.allFoundFriendView.hidden = YES;
     self.noUsersFoundLabel.hidden = YES;
-
+    
     [[PFUser currentUser] fetchInBackground];
     
     [self queryCurrentUserFriendsWithCompletion:^(NSMutableArray *users, NSError *error) {
@@ -60,7 +59,7 @@
         [self.boardFriendsTableView reloadData];
     }];
     
-    [self createNewBoardonParseWithCompletion:^(NSString *objectId, NSError *error) {
+    [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
         if (!error) {
             NSLog(@"NEW BOARD CREATED");
             self.myNewBoardObjectId = self.myNewBoard.objectId;
@@ -71,31 +70,33 @@
     
     // loging in this app as Inga for now
     
-//    if (![PFUser currentUser]){
-//        [PFUser logInWithUsernameInBackground:@"ingakyt@gmail.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-//            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-//                }];
-//    }
+    //    if (![PFUser currentUser]){
+    //        [PFUser logInWithUsernameInBackground:@"ingakyt@gmail.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+    //            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
+    //                }];
+    //    }
     
-    
-    
-    
-    // QUERY FOR BOARDS CONTAINING CURRENT USER:
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Board"];
-    [query whereKey:@"users" equalTo:PFUser.currentUser];   // users=boardFriends
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
         
-        for (PFObject *object in objects ) {
+        for (PFObject *object in boardsCreatedByUser) {
             
-            NSDate *test = [object updatedAt];
-//            NSLog(@" ..... THE UPDATED DATE IS %@",test);
-            }
-        }];
+            NSString *boardName = object[@"boardName"];
+            NSDate *updatedAt = [object updatedAt];
+            NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+        }
+    }];
     
+    [self queryAllBoardsContainingUser:[PFUser currentUser] completion:^(NSArray *boardsContainingUser, NSError *error) {
+        
+        for (PFObject *object in boardsContainingUser) {
     
+            NSString *boardName = object[@"boardName"];
+            NSDate *updatedAt = [object updatedAt];
+            NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+        }
+    }];
     
-    
+
 }
 
 
@@ -149,7 +150,7 @@
     }];
     
     self.searchField.text = @"";
-
+    
 }
 
 
@@ -157,20 +158,21 @@
 - (IBAction)addFriendButtonTapped:(UIButton *)sender {
     
     // add user to all user friends and to board friends simultaneously. unique add.
+    // add check if allfriends array contains this friend, then remove them from allfriends array
     
     if (self.foundFriend) {
         
         [self addUserToAllFriendsOnParse:self.foundFriend completion:^(NSArray *allFriends, NSError *error) {
-            NSLog(@"complete!");
+            NSLog(@"added new user to friends!");
             NSLog(@"%@", allFriends);
         }];
         
-        if ( ![self.friendsForCurrentUser containsObject:self.foundFriend] ) {
-            [self.friendsForCurrentUser addObject:self.foundFriend];
+        if ( [self.friendsForCurrentUser containsObject:self.foundFriend] ) {
+            [self.friendsForCurrentUser removeObject:self.foundFriend];
         }
         
-        [self addUsertoBoardFriendsOnParseWithCompletion:^(NSError *error) {
-            NSLog(@"complete!");
+        [self addUserToBoardFriendsOnParse:self.foundFriend completion:^(NSError *error) {
+            NSLog(@"added new user to board!");
         }];
         
         if ( ![self.boardFriends containsObject:self.foundFriend] ) {
@@ -179,7 +181,7 @@
         
         [self.boardFriendsTableView reloadData];
     }
-
+    
     
     // hiding found friends view:
     self.allFoundFriendView.hidden = YES;
@@ -189,20 +191,18 @@
 
 
 
-- (IBAction)addUserToBoardFriendsButtonTapped:(UIButton *)sender {
-    
-    // goal:
-    // add to board friends on parse - where is it adding to local array?
-    // remove from allFriends local array
-    // change 'add to board' text to say 'remove from board'
-    
+- (IBAction)addUserToBoardButtonTapped:(UIButton *)sender {
     
     TMBFriendsTableViewCell *tappedCell = (TMBFriendsTableViewCell*)[[sender superview] superview];
     
     NSIndexPath *selectedIP = [self.boardFriendsTableView indexPathForCell:tappedCell];
-    PFUser *aFriend = self.friendsForCurrentUser[selectedIP.row];
+    
+    NSInteger index = selectedIP.row - self.boardFriends.count;
+    
+    PFUser *aFriend = self.friendsForCurrentUser[index];
+    
+    [self addUserToBoardFriendsOnParse:aFriend completion:^(NSError *error) {
 
-    [self addUsertoBoardFriendsOnParseWithCompletion:^(NSError *error) {
         if (!error) {
             NSLog(@"friend added to board!");
             
@@ -214,10 +214,37 @@
     [self.friendsForCurrentUser removeObject:aFriend];
     [self.boardFriends addObject:aFriend];
     
-    [self.boardFriendsTableView deleteRowsAtIndexPaths:@[selectedIP] withRowAnimation:UITableViewRowAnimationAutomatic];
-    
     [self.boardFriendsTableView reloadData];
+    
+}
 
+
+
+- (IBAction)removeUserFromBoardButtonTapped:(UIButton *)sender {
+    
+    TMBFriendsTableViewCell *tappedCell = (TMBFriendsTableViewCell*)[[sender superview] superview];
+    
+    NSIndexPath *selectedIP = [self.boardFriendsTableView indexPathForCell:tappedCell];
+    
+    NSInteger index = selectedIP.row;
+    
+    PFUser *aFriend = self.boardFriends[index];
+    
+    [self removeUserFromBoardFriendsOnParse:aFriend completion:^(NSError *error) {
+        if (!error) {
+            NSLog(@"friend removed from board!");
+            
+        } else {
+            NSLog(@"friend NOT removed from to board!");
+        }
+
+    }];
+
+    [self.boardFriends removeObject:aFriend];
+    [self.friendsForCurrentUser addObject:aFriend];
+
+    [self.boardFriendsTableView reloadData];
+    
 }
 
 
@@ -235,95 +262,86 @@
 
 
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    PFObject *currentFriend;
+    TMBFriendsTableViewCell *cell;
     
-    NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
+    NSInteger index = indexPath.row;
+    NSInteger boardFriendsCount = self.boardFriends.count;
     
-    if(self.boardFriends.count > 0) {
+    if (boardFriendsCount > index) {
         
-    TMBFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"boardFriendsCell" forIndexPath:indexPath];
-    NSUInteger rowOfIndexPath = indexPath.row;
+        cell = [tableView dequeueReusableCellWithIdentifier:@"boardFriendsCell"
+                                               forIndexPath:indexPath];
+        
+        currentFriend = self.boardFriends[indexPath.row];
+
+    } else {
+        
+        NSInteger newIndex = index - boardFriendsCount;
     
+        cell = [tableView dequeueReusableCellWithIdentifier:@"allFriendsCell"
+                                               forIndexPath:indexPath];
+        
+        currentFriend = self.friendsForCurrentUser[newIndex];
+        
+    }
     
-    // setting table rows to display friends
+    NSString *firstName = currentFriend[@"First_Name"];
+    NSString *lastName = currentFriend[@"Last_Name"];
     
-    PFObject *aFriend = self.boardFriends[rowOfIndexPath];
-    NSString *firstName = aFriend[@"First_Name"];
-    NSString *lastName = aFriend[@"Last_Name"];
     cell.fromUserNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     
-    // setting user profile photo
-    
-    PFFile *imageFile = aFriend[@"profileImage"];
+    PFFile *imageFile = currentFriend[@"profileImage"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
+            
             UIImage *profileImage = [UIImage imageWithData:data];
+            cell.userProfileImage.image = [UIImage imageNamed:@"default-profile-image.jpg"];
             cell.userProfileImage.image = profileImage;
-            // puts image in a circle:
             cell.userProfileImage.contentMode = UIViewContentModeScaleAspectFill;
             cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.size.width / 2;
             cell.userProfileImage.clipsToBounds = YES;
         }
     }];
-
+    
     return cell;
-        
-    }
     
-    
-    else {
-        
-        TMBFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allFriendsCell" forIndexPath:indexPath];
-        NSUInteger rowOfIndexPath = indexPath.row;
-        
-        
-        // setting table rows to display friends
-        
-        PFObject *aFriend = self.friendsForCurrentUser[rowOfIndexPath];
-        NSString *firstName = aFriend[@"First_Name"];
-        NSString *lastName = aFriend[@"Last_Name"];
-        cell.fromUserNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-        
-        // setting user profile photo
-        
-        PFFile *imageFile = aFriend[@"profileImage"];
-        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error) {
-                UIImage *profileImage = [UIImage imageWithData:data];
-                cell.userProfileImage.image = profileImage;
-                // puts image in a circle:
-                cell.userProfileImage.contentMode = UIViewContentModeScaleAspectFill;
-                cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.size.width / 2;
-                cell.userProfileImage.clipsToBounds = YES;
-            }
-        }];
-        
-        return cell;
+}
 
-    }
+- (IBAction)screenTapped:(id)sender {
     
-    
+    self.boardNameLabel.resignFirstResponder;
+    self.searchField.resignFirstResponder;
     
 }
 
 
-
 - (IBAction)saveNewBoardTapped:(UIButton *)sender {
     
-    
     // THIS METHOD REALLY UPDATES THE BOARD CREATED IN THE VIEWDIDLOAD
-    
     
     // if they named the board this updates the name
     NSString *boardName = self.boardNameLabel.text;
     self.myNewBoard[@"boardName"] = boardName;
     
     [self.myNewBoard saveEventually];
-
+    
 }
 
 
+
+- (IBAction)cancelButtonTapped:(UIBarButtonItem *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+    [self.myNewBoard deleteEventually];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
 
 
 
@@ -331,18 +349,19 @@
  *         PARSE CALLS       *
  *****************************/
 
-- (void)createNewBoardonParseWithCompletion:(void(^)(NSString *objectId, NSError *error))completionBlock {
+- (void)createNewBoardOnParseWithCompletion:(void(^)(NSString *objectId, NSError *error))completionBlock {
     
     self.myNewBoard = [PFObject objectWithClassName:@"Board"];
     [self.myNewBoard setObject:[PFUser currentUser] forKey:kTMBBoardFromUserKey];
     self.myNewBoard[@"boardName"] = @"My Board";
     [self.myNewBoard saveEventually:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
-        completionBlock(self.myNewBoard.objectId, error);
+            completionBlock(self.myNewBoard.objectId, error);
         }
     }];
     
 }
+
 
 
 - (void)queryCurrentUserFriendsWithCompletion:(void(^)(NSMutableArray *users, NSError *error))completionBlock {
@@ -363,10 +382,11 @@
     
 }
 
-// when creating new board - it won't have any friends on it yet DUH!!!
-// passing a board, getting back board object
-- (void)queryAllFriendsOnBoard:(NSString *)boardID completion:(void(^)(NSMutableArray *boardFriends, NSError *error))completionBlock {
 
+
+// passing a board, getting back an array containing 1 board object
+- (void)queryAllFriendsOnBoard:(NSString *)boardID completion:(void(^)(NSMutableArray *boardFriends, NSError *error))completionBlock {
+    
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
     [boardQuery whereKey:@"objectId" equalTo:boardID];
     [boardQuery includeKey:@"boardFriends"];
@@ -385,24 +405,6 @@
 }
 
 
-//- (void)queryBoardFriendsWithCompletion:(void(^)(NSMutableArray *boardUsers, NSError *error))completionBlock {
-//    
-////    PFQuery *query = self.myNewBoard;
-//    PFQuery *query = [PFQuery queryWithClassName:@"Board"];
-// //   [query whereKey:@"boardFriends" equalTo:self.myNewBoard[@"allFriends"]];
-//    [query includeKey:@"boardFriends"];
-//    
-//    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-//        if (!error) {
-//            for (PFUser *eachUser in [object objectForKey:@"boardFriends"]) {
-//                [self.boardFriends addObject:eachUser];
-//            }
-//            completionBlock(self.boardFriends, error);
-//        }
-//    }];
-//    
-//}
-
 
 - (void)queryAllUsersWithUsername:(NSString *)username completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
     
@@ -417,6 +419,7 @@
 }
 
 
+
 - (void)addUserToAllFriendsOnParse:(PFUser *)user completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
     
     PFObject *newFriend = user;
@@ -427,6 +430,7 @@
     }];
     
 }
+
 
 
 - (void)removeUserFromAllFriendsOnParse:(PFUser *)user completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
@@ -441,48 +445,75 @@
 }
 
 
-- (void)addUsertoBoardFriendsOnParseWithCompletion:(void(^)(NSError *error))completionBlock {
+
+- (void)addUserToBoardFriendsOnParse:(PFObject *)user completion:(void(^)(NSError *error))completionBlock {
     
-//    [self.boardFriends addObject:self.friendsForCurrentUser.lastObject];
-    [self.myNewBoard addUniqueObject:self.friendsForCurrentUser.lastObject forKey:@"boardFriends"];
+    [self.myNewBoard addUniqueObject:user forKey:@"boardFriends"];
     [self.myNewBoard saveInBackground];
-    
 }
 
 
 
-//- (void)removeUserFromBoardFriendsOnParseWithcompletion:(void(^)(NSError *error))completionBlock {
-//    
-//    [self.myNewBoard removeObjectForKey:<#(nonnull NSString *)#>];
-//    [self.myNewBoard saveInBackground];
+- (void)removeUserFromBoardFriendsOnParse:(PFObject *)user completion:(void(^)(NSError *error))completionBlock {
+
+    [self.myNewBoard removeObject:user forKey:@"boardFriends"];
+    [self.myNewBoard saveInBackground];
+}
+
+
+
+- (void)queryAllBoardsCreatedByUser:(PFUser *)user completion:(void(^)(NSArray *boardsCreatedByUser, NSError *error))completionBlock {
+    
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"fromUser" equalTo:user];
+    
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsCreatedByUser, NSError * _Nullable error) {
+        completionBlock(boardsCreatedByUser, error);
+    }];
+}
+
+
+
+- (void)queryAllBoardsContainingUser:(PFUser *)user completion:(void(^)(NSArray *boardsContainingUser, NSError *error))completionBlock {
+    
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"boardFriends" equalTo:PFUser.currentUser];
+    
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsContainingUser, NSError * _Nullable error) {
+        completionBlock(boardsContainingUser, error);
+    }];
+}
+
+- (IBAction)closeButtonTapped:(id)sender {
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+    [self.myNewBoard deleteEventually];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
+
+
+//- (void)queryBoardFriendsWithCompletion:(void(^)(NSMutableArray *boardUsers, NSError *error))completionBlock {
+//
+////    PFQuery *query = self.myNewBoard;
+//    PFQuery *query = [PFQuery queryWithClassName:@"Board"];
+// //   [query whereKey:@"boardFriends" equalTo:self.myNewBoard[@"allFriends"]];
+//    [query includeKey:@"boardFriends"];
+//
+//    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+//        if (!error) {
+//            for (PFUser *eachUser in [object objectForKey:@"boardFriends"]) {
+//                [self.boardFriends addObject:eachUser];
+//            }
+//            completionBlock(self.boardFriends, error);
+//        }
+//    }];
+//
 //}
 
-
-
-
-- (void)queryAllBoardsForUser:(PFUser *)user completion:(void(^)(NSArray *boards, NSError *error))completionBlock {
-    
-    NSLog(@" ..... BEFORE PARSE CALL ..... ");
-    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-    [boardQuery whereKey:@"users" equalTo:user];
-    
-    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boards, NSError * _Nullable error) {
-        
-        NSLog(@" ..... INSIDE PARSE CALL: %lu boards came back",boards.count);
-
-//        for (PFObject *object in objects ) {
-        
-//            NSDate *lastUpdated = [object updatedAt];
-//            NSLog(@" ..... THE UPDATED DATE IS %@",lastUpdated);
-//        }
-        
-        completionBlock(boards, error);
-
-    }];
-    
-        NSLog(@" ..... AFTER PARSE CALL ..... ");
-    
-}
 
 
 

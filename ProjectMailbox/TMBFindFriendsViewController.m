@@ -268,6 +268,11 @@
     
 }
 
+- (IBAction)closeButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
 
 
 
