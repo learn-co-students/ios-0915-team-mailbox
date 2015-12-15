@@ -18,13 +18,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIImage *thumbnail;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic, strong) PFFile *photoFile;
 @property (nonatomic, strong) PFFile *thumbFile;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier commentPostBackgroundTaskId;
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
+//@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottomConstraint;
@@ -123,6 +123,11 @@
     
 }
 
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -132,40 +137,9 @@
     return numberOfComments;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (IBAction)imageViewTapped:(id)sender {
     
-    [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
-- (void)keyboardWillShowOrHide:(NSNotification *)notification {
-    
-    CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    if ([notification.name isEqualToString:UIKeyboardWillHideNotification]) {
-        finalFrame = CGRectZero;
-    }
-    
-    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    [UIView animateWithDuration:duration animations:^{
-        [UIView setAnimationCurve:curve];
-        self.commentViewBottomConstraint.constant = finalFrame.size.height + 0;
-        [self.view layoutIfNeeded];
-    }];
 }
 
 - (IBAction)closeButtonTapped:(id)sender {
@@ -212,7 +186,7 @@
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         [self presentViewController:picker animated:YES completion:NULL];
@@ -231,6 +205,8 @@
     [self presentViewController:picker animated:YES completion:NULL];
     
 }
+
+
 
 /*****************************
  *      SAVING TO PARSE      *
@@ -277,13 +253,15 @@
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
     self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:410.0 maxHeight:352.0];
     
     [self shouldUploadImage:self.image];
     
     // Trim comment and save it in a dictionary for use later in our callback block
     NSDictionary *userInfo = [NSDictionary dictionary];
-    NSString *trimmedComment = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *trimmedComment = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (trimmedComment.length != 0) {
         userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                     trimmedComment,
@@ -318,7 +296,7 @@
             
             // run query
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            
             
             [[PAPCache sharedCache] setAttributesForPhoto:photo likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
             
@@ -361,8 +339,12 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
+    NSLog(@"\n\n\nimagePickerController\n\n\n");
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.imageView.image = chosenImage;
+    self.imageView.clipsToBounds = YES;
+    [self.imageView setImage:chosenImage];
+
+    
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -400,38 +382,9 @@
 
 - (IBAction)imageTapped:(id)sender {
     
-    
+    [self.textView endEditing:YES];
     
 }
 
-- (IBAction)sendButtonTapped:(id)sender {
-    
-    NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
-    
-    PFFile *test = [PFFile fileWithData:imageData];
-    
-    if (self.commentField.text != 0) {
-        PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
-        
-        [newCommentObject setObject:self.commentField.text forKey:@"content"];
-        [newCommentObject setObject:[PFUser currentUser] forKey:@"fromUser"];
-        [newCommentObject setObject:self.testing forKey:@"photo"];
-//        [newCommentObject setObject:s forKey:@"toUser"];
-        [newCommentObject setObject:@"comment" forKey:@"type"];
-        
-        [newCommentObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                NSLog(@"Saved");
-            }
-            else{
-                // Error
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];
-    }
-    
-    
-
-}
 
 @end

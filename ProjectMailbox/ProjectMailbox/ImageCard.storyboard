@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Image Card View Controller-->
+        <scene sceneID="Jon-zz-urT">
+            <objects>
+                <viewController storyboardIdentifier="TMBImageCardViewController" id="pbY-mX-lZy" customClass="TMBImageCardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LPz-gU-uGZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="gN7-GY-PaH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x3N-xp-X8b">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="chooseImageScreen" translatesAutoresizingMaskIntoConstraints="NO" id="HLy-fd-chi">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Ao8-T6-oCe" appends="YES" id="fIq-UO-cuu"/>
+                                </connections>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5h-VB-XTY" userLabel="Top Bar View">
+                                <rect key="frame" x="9" y="6" width="396" height="14"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageCloseButton" translatesAutoresizingMaskIntoConstraints="NO" id="gkG-A8-vhT">
+                                        <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qkr-Mb-NbX">
+                                        <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
+                                        <connections>
+                                            <action selector="closeButtonTapped:" destination="pbY-mX-lZy" eventType="touchUpInside" id="dIE-64-I30"/>
+                                        </connections>
+                                    </button>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="chooseImagePostButton" translatesAutoresizingMaskIntoConstraints="NO" id="ocb-Gi-cht">
+                                        <rect key="frame" x="345" y="0.0" width="51" height="14"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yO6-1S-WsU">
+                                        <rect key="frame" x="345" y="0.0" width="51" height="14"/>
+                                        <connections>
+                                            <action selector="postButtonTapped:" destination="pbY-mX-lZy" eventType="touchUpInside" id="kYo-01-ShC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="yO6-1S-WsU" firstAttribute="top" secondItem="o5h-VB-XTY" secondAttribute="top" id="2HT-hP-Fv2"/>
+                                    <constraint firstItem="Qkr-Mb-NbX" firstAttribute="top" secondItem="o5h-VB-XTY" secondAttribute="top" id="46P-KU-EOH"/>
+                                    <constraint firstItem="ocb-Gi-cht" firstAttribute="centerY" secondItem="o5h-VB-XTY" secondAttribute="centerY" id="Cuq-J8-dDw"/>
+                                    <constraint firstItem="yO6-1S-WsU" firstAttribute="height" secondItem="o5h-VB-XTY" secondAttribute="height" id="EB8-rQ-2lx"/>
+                                    <constraint firstItem="yO6-1S-WsU" firstAttribute="width" secondItem="o5h-VB-XTY" secondAttribute="width" multiplier="0.1288" id="FMh-s0-bNJ"/>
+                                    <constraint firstItem="gkG-A8-vhT" firstAttribute="height" secondItem="o5h-VB-XTY" secondAttribute="height" id="JE1-rL-cM5"/>
+                                    <constraint firstItem="Qkr-Mb-NbX" firstAttribute="centerY" secondItem="o5h-VB-XTY" secondAttribute="centerY" id="L4U-QD-Stn"/>
+                                    <constraint firstItem="gkG-A8-vhT" firstAttribute="width" secondItem="o5h-VB-XTY" secondAttribute="width" multiplier="0.0353" id="Rg1-bs-VoH"/>
+                                    <constraint firstAttribute="trailing" secondItem="yO6-1S-WsU" secondAttribute="trailing" id="V8I-Pc-c38"/>
+                                    <constraint firstItem="ocb-Gi-cht" firstAttribute="width" secondItem="o5h-VB-XTY" secondAttribute="width" multiplier="0.1288" id="WFM-2v-RAA"/>
+                                    <constraint firstItem="gkG-A8-vhT" firstAttribute="leading" secondItem="o5h-VB-XTY" secondAttribute="leading" id="ZMG-zQ-ksw"/>
+                                    <constraint firstItem="ocb-Gi-cht" firstAttribute="top" secondItem="o5h-VB-XTY" secondAttribute="top" id="bAz-vw-oJB"/>
+                                    <constraint firstItem="ocb-Gi-cht" firstAttribute="height" secondItem="o5h-VB-XTY" secondAttribute="height" id="fkh-Pu-fKV"/>
+                                    <constraint firstItem="gkG-A8-vhT" firstAttribute="top" secondItem="o5h-VB-XTY" secondAttribute="top" id="hL3-Ku-YV3"/>
+                                    <constraint firstItem="Qkr-Mb-NbX" firstAttribute="width" secondItem="o5h-VB-XTY" secondAttribute="width" multiplier="0.0353" id="kT9-hs-f4K"/>
+                                    <constraint firstItem="gkG-A8-vhT" firstAttribute="centerY" secondItem="o5h-VB-XTY" secondAttribute="centerY" id="nhx-oC-4g1"/>
+                                    <constraint firstItem="Qkr-Mb-NbX" firstAttribute="leading" secondItem="o5h-VB-XTY" secondAttribute="leading" id="ts1-sk-v5L"/>
+                                    <constraint firstAttribute="trailing" secondItem="ocb-Gi-cht" secondAttribute="trailing" id="v6i-yU-u9F"/>
+                                    <constraint firstItem="Qkr-Mb-NbX" firstAttribute="height" secondItem="o5h-VB-XTY" secondAttribute="height" id="vv3-4U-bi2"/>
+                                    <constraint firstItem="yO6-1S-WsU" firstAttribute="centerY" secondItem="o5h-VB-XTY" secondAttribute="centerY" id="zGs-n7-lDd"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="iFK-PZ-1UR">
+                                <rect key="frame" x="9" y="42" width="396" height="105"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKo-D4-bZ6" userLabel="Bottom Buttons">
+                                <rect key="frame" x="2" y="511" width="410" height="225"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageChooseButton" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-pW-VCv">
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="32.5"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageTakePhotoButton" translatesAutoresizingMaskIntoConstraints="NO" id="m0k-4q-UyJ">
+                                        <rect key="frame" x="206" y="0.0" width="204" height="32.5"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHS-ou-lit" userLabel="Take Photo Button">
+                                        <rect key="frame" x="206" y="0.0" width="204" height="33"/>
+                                        <connections>
+                                            <action selector="takePhotoButtonTapped:" destination="pbY-mX-lZy" eventType="touchUpInside" id="67O-0u-Bvc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evT-Xb-L9s" userLabel="Choose Image Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="33"/>
+                                        <connections>
+                                            <action selector="chosePhotoButtonTapped:" destination="pbY-mX-lZy" eventType="touchUpInside" id="rmq-7x-Rcp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Vs9-pW-VCv" firstAttribute="leading" secondItem="pKo-D4-bZ6" secondAttribute="leading" id="FXC-Yg-MjX"/>
+                                    <constraint firstItem="Vs9-pW-VCv" firstAttribute="top" secondItem="pKo-D4-bZ6" secondAttribute="top" id="IkG-dz-wgo"/>
+                                    <constraint firstAttribute="trailing" secondItem="m0k-4q-UyJ" secondAttribute="trailing" id="Kz7-73-TuL"/>
+                                    <constraint firstItem="Vs9-pW-VCv" firstAttribute="height" secondItem="pKo-D4-bZ6" secondAttribute="height" multiplier="0.1467" id="PHV-do-DiH"/>
+                                    <constraint firstItem="m0k-4q-UyJ" firstAttribute="height" secondItem="pKo-D4-bZ6" secondAttribute="height" multiplier="0.1467" id="Uvn-xx-AWa"/>
+                                    <constraint firstItem="Vs9-pW-VCv" firstAttribute="width" secondItem="pKo-D4-bZ6" secondAttribute="width" multiplier="0.4976" id="YLA-8j-OqY"/>
+                                    <constraint firstItem="m0k-4q-UyJ" firstAttribute="top" secondItem="pKo-D4-bZ6" secondAttribute="top" id="ZaX-Vq-COc"/>
+                                    <constraint firstItem="m0k-4q-UyJ" firstAttribute="width" secondItem="pKo-D4-bZ6" secondAttribute="width" multiplier="0.4976" id="qUS-ow-czN"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-Po-5yn">
+                                <rect key="frame" x="0.0" y="157" width="414" height="352"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iFK-PZ-1UR" firstAttribute="centerY" secondItem="x3N-xp-X8b" secondAttribute="centerY" multiplier="0.258" id="06D-81-6Tl"/>
+                            <constraint firstItem="pKo-D4-bZ6" firstAttribute="centerY" secondItem="x3N-xp-X8b" secondAttribute="centerY" multiplier="1.695" id="210-5z-0Tc"/>
+                            <constraint firstItem="o5h-VB-XTY" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" multiplier="0.956" id="4dn-NZ-8Bx"/>
+                            <constraint firstItem="HLy-fd-chi" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" id="4x7-R0-VYb"/>
+                            <constraint firstItem="4aY-Po-5yn" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.4783" id="6E6-TS-GBd"/>
+                            <constraint firstItem="iFK-PZ-1UR" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.1427" id="AHZ-fH-lKo"/>
+                            <constraint firstItem="HLy-fd-chi" firstAttribute="centerY" secondItem="x3N-xp-X8b" secondAttribute="centerY" id="Bsm-Aw-x9E"/>
+                            <constraint firstItem="o5h-VB-XTY" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.019" id="CCh-yV-sNB"/>
+                            <constraint firstItem="HLy-fd-chi" firstAttribute="centerX" secondItem="x3N-xp-X8b" secondAttribute="centerX" id="CvG-Ek-nGy"/>
+                            <constraint firstItem="4aY-Po-5yn" firstAttribute="top" secondItem="LPz-gU-uGZ" secondAttribute="bottom" multiplier="7.85" id="Jn7-HC-QEp"/>
+                            <constraint firstItem="4aY-Po-5yn" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" id="PQs-7m-4cB"/>
+                            <constraint firstItem="HLy-fd-chi" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" id="Qe0-Zk-JBY"/>
+                            <constraint firstItem="pKo-D4-bZ6" firstAttribute="height" secondItem="x3N-xp-X8b" secondAttribute="height" multiplier="0.3058" id="Sg0-uF-aCp"/>
+                            <constraint firstItem="4aY-Po-5yn" firstAttribute="bottom" secondItem="pKo-D4-bZ6" secondAttribute="top" constant="-2" id="ag7-ug-n3V"/>
+                            <constraint firstItem="pKo-D4-bZ6" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" multiplier="0.956" constant="14" id="clz-Aw-Lip"/>
+                            <constraint firstItem="pKo-D4-bZ6" firstAttribute="bottom" secondItem="gN7-GY-PaH" secondAttribute="top" id="geB-cb-z3Z"/>
+                            <constraint firstItem="o5h-VB-XTY" firstAttribute="centerY" secondItem="x3N-xp-X8b" secondAttribute="centerY" multiplier="0.035" id="gk0-aK-ug2"/>
+                            <constraint firstItem="4aY-Po-5yn" firstAttribute="centerX" secondItem="x3N-xp-X8b" secondAttribute="centerX" id="l7C-kG-Gn9"/>
+                            <constraint firstItem="o5h-VB-XTY" firstAttribute="centerX" secondItem="x3N-xp-X8b" secondAttribute="centerX" id="nJ3-0B-qne"/>
+                            <constraint firstItem="pKo-D4-bZ6" firstAttribute="centerX" secondItem="x3N-xp-X8b" secondAttribute="centerX" id="pt4-QK-YlY"/>
+                            <constraint firstItem="iFK-PZ-1UR" firstAttribute="centerX" secondItem="x3N-xp-X8b" secondAttribute="centerX" id="w7x-dY-TWv"/>
+                            <constraint firstItem="iFK-PZ-1UR" firstAttribute="width" secondItem="x3N-xp-X8b" secondAttribute="width" multiplier="0.956" id="yIc-7N-08f"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jn7-HC-QEp"/>
+                                <exclude reference="210-5z-0Tc"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="imageView" destination="4aY-Po-5yn" id="9p6-st-8rg"/>
+                        <outlet property="textView" destination="iFK-PZ-1UR" id="NBw-Dd-Xfs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XqY-Nm-OHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Ao8-T6-oCe">
+                    <connections>
+                        <action selector="imageTapped:" destination="pbY-mX-lZy" id="FDk-dk-Ogt"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3904" y="411"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chooseImageChooseButton" width="202" height="33"/>
+        <image name="chooseImageCloseButton" width="14" height="14"/>
+        <image name="chooseImagePostButton" width="51" height="14"/>
+        <image name="chooseImageScreen" width="410" height="729"/>
+        <image name="chooseImageTakePhotoButton" width="202" height="33"/>
+    </resources>
+</document>

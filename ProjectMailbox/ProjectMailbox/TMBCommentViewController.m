@@ -57,6 +57,7 @@
     
     [self loadDataFromParse];
     
+    self.commentsTableView.allowsSelection = NO;
     self.commentsTableView.estimatedRowHeight = 75;
     self.commentsTableView.rowHeight = UITableViewAutomaticDimension;
 
@@ -135,15 +136,6 @@
     
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
 - (void)keyboardWillShowOrHide:(NSNotification *)notification {
     
     CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -166,10 +158,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -180,38 +168,9 @@
     return numberOfComments;
 }
 
-//- (NSString *)getText
-//{
-//    return @"This is some long text that should wrap. It is multiple long sentences that may or may not have spelling and grammatical errors. Yep it should wrap quite nicely and serve as a nice example!";
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // Create a reusable cell
-//    TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell"];
-//    if(cell == nil) {
-//        cell = [[TMBTableViewCommentCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentCell"];
-//        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//        cell.textLabel.numberOfLines = 0;
-//    }
-//    
-//    // Configure the cell for this indexPath
-//    cell.userCommentLabel.text = [self getText];
-//    
-//    return cell;
-//}
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
-    
-    if(cell == nil) {
-        cell = [[TMBTableViewCommentCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentCell"];
-        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        cell.textLabel.numberOfLines = 0;
-    }
-    
-    // Configure the cell for this indexPath
     
     NSUInteger rowOfIndexPath = indexPath.row;
     
@@ -222,16 +181,16 @@
     NSLog(@"anActivity is %@", anActivity);
     
     // user label displays fromUser name
-//    PFObject *aFromUser = anActivity[@"fromUser"];
-//    NSString *firstName = aFromUser[@"First_Name"];
-//    cell.fromUserNameLabel.text = firstName;
+    PFObject *aFromUser = anActivity[@"fromUser"];
+    NSString *firstName = aFromUser[@"First_Name"];
+    cell.fromUserNameLabel.text = firstName;
     
     // get profile image
     cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.size.width / 2;
-    cell.userProfileImage.clipsToBounds = YES;
     PFObject *commentDataAtRow = self.activities[rowOfIndexPath];
     PFObject *userDetails = commentDataAtRow[@"fromUser"];
     PFFile *newUserPhotoFile = userDetails[@"profileImage"];
+    
     [newUserPhotoFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:data];
@@ -241,40 +200,9 @@
         }
         
     }];
-    
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     return cell;
-    
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    TMBTableViewCommentCellTableViewCell *cell = [[TMBTableViewCommentCellTableViewCell alloc] init];
-    
-    NSUInteger rowOfIndexPath = indexPath.row;
-    
-    // setting table rows to display comments
-    
-    PFObject *anActivity = self.activities[rowOfIndexPath];
-    cell.userCommentLabel.text = anActivity[@"content"];
-    
-    // Do the layout pass on the cell, which will calculate the frames for all the views based on the constraints
-    // (Note that the preferredMaxLayoutWidth is set on multi-line UILabels inside the -[layoutSubviews] method
-    // in the UITableViewCell subclass
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
-    
-    // Get the actual height required for the cell
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    
-    // Add an extra point to the height to account for the cell separator, which is added between the bottom
-    // of the cell's contentView and the bottom of the table view cell.
-    height += 0;
-    
-    return height;
-}
-
 
 - (IBAction)sendButtonTapped:(id)sender {
     

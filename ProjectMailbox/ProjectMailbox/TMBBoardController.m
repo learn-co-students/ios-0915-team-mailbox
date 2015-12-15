@@ -1,3 +1,4 @@
+
 //
 //  RWTCollectionViewController.m
 //  RWPinterest
@@ -225,7 +226,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  TMBImageCardViewController *pictureVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBImageCardViewController"];
+                                  UIStoryboard *imageCardStoryboard = [UIStoryboard storyboardWithName:@"ImageCard" bundle:nil];
+                                  TMBImageCardViewController *pictureVC = [imageCardStoryboard instantiateViewControllerWithIdentifier:@"TMBImageCardViewController"];
                                   pictureVC.delegate = self;
                                   [self presentViewController:pictureVC animated:YES completion:nil];
                                   [view dismissViewControllerAnimated:YES completion:nil];
@@ -275,6 +277,19 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [self presentViewController:view animated:YES completion:nil];
     
 }
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
+    NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
+    self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
+    if (selectedIndexPath.row < self.pfObjects.count){
+        return YES;
+    }else{
+        NSLog(@"selected empty cell, shouldPerformSegue: NO");
+        return NO;
+    }
+}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
         
@@ -332,8 +347,9 @@ static NSString * const reuseIdentifier = @"MediaCell";
         PFQuery *contentQuery = [PFQuery queryWithClassName:@"Photo"];
         [contentQuery whereKey:@"board" matchesQuery:boardQuery];
         [contentQuery orderByDescending:@"updatedAt"];
-        
         [contentQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+            
+
             if (number == 0) {
                 return;
             } else {
@@ -344,10 +360,16 @@ static NSString * const reuseIdentifier = @"MediaCell";
                     if (!error) {
                         for (PFObject *object in objects) {
                             
+                            NSLog(@"\n\n\n\ngetting image file\n\n\n\n");
                             PFFile *imageFile = object[@"thumbnail"];
-                            [self.boardContent addObject:imageFile];
-                            [self.pfObjects addObject:object];
+
+                            if (imageFile) {
+                                [self.boardContent addObject:imageFile];
+                                [self.pfObjects addObject:object];
+                            }
                             
+                            
+
                         }
                         
                         NSLog(@"\n\n\nself.boardContent.count: %li\n\n\n",self.boardContent.count);
