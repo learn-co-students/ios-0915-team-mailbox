@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
 
+//loading view
+@property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 
 @end
 
@@ -62,9 +66,25 @@
     }];
 }
 
+-(void)activityLoadView
+{
+    
+    NSLog(@"\n\n\n\nActivity load view at sign in\n\n\n\n");
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:0.7];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+}
+
 - (IBAction)signInButtonTapped:(id)sender {
     
     [self.view endEditing:YES];
+    
+//    [self activityLoadView];
     
     NSString *userName = self.usernameTextField.text;
     
@@ -88,8 +108,6 @@
             NSLog(@"User has Logged in");
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInNotification" object:nil];
-            
-            [self showSuccessAlert];
             
             //get all boardIDs for current user
             PFQuery *boardQueryFromPhotoClass = [PFQuery queryWithClassName:@"Photo"];
@@ -120,6 +138,10 @@
                                 [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
                                 
                             }
+                            
+                            
+
+                            
                             
                         } else {
                             
@@ -164,17 +186,5 @@
     [self presentViewController:controller animated:YES completion:nil];
 }
 
-- (void)showSuccessAlert {
-    
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert" message:@"You've Logged in!!!!" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [controller addAction:okAction];
-    
-    [self presentViewController:controller animated:YES completion:nil];
-}
 
 @end

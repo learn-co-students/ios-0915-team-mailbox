@@ -40,8 +40,9 @@
 @property (nonatomic, strong) PFObject *board;
 @property (strong, nonatomic) PFObject *testing;
 
-//overlay
+//loading view
 @property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 
 @end
@@ -67,9 +68,6 @@
     [super viewDidLoad];
     
     NSLog(@"IN VIEW DID LOAD.........");
-    
-    self.commentsTableView.delegate = self;
-    self.commentsTableView.dataSource = self;
     
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
@@ -232,10 +230,23 @@
     return YES;
 }
 
+-(void)activityLoadView
+{
+    
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+}
+
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self activityLoadView];
     
     self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:410.0 maxHeight:352.0];
     
@@ -273,7 +284,7 @@
         if (succeeded) {
             
             [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
-            
+            [self dismissViewControllerAnimated:YES completion:nil];
             NSLog(@"Photo uploaded");
             
             // run query
@@ -311,6 +322,7 @@
             
             //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
             //            [alert show];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         [[UIApplication sharedApplication] endBackgroundTask:self.photoPostBackgroundTaskId];
         
