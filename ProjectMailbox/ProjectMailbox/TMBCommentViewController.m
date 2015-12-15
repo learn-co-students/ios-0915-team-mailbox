@@ -208,8 +208,6 @@
     
     NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
     
-    PFFile *test = [PFFile fileWithData:imageData];
-    
     if (self.commentField.text != 0) {
         PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
         
