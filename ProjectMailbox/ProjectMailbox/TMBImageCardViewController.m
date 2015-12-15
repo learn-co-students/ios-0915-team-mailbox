@@ -12,7 +12,7 @@
 #import "TMBTableViewCommentCellTableViewCell.h"
 #import "TMBSharedBoardID.h"
 
-@interface TMBImageCardViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TMBImageCardViewController ()
 
 //add photo view
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -39,6 +39,9 @@
 @property (nonatomic, strong) NSString *boardID;
 @property (nonatomic, strong) PFObject *board;
 @property (strong, nonatomic) PFObject *testing;
+
+//overlay
+@property (nonatomic, strong) UIView *overlayView;
 
 
 @end
@@ -128,50 +131,12 @@
     return YES;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    NSUInteger numberOfComments = self.activities.count;
-    NSLog(@"numberOfRows getting called: %lu", self.activities.count);
-    
-    return numberOfComments;
-}
-
-- (IBAction)imageViewTapped:(id)sender {
-    
-    
-}
 
 - (IBAction)closeButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
-    
-    TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
-
-    NSUInteger rowOfIndexPath = indexPath.row;
-    
-    // setting table rows to display comments
-    PFObject *anActivity = self.activities[rowOfIndexPath];
-    cell.userCommentLabel.text = anActivity[@"content"];
-    
-    
-    // user label displays fromUser name
-    PFObject *aFromUser = anActivity[@"fromUser"];
-    NSString *firstName = aFromUser[@"First_Name"];
-    cell.fromUserNameLabel.text = firstName;
-    
-    // set user profile photo next...
-
-    
-    return cell;
-    
-}
 
 - (IBAction)takePhotoButtonTapped:(UIButton *)sender {
 
@@ -186,7 +151,7 @@
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = NO;
+        picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         [self presentViewController:picker animated:YES completion:NULL];
@@ -206,7 +171,24 @@
     
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NSLog(@"\n\n\nimagePickerController\n\n\n");
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.clipsToBounds = YES;
+    [self.imageView setImage:chosenImage];
+    
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
 /*****************************
  *      SAVING TO PARSE      *
@@ -337,24 +319,7 @@
     
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    NSLog(@"\n\n\nimagePickerController\n\n\n");
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.imageView.clipsToBounds = YES;
-    [self.imageView setImage:chosenImage];
 
-    
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
 
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
     

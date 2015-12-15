@@ -49,7 +49,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     [super viewDidLoad];
     
-    self.pfObjects = [NSMutableArray new];
+    
     
     UINavigationBar* navigationBar = self.navigationController.navigationBar;
     [navigationBar setBarTintColor:[UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0]];
@@ -69,6 +69,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     [self setupLeftMenuButton];
     
+    self.pfObjects = [NSMutableArray new];
     self.collection = [NSMutableArray new];
     self.boardContent = [NSMutableArray new];
     [self buildThemeColorsArray];
@@ -271,14 +272,16 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     
     [view addAction:picture];
-    [view addAction:text];
-    [view addAction:doodle];
+//    [view addAction:text];
+//    [view addAction:doodle];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
     
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    
+    NSLog(@"\n\n\nshould perform segue\n\n\n");
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
     NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
     self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
@@ -310,7 +313,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
 -(void)imageCardViewController:(TMBImageCardViewController *)viewController passBoardIDforQuery:(NSString *)boardID
 {
     NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
-    [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+    [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
     [self queryParseToUpdateCollection:boardID successBlock:^(BOOL success) {
         if (!success) {
             // error updating collection
@@ -356,6 +359,10 @@ static NSString * const reuseIdentifier = @"MediaCell";
                 [contentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                     
                     NSLog(@"\n\n\nContent query parse started\n\n\n");
+                    
+                    if (self.pfObjects.count > 0) {
+                        [self.pfObjects removeAllObjects];
+                    }
                     
                     if (!error) {
                         for (PFObject *object in objects) {
@@ -499,5 +506,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
         
     }];
 }
+
+
 
 @end
