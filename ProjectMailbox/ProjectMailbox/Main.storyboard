@@ -299,12 +299,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="center" minimumFontSize="17" background="signUpTextField" translatesAutoresizingMaskIntoConstraints="NO" id="Zof-pj-rSZ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="center" minimumFontSize="17" background="signUpTextField" translatesAutoresizingMaskIntoConstraints="NO" id="Zof-pj-rSZ">
                                         <rect key="frame" x="0.0" y="116" width="352" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="center" minimumFontSize="17" background="signUpTextField" translatesAutoresizingMaskIntoConstraints="NO" id="VLq-mI-PDZ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="center" minimumFontSize="17" background="signUpTextField" translatesAutoresizingMaskIntoConstraints="NO" id="VLq-mI-PDZ">
                                         <rect key="frame" x="0.0" y="173" width="352" height="38"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
