@@ -62,6 +62,7 @@
 		A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
 		A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
+		A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48A0AF01C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; };
 		A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */; };
 		A4AC72871C0E890B000F05C8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72851C0E890B000F05C8 /* AddressBook.framework */; };
@@ -253,6 +254,8 @@
 		A46CB11A1BFCDDA300D35BB3 /* TMBImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageView.h; sourceTree = "<group>"; };
 		A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageView.m; sourceTree = "<group>"; };
 		A46CB11F1BFCE1C700D35BB3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "ProjectMailbox/parse-library/Parse.framework"; sourceTree = "<group>"; };
+		A48A0AEF1C1F989C00BA46F3 /* TMBSideMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSideMenuTableViewCell.h; sourceTree = "<group>"; };
+		A48A0AF01C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSideMenuTableViewCell.m; sourceTree = "<group>"; };
 		A4AC727C1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTableViewCommentCellTableViewCell.h; sourceTree = "<group>"; };
 		A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTableViewCommentCellTableViewCell.m; sourceTree = "<group>"; };
 		A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = phoneContacts.storyboard; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 				55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */,
 				5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */,
 				5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */,
+				A48A0AEF1C1F989C00BA46F3 /* TMBSideMenuTableViewCell.h */,
+				A48A0AF01C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m */,
 				5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */,
 				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
 				5D03AF201C187B1600E2CDEB /* TMBConstants.h */,
@@ -936,6 +941,7 @@
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5D03AF171C1785DA00E2CDEB /* TMBBoardCell.m in Sources */,
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
+				A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */,
 				A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */,
 				EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */,
 				5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "TMBSideMenuViewController.h"
 #import "TMBBoard.h"
+#import "TMBSideMenuTableViewCell.h"
+
 
 @interface TMBSideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -32,6 +34,9 @@
     self.boardListingTableView.delegate = self;
     self.boardListingTableView.dataSource = self;
     self.usernameField.text = [[PFUser currentUser] objectForKey:@"First_Name"];
+    
+    [self.boardListingTableView setBackgroundView:nil];
+    [self.boardListingTableView setBackgroundColor:[UIColor clearColor]];
     
     PFFile *profilePictureObject = [[PFUser currentUser] objectForKey:@"profileImage"];
     
@@ -101,11 +106,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell" forIndexPath:indexPath];
+    TMBSideMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell" forIndexPath:indexPath];
     
     PFObject *board = self.userBoards[indexPath.row];
     
-    cell.textLabel.text = board[@"boardName"];
+    //cell.textLabel.text = board[@"boardName"];
+    cell.boardNameLabel.text = board[@"boardName"];
+    cell.backgroundColor = [UIColor clearColor];
     
     self.boardID = board.objectId;
     NSLog(@"OOOOOOOOOOOOOOBJECT IDS %@", self.boardID);
