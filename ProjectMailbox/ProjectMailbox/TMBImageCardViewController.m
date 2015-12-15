@@ -12,7 +12,7 @@
 #import "TMBTableViewCommentCellTableViewCell.h"
 #import "TMBSharedBoardID.h"
 
-@interface TMBImageCardViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TMBImageCardViewController ()
 
 //add photo view
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -39,6 +39,9 @@
 @property (nonatomic, strong) NSString *boardID;
 @property (nonatomic, strong) PFObject *board;
 @property (strong, nonatomic) PFObject *testing;
+
+//overlay
+@property (nonatomic, strong) UIView *overlayView;
 
 
 @end
@@ -128,10 +131,12 @@
     return YES;
 }
 
+
 - (IBAction)closeButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 - (IBAction)takePhotoButtonTapped:(UIButton *)sender {
 
@@ -179,13 +184,12 @@
     
 }
 
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
-
-
 
 /*****************************
  *      SAVING TO PARSE      *

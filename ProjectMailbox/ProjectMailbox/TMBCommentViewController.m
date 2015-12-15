@@ -207,7 +207,7 @@
 - (IBAction)sendButtonTapped:(id)sender {
     
     NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
-    
+
     if (self.commentField.text != 0) {
         PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
         
