@@ -196,6 +196,7 @@
             UIImage *image = [UIImage imageWithData:data];
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 cell.userProfileImage.image = image;
+                cell.userProfileImage.layer.cornerRadius = cell.userProfileImage.frame.size.width / 2;
     }];
         }
         
@@ -207,9 +208,7 @@
 - (IBAction)sendButtonTapped:(id)sender {
     
     NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
-    
-    PFFile *test = [PFFile fileWithData:imageData];
-    
+
     if (self.commentField.text != 0) {
         PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
         

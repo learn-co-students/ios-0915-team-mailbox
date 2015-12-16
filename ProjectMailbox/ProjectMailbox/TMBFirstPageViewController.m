@@ -13,10 +13,9 @@
 #import "TMBSharedBoardID.h"
 
 @interface TMBFirstPageViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *stackViewBottomConstraint;
+
 
 @end
 
@@ -25,15 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    if ([PFUser currentUser]) {
-        [self presentMainPage];
-        self.welcomeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Welcome, %@", nil), [[PFUser currentUser] username]];
 
-    } else {
-        self.welcomeLabel.text = NSLocalizedString(@"Not logged in", nil);
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -50,41 +41,6 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
-- (void)keyboardWillShowOrHide:(NSNotification *)notification {
-    
-    CGRect finalFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    if ([notification.name isEqualToString:UIKeyboardWillHideNotification]) {
-        finalFrame = CGRectZero;
-    }
-    
-    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    [UIView animateWithDuration:duration animations:^{
-        [UIView setAnimationCurve:curve];
-        self.stackViewBottomConstraint.constant = finalFrame.size.height + 45;
-        [self.view layoutIfNeeded];
-    }];
-}
 
 - (IBAction)signInButtonTapped:(id)sender {
     

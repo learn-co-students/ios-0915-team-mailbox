@@ -12,7 +12,7 @@
 #import "TMBTableViewCommentCellTableViewCell.h"
 #import "TMBSharedBoardID.h"
 
-@interface TMBImageCardViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TMBImageCardViewController ()
 
 //add photo view
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -40,6 +40,10 @@
 @property (nonatomic, strong) PFObject *board;
 @property (strong, nonatomic) PFObject *testing;
 
+//loading view
+@property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 
 @end
 
@@ -64,9 +68,6 @@
     [super viewDidLoad];
     
     NSLog(@"IN VIEW DID LOAD.........");
-    
-    self.commentsTableView.delegate = self;
-    self.commentsTableView.dataSource = self;
     
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
@@ -128,50 +129,12 @@
     return YES;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    NSUInteger numberOfComments = self.activities.count;
-    NSLog(@"numberOfRows getting called: %lu", self.activities.count);
-    
-    return numberOfComments;
-}
-
-- (IBAction)imageViewTapped:(id)sender {
-    
-    
-}
 
 - (IBAction)closeButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
-    
-    TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
-
-    NSUInteger rowOfIndexPath = indexPath.row;
-    
-    // setting table rows to display comments
-    PFObject *anActivity = self.activities[rowOfIndexPath];
-    cell.userCommentLabel.text = anActivity[@"content"];
-    
-    
-    // user label displays fromUser name
-    PFObject *aFromUser = anActivity[@"fromUser"];
-    NSString *firstName = aFromUser[@"First_Name"];
-    cell.fromUserNameLabel.text = firstName;
-    
-    // set user profile photo next...
-
-    
-    return cell;
-    
-}
 
 - (IBAction)takePhotoButtonTapped:(UIButton *)sender {
 
@@ -186,7 +149,7 @@
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = NO;
+        picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         [self presentViewController:picker animated:YES completion:NULL];
@@ -206,7 +169,25 @@
     
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NSLog(@"\n\n\nimagePickerController\n\n\n");
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.clipsToBounds = YES;
+    [self.imageView setImage:chosenImage];
+    
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
 /*****************************
  *      SAVING TO PARSE      *
@@ -250,10 +231,23 @@
     return YES;
 }
 
+-(void)activityLoadView
+{
+    
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+}
+
 // this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self activityLoadView];
     
     self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:410.0 maxHeight:352.0];
     
@@ -291,7 +285,7 @@
         if (succeeded) {
             
             [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
-            
+            [self dismissViewControllerAnimated:YES completion:nil];
             NSLog(@"Photo uploaded");
             
             // run query
@@ -329,30 +323,12 @@
             
             //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
             //            [alert show];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         [[UIApplication sharedApplication] endBackgroundTask:self.photoPostBackgroundTaskId];
         
     }];
 
-    
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    NSLog(@"\n\n\nimagePickerController\n\n\n");
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.imageView.clipsToBounds = YES;
-    [self.imageView setImage:chosenImage];
-
-    
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
 
