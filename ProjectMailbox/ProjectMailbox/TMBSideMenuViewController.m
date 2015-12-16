@@ -14,9 +14,9 @@
 @interface TMBSideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UITableView *boardListingTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameField;
-@property (weak, nonatomic) IBOutlet UITableView *boardListingTableView;
 @property (nonatomic) NSInteger boardCount;
 @property (strong, nonatomic) NSMutableArray *userBoards;
 @property (strong, nonatomic) NSString *boardID;
@@ -24,6 +24,14 @@
 @end
 
 @implementation TMBSideMenuViewController
+
+
+
+-(void) viewDidAppear:(BOOL)animated  {
+    [super viewDidAppear:animated];
+    [self.boardListingTableView reloadData];
+    NSLog(@"viewDidAppear");
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

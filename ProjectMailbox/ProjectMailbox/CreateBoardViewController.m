@@ -10,6 +10,8 @@
 #import "TMBConstants.h"
 #import "PAPUtility.h"
 #import "TMBFriendsTableViewCell.h"
+#import "TMBSideMenuViewController.h"
+
 
 @interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -328,6 +330,8 @@
     self.myNewBoard[@"boardName"] = boardName;
     
     [self.myNewBoard saveEventually];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
     
 }
 
@@ -335,9 +339,7 @@
 
 - (IBAction)cancelButtonTapped:(UIBarButtonItem *)sender {
     
-    [self.navigationController popViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
+////    [self.navigationController popViewControllerAnimated:YES];
     [self.myNewBoard deleteEventually];
     [self dismissViewControllerAnimated:YES
                              completion:nil];

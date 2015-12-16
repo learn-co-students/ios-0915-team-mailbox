@@ -55,6 +55,16 @@
 
 
 
+
+- (IBAction)doneButtonTapped:(UIButton *)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
+
 - (IBAction)searchFriendButtonTapped:(UIButton *)sender {
     
     // setting the textfield.text to the user name
