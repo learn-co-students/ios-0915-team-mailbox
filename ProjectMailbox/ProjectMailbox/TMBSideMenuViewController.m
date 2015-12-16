@@ -9,6 +9,7 @@
 #import "TMBSideMenuViewController.h"
 #import "TMBBoard.h"
 #import "TMBSideMenuTableViewCell.h"
+#import "TMBSharedBoardID.h"
 
 
 @interface TMBSideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -93,8 +94,9 @@
 
 - (IBAction)logoutButtonTapped:(id)sender {
     
+    [TMBSharedBoardID sharedBoardID].boardID = @"";
+    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
     [PFUser logOut];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogOutNotification" object:nil];
     
 }

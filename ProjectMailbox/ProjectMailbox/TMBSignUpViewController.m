@@ -8,7 +8,7 @@
 
 #import "TMBSignUpViewController.h"
 
-@interface TMBSignUpViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TMBSignUpViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
@@ -31,9 +31,16 @@
     self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
     self.profileImage.clipsToBounds = YES;
+    self.profileImage.image = [UIImage imageNamed:@"profilePlaceholder"];
     
     self.repeatPasswordField.returnKeyType = UIReturnKeyDone;
     
+    
+}
+
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 - (void)textFieldShouldReturn:(UITextField *)textField {
@@ -81,7 +88,6 @@
     NSString *lastName = self.lastNameField.text;
     NSString *email = self.emailField.text;
     NSString *password = self.passwordField.text;
-    NSString *passwordRepeat = self.repeatPasswordField.text;
     
     if (self.usernameTextField.text.length == 0 || self.firstNameField.text.length == 0 || self.lastNameField.text.length == 0 || self.emailField.text.length == 0 || self.passwordField.text.length == 0 || self.repeatPasswordField.text.length == 0) {
         

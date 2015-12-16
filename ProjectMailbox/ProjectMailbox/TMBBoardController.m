@@ -281,14 +281,14 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     
-    NSLog(@"\n\n\nshould perform segue\n\n\n");
+
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
     NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
     self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
     if (selectedIndexPath.row < self.pfObjects.count){
         return YES;
     }else{
-        NSLog(@"selected empty cell, shouldPerformSegue: NO");
+
         return NO;
     }
 }
@@ -367,7 +367,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
                     if (!error) {
                         for (PFObject *object in objects) {
                             
-                            NSLog(@"\n\n\n\ngetting image file\n\n\n\n");
                             PFFile *imageFile = object[@"thumbnail"];
 
                             if (imageFile) {
@@ -415,7 +414,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                 
                                 NSData *data = [imageFile getData];
                                 UIImage *image = [UIImage imageWithData:data];
-                                NSLog(@"image: %@",image);
                                 NSUInteger pfFileIndex = [self.boardContent indexOfObject:imageFile];
                                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                     
