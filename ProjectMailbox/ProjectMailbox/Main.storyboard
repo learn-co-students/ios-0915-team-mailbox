@@ -1503,7 +1503,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="signInScreenRevamp" translatesAutoresizingMaskIntoConstraints="NO" id="jlm-lo-jGA">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="signInScreenRevamp" translatesAutoresizingMaskIntoConstraints="NO" id="jlm-lo-jGA">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfr-Ue-H0g" userLabel="Top Section">
