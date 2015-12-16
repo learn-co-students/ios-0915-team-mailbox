@@ -50,6 +50,8 @@
 		A44515161BFE6D0B00BDD502 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515151BFE6D0B00BDD502 /* UIKit.framework */; };
 		A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */; };
 		A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */; };
+		A45295451C20992B0060E8BC /* TMBManageBoardsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A45295441C20992B0060E8BC /* TMBManageBoardsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A45295481C20A8690060E8BC /* TMBBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A45295471C20A8690060E8BC /* TMBBoardTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */; };
 		A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */; };
 		A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
@@ -239,6 +241,10 @@
 		A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBDoodleViewController.m; sourceTree = "<group>"; };
 		A445152C1C039D2300BDD502 /* PAPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPCache.h; sourceTree = "<group>"; };
 		A445152D1C039D2300BDD502 /* PAPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPCache.m; sourceTree = "<group>"; };
+		A45295431C20992B0060E8BC /* TMBManageBoardsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBManageBoardsTableViewController.h; sourceTree = "<group>"; };
+		A45295441C20992B0060E8BC /* TMBManageBoardsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBManageBoardsTableViewController.m; sourceTree = "<group>"; };
+		A45295461C20A8690060E8BC /* TMBBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBBoardTableViewCell.h; sourceTree = "<group>"; };
+		A45295471C20A8690060E8BC /* TMBBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBBoardTableViewCell.m; sourceTree = "<group>"; };
 		A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewStoryboard.storyboard; sourceTree = "<group>"; };
 		A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageCardViewController.h; sourceTree = "<group>"; };
 		A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageCardViewController.m; sourceTree = "<group>"; };
@@ -601,6 +607,10 @@
 		A42EB5D51C18C9E8009A241B /* Create New Board */ = {
 			isa = PBXGroup;
 			children = (
+				A45295431C20992B0060E8BC /* TMBManageBoardsTableViewController.h */,
+				A45295441C20992B0060E8BC /* TMBManageBoardsTableViewController.m */,
+				A45295461C20A8690060E8BC /* TMBBoardTableViewCell.h */,
+				A45295471C20A8690060E8BC /* TMBBoardTableViewCell.m */,
 				A42EB5D61C19D234009A241B /* TMBFindFriendsViewController.h */,
 				A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */,
 				EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */,
@@ -940,6 +950,7 @@
 				5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */,
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
 				EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */,
+				A45295451C20992B0060E8BC /* TMBManageBoardsTableViewController.m in Sources */,
 				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
 				55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
@@ -947,6 +958,7 @@
 				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
 				A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */,
 				A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */,
+				A45295481C20A8690060E8BC /* TMBBoardTableViewCell.m in Sources */,
 				EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */,
 				5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */,
 				55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */,
