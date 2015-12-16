@@ -8,37 +8,22 @@
 
 #import "TMBImageCardViewController.h"
 #import "TMBConstants.h"
-#import "PAPCache.h"
-#import "TMBTableViewCommentCellTableViewCell.h"
 #import "TMBSharedBoardID.h"
 
 @interface TMBImageCardViewController ()
 
-//add photo view
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+//photo handling
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) UIImage *thumbnail;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (nonatomic, strong) PFFile *photoFile;
+@property (nonatomic, strong) UIImage *thumb;
+@property (nonatomic, strong) PFFile *imageFile;
 @property (nonatomic, strong) PFFile *thumbFile;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier commentPostBackgroundTaskId;
-//@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UITextField *commentField;
-@property (weak, nonatomic) IBOutlet UIButton *sendButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottomConstraint;
-
-//detail view
-@property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
-@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
-
 
 //board ID
 @property (nonatomic, strong) NSString *boardID;
 @property (nonatomic, strong) PFObject *board;
-@property (strong, nonatomic) PFObject *testing;
 
 //loading view
 @property (nonatomic, strong) UIView *overlayView;
@@ -49,6 +34,7 @@
 
 @implementation TMBImageCardViewController
 
+#pragma mark - views
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,6 +42,11 @@
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
     
+}
+
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 -(void)activityLoadView
@@ -71,16 +62,24 @@
     
 }
 
--(BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
+
+
+#pragma mark - misc end / exit
 
 
 - (IBAction)closeButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)imageTapped:(id)sender {
+    
+    [self.textView endEditing:YES];
+    
+}
+
+
+#pragma mark - choose or take photo
 
 
 - (IBAction)takePhotoButtonTapped:(UIButton *)sender {
@@ -132,17 +131,19 @@
     
 }
 
+#pragma mark - save to parse
 
-// this code saves our image and its comment to Parse
+
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
+    // overlay activity indicator
     [self activityLoadView];
     
-    self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:204.0 maxHeight:176.0];
+    // scale image for view in board
+    self.thumb = [self imageWithImage:self.imageView.image scaledToMaxWidth:204.0 maxHeight:176.0];
+    self.image = [self imageWithImage:self.imageView.image scaledToMaxWidth:408.0 maxHeight:352.0];
     
-    //    [self shouldUploadImage:self.image];
-    
-    // Trim comment and save it in a dictionary for use later in our callback block
+    // capture text comment
     NSDictionary *userInfo = [NSDictionary dictionary];
     NSString *trimmedComment = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (trimmedComment.length != 0) {
@@ -152,37 +153,33 @@
                     nil];
     }
     
-    NSData *imageData = UIImagePNGRepresentation(self.imageView.image);
-    NSData *thumbData = UIImagePNGRepresentation(self.thumbnail);
+    NSData *imageData = UIImageJPEGRepresentation(self.image, 0.8f);
+    NSData *thumbData = UIImagePNGRepresentation(self.thumb);
     
-    self.photoFile = [PFFile fileWithData:imageData];
+    self.imageFile = [PFFile fileWithData:imageData];
     self.thumbFile = [PFFile fileWithData:thumbData];
     
     PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];
-    [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
+    [photo setObject:self.imageFile forKey:kTMBPhotoPictureKey];
     [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
     [photo setObject:self.board forKey:@"board"];
     
-    // Photos are public, but may only be modified by the user who uploaded them
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
     [photoACL setPublicReadAccess:YES];
     photo.ACL = photoACL;
     
-    // Save the Photo PFObject
+    self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+    }];
+    
     [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             
-            [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            NSLog(@"Photo uploaded");
-            
-            // userInfo might contain any caption which might have been posted by the uploader
             if (userInfo) {
                 NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
                 
                 if (commentText && commentText.length != 0) {
-                    // create and save photo caption
                     PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
                     [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
                     [comment setObject:photo forKey:kTMBActivityPhotoKey];
@@ -198,17 +195,27 @@
                 }
             }
             
+            [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
+            [self.overlayView removeFromSuperview];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
         }else {
             
             NSLog(@"Photo failed to save: %@", error);
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.overlayView removeFromSuperview];
+            [self uploadingErrorAlert];
         }
+        
+        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
         
     }];
     
     
 }
+
+
+#pragma mark - image scaling
+
 
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
     
@@ -234,10 +241,29 @@
     return [self imageWithImage:image scaledToSize:newSize];
 }
 
-- (IBAction)imageTapped:(id)sender {
-    
-    [self.textView endEditing:YES];
-    
+
+#pragma mark - alert
+
+-(void)uploadingErrorAlert
+{
+UIAlertController * alert=   [UIAlertController
+                              alertControllerWithTitle:@"Network error"
+                              message:@"Unable to upload photo"
+                              preferredStyle:UIAlertControllerStyleAlert];
+
+UIAlertAction* ok = [UIAlertAction
+                     actionWithTitle:@"OK"
+                     style:UIAlertActionStyleDefault
+                     handler:^(UIAlertAction * action)
+                     {
+                         
+                         [alert dismissViewControllerAnimated:YES completion:nil];
+                         
+                     }];
+
+[alert addAction:ok];
+
+[self presentViewController:alert animated:YES completion:nil];
 }
 
 
