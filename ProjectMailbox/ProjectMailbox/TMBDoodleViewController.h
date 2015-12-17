@@ -10,9 +10,19 @@
 #import "SimpleColorPickerView.h"
 #import <Parse/Parse.h>
 
+@class TMBDoodleViewController;
+
+@protocol TMBDoodleViewControllerDelegate <NSObject>
+
+@required
+
+-(void)doodleViewController:(TMBDoodleViewController *)viewController passBoardIDforQuery:(NSString *)boardID;
+
+@end 
+
 @interface TMBDoodleViewController : UIViewController {
-    
-    CGPoint lastPoint;
+
+CGPoint lastPoint;
     CGFloat red;
     CGFloat green;
     CGFloat blue;
@@ -21,5 +31,7 @@
     BOOL mouseSwiped;
     
 }
+
+@property (nonatomic, weak) id<TMBDoodleViewControllerDelegate> delegate;
 
 @end

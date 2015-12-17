@@ -78,10 +78,10 @@
                                 <rect key="frame" x="2" y="511" width="410" height="225"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageChooseButton" translatesAutoresizingMaskIntoConstraints="NO" id="Vs9-pW-VCv">
-                                        <rect key="frame" x="0.0" y="0.0" width="204" height="32.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="33"/>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="chooseImageTakePhotoButton" translatesAutoresizingMaskIntoConstraints="NO" id="m0k-4q-UyJ">
-                                        <rect key="frame" x="206" y="0.0" width="204" height="32.5"/>
+                                        <rect key="frame" x="206" y="0.0" width="204" height="33"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHS-ou-lit" userLabel="Take Photo Button">
                                         <rect key="frame" x="206" y="0.0" width="204" height="33"/>
