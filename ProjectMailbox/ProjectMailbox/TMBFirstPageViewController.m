@@ -17,6 +17,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 
+//loading view
+@property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
+
 @end
 
 @implementation TMBFirstPageViewController
@@ -41,10 +46,25 @@
     
 }
 
+-(void)activityLoadView
+{
+    
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:0.7];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+}
+
 
 - (IBAction)signInButtonTapped:(id)sender {
     
     [self.view endEditing:YES];
+    
+    [self activityLoadView];
     
     NSString *userName = self.usernameTextField.text;
     
@@ -64,58 +84,82 @@
             
             [usernameDefault synchronize];
             
-            NSLog(@"User has Logged in");
+            NSLog(@"\n\n\nUser has Logged in\n\n\n");
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInNotification" object:nil];
-            
-            //get all boardIDs for current user
-            PFQuery *boardQueryFromPhotoClass = [PFQuery queryWithClassName:@"Photo"];
-            [boardQueryFromPhotoClass whereKey:@"user" equalTo:PFUser.currentUser];
-            [boardQueryFromPhotoClass selectKeys:@[@"board"]];
-            [boardQueryFromPhotoClass orderByDescending:@"updatedAt"];
-            [boardQueryFromPhotoClass getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            // get all boards for user and add to board dict singleton
+            PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+            [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
+            [boardQuery selectKeys:@[@"objectId",@"boardName"]];
+            [boardQuery orderByDescending:@"updatedAt"];
+            [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                
+                NSLog(@"\n\n\nlogin board query\n\n\n");
                 
                 if (!error) {
                     
-                    // set boardID singleton for board with most recent photo
-                    PFObject *boardObject = object[@"board"];
-                    NSString *boardID = [boardObject valueForKey:@"objectId"];
-                    [TMBSharedBoardID sharedBoardID].boardID = boardID;
-                    NSLog(@"\n\n\n\nboardID: %@\n\n\n\n",boardID);
+                    NSLog(@"\n\n\nobjects: %@\n\n\n",objects);
                     
-                    // get all boards for user and add to board dict singleton
-                    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-                    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
-                    [boardQuery selectKeys:@[@"objectId",@"boardName"]];
-                    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                    if (objects.count == 0) {
                         
-                        if (!error) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithoutBoardsNotification" object:nil];
+                        
+                    } else {
+                        
+                        NSUInteger count = 0;
+                        for (PFObject *object in objects) {
                             
-                            for (PFObject *object in objects) {
-                                
-                                NSString *boardID = [object valueForKey:@"objectId"];
-                                NSString *boardName = [object valueForKey:@"boardName"];
-                                [[TMBSharedBoardID sharedBoardID].boards setObject:boardName forKey:boardID];
-                                
+                            NSString *boardID = [object valueForKey:@"objectId"];
+                            NSString *boardName = [object valueForKey:@"boardName"];
+                            if (count == 0) {
+                                [TMBSharedBoardID sharedBoardID].boardID = boardID;
                             }
-                            
-                        } else {
-                            
-                            NSLog(@"Error: %@ %@", error, [error userInfo]);
+                            [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
+                            count++;
                         }
                         
-                    }];
+                        PFQuery *boardQueryFromPhotoClass = [PFQuery queryWithClassName:@"Photo"];
+                        [boardQueryFromPhotoClass whereKey:@"user" equalTo:PFUser.currentUser];
+                        [boardQueryFromPhotoClass selectKeys:@[@"board"]];
+                        [boardQueryFromPhotoClass orderByDescending:@"updatedAt"];
+                        [boardQueryFromPhotoClass getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                            
+                            if (!error) {
+                                
+                                // set boardID singleton from board with most recent photo
+                                PFObject *boardObject = object[@"board"];
+                                NSString *boardID = [boardObject valueForKey:@"objectId"];
+                                [TMBSharedBoardID sharedBoardID].boardID = boardID;
+                                NSLog(@"\n\n\n\nboardID: %@\n\n\n\n",boardID);
+                                [self.overlayView removeFromSuperview];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
+                                
+                            } else {
+                                NSLog(@"\n\n\n\nboardqueryphotoclass error.code: %li\n\n\n",error.code);
+                                if (error.code == 101) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
+                                }
+                                [self.overlayView removeFromSuperview];
+                                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                            }
+                            
+                        }];
+                        
+                    }
+                
                     
                 } else {
                     
+                    [self.overlayView removeFromSuperview];
                     NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }
+                
                 
             }];
             
             
         } else {
             
+            [self.overlayView removeFromSuperview];
             [self showErrorAlert];
         }
         

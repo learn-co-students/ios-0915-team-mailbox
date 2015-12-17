@@ -1162,7 +1162,7 @@
         <!--Create New Board-->
         <scene sceneID="rxn-OY-yJS">
             <objects>
-                <viewController id="GrR-SW-pde" userLabel="Create New Board" customClass="CreateBoardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createBoard" id="GrR-SW-pde" userLabel="Create New Board" customClass="CreateBoardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nEu-g6-KnH"/>
                         <viewControllerLayoutGuide type="bottom" id="Qoq-ia-TjC"/>

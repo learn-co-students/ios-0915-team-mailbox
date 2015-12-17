@@ -22,7 +22,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogOut:) name:@"UserDidLogOutNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidSignUpNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogIn:) name:@"UserDidLogInNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithBoards:) name:@"UserDidLogInWithBoardsNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithoutBoards:) name:@"UserDidLogInWithoutBoardsNotification" object:nil];
     
     if ([PFUser currentUser]) {
         [self showMainPage];
@@ -65,6 +66,15 @@
     [self setEmbeddedViewController:loginVC];
 }
 
+-(void)showCreateBoardPage
+{
+    
+    UIViewController *createBoardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"createBoard"];
+    
+    [self setEmbeddedViewController:createBoardVC];
+    
+}
+
 -(void)handleUserDidLogOut:(NSNotification *)notification
 {
     [PFUser logOut];
@@ -73,12 +83,20 @@
     [self showFirstPage];
 }
 
--(void)handleUserDidLogIn:(NSNotification *)notification
+-(void)handleUserDidLogInWithBoards:(NSNotification *)notification
 {
     [PFUser currentUser];
     
     // switch to the home VC
     [self showMainPage];
+}
+
+-(void)handleUserDidLogInWithoutBoards:(NSNotification *)notification
+{
+    [PFUser currentUser];
+    
+    // switch to the home VC
+    [self showCreateBoardPage];
 }
 
 - (void)handleUserDidSignUp:(NSNotification *)notification {

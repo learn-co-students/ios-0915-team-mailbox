@@ -432,13 +432,14 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                         
                                         
                                         [self.collectionView reloadData];
-                                        [self.boardContent removeAllObjects];
+                                        
                                         completionBlock(YES);
                                         
                                     }
                                     
                                 }];
                             }
+                            [self.boardContent removeAllObjects];
                             
                         }];
                         
