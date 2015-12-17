@@ -35,7 +35,6 @@ static NSInteger const kItemsPerPattern = 10;
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
     
-    NSLog(@"\n\ninit TMBBoardLayout\n\n");
     self = [super initWithCoder:aDecoder];
     if (self)  {
         _contentWidth = 0;
