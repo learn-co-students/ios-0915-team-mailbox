@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "signInViewFrame@1x.png",
+      "filename" : "launchScreenRevamp@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "signInViewFrame@2x.png",
+      "filename" : "launchScreenRevamp@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "signInViewFrame@3x.png",
+      "filename" : "launchScreenRevamp@3x.png",
       "scale" : "3x"
     }
   ],

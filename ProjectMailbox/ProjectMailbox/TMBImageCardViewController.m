@@ -8,37 +8,22 @@
 
 #import "TMBImageCardViewController.h"
 #import "TMBConstants.h"
-#import "PAPCache.h"
-#import "TMBTableViewCommentCellTableViewCell.h"
 #import "TMBSharedBoardID.h"
 
 @interface TMBImageCardViewController ()
 
-//add photo view
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+//photo handling
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) UIImage *thumbnail;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (nonatomic, strong) PFFile *photoFile;
+@property (nonatomic, strong) UIImage *thumb;
+@property (nonatomic, strong) PFFile *imageFile;
 @property (nonatomic, strong) PFFile *thumbFile;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier commentPostBackgroundTaskId;
-//@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UITextField *commentField;
-@property (weak, nonatomic) IBOutlet UIButton *sendButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottomConstraint;
-
-//detail view
-@property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
-@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
-
 
 //board ID
 @property (nonatomic, strong) NSString *boardID;
 @property (nonatomic, strong) PFObject *board;
-@property (strong, nonatomic) PFObject *testing;
 
 //loading view
 @property (nonatomic, strong) UIView *overlayView;
@@ -49,78 +34,13 @@
 
 @implementation TMBImageCardViewController
 
-- (id)initWithImage:(UIImage *)aImage {
-    self = [super initWithNibName:nil bundle:nil];
-    if (self) {
-        if (!aImage) {
-            return nil;
-        }
-        
-        self.image = aImage;
-        self.fileUploadBackgroundTaskId = UIBackgroundTaskInvalid;
-        self.photoPostBackgroundTaskId = UIBackgroundTaskInvalid;
-        self.commentPostBackgroundTaskId = UIBackgroundTaskInvalid;
-    }
-    return self;
-}
+#pragma mark - views
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"IN VIEW DID LOAD.........");
-    
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
-    
-    if (![PFUser currentUser]){
-        NSLog(@"Not currently logged in");
-    }
-  
-    /*****************************
-     *        PARSE QUERY        *
-     *****************************/
-
-    // goal: query for an image, set the image to the view
-    // goal: get comments related to that image & display them in a small table view
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
-    [query includeKey:kTMBActivityPhotoKey];
-    [query includeKey:kTMBActivityFromUserKey];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            // handle error in the future
-        }
-
-        PFObject *anActivity = [objects firstObject];
-        NSLog(@"anActivities comment: %@", anActivity[@"content"]);
-        
-        // set datastore to objects array
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            self.activities = [objects mutableCopy];
-            [self.commentsTableView reloadData];
-        }];
-        
-        // getting photo obj
-        PFObject *anActivitysPhoto = anActivity[@"photo"];
-        self.testing = anActivitysPhoto;
-        PFFile *imageFile = anActivitysPhoto[@"image"];
-        
-        // test: user's first name set to label
-        PFObject *aFromUser = anActivity[@"fromUser"];
-        NSString *firstName = aFromUser[@"First_Name"];
-        self.currentUserNameLabel.text = [NSString stringWithFormat:@"Posted by %@", firstName];
-
-        // setting the image view to photo obj above
-        [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
-            if (!error) {
-                UIImage *image = [UIImage imageWithData:result];
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    self.commentedPhoto.image = image;
-                }];
-            }
-        }];
-    }];
     
 }
 
@@ -129,21 +49,46 @@
     return YES;
 }
 
+-(void)activityLoadView
+{
+    
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+}
+
+
+
+#pragma mark - misc end / exit
+
 
 - (IBAction)closeButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)imageTapped:(id)sender {
+    
+    [self.textView endEditing:YES];
+    
+}
+
+
+#pragma mark - choose or take photo
+
 
 - (IBAction)takePhotoButtonTapped:(UIButton *)sender {
-
+    
     // simulators don't have a camera
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
         NSLog(@"NO CAMERA FOUND");
-        // make an alert later
         
     } else {
         
@@ -176,12 +121,9 @@
     self.imageView.clipsToBounds = YES;
     [self.imageView setImage:chosenImage];
     
-    
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
-
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
@@ -189,71 +131,19 @@
     
 }
 
-/*****************************
- *      SAVING TO PARSE      *
- *****************************/
+#pragma mark - save to parse
 
-// this code saves the image selected from photo library or camera
-- (BOOL)shouldUploadImage:(UIImage *)anImage {
-    
-    // passing a UIImage and setting it to our library/camera image
-    anImage = self.imageView.image;
-    
-    NSData *imageData = UIImagePNGRepresentation(anImage);
-    NSData *thumbData = UIImagePNGRepresentation(self.thumbnail);
-    
-    self.photoFile = [PFFile fileWithData:imageData];
-    self.thumbFile = [PFFile fileWithData:thumbData];
-    
-    // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
-    self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
-    }];
-    
-    [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            [self.thumbFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
-                NSLog(@"\n\nsaved thumbFile\n\n");
-                
-                if (error) {
-                    NSLog(@"self.thumbnailFile saveInBackgroundWithBlock: %@", error);
-                }
-            }];
-        } else {
-            [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
-        }
-    }];
 
-    
-    NSLog(@"IN SHOULD UPLOAD IMAGE BOOL .........");
-    
-    return YES;
-}
-
--(void)activityLoadView
-{
-    
-    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.activityIndicator.center = self.overlayView.center;
-    [self.overlayView addSubview:self.activityIndicator];
-    [self.activityIndicator startAnimating];
-    [self.view addSubview:self.overlayView];
-    
-}
-
-// this code saves our image and its comment to Parse
 - (IBAction)postButtonTapped:(UIButton *)sender {
     
+    // overlay activity indicator
     [self activityLoadView];
     
-    self.thumbnail = [self imageWithImage:self.imageView.image scaledToMaxWidth:410.0 maxHeight:352.0];
+    // scale image for view in board
+    self.thumb = [self imageWithImage:self.imageView.image scaledToMaxWidth:204.0 maxHeight:176.0];
+    self.image = [self imageWithImage:self.imageView.image scaledToMaxWidth:408.0 maxHeight:352.0];
     
-    [self shouldUploadImage:self.image];
-    
-    // Trim comment and save it in a dictionary for use later in our callback block
+    // capture text comment
     NSDictionary *userInfo = [NSDictionary dictionary];
     NSString *trimmedComment = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (trimmedComment.length != 0) {
@@ -263,43 +153,33 @@
                     nil];
     }
     
+    NSData *imageData = UIImageJPEGRepresentation(self.image, 0.8f);
+    NSData *thumbData = UIImagePNGRepresentation(self.thumb);
+    
+    self.imageFile = [PFFile fileWithData:imageData];
+    self.thumbFile = [PFFile fileWithData:thumbData];
+    
     PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
-    [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];  // the user is nil??
-    [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
+    [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];
+    [photo setObject:self.imageFile forKey:kTMBPhotoPictureKey];
     [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
     [photo setObject:self.board forKey:@"board"];
     
-    // Photos are public, but may only be modified by the user who uploaded them
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
     [photoACL setPublicReadAccess:YES];
     photo.ACL = photoACL;
     
-    // Request a background execution task to allow us to finish uploading
-    // the photo even if the app is sent to the background
-    self.photoPostBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [[UIApplication sharedApplication] endBackgroundTask:self.photoPostBackgroundTaskId];
+    self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
     }];
     
-    // Save the Photo PFObject
     [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             
-            [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            NSLog(@"Photo uploaded");
-            
-            // run query
-            
-            
-            
-            [[PAPCache sharedCache] setAttributesForPhoto:photo likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
-            
-            // userInfo might contain any caption which might have been posted by the uploader
             if (userInfo) {
                 NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
                 
                 if (commentText && commentText.length != 0) {
-                    // create and save photo caption
                     PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
                     [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
                     [comment setObject:photo forKey:kTMBActivityPhotoKey];
@@ -312,25 +192,30 @@
                     comment.ACL = ACL;
                     
                     [comment saveEventually];
-                    [[PAPCache sharedCache] incrementCommentCountForPhoto:photo];
                 }
             }
-            //
-            //            [[NSNotificationCenter defaultCenter] postNotificationName:TMBTabBarControllerDidFinishEditingPhotoNotification object:photo];
-        }else {
-            NSLog(@"Photo failed to save: %@", error);
-            // re-write this alert to newer syntax
             
-            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
-            //            [alert show];
+            [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
+            [self.overlayView removeFromSuperview];
             [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }else {
+            
+            NSLog(@"Photo failed to save: %@", error);
+            [self.overlayView removeFromSuperview];
+            [self uploadingErrorAlert];
         }
-        [[UIApplication sharedApplication] endBackgroundTask:self.photoPostBackgroundTaskId];
+        
+        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
         
     }];
-
+    
     
 }
+
+
+#pragma mark - image scaling
+
 
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
     
@@ -343,7 +228,7 @@
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
-
+    
     CGFloat oldWidth = image.size.width;
     CGFloat oldHeight = image.size.height;
     
@@ -356,10 +241,29 @@
     return [self imageWithImage:image scaledToSize:newSize];
 }
 
-- (IBAction)imageTapped:(id)sender {
-    
-    [self.textView endEditing:YES];
-    
+
+#pragma mark - alert
+
+-(void)uploadingErrorAlert
+{
+UIAlertController * alert=   [UIAlertController
+                              alertControllerWithTitle:@"Network error"
+                              message:@"Unable to upload photo"
+                              preferredStyle:UIAlertControllerStyleAlert];
+
+UIAlertAction* ok = [UIAlertAction
+                     actionWithTitle:@"OK"
+                     style:UIAlertActionStyleDefault
+                     handler:^(UIAlertAction * action)
+                     {
+                         
+                         [alert dismissViewControllerAnimated:YES completion:nil];
+                         
+                     }];
+
+[alert addAction:ok];
+
+[self presentViewController:alert animated:YES completion:nil];
 }
 
 

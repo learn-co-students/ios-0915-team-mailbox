@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IyE-qh-y6I">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7DO-Gp-Wnu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--Manage Boards Table View Controller-->
+        <scene sceneID="ORG-4w-KCZ">
+            <objects>
+                <tableViewController id="7DO-Gp-Wnu" customClass="TMBManageBoardsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="1ep-Qe-uEt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="boardCell2" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="boardCell" id="KRg-pJ-yxM" userLabel="1 board Cell" customClass="TMBBoardTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KRg-pJ-yxM" id="rpp-W2-IkS">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="69"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Board name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvM-3s-FCT">
+                                            <rect key="frame" x="74" y="24" width="168" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.35686274509803922" green="0.51764705882352935" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="group2" translatesAutoresizingMaskIntoConstraints="NO" id="v1h-Fs-cpf">
+                                            <rect key="frame" x="16" y="9" width="50" height="50"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="boardNameLabel" destination="cvM-3s-FCT" id="7ae-cv-6L6"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7DO-Gp-Wnu" id="r5n-0d-CGT"/>
+                            <outlet property="delegate" destination="7DO-Gp-Wnu" id="0UC-sh-0L8"/>
+                        </connections>
+                    </tableView>
+                    <nil key="simulatedTopBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bPY-ZA-TZF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1474.5" y="1805.5"/>
+        </scene>
         <!--Create New Board-->
         <scene sceneID="paT-MQ-taq">
             <objects>
@@ -12,7 +55,7 @@
                         <viewControllerLayoutGuide type="top" id="Ub3-BE-GWD"/>
                         <viewControllerLayoutGuide type="bottom" id="Vhx-fK-RxV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rHL-4C-1Xg">
+                    <view key="view" contentMode="scaleToFill" id="rHL-4C-1Xg" userLabel="Board View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -189,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiA-v3-C1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2444.5" y="1227.5"/>
+            <point key="canvasLocation" x="2444.5" y="1207.5"/>
         </scene>
         <!--Find Friends-->
         <scene sceneID="FOR-uW-2E8">
@@ -335,14 +378,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXv-ky-B58">
-                                <rect key="frame" x="130" y="336" width="127" height="77"/>
+                                <rect key="frame" x="130" y="295" width="127" height="77"/>
                                 <state key="normal" title="Create New Board"/>
                                 <connections>
                                     <segue destination="dPn-pp-4IR" kind="show" id="2Mf-6S-giz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NL2-kU-gn8">
+                                <rect key="frame" x="140" y="475" width="107" height="30"/>
+                                <state key="normal" title="Manage Boards"/>
+                                <connections>
+                                    <segue destination="7DO-Gp-Wnu" kind="show" id="PNR-NI-BEZ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBH-Gc-xQ9">
-                                <rect key="frame" x="130" y="194" width="127" height="77"/>
+                                <rect key="frame" x="124" y="135" width="127" height="77"/>
                                 <state key="normal" title="Find Friends"/>
                                 <connections>
                                     <segue destination="PHA-lw-zz9" kind="show" id="cyq-Rr-pqF"/>
@@ -378,4 +428,7 @@
             <point key="canvasLocation" x="1413.5" y="827.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="group2" width="200" height="200"/>
+    </resources>
 </document>

@@ -18,7 +18,6 @@
 		5508F4D91BFB976F00D02E15 /* parse-library in Resources */ = {isa = PBXBuildFile; fileRef = 5508F4D81BFB976F00D02E15 /* parse-library */; };
 		5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4DD1BFBC22300D02E15 /* TMBUser.m */; };
 		5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E61BFBC25300D02E15 /* TMBTextCard.m */; };
-		5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */; };
 		5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */; };
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
 		5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */; };
@@ -50,6 +49,8 @@
 		A44515161BFE6D0B00BDD502 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A44515151BFE6D0B00BDD502 /* UIKit.framework */; };
 		A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */; };
 		A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */; };
+		A45295451C20992B0060E8BC /* TMBManageBoardsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A45295441C20992B0060E8BC /* TMBManageBoardsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A45295481C20A8690060E8BC /* TMBBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A45295471C20A8690060E8BC /* TMBBoardTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */; };
 		A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */; };
 		A46CB1011BFCD39100D35BB3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
@@ -63,7 +64,7 @@
 		A46CB1131BFCD3EF00D35BB3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
 		A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
-		A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48A0AF01C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48A0AF01C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m */; };
 		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; };
 		A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */; };
 		A4AC72871C0E890B000F05C8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72851C0E890B000F05C8 /* AddressBook.framework */; };
@@ -173,8 +174,6 @@
 		5508F4DD1BFBC22300D02E15 /* TMBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBUser.m; sourceTree = "<group>"; };
 		5508F4E51BFBC25300D02E15 /* TMBTextCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCard.h; sourceTree = "<group>"; };
 		5508F4E61BFBC25300D02E15 /* TMBTextCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCard.m; sourceTree = "<group>"; };
-		5508F4E81BFBDD2E00D02E15 /* TMBSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSignInViewController.h; sourceTree = "<group>"; };
-		5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSignInViewController.m; sourceTree = "<group>"; };
 		5508F4EB1BFBDD4100D02E15 /* TMBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSignUpViewController.h; sourceTree = "<group>"; };
 		5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSignUpViewController.m; sourceTree = "<group>"; };
 		5508F4EE1BFC12A500D02E15 /* TMBFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFirstPageViewController.h; sourceTree = "<group>"; };
@@ -239,6 +238,10 @@
 		A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBDoodleViewController.m; sourceTree = "<group>"; };
 		A445152C1C039D2300BDD502 /* PAPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPCache.h; sourceTree = "<group>"; };
 		A445152D1C039D2300BDD502 /* PAPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPCache.m; sourceTree = "<group>"; };
+		A45295431C20992B0060E8BC /* TMBManageBoardsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBManageBoardsTableViewController.h; sourceTree = "<group>"; };
+		A45295441C20992B0060E8BC /* TMBManageBoardsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBManageBoardsTableViewController.m; sourceTree = "<group>"; };
+		A45295461C20A8690060E8BC /* TMBBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBBoardTableViewCell.h; sourceTree = "<group>"; };
+		A45295471C20A8690060E8BC /* TMBBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBBoardTableViewCell.m; sourceTree = "<group>"; };
 		A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewStoryboard.storyboard; sourceTree = "<group>"; };
 		A46CB0FD1BFC989800D35BB3 /* TMBImageCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBImageCardViewController.h; sourceTree = "<group>"; };
 		A46CB0FE1BFC989800D35BB3 /* TMBImageCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBImageCardViewController.m; sourceTree = "<group>"; };
@@ -508,8 +511,6 @@
 				55A7E6861C0E159C00D18009 /* AppViewController.m */,
 				5508F4EE1BFC12A500D02E15 /* TMBFirstPageViewController.h */,
 				5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */,
-				5508F4E81BFBDD2E00D02E15 /* TMBSignInViewController.h */,
-				5508F4E91BFBDD2E00D02E15 /* TMBSignInViewController.m */,
 				5508F4EB1BFBDD4100D02E15 /* TMBSignUpViewController.h */,
 				5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */,
 				55A7E6801C0CC80700D18009 /* TMBInviteFriendsViewController.h */,
@@ -601,6 +602,10 @@
 		A42EB5D51C18C9E8009A241B /* Create New Board */ = {
 			isa = PBXGroup;
 			children = (
+				A45295431C20992B0060E8BC /* TMBManageBoardsTableViewController.h */,
+				A45295441C20992B0060E8BC /* TMBManageBoardsTableViewController.m */,
+				A45295461C20A8690060E8BC /* TMBBoardTableViewCell.h */,
+				A45295471C20A8690060E8BC /* TMBBoardTableViewCell.m */,
 				A42EB5D61C19D234009A241B /* TMBFindFriendsViewController.h */,
 				A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */,
 				EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */,
@@ -940,13 +945,14 @@
 				5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */,
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
 				EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */,
+				A45295451C20992B0060E8BC /* TMBManageBoardsTableViewController.m in Sources */,
 				A46CB0FF1BFC989800D35BB3 /* TMBImageCardViewController.m in Sources */,
 				55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5D03AF171C1785DA00E2CDEB /* TMBBoardCell.m in Sources */,
-				5508F4EA1BFBDD2E00D02E15 /* TMBSignInViewController.m in Sources */,
 				A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */,
 				A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */,
+				A45295481C20A8690060E8BC /* TMBBoardTableViewCell.m in Sources */,
 				EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */,
 				5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */,
 				55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */,
