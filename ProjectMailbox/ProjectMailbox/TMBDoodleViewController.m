@@ -299,26 +299,26 @@
             [[PAPCache sharedCache] setAttributesForPhoto:photo likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
             
             // userInfo might contain any caption which might have been posted by the uploader
-            if (userInfo) {
-                NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
-                
-                if (commentText && commentText.length != 0) {
-                    // create and save photo caption
-                    PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
-                    [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
-                    [comment setObject:photo forKey:kTMBActivityPhotoKey];
-                    [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
-                    [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
-                    [comment setObject:commentText forKey:kTMBActivityContentKey];
-                    
-                    PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-                    [ACL setPublicReadAccess:YES];
-                    comment.ACL = ACL;
-                    
-                    [comment saveEventually];
-                    [[PAPCache sharedCache] incrementCommentCountForPhoto:photo];
-                }
-            }
+//            if (userInfo) {
+//                NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
+//                
+//                if (commentText && commentText.length != 0) {
+//                    // create and save photo caption
+//                    PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
+//                    [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
+//                    [comment setObject:photo forKey:kTMBActivityPhotoKey];
+//                    [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
+//                    [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
+//                    [comment setObject:commentText forKey:kTMBActivityContentKey];
+//                    
+//                    PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+//                    [ACL setPublicReadAccess:YES];
+//                    comment.ACL = ACL;
+//                    
+//                    [comment saveEventually];
+//                    [[PAPCache sharedCache] incrementCommentCountForPhoto:photo];
+//                }
+//            }
             
         } else {
             
