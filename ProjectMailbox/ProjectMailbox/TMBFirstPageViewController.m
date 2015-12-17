@@ -46,6 +46,7 @@
     
 }
 
+
 -(void)activityLoadView
 {
     
@@ -58,6 +59,8 @@
     [self.view addSubview:self.overlayView];
     
 }
+
+
 
 
 - (IBAction)signInButtonTapped:(id)sender {

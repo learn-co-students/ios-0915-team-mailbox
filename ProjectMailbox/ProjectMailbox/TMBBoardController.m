@@ -12,6 +12,7 @@
 #import "Parse/Parse.h"
 #import "TMBImageCardViewController.h"
 #import "TMBSharedBoardID.h"
+#import "TMBDoodleViewController.h"
 
 //#import "TMBSharedBoard.h" joel copy over - singleton not set up
 
@@ -24,7 +25,7 @@
 static NSInteger const kNumberOfSections = 1;
 static NSInteger const kItemsPerPage = 20;
 
-@interface TMBBoardController () <TMBImageCardViewControllerDelegate>
+@interface TMBBoardController () <TMBImageCardViewControllerDelegate, TMBDoodleViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *boardContent;
 @property (nonatomic, strong) NSArray *colors;
@@ -253,8 +254,9 @@ static NSString * const reuseIdentifier = @"MediaCell";
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 UIViewController *doodleVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBDoodleViewController"];
                                  
+                                 TMBDoodleViewController *doodleVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBDoodleViewController"];
+                                 doodleVC.delegate = self;
                                  [self presentViewController:doodleVC animated:YES completion:nil];
                                  
                                  [view dismissViewControllerAnimated:YES completion:nil];
@@ -273,7 +275,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     [view addAction:picture];
 //    [view addAction:text];
-//    [view addAction:doodle];
+    [view addAction:doodle];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
     
@@ -311,6 +313,17 @@ static NSString * const reuseIdentifier = @"MediaCell";
 #pragma mark - queries
 
 -(void)imageCardViewController:(TMBImageCardViewController *)viewController passBoardIDforQuery:(NSString *)boardID
+{
+    NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+    [self queryParseToUpdateCollection:boardID successBlock:^(BOOL success) {
+        if (!success) {
+            // error updating collection
+        }
+    }];
+}
+
+-(void)doodleViewController:(TMBDoodleViewController *)viewController passBoardIDforQuery:(NSString *)boardID
 {
     NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];

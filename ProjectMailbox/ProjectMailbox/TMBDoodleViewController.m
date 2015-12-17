@@ -9,6 +9,7 @@
 #import "TMBDoodleViewController.h"
 #import "PAPCache.h"
 #import "TMBConstants.h"
+#import "TMBSharedBoardID.h"
 
 #define FEEDBACK_VIEW_WIDTH 200
 #define FEEDBACK_VIEW_HEIGHT 200
@@ -30,6 +31,23 @@
 @property (strong, nonatomic) SimpleColorPickerView *simpleColorPickerView;
 @property (strong, nonatomic) UIColor *chosenColor;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier doodlePostBackgroundTaskId;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
+@property (strong, nonatomic) UIImage *thumbnail;
+@property (strong, nonatomic) PFFile *imageData;
+@property (strong, nonatomic) PFFile *thumbData;
+@property (nonatomic, strong) PFFile *photoFile;
+@property (nonatomic, strong) PFFile *thumbFile;
+@property (nonatomic, strong) UIImage *image;
+
+//board ID
+@property (nonatomic, strong) NSString *boardID;
+@property (nonatomic, strong) PFObject *board;
+
+//loading view
+@property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 
 @end
 
@@ -46,6 +64,9 @@
     opacity = 1.0;
     
     [self setUpSimpleColorPicker];
+    
+    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
+    self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
     
 }
 
@@ -142,10 +163,88 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+-(void)activityLoadView
+{
+    
+    self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.center = self.overlayView.center;
+    [self.overlayView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.overlayView];
+    
+}
+
+
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
+    
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+    
+    CGFloat oldWidth = image.size.width;
+    CGFloat oldHeight = image.size.height;
+    
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+    
+    CGFloat newHeight = oldHeight * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
+    CGSize newSize = CGSizeMake(newWidth, newHeight);
+    
+    return [self imageWithImage:image scaledToSize:newSize];
+}
+
+- (BOOL)shouldUploadImage:(UIImage *)anImage {
+    
+    // passing a UIImage and setting it to our library/camera image
+    anImage = self.bottomImageView.image;
+    
+    NSData *imageData = UIImagePNGRepresentation(anImage);
+    NSData *thumbData = UIImagePNGRepresentation(self.thumbnail);
+    
+    self.photoFile = [PFFile fileWithData:imageData];
+    self.thumbFile = [PFFile fileWithData:thumbData];
+    
+    // Request a background execution task to allow us to finish uploading the photo even if the app is backgrounded
+    self.fileUploadBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+    }];
+    
+    [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self.thumbFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+                NSLog(@"\n\nsaved thumbFile\n\n");
+                
+                if (error) {
+                    NSLog(@"self.thumbnailFile saveInBackgroundWithBlock: %@", error);
+                }
+            }];
+        } else {
+            [[UIApplication sharedApplication] endBackgroundTask:self.fileUploadBackgroundTaskId];
+        }
+    }];
+    
+    
+    NSLog(@"IN SHOULD UPLOAD IMAGE BOOL .........");
+    
+    return YES;
+}
+
+
 - (IBAction)saveButtonPressed:(id)sender {
     
     UIGraphicsBeginImageContextWithOptions(self.bottomImageView.bounds.size, NO, 0.0);
-    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.frame.size.width, self.bottomImageView.frame.size.height)];
+    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, 204.0, 176.0)];
+    
+//    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.frame.size.width, self.bottomImageView.frame.size.height)];
     
     UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -156,25 +255,80 @@
     
     // Save the image to Parse
     
-    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            // The image has now been uploaded to Parse. Associate it with a new object
-            PFObject* newPhotoObject = [PFObject objectWithClassName:@"Doodle"];
-            [newPhotoObject setObject:imageFile forKey:@"image"];
-            [newPhotoObject setObject:[PFUser currentUser] forKey:@"user"];
-            
-            [newPhotoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    NSLog(@"Saved");
-                }
-                else{
-                    // Error
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-                }
-            }];
-        }
-    }];
+    [self activityLoadView];
     
+    self.thumbnail = [self imageWithImage:self.bottomImageView.image scaledToMaxWidth:204.0 maxHeight:176.0];
+    
+    [self shouldUploadImage:self.image];
+    
+//    NSDictionary *userInfo = [NSDictionary dictionary];
+//    NSString *trimmedComment = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    if (trimmedComment.length != 0) {
+//        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+//                    trimmedComment,
+//                    kTMBEditPhotoViewControllerUserInfoCommentKey,
+//                    nil];
+//    }
+    
+    NSData *imageData = UIImagePNGRepresentation(self.bottomImageView.image);
+    NSData *thumbData = UIImagePNGRepresentation(self.thumbnail);
+    
+    self.photoFile = [PFFile fileWithData:imageData];
+    self.thumbFile = [PFFile fileWithData:thumbData];
+    
+    PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
+    [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];
+    [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
+    [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
+    [photo setObject:self.board forKey:@"board"];
+    NSLog(@"%@", photo);
+    
+    // Photos are public, but may only be modified by the user who uploaded them
+    PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
+    [photoACL setPublicReadAccess:YES];
+    photo.ACL = photoACL;
+    
+    // Save the Photo PFObject
+    [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            
+            [self.delegate doodleViewController:self passBoardIDforQuery:self.boardID];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            NSLog(@"Doodle uploaded");
+            
+            [[PAPCache sharedCache] setAttributesForPhoto:photo likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
+            
+            // userInfo might contain any caption which might have been posted by the uploader
+            if (userInfo) {
+                NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
+                
+                if (commentText && commentText.length != 0) {
+                    // create and save photo caption
+                    PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
+                    [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
+                    [comment setObject:photo forKey:kTMBActivityPhotoKey];
+                    [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
+                    [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
+                    [comment setObject:commentText forKey:kTMBActivityContentKey];
+                    
+                    PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+                    [ACL setPublicReadAccess:YES];
+                    comment.ACL = ACL;
+                    
+                    [comment saveEventually];
+                    [[PAPCache sharedCache] incrementCommentCountForPhoto:photo];
+                }
+            }
+            
+        } else {
+            
+            NSLog(@"Photo failed to save: %@", error);
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+    }];
+            
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
