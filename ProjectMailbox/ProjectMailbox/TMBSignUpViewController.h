@@ -9,6 +9,6 @@
 #import "ViewController.h"
 #import <Parse/Parse.h>
 
-@interface TMBSignUpViewController : ViewController
+@interface TMBSignUpViewController : ViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end

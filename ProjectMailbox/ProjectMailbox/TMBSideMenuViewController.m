@@ -9,14 +9,15 @@
 #import "TMBSideMenuViewController.h"
 #import "TMBBoard.h"
 #import "TMBSideMenuTableViewCell.h"
+#import "TMBSharedBoardID.h"
 
 
 @interface TMBSideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UITableView *boardListingTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameField;
-@property (weak, nonatomic) IBOutlet UITableView *boardListingTableView;
 @property (nonatomic) NSInteger boardCount;
 @property (strong, nonatomic) NSMutableArray *userBoards;
 @property (strong, nonatomic) NSString *boardID;
@@ -25,8 +26,18 @@
 
 @implementation TMBSideMenuViewController
 
+
+
+-(void) viewDidAppear:(BOOL)animated  {
+    [super viewDidAppear:animated];
+    [self.boardListingTableView reloadData];
+    NSLog(@"viewDidAppear");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self prefersStatusBarHidden];
     
     self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
@@ -93,8 +104,9 @@
 
 - (IBAction)logoutButtonTapped:(id)sender {
     
+    [TMBSharedBoardID sharedBoardID].boardID = @"";
+    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
     [PFUser logOut];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogOutNotification" object:nil];
     
 }

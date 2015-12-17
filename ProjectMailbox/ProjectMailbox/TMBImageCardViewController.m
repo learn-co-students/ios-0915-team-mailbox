@@ -140,7 +140,7 @@
     [self activityLoadView];
     
     // scale image for view in board
-    self.thumb = [self imageWithImage:self.imageView.image scaledToMaxWidth:204.0 maxHeight:176.0];
+    self.thumb = [self imageWithImage:self.imageView.image scaledToMaxWidth:310.0 maxHeight:132.0];
     self.image = [self imageWithImage:self.imageView.image scaledToMaxWidth:408.0 maxHeight:352.0];
     
     // capture text comment
@@ -175,6 +175,7 @@
     
     [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
+            [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
             
             if (userInfo) {
                 NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
@@ -195,7 +196,7 @@
                 }
             }
             
-            [self.delegate imageCardViewController:self passBoardIDforQuery:self.boardID];
+            
             [self.overlayView removeFromSuperview];
             [self dismissViewControllerAnimated:YES completion:nil];
             

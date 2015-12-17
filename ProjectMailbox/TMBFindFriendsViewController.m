@@ -33,6 +33,8 @@
     
     [super viewDidLoad];
     
+    [self prefersStatusBarHidden];
+    
     NSLog(@"IN VIEW DID LOAD of FIND FREINDS VC.........");
     
     self.friendsForCurrentUser = [NSMutableArray new];
@@ -52,6 +54,16 @@
     }];
     
 }
+
+
+
+
+- (IBAction)doneButtonTapped:(UIButton *)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self.navigationController popViewControllerAnimated:YES];
+}
+
 
 
 

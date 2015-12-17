@@ -10,6 +10,8 @@
 #import "TMBConstants.h"
 #import "PAPUtility.h"
 #import "TMBFriendsTableViewCell.h"
+#import "TMBSideMenuViewController.h"
+
 
 @interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -38,6 +40,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    [self prefersStatusBarHidden];
     
     NSLog(@"IN VIEW DID LOAD CREATE BOARD VC.........");
     
@@ -328,20 +332,19 @@
     self.myNewBoard[@"boardName"] = boardName;
     
     [self.myNewBoard saveEventually];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
     
 }
 
 
-
-- (IBAction)cancelButtonTapped:(UIBarButtonItem *)sender {
+- (IBAction)cancelButtonTapped:(UIButton *)sender {
     
-    [self.navigationController popViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
-    [self.myNewBoard deleteEventually];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
+        [self.myNewBoard deleteEventually];
+        [self dismissViewControllerAnimated:YES
+                                 completion:nil];
 }
+
 
 
 

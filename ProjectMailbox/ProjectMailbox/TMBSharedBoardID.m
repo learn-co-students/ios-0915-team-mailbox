@@ -12,7 +12,6 @@
 
 + (instancetype)sharedBoardID
 {
-    NSLog(@"shared board instance");
     static id sharedBoardID = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -23,7 +22,6 @@
 
 -(NSString *)boardID
 {
-    NSLog(@"shared board ID: %@",_boardID);
     return _boardID;
 }
 -(NSMutableDictionary *)boards
