@@ -41,6 +41,8 @@
     
     [super viewDidLoad];
     
+    [self prefersStatusBarHidden];
+    
     NSLog(@"IN VIEW DID LOAD CREATE BOARD VC.........");
     
     self.friendsForCurrentUser = [NSMutableArray new];
@@ -336,14 +338,13 @@
 }
 
 
-
-- (IBAction)cancelButtonTapped:(UIBarButtonItem *)sender {
+- (IBAction)cancelButtonTapped:(UIButton *)sender {
     
-////    [self.navigationController popViewControllerAnimated:YES];
-    [self.myNewBoard deleteEventually];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
+        [self.myNewBoard deleteEventually];
+        [self dismissViewControllerAnimated:YES
+                                 completion:nil];
 }
+
 
 
 
