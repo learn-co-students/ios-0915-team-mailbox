@@ -7,6 +7,7 @@
 //
 
 #import "AppViewController.h"
+#import "TMBSharedBoardID.h"
 
 
 @interface AppViewController ()
@@ -24,6 +25,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidSignUpNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithBoards:) name:@"UserDidLogInWithBoardsNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithoutBoards:) name:@"UserDidLogInWithoutBoardsNotification" object:nil];
+    
+    
     
     if ([PFUser currentUser]) {
         [self showMainPage];
@@ -80,6 +83,8 @@
     [PFUser logOut];
     
     // switch back to the login VC
+    [TMBSharedBoardID sharedBoardID].boardID = @"";
+    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
     [self showFirstPage];
 }
 

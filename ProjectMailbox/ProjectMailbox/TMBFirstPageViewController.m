@@ -103,7 +103,7 @@
                     NSLog(@"\n\n\nobjects: %@\n\n\n",objects);
                     
                     if (objects.count == 0) {
-                        
+                        [self.overlayView removeFromSuperview];
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithoutBoardsNotification" object:nil];
                         
                     } else {
@@ -137,8 +137,10 @@
                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
                                 
                             } else {
-                                NSLog(@"\n\n\n\nboardqueryphotoclass error.code: %li\n\n\n",error.code);
+                                
                                 if (error.code == 101) {
+                                    NSLog(@"\n\n\n\nboardqueryphotoclass error.code: %li\n\n\n",error.code);
+                                    [self.overlayView removeFromSuperview];
                                     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
                                 }
                                 [self.overlayView removeFromSuperview];
