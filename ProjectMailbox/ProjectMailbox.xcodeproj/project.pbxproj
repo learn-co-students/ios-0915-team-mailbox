@@ -81,6 +81,7 @@
 		A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */; };
 		A4C03FF61C03BC5C00F0F368 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEF1C03BC5C00F0F368 /* ParseTwitterUtils.framework */; };
 		A4C03FF71C03BC5C00F0F368 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */; };
+		A4E03EB91C2DA0A900DC8A33 /* TMBManageSelectedBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E03EB81C2DA0A900DC8A33 /* TMBManageSelectedBoardViewController.m */; };
 		EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */; };
 		EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */; };
 		EA2A26BD1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */; };
@@ -286,6 +287,8 @@
 		A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "parse-library-1.9.1/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		A4C03FEF1C03BC5C00F0F368 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseTwitterUtils.framework; path = "parse-library-1.9.1/ParseTwitterUtils.framework"; sourceTree = "<group>"; };
 		A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "parse-library-1.9.1/ParseUI.framework"; sourceTree = "<group>"; };
+		A4E03EB71C2DA0A900DC8A33 /* TMBManageSelectedBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBManageSelectedBoardViewController.h; sourceTree = "<group>"; };
+		A4E03EB81C2DA0A900DC8A33 /* TMBManageSelectedBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBManageSelectedBoardViewController.m; sourceTree = "<group>"; };
 		DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectMailbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E233FEDA584CB1D3E650CB43 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateBoardViewController.h; path = ProjectMailbox/CreateBoardViewController.h; sourceTree = "<group>"; };
@@ -611,6 +614,8 @@
 				A45295471C20A8690060E8BC /* TMBBoardTableViewCell.m */,
 				A42EB5D61C19D234009A241B /* TMBFindFriendsViewController.h */,
 				A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */,
+				A4E03EB71C2DA0A900DC8A33 /* TMBManageSelectedBoardViewController.h */,
+				A4E03EB81C2DA0A900DC8A33 /* TMBManageSelectedBoardViewController.m */,
 				EA2A26B61C1782C60038F2D5 /* CreateBoardViewController.h */,
 				EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */,
 				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
@@ -954,6 +959,7 @@
 				55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5D03AF171C1785DA00E2CDEB /* TMBBoardCell.m in Sources */,
+				A4E03EB91C2DA0A900DC8A33 /* TMBManageSelectedBoardViewController.m in Sources */,
 				A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */,
 				A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */,
 				A45295481C20A8690060E8BC /* TMBBoardTableViewCell.m in Sources */,
@@ -1093,9 +1099,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-weak_framework",
+					Pods_ProjectMailbox,
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1132,7 +1142,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

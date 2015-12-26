@@ -71,6 +71,7 @@
     return self.userBoards.count;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TMBBoardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"boardCell" forIndexPath:indexPath];
     

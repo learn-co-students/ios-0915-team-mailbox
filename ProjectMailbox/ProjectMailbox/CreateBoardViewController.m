@@ -13,7 +13,7 @@
 #import "TMBSideMenuViewController.h"
 
 
-@interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *boardNameLabel;
 @property (strong, nonatomic) PFObject *myNewBoard;
@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
 @property (nonatomic, strong) NSMutableArray *boardFriends;
 @property (nonatomic, strong) PFUser *foundFriend;
+@property (nonatomic, strong) PFUser *currentUser;
 
 // Found a Friend View
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
@@ -57,6 +58,7 @@
     self.noUsersFoundLabel.hidden = YES;
     
     [[PFUser currentUser] fetchInBackground];
+    self.currentUser = [PFUser currentUser];
     
     [self queryCurrentUserFriendsWithCompletion:^(NSMutableArray *users, NSError *error) {
         NSLog(@"%@", users);
@@ -100,9 +102,34 @@
         }
     }];
     
+    
+    // dismisses the keyboard when Done button is tapped:
+    self.boardNameLabel.delegate = self;
+    [self textFieldShouldReturn:self.boardNameLabel];
+    
+    
+    self.searchField.delegate = self;
+    [self textFieldShouldReturn:self.searchField];
 
 }
 
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    // because there are 2 text fields in the VC:
+    
+    if (textField == self.boardNameLabel) {
+        // done button was pressed - dismiss keyboard
+        [textField resignFirstResponder];
+        return YES;
+    } else {
+        [textField resignFirstResponder];
+        [self searchFriendsButtonTapped:nil];
+    }
+    
+    return YES;
+}
 
 
 
@@ -164,7 +191,7 @@
     // add user to all user friends and to board friends simultaneously. unique add.
     // add check if allfriends array contains this friend, then remove them from allfriends array
     
-    if (self.foundFriend) {
+    if (self.foundFriend && self.foundFriend != self.currentUser) {
         
         [self addUserToAllFriendsOnParse:self.foundFriend completion:^(NSArray *allFriends, NSError *error) {
             NSLog(@"added new user to friends!");
@@ -186,10 +213,37 @@
         [self.boardFriendsTableView reloadData];
     }
     
+    if (self.foundFriend == self.currentUser) {
+        [self displayAlert];
+    }
     
     // hiding found friends view:
     self.allFoundFriendView.hidden = YES;
     self.searchField.text = @"";
+    
+}
+
+
+
+-(void)displayAlert {
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Friending Yourself?"
+                                  message:@"The database will get confused, so better not."
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //Handle OK button action here
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                               }];
+    
+    [alert addAction:okButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 
@@ -253,8 +307,7 @@
 
 
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSUInteger numberOfFriends = self.friendsForCurrentUser.count + self.boardFriends.count;
     NSLog(@"numberOfRows getting called: %lu", numberOfFriends);
@@ -266,8 +319,7 @@
 
 
 
--(UITableViewCell *)tableView:(UITableView *)tableView
-        cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     PFObject *currentFriend;
     TMBFriendsTableViewCell *cell;
@@ -315,12 +367,6 @@
     
 }
 
-- (IBAction)screenTapped:(id)sender {
-    
-    self.boardNameLabel.resignFirstResponder;
-    self.searchField.resignFirstResponder;
-    
-}
 
 
 - (IBAction)saveNewBoardTapped:(UIButton *)sender {
@@ -345,6 +391,13 @@
                                  completion:nil];
 }
 
+
+
+- (IBAction)backgroundTapped:(id)sender {
+    
+    [self.view endEditing:YES];
+    
+}
 
 
 
@@ -497,6 +550,11 @@
     [self dismissViewControllerAnimated:YES
                              completion:nil];
 }
+
+
+
+
+
 
 
 //- (void)queryBoardFriendsWithCompletion:(void(^)(NSMutableArray *boardUsers, NSError *error))completionBlock {

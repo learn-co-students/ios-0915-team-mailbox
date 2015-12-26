@@ -12,7 +12,7 @@
 #import "TMBFriendsTableViewCell.h"
 
 
-@interface TMBFindFriendsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TMBFindFriendsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
 @property (weak, nonatomic) IBOutlet UILabel *foundFriendUsernameLabel;
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *allFriendsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (nonatomic, strong) PFUser *foundFriend;
+@property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
 @property (weak, nonatomic) IBOutlet UILabel *noUsersFoundLabel;
 
@@ -47,14 +48,29 @@
     self.noUsersFoundLabel.hidden = YES;
     
     [[PFUser currentUser] fetchInBackground];
+    self.currentUser = [PFUser currentUser];
     
     [self queryCurrentUserFriendsWithCompletion:^(NSMutableArray *users, NSError *error) {
         NSLog(@"DID IT WORK??? YAY!! %@", users);
         [self.allFriendsTableView reloadData];
     }];
     
+    // dismisses the keyboard when Done button is tapped:
+    self.searchField.delegate = self;
+    [self textFieldShouldReturn:self.searchField];
+    
 }
 
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+        // done button was pressed - dismiss keyboard, call on search friend method
+        [textField resignFirstResponder];
+        [self searchFriendButtonTapped:nil];
+
+    return YES;
+}
 
 
 
@@ -63,7 +79,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     //[self.navigationController popViewControllerAnimated:YES];
 }
-
 
 
 
@@ -122,7 +137,7 @@
 
 - (IBAction)addUserToAllFriendsButtonTapped:(UIButton *)sender {
     
-    if (self.foundFriend) {
+    if (self.foundFriend && self.foundFriend != self.currentUser) {
         
         [self addUserToAllFriendsOnParse:self.foundFriend completion:^(NSArray *allFriends, NSError *error) {
             NSLog(@"complete!");
@@ -136,9 +151,37 @@
         [self.allFriendsTableView reloadData];
     }
     
+    if (self.foundFriend == self.currentUser) {
+        [self displayAlert];
+    }
+    
     // hiding found friends view:
     self.allFoundFriendView.hidden = YES;
     self.searchField.text = @"";
+    
+}
+
+
+
+-(void)displayAlert {
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Friending Yourself?"
+                                  message:@"The database will get confused, so better not."
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //Handle OK button action here
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                               }];
+    
+    [alert addAction:okButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 
@@ -215,6 +258,14 @@
     }];
     
     return cell;
+}
+
+
+
+- (IBAction)backgroundTapped:(id)sender {
+    
+    [self.view endEditing:YES];
+    
 }
 
 
