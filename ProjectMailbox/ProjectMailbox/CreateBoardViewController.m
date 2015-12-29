@@ -15,7 +15,7 @@
 
 @interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *boardNameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *boardNameField;
 @property (strong, nonatomic) PFObject *myNewBoard;
 @property (nonatomic, strong) NSString *myNewBoardObjectId;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *boardFriends;
 @property (nonatomic, strong) PFUser *foundFriend;
 @property (nonatomic, strong) PFUser *currentUser;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 
 // Found a Friend View
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
@@ -35,6 +36,15 @@
 
 
 @implementation CreateBoardViewController
+
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self adjustHeightOfTableview];
+}
 
 
 
@@ -63,6 +73,7 @@
     [self queryCurrentUserFriendsWithCompletion:^(NSMutableArray *users, NSError *error) {
         NSLog(@"%@", users);
         [self.boardFriendsTableView reloadData];
+        [self adjustHeightOfTableview];
     }];
     
     [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
@@ -103,14 +114,21 @@
     }];
     
     
-    // dismisses the keyboard when Done button is tapped:
-    self.boardNameLabel.delegate = self;
-    [self textFieldShouldReturn:self.boardNameLabel];
-    
-    
+    // dismisses the keyboard when Done/Search key is tapped:
+    self.boardNameField.delegate = self;
     self.searchField.delegate = self;
-    [self textFieldShouldReturn:self.searchField];
-
+    
+    
+    // setting dynamimc table view height:
+//    CGRect tableFrame = self.boardFriendsTableView.frame;
+//    tableFrame.size.height = 60 * (self.friendsForCurrentUser.count + self.boardFriends.count);
+//    self.boardFriendsTableView.frame = tableFrame;
+    
+//    self.tableViewHeightConstraint.constant = 60 * (self.friendsForCurrentUser.count + self.boardFriends.count);
+//    [self.boardFriendsTableView needsUpdateConstraints];
+    
+    [self tableViewHeightConstraint];
+    
 }
 
 
@@ -119,11 +137,12 @@
     
     // because there are 2 text fields in the VC:
     
-    if (textField == self.boardNameLabel) {
-        // done button was pressed - dismiss keyboard
+    if (textField == self.boardNameField) {
+        // Done key was pressed - dismiss keyboard
         [textField resignFirstResponder];
         return YES;
     } else {
+        // Search key was pressed - dismiss keyboard, perform friend search
         [textField resignFirstResponder];
         [self searchFriendsButtonTapped:nil];
     }
@@ -181,6 +200,7 @@
     }];
     
     self.searchField.text = @"";
+    [self.searchField resignFirstResponder];
     
 }
 
@@ -211,6 +231,7 @@
         }
         
         [self.boardFriendsTableView reloadData];
+        [self adjustHeightOfTableview];
     }
     
     if (self.foundFriend == self.currentUser) {
@@ -273,6 +294,7 @@
     [self.boardFriends addObject:aFriend];
     
     [self.boardFriendsTableView reloadData];
+    [self adjustHeightOfTableview];
     
 }
 
@@ -302,8 +324,41 @@
     [self.friendsForCurrentUser addObject:aFriend];
 
     [self.boardFriendsTableView reloadData];
+    [self adjustHeightOfTableview];
     
 }
+
+
+- (void)adjustHeightOfTableview
+{
+    CGFloat height = self.boardFriendsTableView.contentSize.height;
+    CGFloat maxHeight = self.boardFriendsTableView.superview.frame.size.height - self.boardFriendsTableView.frame.origin.y;
+    CGFloat minHeight = 62;
+    
+    // if the height of the content is greater than the maxHeight of
+    // total space on the screen, limit the height to the size of the
+    // superview.
+    
+    if (height > maxHeight)
+        height = maxHeight;
+    
+    if (height < minHeight)
+        height = minHeight;
+        
+    // now set the height constraint accordingly
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.tableViewHeightConstraint.constant = height;
+        [self.view setNeedsUpdateConstraints];
+    }];
+}
+//- (NSLayoutConstraint *)tableViewHeightConstraint
+//{
+//    self.tableViewHeightConstraint.constant = 60 * (self.friendsForCurrentUser.count + self.boardFriends.count);
+//    [self.boardFriendsTableView needsUpdateConstraints];
+//    
+//    return self.tableViewHeightConstraint;
+//}
 
 
 
@@ -374,7 +429,7 @@
     // THIS METHOD REALLY UPDATES THE BOARD CREATED IN THE VIEWDIDLOAD
     
     // if they named the board this updates the name
-    NSString *boardName = self.boardNameLabel.text;
+    NSString *boardName = self.boardNameField.text;
     self.myNewBoard[@"boardName"] = boardName;
     
     [self.myNewBoard saveEventually];
@@ -382,6 +437,7 @@
                              completion:nil];
     
 }
+
 
 
 - (IBAction)cancelButtonTapped:(UIButton *)sender {
@@ -404,6 +460,7 @@
 /*****************************
  *         PARSE CALLS       *
  *****************************/
+
 
 - (void)createNewBoardOnParseWithCompletion:(void(^)(NSString *objectId, NSError *error))completionBlock {
     

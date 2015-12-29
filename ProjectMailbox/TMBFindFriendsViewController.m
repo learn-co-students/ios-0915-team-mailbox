@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
 @property (weak, nonatomic) IBOutlet UILabel *foundFriendUsernameLabel;
-@property (weak, nonatomic) IBOutlet UIView *allFoundFriendView;
+@property (weak, nonatomic) IBOutlet UIView *foundFriendView;
 @property (weak, nonatomic) IBOutlet UITableView *allFriendsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (nonatomic, strong) PFUser *foundFriend;
@@ -27,8 +27,8 @@
 @end
 
 
-
 @implementation TMBFindFriendsViewController
+
 
 - (void)viewDidLoad {
     
@@ -36,16 +36,19 @@
     
     [self prefersStatusBarHidden];
     
-    NSLog(@"IN VIEW DID LOAD of FIND FREINDS VC.........");
-    
-    self.friendsForCurrentUser = [NSMutableArray new];
-    
     self.allFriendsTableView.delegate = self;
     self.allFriendsTableView.dataSource = self;
+    self.searchField.delegate = self;
+    // dismisses the keyboard when the Search key is tapped: (it unhides the noUsersFoundLabel for some reason)
+    // [self textFieldShouldReturn:self.searchField];
+    
+    NSLog(@"IN VIEW DID LOAD of FIND FREINDS VC.........");
     
     // hiding found/notfound friends views:
-    self.allFoundFriendView.hidden = YES;
     self.noUsersFoundLabel.hidden = YES;
+    self.foundFriendView.hidden = YES;
+    
+    self.friendsForCurrentUser = [NSMutableArray new];
     
     [[PFUser currentUser] fetchInBackground];
     self.currentUser = [PFUser currentUser];
@@ -55,29 +58,17 @@
         [self.allFriendsTableView reloadData];
     }];
     
-    // dismisses the keyboard when Done button is tapped:
-    self.searchField.delegate = self;
-    [self textFieldShouldReturn:self.searchField];
-    
 }
 
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-        // done button was pressed - dismiss keyboard, call on search friend method
-        [textField resignFirstResponder];
-        [self searchFriendButtonTapped:nil];
+    // search key was pressed - dismiss keyboard, call on search friend method
+    [textField resignFirstResponder];
+    [self searchFriendButtonTapped:nil];
 
     return YES;
-}
-
-
-
-- (IBAction)doneButtonTapped:(UIButton *)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -91,7 +82,7 @@
     
         if (!error && allFriends.count > 0) {
             
-            self.allFoundFriendView.hidden = NO;
+            self.foundFriendView.hidden = NO;
             self.noUsersFoundLabel.hidden = YES;
             
             // setting foundFriends View to display a friend:
@@ -122,7 +113,7 @@
             }
         
         if (allFriends.count == 0) {
-            self.allFoundFriendView.hidden = YES;
+            self.foundFriendView.hidden = YES;
             self.noUsersFoundLabel.text = [NSString stringWithFormat:@"No friends found with username: %@", username];
             self.noUsersFoundLabel.hidden = NO;
         }
@@ -156,7 +147,7 @@
     }
     
     // hiding found friends view:
-    self.allFoundFriendView.hidden = YES;
+    self.foundFriendView.hidden = YES;
     self.searchField.text = @"";
     
 }
