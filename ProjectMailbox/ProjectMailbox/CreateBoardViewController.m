@@ -24,13 +24,23 @@
 @property (nonatomic, strong) NSMutableArray *boardFriends;
 @property (nonatomic, strong) PFUser *foundFriend;
 @property (nonatomic, strong) PFUser *currentUser;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 // Found a Friend View
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
 @property (weak, nonatomic) IBOutlet UILabel *foundFriendUsernameLabel;
-@property (weak, nonatomic) IBOutlet UIView *allFoundFriendView;
+@property (weak, nonatomic) IBOutlet UIView *foundFriendView;
 @property (weak, nonatomic) IBOutlet UILabel *noUsersFoundLabel;
+
+// Constraints
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vertSpaceConstraint01;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *friendSearchLabelConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vertSpaceConstraint02;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *friendSearchViewConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vertSpaceConstraint03;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vertSpaceConstraint04;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *saveBtnConstraint;
 
 @end
 
@@ -39,11 +49,12 @@
 
 
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
+    
     [super viewDidAppear:animated];
     
     [self adjustHeightOfTableview];
+
 }
 
 
@@ -64,7 +75,7 @@
     
     
     // hiding found/notfound friends views:
-    self.allFoundFriendView.hidden = YES;
+    self.foundFriendView.hidden = YES;
     self.noUsersFoundLabel.hidden = YES;
     
     [[PFUser currentUser] fetchInBackground];
@@ -112,20 +123,10 @@
             NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
-    
-    
+        
     // dismisses the keyboard when Done/Search key is tapped:
     self.boardNameField.delegate = self;
     self.searchField.delegate = self;
-    
-    
-    // setting dynamimc table view height:
-//    CGRect tableFrame = self.boardFriendsTableView.frame;
-//    tableFrame.size.height = 60 * (self.friendsForCurrentUser.count + self.boardFriends.count);
-//    self.boardFriendsTableView.frame = tableFrame;
-    
-//    self.tableViewHeightConstraint.constant = 60 * (self.friendsForCurrentUser.count + self.boardFriends.count);
-//    [self.boardFriendsTableView needsUpdateConstraints];
     
     [self tableViewHeightConstraint];
     
@@ -161,7 +162,7 @@
         
         if (!error && allFriends.count > 0) {
             
-            self.allFoundFriendView.hidden = NO;
+            self.foundFriendView.hidden = NO;
             self.noUsersFoundLabel.hidden = YES;
             
             // setting foundFriends View to display a friend:
@@ -192,7 +193,7 @@
         }
         
         if (allFriends.count == 0) {
-            self.allFoundFriendView.hidden = YES;
+            self.foundFriendView.hidden = YES;
             self.noUsersFoundLabel.text = [NSString stringWithFormat:@"No friends found with username: %@", username];
             self.noUsersFoundLabel.hidden = NO;
         }
@@ -239,7 +240,7 @@
     }
     
     // hiding found friends view:
-    self.allFoundFriendView.hidden = YES;
+    self.foundFriendView.hidden = YES;
     self.searchField.text = @"";
     
 }
@@ -329,36 +330,36 @@
 }
 
 
-- (void)adjustHeightOfTableview
-{
-    CGFloat height = self.boardFriendsTableView.contentSize.height;
-    CGFloat maxHeight = self.boardFriendsTableView.superview.frame.size.height - self.boardFriendsTableView.frame.origin.y;
+- (void)adjustHeightOfTableview {
+    
     CGFloat minHeight = 62;
-    
-    // if the height of the content is greater than the maxHeight of
-    // total space on the screen, limit the height to the size of the
-    // superview.
-    
-    if (height > maxHeight)
-        height = maxHeight;
+    CGFloat height = self.boardFriendsTableView.contentSize.height;
     
     if (height < minHeight)
         height = minHeight;
         
-    // now set the height constraint accordingly
+    // set the height constraint
+    
+    CGFloat scrollViewHeight =
+    self.vertSpaceConstraint01.constant +
+    self.friendSearchLabelConstraint.constant +
+    self.vertSpaceConstraint02.constant +
+    self.friendSearchViewConstraint.constant +
+    self.vertSpaceConstraint03.constant +
+    height +
+    self.vertSpaceConstraint04.constant +
+    self.saveBtnConstraint.constant + 60 ;
+    
+    NSLog(@"SCROLL VIEW HEIGHT %f", scrollViewHeight);
     
     [UIView animateWithDuration:0.25 animations:^{
         self.tableViewHeightConstraint.constant = height;
+        self.scrollView.contentSize = CGSizeMake(320, scrollViewHeight) ;
         [self.view setNeedsUpdateConstraints];
     }];
+    
 }
-//- (NSLayoutConstraint *)tableViewHeightConstraint
-//{
-//    self.tableViewHeightConstraint.constant = 60 * (self.friendsForCurrentUser.count + self.boardFriends.count);
-//    [self.boardFriendsTableView needsUpdateConstraints];
-//    
-//    return self.tableViewHeightConstraint;
-//}
+
 
 
 
