@@ -26,8 +26,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithBoards:) name:@"UserDidLogInWithBoardsNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithoutBoards:) name:@"UserDidLogInWithoutBoardsNotification" object:nil];
     
-    
-    
     if ([PFUser currentUser]) {
         [self showMainPage];
     } else if (![PFUser currentUser]) {

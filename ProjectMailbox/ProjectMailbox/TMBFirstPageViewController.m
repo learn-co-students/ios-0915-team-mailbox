@@ -60,9 +60,6 @@
     
 }
 
-
-
-
 - (IBAction)signInButtonTapped:(id)sender {
     
     [self.view endEditing:YES];
@@ -80,7 +77,6 @@
     [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (userName != nil) {
             
-            //          PFUser currentUser
             NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
             
             [usernameDefault setValue:userName forKey:@"user_name"];
