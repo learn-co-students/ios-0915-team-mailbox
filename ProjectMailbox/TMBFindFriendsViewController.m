@@ -23,11 +23,30 @@
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
 @property (weak, nonatomic) IBOutlet UILabel *noUsersFoundLabel;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
+// Constraints
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vertSpaceConstraint01;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *friendSearchLabelConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vertSpaceConstraint02;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopConstraint;
 
 @end
 
 
 @implementation TMBFindFriendsViewController
+
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    [self adjustHeightOfTableview];
+    
+}
+
 
 
 - (void)viewDidLoad {
@@ -56,8 +75,11 @@
     [self queryCurrentUserFriendsWithCompletion:^(NSMutableArray *users, NSError *error) {
         NSLog(@"DID IT WORK??? YAY!! %@", users);
         [self.allFriendsTableView reloadData];
+        [self adjustHeightOfTableview];
     }];
     
+    [self tableViewHeightConstraint];
+
 }
 
 
@@ -83,6 +105,9 @@
         if (!error && allFriends.count > 0) {
             
             self.foundFriendView.hidden = NO;
+            // adjusting constraint
+            //self.scrollViewTopConstraint.constant = 60;
+            
             self.noUsersFoundLabel.hidden = YES;
             
             // setting foundFriends View to display a friend:
@@ -140,6 +165,7 @@
         }
         
         [self.allFriendsTableView reloadData];
+        [self adjustHeightOfTableview];
     }
     
     if (self.foundFriend == self.currentUser) {
@@ -201,12 +227,41 @@
     [self.allFriendsTableView deleteRowsAtIndexPaths:@[selectedIP] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [self.allFriendsTableView reloadData];
+    [self adjustHeightOfTableview];
+    
 }
 
 
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (void)adjustHeightOfTableview {
+    
+    CGFloat minHeight = 62;
+    CGFloat height = self.allFriendsTableView.contentSize.height;
+    
+    if (height < minHeight)
+        height = minHeight;
+    
+    // set the height constraint
+    
+    CGFloat scrollViewHeight =
+    self.vertSpaceConstraint01.constant +
+    self.friendSearchLabelConstraint.constant +
+    self.vertSpaceConstraint02.constant +
+    height + 60 ;
+    
+    NSLog(@"SCROLL VIEW HEIGHT %f", scrollViewHeight);
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.tableViewHeightConstraint.constant = height;
+        self.scrollView.contentSize = CGSizeMake(320, scrollViewHeight) ;
+        [self.view setNeedsUpdateConstraints];
+    }];
+    
+}
+
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSUInteger numberOfFriends = self.friendsForCurrentUser.count;
     NSLog(@"numberOfRows getting called: %lu", self.friendsForCurrentUser.count);
@@ -214,6 +269,7 @@
     NSLog(@" ......... IM IN THE TABLEVIEW NUMBER OF ROWS METHOD ......... ");
     
     return numberOfFriends;
+    
 }
 
 
@@ -249,6 +305,7 @@
     }];
     
     return cell;
+    
 }
 
 

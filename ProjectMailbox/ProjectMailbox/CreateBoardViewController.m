@@ -73,6 +73,10 @@
     self.boardFriendsTableView.delegate = self;
     self.boardFriendsTableView.dataSource = self;
     
+    // dismisses the keyboard when Done/Search key is tapped:
+    self.boardNameField.delegate = self;
+    self.searchField.delegate = self;
+    
     
     // hiding found/notfound friends views:
     self.foundFriendView.hidden = YES;
@@ -123,10 +127,6 @@
             NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
-        
-    // dismisses the keyboard when Done/Search key is tapped:
-    self.boardNameField.delegate = self;
-    self.searchField.delegate = self;
     
     [self tableViewHeightConstraint];
     
@@ -359,7 +359,6 @@
     }];
     
 }
-
 
 
 
