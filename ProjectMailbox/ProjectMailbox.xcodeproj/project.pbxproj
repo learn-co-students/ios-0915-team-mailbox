@@ -1102,9 +1102,55 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"MMDrawerController\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseFacebookUtilsV4\"",
+					"-framework",
+					"\"SimpleColorPicker\"",
+				);
 				"OTHER_LDFLAGS[arch=*]" = (
-					"-weak_framework",
-					Pods_ProjectMailbox,
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"MMDrawerController\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseFacebookUtilsV4\"",
+					"-framework",
+					"\"SimpleColorPicker\"",
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1144,6 +1190,31 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FBSDKShareKit\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"MMDrawerController\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseFacebookUtilsV4\"",
+					"-framework",
+					"\"SimpleColorPicker\"",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
