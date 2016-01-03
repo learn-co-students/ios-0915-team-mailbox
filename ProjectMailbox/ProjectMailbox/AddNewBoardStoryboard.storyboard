@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PHA-lw-zz9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JrL-V4-TEF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -152,16 +152,6 @@
                                                     <constraint firstAttribute="height" constant="70" id="pgS-jw-rrx"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Look Up Your Friends:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZS-o3-9eT" userLabel="Friend Search Label">
-                                                <rect key="frame" x="216" y="40" width="169" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="169" id="81b-Sj-QcI"/>
-                                                    <constraint firstAttribute="height" constant="21" id="s6G-4q-wJC"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.26594646570000002" green="0.3860868274" blue="0.60373263889999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mJd-yE-lvD" userLabel="FRIENDS TABLE VIEW">
                                                 <rect key="frame" x="-4" y="224" width="600" height="122"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -312,6 +302,22 @@
                                                     <action selector="saveNewBoardTapped:" destination="AMM-t8-bw1" eventType="touchUpInside" id="Lei-1n-nIY"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Look Up Your Friends:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZS-o3-9eT" userLabel="Friend Search Label">
+                                                <rect key="frame" x="142" y="40" width="317" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="317" id="1hb-92-1HB"/>
+                                                    <constraint firstAttribute="width" constant="169" id="81b-Sj-QcI"/>
+                                                    <constraint firstAttribute="height" constant="21" id="s6G-4q-wJC"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.26594646570000002" green="0.3860868274" blue="0.60373263889999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="81b-Sj-QcI"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
@@ -351,7 +357,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YP1-S2-VLd" userLabel="BOARD NAME VIEW">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="140"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name Your Board" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xE6-Ci-awd">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Board Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xE6-Ci-awd">
                                                 <rect key="frame" x="242" y="76" width="117" height="34"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -392,7 +398,6 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="cancelButtonTapped:" destination="AMM-t8-bw1" eventType="touchUpInside" id="1Fs-O1-SIO"/>
                                                     <action selector="cancelButtonTapped:" destination="dPn-pp-4IR" eventType="touchUpInside" id="Jeo-qg-P6k"/>
                                                 </connections>
                                             </button>
@@ -443,7 +448,9 @@
                         <outlet property="foundFriendView" destination="SBa-3K-RY1" id="Prv-90-Jsx"/>
                         <outlet property="friendSearchLabelConstraint" destination="s6G-4q-wJC" id="dcz-oD-bAj"/>
                         <outlet property="friendSearchViewConstraint" destination="pgS-jw-rrx" id="Pi8-14-kjm"/>
+                        <outlet property="lookUpFriendsLabel" destination="sZS-o3-9eT" id="kPX-xc-XfC"/>
                         <outlet property="noUsersFoundLabel" destination="KJh-s4-foW" id="NC9-3K-e5X"/>
+                        <outlet property="saveBoardButton" destination="clw-4G-RiY" id="T1S-Hi-v3W"/>
                         <outlet property="saveBtnConstraint" destination="Rn7-Sk-aG4" id="GJ6-ZL-TxG"/>
                         <outlet property="scrollView" destination="kbb-1w-9Mh" id="CKo-SK-XZN"/>
                         <outlet property="searchField" destination="eja-JD-JMq" id="tIh-mh-8Ux"/>
@@ -1363,6 +1370,7 @@
                         <outlet property="tableViewHeightConstraint" destination="YF9-BB-4gr" id="5fQ-cA-bOS"/>
                         <outlet property="vertSpaceConstraint01" destination="qgr-qz-WJE" id="SLB-19-zhd"/>
                         <outlet property="vertSpaceConstraint02" destination="fFP-py-9HR" id="TpM-e2-24u"/>
+                        <outlet property="yourFriendsLabel" destination="SVN-4g-JdK" id="eOq-Qs-l25"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZt-ee-Wtw" userLabel="First Responder" sceneMemberID="firstResponder"/>

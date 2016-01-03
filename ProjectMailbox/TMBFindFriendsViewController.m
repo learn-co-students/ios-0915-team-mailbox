@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
 @property (weak, nonatomic) IBOutlet UILabel *noUsersFoundLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *yourFriendsLabel;
 
 // Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vertSpaceConstraint01;
@@ -54,6 +55,8 @@
     [super viewDidLoad];
     
     [self prefersStatusBarHidden];
+    
+    [self checkInternetConnection];
     
     self.allFriendsTableView.delegate = self;
     self.allFriendsTableView.dataSource = self;
@@ -94,11 +97,14 @@
     // check connection to a very small, fast loading site:
     NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
     NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
-    if (!data)
-        NSLog(@"==============Device is not connected to the internet==================");
-    else
+    if (!data) {
+        self.yourFriendsLabel.text = @"No Internet Connection";
+        self.allFriendsTableView.hidden = YES;
+        NSLog(@"Device is not connected to the internet");
+
+    } else {
         NSLog(@"Device is connected to the internet");
-    
+    }
 }
 
 

@@ -25,6 +25,8 @@
 @property (nonatomic, strong) PFUser *foundFriend;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *saveBoardButton;
+@property (weak, nonatomic) IBOutlet UILabel *lookUpFriendsLabel;
 
 // Found a Friend View
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
@@ -62,6 +64,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    [self checkInternetConnection];
     
     [self prefersStatusBarHidden];
     
@@ -130,6 +134,28 @@
     
     [self tableViewHeightConstraint];
     
+}
+
+
+
+- (void)checkInternetConnection {
+    
+    // if there is no internet...
+    // hide some views
+    // display alert
+    
+    // check connection to a very small, fast loading site:
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (!data) {
+        self.lookUpFriendsLabel.text = @"No Internet Connection";
+        self.boardFriendsTableView.hidden = YES;
+        self.saveBoardButton.hidden = YES;
+        NSLog(@"Device is not connected to the internet");
+        
+    } else {
+        NSLog(@"Device is connected to the internet");
+    }
 }
 
 
@@ -427,14 +453,84 @@
 - (IBAction)saveNewBoardTapped:(UIButton *)sender {
     
     // THIS METHOD REALLY UPDATES THE BOARD CREATED IN THE VIEWDIDLOAD
+    // check if they named the board, if not - error message, if yes - dismiss view
     
-    // if they named the board this updates the name
-    NSString *boardName = self.boardNameField.text;
-    self.myNewBoard[@"boardName"] = boardName;
+    if ([self.boardNameField.text isEqualToString:@""]) {
+        [self flashFieldYellowWithATextField:self.boardNameField];
+        [self displayNoNameAlert];
+        
+    } else {
+        // if they named the board this updates the name on Parse
+        NSString *boardName = self.boardNameField.text;
+        self.myNewBoard[@"boardName"] = boardName;
+        
+        [self.myNewBoard saveEventually];
+        [self dismissViewControllerAnimated:YES
+                                 completion:nil];
+    }
+
+}
+
+
+
+- (void)flashFieldYellowWithATextField:(UITextField *)textField {
     
-    [self.myNewBoard saveEventually];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
+    [UIView animateKeyframesWithDuration:1 delay:0 options:0 animations:^{
+        // fill this up with calls to +[UIView addKeyframe...]
+        
+        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.2 animations:^{
+            textField.backgroundColor = [UIColor yellowColor];
+            textField.frame = CGRectMake(textField.frame.origin.x-2,
+                                         textField.frame.origin.y-2,
+                                         textField.frame.size.width+4,
+                                         textField.frame.size.height+4);
+            
+            //can also use transforms 1.1 = 110%
+            // self.emailTextField.transform = CGAffineTransformMakeScale(1.1, 1.1);
+            //can rotate
+            // self.emailTextField.transform = CGAffineTransformMakeRotation(M_PI_2);
+            
+        }];
+        
+        [UIView addKeyframeWithRelativeStartTime:0.2 relativeDuration:0.2 animations:^{
+            textField.backgroundColor = [UIColor whiteColor];
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.4 relativeDuration:0.2 animations:^{
+            textField.backgroundColor = [UIColor yellowColor];
+            textField.frame = CGRectMake(textField.frame.origin.x+2,
+                                         textField.frame.origin.y+2,
+                                         textField.frame.size.width-4,
+                                         textField.frame.size.height-4);
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.6 relativeDuration:0.1 animations:^{
+            textField.backgroundColor = [UIColor whiteColor];
+        }];
+        
+    } completion:nil];
+    
+}
+
+
+
+-(void)displayNoNameAlert {
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Please Give Your Board a Name"
+                                  message:nil
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //Handle OK button action here
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                               }];
+    
+    [alert addAction:okButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 
@@ -442,9 +538,9 @@
 
 - (IBAction)cancelButtonTapped:(UIButton *)sender {
     
-        [self.myNewBoard deleteEventually];
-        [self dismissViewControllerAnimated:YES
-                                 completion:nil];
+    [self.myNewBoard deleteEventually];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 
