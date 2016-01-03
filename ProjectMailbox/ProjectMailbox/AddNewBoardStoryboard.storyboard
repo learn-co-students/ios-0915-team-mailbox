@@ -51,12 +51,6 @@
         <!--Create New Board-->
         <scene sceneID="paT-MQ-taq">
             <objects>
-                <tapGestureRecognizer id="stE-fK-xML">
-                    <connections>
-                        <action selector="backgroundTapped:" destination="dPn-pp-4IR" id="9ZA-cM-icK"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jiA-v3-C1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="dPn-pp-4IR" userLabel="Create New Board" customClass="CreateBoardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ub3-BE-GWD"/>
@@ -460,6 +454,12 @@
                         <outlet property="vertSpaceConstraint04" destination="fS7-RB-OPs" id="EL8-QB-mEa"/>
                     </connections>
                 </viewController>
+                <tapGestureRecognizer id="stE-fK-xML">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="dPn-pp-4IR" id="9ZA-cM-icK"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jiA-v3-C1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2634" y="1250"/>
         </scene>
@@ -1304,16 +1304,16 @@
                                 <exclude reference="Hmf-qh-MRV"/>
                                 <exclude reference="JGF-Zt-0oT"/>
                                 <exclude reference="juY-fC-bTP"/>
-                                <exclude reference="KNe-rZ-H7W"/>
-                                <exclude reference="N6m-5i-TvY"/>
-                                <exclude reference="jBl-WE-mUF"/>
-                                <exclude reference="wfS-Oo-V0k"/>
                                 <exclude reference="2sU-oq-EyG"/>
                                 <exclude reference="MfE-L6-ClO"/>
                                 <exclude reference="gW8-LN-2Si"/>
                                 <exclude reference="jJU-uo-q0f"/>
-                                <exclude reference="kA5-Vm-1QU"/>
+                                <exclude reference="KNe-rZ-H7W"/>
+                                <exclude reference="N6m-5i-TvY"/>
+                                <exclude reference="jBl-WE-mUF"/>
+                                <exclude reference="wfS-Oo-V0k"/>
                                 <exclude reference="qgr-qz-WJE"/>
+                                <exclude reference="kA5-Vm-1QU"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1351,6 +1351,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="allFriendsTableView" destination="NXC-yS-PBg" id="FgB-y7-T1C"/>
+                        <outlet property="animatedConstraint" destination="53j-i2-Xno" id="lTx-zq-yom"/>
                         <outlet property="foundFriendImage" destination="y85-Zt-Gj1" id="XEq-RS-Pt7"/>
                         <outlet property="foundFriendUsernameLabel" destination="GqK-Ve-RVb" id="cTN-15-Fre"/>
                         <outlet property="foundFriendView" destination="sC6-Sf-Z16" id="TmM-83-KnL"/>

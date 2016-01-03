@@ -11,7 +11,6 @@
 #import "PAPUtility.h"
 #import "TMBFriendsTableViewCell.h"
 
-
 @interface TMBFindFriendsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
@@ -31,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vertSpaceConstraint02;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *animatedConstraint;
 
 @end
 
@@ -79,7 +79,26 @@
     }];
     
     [self tableViewHeightConstraint];
+    
+    
+}
 
+
+
+- (void)checkInternetConnection {
+    
+    // if there is no internet...
+    // hide some views
+    // display "YOU ARE NOT CONNECTED TO THE INTERNET"
+    
+    // check connection to a very small, fast loading site:
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (!data)
+        NSLog(@"==============Device is not connected to the internet==================");
+    else
+        NSLog(@"Device is connected to the internet");
+    
 }
 
 
@@ -89,7 +108,7 @@
     // search key was pressed - dismiss keyboard, call on search friend method
     [textField resignFirstResponder];
     [self searchFriendButtonTapped:nil];
-
+    
     return YES;
 }
 
@@ -101,14 +120,12 @@
     NSString *username = self.searchField.text;
     
     [self queryAllUsersWithUsername:username completion:^(NSArray *allFriends, NSError *error) {
-    
+        
         if (!error && allFriends.count > 0) {
             
             self.foundFriendView.hidden = NO;
-            // adjusting constraint
-            //self.scrollViewTopConstraint.constant = 60;
-            
             self.noUsersFoundLabel.hidden = YES;
+            [self pushDownFriendsTable];
             
             // setting foundFriends View to display a friend:
             
@@ -131,21 +148,37 @@
                     self.foundFriendImage.contentMode = UIViewContentModeScaleAspectFill;
                     self.foundFriendImage.layer.cornerRadius = self.foundFriendImage.frame.size.width / 2;
                     self.foundFriendImage.clipsToBounds = YES;
-
+                    
                 }
             }];
             
-            }
+        }
         
         if (allFriends.count == 0) {
             self.foundFriendView.hidden = YES;
             self.noUsersFoundLabel.text = [NSString stringWithFormat:@"No friends found with username: %@", username];
             self.noUsersFoundLabel.hidden = NO;
+            [self pushDownFriendsTable];
         }
         
-        }];
+    }];
     
     self.searchField.text = @"";
+    
+}
+
+
+
+-(void)pushDownFriendsTable {
+    
+    if ((self.foundFriendView.hidden == NO && self.animatedConstraint.constant <= 32) ||
+        (self.noUsersFoundLabel.hidden == NO && self.animatedConstraint.constant <= 32)) {
+        
+        [UIView animateWithDuration:.4 animations:^{
+            self.animatedConstraint.constant = self.animatedConstraint.constant + 60;
+            [self.view layoutIfNeeded];
+        }];
+    }
     
 }
 
@@ -161,7 +194,7 @@
         }];
         
         if ( ![self.friendsForCurrentUser containsObject:self.foundFriend] ) {
-        [self.friendsForCurrentUser addObject:self.foundFriend];
+            [self.friendsForCurrentUser addObject:self.foundFriend];
         }
         
         [self.allFriendsTableView reloadData];
@@ -205,7 +238,7 @@
 
 
 - (IBAction)unfollowButtonTapped:(UIButton *)sender {
-
+    
     TMBFriendsTableViewCell *tappedCell = (TMBFriendsTableViewCell*)[[sender superview] superview];
     
     NSIndexPath *selectedIP = [self.allFriendsTableView indexPathForCell:tappedCell];
@@ -214,14 +247,14 @@
     
     // do whatever parse stuff you need to delete the user
     // also remove from local array
-
+    
     
     [self removeUserFromAllFriendsOnParse:aFriend completion:^(NSArray *allFriends, NSError *error) {
         if (!error) {
             NSLog(@"friend removed!");
         }
     }];
-
+    
     [self.friendsForCurrentUser removeObject:aFriend];
     
     [self.allFriendsTableView deleteRowsAtIndexPaths:@[selectedIP] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -281,7 +314,7 @@
     
     TMBFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allFriendsCell" forIndexPath:indexPath];
     NSUInteger rowOfIndexPath = indexPath.row;
- 
+    
     
     // setting table rows to display friends
     
@@ -334,11 +367,11 @@
         if (!error) {
             for (PFUser *eachUser in [object objectForKey:@"allFriends"]) {
                 [self.friendsForCurrentUser addObject:eachUser];
-                }
+            }
             completionBlock(self.friendsForCurrentUser, error);
         }
     }];
-
+    
 }
 
 
