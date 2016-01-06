@@ -132,8 +132,6 @@
         }
     }];
     
-    [self tableViewHeightConstraint];
-    
 }
 
 
@@ -276,8 +274,8 @@
 -(void)displayAlert {
     
     UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Friending Yourself?"
-                                  message:@"The database will get confused, so better not."
+                                  alertControllerWithTitle:@"You are already part of this board"
+                                  message:nil
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* okButton = [UIAlertAction
@@ -358,8 +356,8 @@
 
 - (void)adjustHeightOfTableview {
     
-    CGFloat minHeight = 62;
-    CGFloat height = self.boardFriendsTableView.contentSize.height;
+    CGFloat minHeight = 60;
+    CGFloat height = self.boardFriendsTableView.contentSize.height - 1;
     
     if (height < minHeight)
         height = minHeight;
@@ -692,21 +690,6 @@
         completionBlock(boardsContainingUser, error);
     }];
 }
-
-- (IBAction)closeButtonTapped:(id)sender {
-    
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
-    [self.myNewBoard deleteEventually];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
-}
-
-
-
-
 
 
 

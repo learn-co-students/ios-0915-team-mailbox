@@ -10,5 +10,6 @@
 
 @interface TMBBoardTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *boardNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *unfollowButton;
 
 @end
