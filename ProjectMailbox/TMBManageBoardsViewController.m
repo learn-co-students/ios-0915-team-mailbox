@@ -9,6 +9,8 @@
 #import "TMBManageBoardsViewController.h"
 #import "TMBBoardTableViewCell.h"
 #import <Parse/Parse.h>
+#import "CreateBoardViewController.h"
+
 
 @interface TMBManageBoardsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
@@ -22,7 +24,6 @@
 // Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adminTableHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *memberTableHeightConstraint;
-
 
 @end
 
@@ -61,14 +62,6 @@
             [self.adminBoards insertObject:object atIndex:0];
             [self.adminTableView reloadData];
             [self adjustHeightOfTableview];
-            
-            NSString *boardName = object[@"boardName"];
-            NSDate *updatedAt = [object updatedAt];
-            //            self.boardID = object.objectId;
-            //
-            //            NSLog(@"========== BOARD OBJECT IS: %@", object);
-            //            NSLog(@"========== BOARD OBJECT IDs ARE: %@", self.boardID);
-            NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
     
@@ -79,13 +72,6 @@
             [self.memberBoards insertObject:object atIndex:0];
             [self.memberTableView reloadData];
             [self adjustHeightOfTableview];
-            
-            NSString *boardName = object[@"boardName"];
-            NSDate *updatedAt = [object updatedAt];
-            //            self.boardID = object.objectId;
-            //
-            //            NSLog(@"========== BOARD OBJECT IDs ARE: %@", self.boardID);
-            NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
     
@@ -115,45 +101,6 @@
 
 
 
-- (void)adjustHeightOfTableview {
-    
-    CGFloat minHeight = 60;
-    CGFloat adminTableHeight = self.adminTableView.contentSize.height - 1;
-    NSLog(@"ADMIN TABLE HEIGHT %f", adminTableHeight);
-    
-    CGFloat memberTableHeight = self.memberTableView.contentSize.height - 1;
-    NSLog(@"MEMBER TABLE HEIGHT %f", memberTableHeight);
-    
-    if (adminTableHeight < minHeight)
-        adminTableHeight = minHeight;
-    NSLog(@"ADMIN TABLE HEIGHT AFTER IF STATEMENT %f", adminTableHeight);
-    
-    if (memberTableHeight < minHeight)
-        memberTableHeight = minHeight;
-    NSLog(@"MEMBER TABLE HEIGHT AFTER IF STATEMENT %f", memberTableHeight);
-    
-    // set the height constraint
-    
-    CGFloat scrollViewHeight =
-    self.adminTableHeightConstraint.constant +
-    self.memberTableHeightConstraint.constant + 160 ;
-    
-    NSLog(@"SCROLL VIEW HEIGHT %f", scrollViewHeight);
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        self.adminTableHeightConstraint.constant = adminTableHeight;
-        self.memberTableHeightConstraint.constant = memberTableHeight;
-        self.scrollView.contentSize = CGSizeMake(320, scrollViewHeight);
-        NSLog(@"ADMIN TABLE HEIGHT INSIDE ANIMATION %f", adminTableHeight);
-        NSLog(@"MEMBER TABLE HEIGHT INSIDE ANIMATION %f", memberTableHeight);
-        NSLog(@"SCROLL VIEW HEIGHT INSIDE ANIMATION %f", scrollViewHeight);
-        [self.view setNeedsUpdateConstraints];
-    }];
-    
-}
-
-
-
 #pragma mark - Table view data source
 
 
@@ -173,6 +120,7 @@
     
     TMBBoardTableViewCell *cell = [[TMBBoardTableViewCell alloc] init];
     
+    
     if (tableView == self.adminTableView) {
         
         cell = [tableView dequeueReusableCellWithIdentifier:@"boardAdminCell" forIndexPath:indexPath];
@@ -180,10 +128,9 @@
         PFObject *board = self.adminBoards[indexPath.row];
         
         cell.boardNameLabel.text = board[@"boardName"];
-        //    cell.backgroundColor = [UIColor clearColor];
         
-        self.boardID = board.objectId;
-        NSLog(@"OOOOOOOOOOOOOOBJECT ID: %@", self.boardID);
+        self.boardID = board.objectId; // saving locally for segue
+        NSLog(@"ADMIN BOARD OOOOOOOOOOOOOOBJECT ID: %@", self.boardID);
         
     }   else {
         
@@ -192,14 +139,33 @@
         PFObject *board = self.memberBoards[indexPath.row];
         
         cell.boardNameLabel.text = board[@"boardName"];
-        //    cell.backgroundColor = [UIColor clearColor];
-        
-        self.boardID = board.objectId;
-        NSLog(@"OOOOOOOOOOOOOOBJECT ID: %@", self.boardID);
         
     }
     
+    
     return cell;
+    
+}
+
+
+
+#pragma mark - Navigation
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"selectedBoard"]) {
+        
+    CreateBoardViewController *destinationVC = segue.destinationViewController;
+//    segue.sourceViewController ???
+        
+    NSIndexPath *selectedIndexPath = self.adminTableView.indexPathForSelectedRow;
+    PFObject *selectedBoard = self.adminBoards[selectedIndexPath.row];
+    
+//    destinationVC.boardObjectId = self.boardID;
+    destinationVC.boardNameToDisplay = selectedBoard[@"boardName"];
+        
+    }
     
 }
 
@@ -219,6 +185,38 @@
     [self.memberBoards removeObject:selectedBoard]; // removing locally
     [self.memberTableView reloadData];
     [self adjustHeightOfTableview];
+    
+}
+
+
+
+- (void)adjustHeightOfTableview {
+    
+    CGFloat minHeight = 60;
+    CGFloat adminTableHeight = self.adminTableView.contentSize.height - 1;
+    
+    CGFloat memberTableHeight = self.memberTableView.contentSize.height - 1;
+    
+    if (adminTableHeight < minHeight)
+        adminTableHeight = minHeight;
+    
+    if (memberTableHeight < minHeight)
+        memberTableHeight = minHeight;
+    
+    // set the height constraint
+    
+    CGFloat scrollViewHeight =
+    self.adminTableHeightConstraint.constant +
+    self.memberTableHeightConstraint.constant + 280;
+    
+//    NSLog(@"SCROLL VIEW HEIGHT %f", scrollViewHeight);
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.adminTableHeightConstraint.constant = adminTableHeight;
+        self.memberTableHeightConstraint.constant = memberTableHeight;
+        self.scrollView.contentSize = CGSizeMake(320, scrollViewHeight);
+        [self.view setNeedsUpdateConstraints];
+    }];
     
 }
 
@@ -267,20 +265,6 @@
                                  }];
     
 }
-
-
-
- #pragma mark - Navigation
-
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    FISGiantFruitViewController *destinationVC = segue.destinationViewController;
-//    
-//    NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
-//    NSString *selectedFruit = self.fruits[selectedIndexPath.row];
-//    
-//    destinationVC.fruit = selectedFruit;
-//}
 
 
 

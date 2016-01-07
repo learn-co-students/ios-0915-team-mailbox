@@ -11,13 +11,13 @@
 #import "PAPUtility.h"
 #import "TMBFriendsTableViewCell.h"
 #import "TMBSideMenuViewController.h"
+#import "TMBManageBoardsViewController.h"
 
 
 @interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *boardNameField;
 @property (strong, nonatomic) PFObject *myNewBoard;
-@property (nonatomic, strong) NSString *myNewBoardObjectId;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (weak, nonatomic) IBOutlet UITableView *boardFriendsTableView;
 @property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
@@ -69,6 +69,29 @@
     
     [self prefersStatusBarHidden];
     
+    
+    
+    
+    // work on this if statement..
+    
+    
+    
+//    TMBManageBoardsViewController *sourceVC = [[TMBManageBoardsViewController alloc] init];
+//    
+//    UIStoryboardSegue *sourceVCSegue = [[UIStoryboardSegue alloc] initWithIdentifier:@"selectedBoard" source:sourceVC destination:self];
+//    
+//    if ([sourceVCSegue.identifier isEqualToString:@"selectedBoard"]) {
+//        self.boardNameLabel.text = self.boardNameToDisplay;
+//        self.saveBoardButton.hidden = YES;
+//        NSLog(@"IN THE IF SEGUE METHOD.........");
+//
+//    }
+//    //   ============= segue.sourceViewController ??? ============
+    
+    
+    
+    
+    
     NSLog(@"IN VIEW DID LOAD CREATE BOARD VC.........");
     
     self.friendsForCurrentUser = [NSMutableArray new];
@@ -98,8 +121,8 @@
     [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
         if (!error) {
             NSLog(@"NEW BOARD CREATED");
-            self.myNewBoardObjectId = self.myNewBoard.objectId;
-            NSLog(@"NEW BOARD ID IS: %@", self.myNewBoardObjectId);
+            self.boardObjectId = self.myNewBoard.objectId;
+            NSLog(@"NEW BOARD ID IS: %@", self.boardObjectId);
         }
     }];
     

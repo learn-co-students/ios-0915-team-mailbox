@@ -11,5 +11,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateBoardViewController : ViewController
+@property (nonatomic, strong) NSString *boardObjectId;
+@property (weak, nonatomic) IBOutlet UILabel *boardNameLabel;
+@property (nonatomic, strong) NSString *boardNameToDisplay;
 
 @end
