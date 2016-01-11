@@ -17,16 +17,20 @@
 @interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *boardNameField;
+@property (weak, nonatomic) IBOutlet UILabel *boardNameLabel;
 @property (strong, nonatomic) PFObject *myNewBoard;
+@property (nonatomic, strong) NSString *boardObjectId;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (weak, nonatomic) IBOutlet UITableView *boardFriendsTableView;
 @property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
 @property (nonatomic, strong) NSMutableArray *boardFriends;
+@property (nonatomic, strong) NSMutableArray *duplicateFriends;
 @property (nonatomic, strong) PFUser *foundFriend;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIButton *saveBoardButton;
 @property (weak, nonatomic) IBOutlet UILabel *lookUpFriendsLabel;
+@property (weak, nonatomic) IBOutlet UIButton *saveBoardButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 // Found a Friend View
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
@@ -69,33 +73,11 @@
     
     [self prefersStatusBarHidden];
     
-    
-    
-    
-    // work on this if statement..
-    
-    
-    
-//    TMBManageBoardsViewController *sourceVC = [[TMBManageBoardsViewController alloc] init];
-//    
-//    UIStoryboardSegue *sourceVCSegue = [[UIStoryboardSegue alloc] initWithIdentifier:@"selectedBoard" source:sourceVC destination:self];
-//    
-//    if ([sourceVCSegue.identifier isEqualToString:@"selectedBoard"]) {
-//        self.boardNameLabel.text = self.boardNameToDisplay;
-//        self.saveBoardButton.hidden = YES;
-//        NSLog(@"IN THE IF SEGUE METHOD.........");
-//
-//    }
-//    //   ============= segue.sourceViewController ??? ============
-    
-    
-    
-    
-    
     NSLog(@"IN VIEW DID LOAD CREATE BOARD VC.........");
     
     self.friendsForCurrentUser = [NSMutableArray new];
     self.boardFriends = [NSMutableArray new];
+    self.duplicateFriends = [NSMutableArray new];
     
     self.boardFriendsTableView.delegate = self;
     self.boardFriendsTableView.dataSource = self;
@@ -103,6 +85,40 @@
     // dismisses the keyboard when Done/Search key is tapped:
     self.boardNameField.delegate = self;
     self.searchField.delegate = self;
+    
+    
+    // following methods are if you're coming from a segue @"selectedBoard"
+    if (self.selectedBoard) {
+        self.myNewBoard = self.selectedBoard;
+    }
+    
+    if (self.boardNameToDisplay) {
+    self.boardNameLabel.text = self.boardNameToDisplay;
+    self.boardNameField.placeholder = @"Edit Board's Name";
+    }
+    
+    if (self.shouldHideCancelButton) {
+        self.cancelButton.hidden = self.shouldHideCancelButton;
+    }
+    
+    if (self.boardFriendsToDisplay) {
+        self.boardFriends = self.boardFriendsToDisplay;
+    }
+    
+    if (self.boardObjectIdFromSelectedBoard) {
+        self.boardObjectId = self.boardObjectIdFromSelectedBoard;
+        NSLog(@" !!!!!!!!!!!!!!!!!!!!!!!! BOARD OBJ ID IS %@", self.boardObjectId);
+    } else {
+        
+        [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
+            if (!error) {
+                NSLog(@"NEW BOARD CREATED");
+                self.boardObjectId = self.myNewBoard.objectId;
+                NSLog(@"NEW BOARD ID IS: %@", self.boardObjectId);
+            }
+        }];
+    }
+    // end of segue methods
     
     
     // hiding found/notfound friends views:
@@ -118,22 +134,15 @@
         [self adjustHeightOfTableview];
     }];
     
-    [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
-        if (!error) {
-            NSLog(@"NEW BOARD CREATED");
-            self.boardObjectId = self.myNewBoard.objectId;
-            NSLog(@"NEW BOARD ID IS: %@", self.boardObjectId);
-        }
-    }];
-    
     
     // loging in this app as Inga for now
     
-    //    if (![PFUser currentUser]){
-    //        [PFUser logInWithUsernameInBackground:@"ingakyt@gmail.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-    //            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-    //                }];
-    //    }
+        if (![PFUser currentUser]){
+            [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+                NSLog(@"logged in user: %@ \nwith error: %@", user, error);
+                    }];
+        }
+    
     
     [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
         
@@ -397,6 +406,10 @@
     self.vertSpaceConstraint04.constant +
     self.saveBtnConstraint.constant + 60 ;
     
+    if (self.shouldHideCancelButton) {
+        scrollViewHeight = scrollViewHeight + 120;
+    }
+        
     NSLog(@"SCROLL VIEW HEIGHT %f", scrollViewHeight);
     
     [UIView animateWithDuration:0.25 animations:^{
@@ -573,6 +586,11 @@
 }
 
 
+// add Delete Board's contents action, alert, dismiss view
+
+// add Delete Board action, alert, dismiss view
+
+
 
 /*****************************
  *         PARSE CALLS       *
@@ -605,6 +623,18 @@
         if (!error) {
             for (PFUser *eachUser in [object objectForKey:@"allFriends"]) {
                 [self.friendsForCurrentUser addObject:eachUser];
+                
+                if (self.boardFriendsToDisplay) {
+                // remove duplicated friends ...
+                for (PFUser *aFriend in self.boardFriendsToDisplay) {
+                    if ( [self.friendsForCurrentUser containsObject:aFriend] ) {
+                        [self.friendsForCurrentUser removeObject:aFriend];
+                        [self.boardFriendsTableView reloadData];
+                        [self adjustHeightOfTableview];
+                    }
+                }
+                }
+                
             }
             completionBlock(self.friendsForCurrentUser, error);
         }

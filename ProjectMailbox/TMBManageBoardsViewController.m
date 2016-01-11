@@ -15,6 +15,7 @@
 @interface TMBManageBoardsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSMutableArray *adminBoards;
+@property (strong, nonatomic) NSMutableArray *adminBoardFriends;
 @property (strong, nonatomic) NSMutableArray *memberBoards;
 @property (weak, nonatomic) IBOutlet UITableView *adminTableView;
 @property (weak, nonatomic) IBOutlet UITableView *memberTableView;
@@ -53,17 +54,37 @@
     self.memberTableView.dataSource = self;
     
     self.adminBoards = [NSMutableArray new];
+    self.adminBoardFriends = [NSMutableArray new];
     self.memberBoards = [NSMutableArray new];
+    
+    
+    // loging in this app as Inga for now
+    
+    if (![PFUser currentUser]){
+        [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
+        }];
+    }
+    
     
     [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
         
-        for (PFObject *object in boardsCreatedByUser) {
-            
+//        if (!error) {
+//        for (PFUser *eachFriend in boardsCreatedByUser.firstObject[@"boardFriends"]) {
+//            [self.adminBoardFriends addObject:eachFriend];
+//            }
+//        }
+        
+        if (!error) {
+            for (PFObject *object in boardsCreatedByUser) {
             [self.adminBoards insertObject:object atIndex:0];
             [self.adminTableView reloadData];
             [self adjustHeightOfTableview];
+            }
         }
+
     }];
+    
     
     [self queryAllBoardsContainingUser:[PFUser currentUser] completion:^(NSArray *boardsContainingUser, NSError *error) {
         
@@ -129,10 +150,7 @@
         
         cell.boardNameLabel.text = board[@"boardName"];
         
-        self.boardID = board.objectId; // saving locally for segue
-        NSLog(@"ADMIN BOARD OOOOOOOOOOOOOOBJECT ID: %@", self.boardID);
-        
-    }   else {
+        } else {
         
         cell = [tableView dequeueReusableCellWithIdentifier:@"boardMemberCell" forIndexPath:indexPath];
         
@@ -156,14 +174,22 @@
     
     if([segue.identifier isEqualToString:@"selectedBoard"]) {
         
-    CreateBoardViewController *destinationVC = segue.destinationViewController;
-//    segue.sourceViewController ???
+    CreateBoardViewController *destinationVC = segue.destinationViewController;        
         
     NSIndexPath *selectedIndexPath = self.adminTableView.indexPathForSelectedRow;
     PFObject *selectedBoard = self.adminBoards[selectedIndexPath.row];
+        
+        for (PFUser *eachFriend in selectedBoard[@"boardFriends"]) {
+            [self.adminBoardFriends addObject:eachFriend];
+        }
     
-//    destinationVC.boardObjectId = self.boardID;
+    self.boardID = selectedBoard.objectId;
+    
+    destinationVC.selectedBoard = selectedBoard;
+    destinationVC.boardObjectIdFromSelectedBoard = self.boardID;
     destinationVC.boardNameToDisplay = selectedBoard[@"boardName"];
+    destinationVC.shouldHideCancelButton = YES;
+    destinationVC.boardFriendsToDisplay = self.adminBoardFriends;
         
     }
     
@@ -231,6 +257,7 @@
     
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
     [boardQuery whereKey:@"fromUser" equalTo:user];
+    [boardQuery includeKey:@"boardFriends"];
     
     [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsCreatedByUser, NSError * _Nullable error) {
         completionBlock(boardsCreatedByUser, error);

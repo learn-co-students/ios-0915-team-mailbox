@@ -58,6 +58,16 @@
     
     [self checkInternetConnection];
     
+    
+    // loging in this app as Inga for now
+    
+    if (![PFUser currentUser]){
+        [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
+        }];
+    }
+    
+    
     self.allFriendsTableView.delegate = self;
     self.allFriendsTableView.dataSource = self;
     self.searchField.delegate = self;
