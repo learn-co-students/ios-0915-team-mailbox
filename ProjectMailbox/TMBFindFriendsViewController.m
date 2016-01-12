@@ -32,21 +32,12 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *animatedConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraintCompact;
 
 @end
 
 
 @implementation TMBFindFriendsViewController
-
-
-
-- (void)viewDidAppear:(BOOL)animated {
-    
-    [super viewDidAppear:animated];
-    
-    [self adjustHeightOfTableview];
-    
-}
 
 
 
@@ -90,9 +81,6 @@
         [self.allFriendsTableView reloadData];
         [self adjustHeightOfTableview];
     }];
-    
-    [self tableViewHeightConstraint];
-    
     
 }
 
@@ -232,8 +220,8 @@
 -(void)displayAlert {
     
     UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Friending Yourself?"
-                                  message:@"The database will get confused, so better not."
+                                  alertControllerWithTitle:@"You are already part of this board"
+                                  message:nil
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* okButton = [UIAlertAction
@@ -284,8 +272,8 @@
 
 - (void)adjustHeightOfTableview {
     
-    CGFloat minHeight = 62;
-    CGFloat height = self.allFriendsTableView.contentSize.height;
+    CGFloat minHeight = 60;
+    CGFloat height = self.allFriendsTableView.contentSize.height - 1;
     
     if (height < minHeight)
         height = minHeight;
@@ -302,6 +290,7 @@
     
     [UIView animateWithDuration:0.25 animations:^{
         self.tableViewHeightConstraint.constant = height;
+        self.tableViewHeightConstraintCompact.constant = height;
         self.scrollView.contentSize = CGSizeMake(320, scrollViewHeight) ;
         [self.view setNeedsUpdateConstraints];
     }];

@@ -586,9 +586,22 @@
 }
 
 
+
 // add Delete Board's contents action, alert, dismiss view
+- (IBAction)deleteBoardContentsButtonTapped:(UIButton *)sender {
+    
+    
+}
+
+
 
 // add Delete Board action, alert, dismiss view
+- (IBAction)deleteBoardButtonTapped:(UIButton *)sender {
+    
+    [self.myNewBoard deleteEventually];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
 
 
 

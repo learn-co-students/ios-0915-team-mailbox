@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WTt-yI-KIH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JrL-V4-TEF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -97,9 +97,16 @@
                                                                 <constraint firstAttribute="width" constant="50" id="JjI-Ro-6k2"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49h-p6-jeF">
-                                                            <rect key="frame" x="527" y="20" width="60" height="30"/>
-                                                            <state key="normal" title="Unfollow"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49h-p6-jeF">
+                                                            <rect key="frame" x="503" y="20" width="84" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="84" id="4aS-5a-FoM"/>
+                                                                <constraint firstAttribute="height" constant="30" id="kh1-qb-MvP"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <state key="normal" title="Unfollow" backgroundImage="btn-border">
+                                                                <color key="titleColor" red="0.35686274509999999" green="0.51764705879999995" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="unfollowButtonTapped:" destination="WTt-yI-KIH" eventType="touchUpInside" id="TYy-eo-EGM"/>
                                                             </connections>
@@ -154,7 +161,7 @@
                                         </variation>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Ojt-Kr-MVZ" firstAttribute="top" secondItem="ztY-rg-3FG" secondAttribute="bottom" constant="15" id="6T7-1F-3RZ"/>
                                     <constraint firstItem="Ojt-Kr-MVZ" firstAttribute="leading" secondItem="DMI-GA-oeY" secondAttribute="leading" id="8By-87-TpH"/>
@@ -170,6 +177,9 @@
                                     <constraint firstAttribute="trailing" secondItem="Ojt-Kr-MVZ" secondAttribute="trailing" id="xb7-hr-uhe"/>
                                     <constraint firstItem="v1K-8I-DKm" firstAttribute="width" secondItem="DMI-GA-oeY" secondAttribute="width" id="yU2-Mu-NRu"/>
                                 </constraints>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="20" width="400" height="580"/>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -412,6 +422,9 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <sections/>
+                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="-4" y="224" width="400" height="122"/>
+                                                </variation>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No friends found with username X" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJh-s4-foW" userLabel="No Users Found Label">
                                                 <rect key="frame" x="220" y="156" width="160" height="60"/>
@@ -479,6 +492,9 @@
                                             <constraint firstItem="wMl-rX-gFe" firstAttribute="width" secondItem="kbb-1w-9Mh" secondAttribute="width" id="r2n-Fd-gLJ"/>
                                             <constraint firstItem="SBa-3K-RY1" firstAttribute="top" secondItem="wMl-rX-gFe" secondAttribute="bottom" constant="2" id="wUB-jk-hRg"/>
                                         </constraints>
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="-24" y="20" width="400" height="480"/>
+                                        </variation>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.95278283779999995" blue="0.99595249699999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -650,13 +666,13 @@
                                                         <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lxd-ld-c6P">
-                                                        <rect key="frame" x="498" y="14" width="75" height="30"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lxd-ld-c6P">
+                                                        <rect key="frame" x="519" y="14" width="54" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="75" id="FmK-rO-faK"/>
+                                                            <constraint firstAttribute="width" constant="54" id="FmK-rO-faK"/>
                                                             <constraint firstAttribute="height" constant="30" id="UMl-cf-8K9"/>
                                                         </constraints>
-                                                        <state key="normal" title="Add Friend"/>
+                                                        <state key="normal" image="add-friend"/>
                                                         <connections>
                                                             <action selector="addFriendButtonTapped:" destination="N6J-FK-15V" eventType="touchUpInside" id="N6m-AZ-JKm"/>
                                                         </connections>
@@ -745,13 +761,13 @@
                                                                     <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTH-gU-vKn">
-                                                                    <rect key="frame" x="490" y="15" width="90" height="30"/>
+                                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTH-gU-vKn">
+                                                                    <rect key="frame" x="526" y="15" width="54" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="1GN-0b-IXJ"/>
-                                                                        <constraint firstAttribute="width" constant="90" id="fhk-8Z-qux"/>
+                                                                        <constraint firstAttribute="width" constant="54" id="fhk-8Z-qux"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Add to Board"/>
+                                                                    <state key="normal" image="add-friend"/>
                                                                     <connections>
                                                                         <action selector="addUserToBoardButtonTapped:" destination="N6J-FK-15V" eventType="touchUpInside" id="sZO-ez-R3p"/>
                                                                     </connections>
@@ -799,13 +815,13 @@
                                                                     <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woO-CR-YOT">
-                                                                    <rect key="frame" x="525" y="15" width="55" height="30"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woO-CR-YOT">
+                                                                    <rect key="frame" x="526" y="15" width="54" height="30"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="55" id="Wfa-16-W4e"/>
+                                                                        <constraint firstAttribute="width" constant="54" id="Wfa-16-W4e"/>
                                                                         <constraint firstAttribute="height" constant="30" id="ZeA-SL-bwr"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Remove"/>
+                                                                    <state key="normal" image="added-friend"/>
                                                                     <connections>
                                                                         <action selector="removeUserFromBoardButtonTapped:" destination="N6J-FK-15V" eventType="touchUpInside" id="SOz-jY-l04"/>
                                                                     </connections>
@@ -830,6 +846,9 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <sections/>
+                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="-4" y="224" width="400" height="122"/>
+                                                </variation>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No friends found with username X" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiD-RB-Vh4" userLabel="No Users Found Label">
                                                 <rect key="frame" x="220" y="156" width="160" height="60"/>
@@ -891,6 +910,9 @@
                                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                     <rect key="frame" x="100" y="540" width="200" height="40"/>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="deleteBoardContentsButtonTapped:" destination="N6J-FK-15V" eventType="touchUpInside" id="pdQ-J5-Ozb"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1X-G1-t7i">
                                                 <rect key="frame" x="256" y="426" width="89" height="30"/>
@@ -899,6 +921,12 @@
                                                     <constraint firstAttribute="height" constant="30" id="Imc-3A-NxS"/>
                                                 </constraints>
                                                 <state key="normal" title="Delete Board"/>
+                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="156" y="426" width="89" height="30"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="deleteBoardButtonTapped:" destination="N6J-FK-15V" eventType="touchUpInside" id="TIS-gF-EeQ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -925,6 +953,9 @@
                                             <constraint firstItem="wja-vR-OFh" firstAttribute="centerX" secondItem="4qs-ob-8F6" secondAttribute="centerX" id="wtu-Yh-kNS"/>
                                             <constraint firstItem="Qdw-zi-MoF" firstAttribute="width" secondItem="4qs-ob-8F6" secondAttribute="width" id="zG6-4I-K0I"/>
                                         </constraints>
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="-24" y="20" width="400" height="480"/>
+                                        </variation>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.95278283779999995" blue="0.99595249699999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1069,11 +1100,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="461"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NXC-yS-PBg" userLabel="FRIENDS TABLE VIEW">
-                                                <rect key="frame" x="-8" y="83" width="600" height="62"/>
+                                                <rect key="frame" x="-8" y="83" width="600" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="340" id="ELJ-JC-Wf8"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="62" id="YF9-BB-4gr"/>
+                                                    <constraint firstAttribute="height" constant="60" id="ELJ-JC-Wf8"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="YF9-BB-4gr"/>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allFriendsCell" id="Enp-RQ-rY0" customClass="TMBFriendsTableViewCell">
@@ -1084,14 +1115,14 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-5y-kgT">
-                                                                    <rect key="frame" x="38" y="10" width="40" height="40"/>
+                                                                    <rect key="frame" x="30" y="10" width="40" height="40"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="40" id="uM8-yB-Uu9"/>
                                                                         <constraint firstAttribute="height" constant="40" id="zPP-Er-8XO"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXW-g4-95C">
-                                                                    <rect key="frame" x="95" y="10" width="168" height="39"/>
+                                                                    <rect key="frame" x="87" y="10" width="168" height="39"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="168" id="1d9-Vf-1vi"/>
                                                                     </constraints>
@@ -1099,12 +1130,13 @@
                                                                     <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hc7-g9-MU9">
-                                                                    <rect key="frame" x="515" y="15" width="60" height="30"/>
-                                                                    <state key="normal" title="Unfollow"/>
-                                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                                        <rect key="frame" x="315" y="15" width="60" height="30"/>
-                                                                    </variation>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hc7-g9-MU9">
+                                                                    <rect key="frame" x="534" y="15" width="54" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="54" id="djP-Hj-fIx"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="jIL-ar-MSs"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Unfollow" image="added-friend"/>
                                                                     <connections>
                                                                         <action selector="unfollowButtonTapped:" destination="PHA-lw-zz9" eventType="touchUpInside" id="Jtl-2F-mYk"/>
                                                                     </connections>
@@ -1113,11 +1145,11 @@
                                                             <constraints>
                                                                 <constraint firstItem="7hA-5y-kgT" firstAttribute="centerY" secondItem="jB6-Sh-Ydx" secondAttribute="centerY" id="1VL-Fr-R3e"/>
                                                                 <constraint firstItem="lXW-g4-95C" firstAttribute="centerY" secondItem="7hA-5y-kgT" secondAttribute="centerY" id="1yi-gE-7Su"/>
-                                                                <constraint firstAttribute="trailingMargin" secondItem="Hc7-g9-MU9" secondAttribute="trailing" constant="20" id="4YW-nU-kmL"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="Hc7-g9-MU9" secondAttribute="trailing" constant="4" id="4YW-nU-kmL"/>
                                                                 <constraint firstItem="lXW-g4-95C" firstAttribute="centerY" secondItem="jB6-Sh-Ydx" secondAttribute="centerY" id="Bjr-GQ-0GQ"/>
                                                                 <constraint firstItem="Hc7-g9-MU9" firstAttribute="centerY" secondItem="jB6-Sh-Ydx" secondAttribute="centerY" id="Zye-bE-Gfe"/>
                                                                 <constraint firstItem="7hA-5y-kgT" firstAttribute="top" secondItem="jB6-Sh-Ydx" secondAttribute="topMargin" constant="-7" id="gVs-6E-wkZ"/>
-                                                                <constraint firstItem="7hA-5y-kgT" firstAttribute="leading" secondItem="jB6-Sh-Ydx" secondAttribute="leadingMargin" constant="30" id="iCi-Nn-dpv"/>
+                                                                <constraint firstItem="7hA-5y-kgT" firstAttribute="leading" secondItem="jB6-Sh-Ydx" secondAttribute="leadingMargin" constant="22" id="iCi-Nn-dpv"/>
                                                                 <constraint firstItem="lXW-g4-95C" firstAttribute="top" secondItem="jB6-Sh-Ydx" secondAttribute="topMargin" constant="2" id="jdO-yz-6b6"/>
                                                                 <constraint firstItem="lXW-g4-95C" firstAttribute="leading" secondItem="7hA-5y-kgT" secondAttribute="trailing" constant="17" id="zxn-tF-lS1"/>
                                                             </constraints>
@@ -1188,6 +1220,9 @@
                                             <mask key="constraints">
                                                 <exclude reference="p9E-P9-oBB"/>
                                             </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="461"/>
                                         </variation>
                                     </scrollView>
                                 </subviews>
@@ -1335,7 +1370,7 @@
                                 <rect key="frame" x="0.0" y="140" width="600" height="57"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y85-Zt-Gj1">
-                                        <rect key="frame" x="17" y="8" width="40" height="40"/>
+                                        <rect key="frame" x="15" y="8" width="40" height="40"/>
                                         <color key="backgroundColor" red="0.87846298649999999" green="0.89614583810000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="9Xq-cU-OE5"/>
@@ -1358,12 +1393,14 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blB-AR-Kgt">
-                                        <rect key="frame" x="509" y="14" width="75" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blB-AR-Kgt">
+                                        <rect key="frame" x="530" y="14" width="54" height="30"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ZOx-go-STh"/>
+                                            <constraint firstAttribute="width" constant="54" id="aM4-Ay-QkW"/>
                                             <constraint firstAttribute="width" constant="80" id="dRW-Lr-TOe"/>
                                         </constraints>
-                                        <state key="normal" title="Add Friend"/>
+                                        <state key="normal" title="Add Friend" image="add-friend"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="dRW-Lr-TOe"/>
@@ -1371,7 +1408,7 @@
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="constraints">
-                                                <include reference="dRW-Lr-TOe"/>
+                                                <exclude reference="dRW-Lr-TOe"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -1379,7 +1416,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqK-Ve-RVb">
-                                        <rect key="frame" x="74" y="18" width="171" height="21"/>
+                                        <rect key="frame" x="72" y="18" width="171" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="171" id="3x0-zT-g7t"/>
                                             <constraint firstAttribute="height" constant="21" id="b4x-8N-0Hz"/>
@@ -1408,7 +1445,7 @@
                                     <constraint firstItem="blB-AR-Kgt" firstAttribute="centerY" secondItem="sC6-Sf-Z16" secondAttribute="centerY" id="1gv-m2-u2Z"/>
                                     <constraint firstAttribute="height" constant="57" id="2xj-bE-wRD"/>
                                     <constraint firstItem="GqK-Ve-RVb" firstAttribute="leading" secondItem="y85-Zt-Gj1" secondAttribute="trailing" constant="17" id="8U8-IY-cJo"/>
-                                    <constraint firstItem="y85-Zt-Gj1" firstAttribute="leading" secondItem="sC6-Sf-Z16" secondAttribute="leading" constant="17" id="A10-O5-4Eb"/>
+                                    <constraint firstItem="y85-Zt-Gj1" firstAttribute="leading" secondItem="sC6-Sf-Z16" secondAttribute="leading" constant="15" id="A10-O5-4Eb"/>
                                     <constraint firstItem="y85-Zt-Gj1" firstAttribute="leading" secondItem="sC6-Sf-Z16" secondAttribute="leading" constant="22" id="Abf-Ws-lJP"/>
                                     <constraint firstItem="y85-Zt-Gj1" firstAttribute="centerY" secondItem="sC6-Sf-Z16" secondAttribute="centerY" id="Faf-cX-5H5"/>
                                     <constraint firstItem="y85-Zt-Gj1" firstAttribute="centerY" secondItem="GqK-Ve-RVb" secondAttribute="centerY" id="QUg-1M-ABi"/>
@@ -1580,6 +1617,7 @@
                         <outlet property="scrollViewTopConstraint" destination="KRx-40-GdM" id="0MH-Ai-1jF"/>
                         <outlet property="searchField" destination="JBp-pw-OCt" id="oZd-hd-s5X"/>
                         <outlet property="tableViewHeightConstraint" destination="YF9-BB-4gr" id="5fQ-cA-bOS"/>
+                        <outlet property="tableViewHeightConstraintCompact" destination="ELJ-JC-Wf8" id="5R6-nL-U2g"/>
                         <outlet property="vertSpaceConstraint01" destination="qgr-qz-WJE" id="SLB-19-zhd"/>
                         <outlet property="vertSpaceConstraint02" destination="fFP-py-9HR" id="TpM-e2-24u"/>
                         <outlet property="yourFriendsLabel" destination="SVN-4g-JdK" id="eOq-Qs-l25"/>
@@ -1702,13 +1740,13 @@
                                                         <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mh4-xS-Vx0">
-                                                        <rect key="frame" x="498" y="14" width="75" height="30"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mh4-xS-Vx0">
+                                                        <rect key="frame" x="518" y="14" width="54" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="7dW-Dn-OtR"/>
-                                                            <constraint firstAttribute="width" constant="75" id="ooJ-TT-qmG"/>
+                                                            <constraint firstAttribute="width" constant="54" id="ooJ-TT-qmG"/>
                                                         </constraints>
-                                                        <state key="normal" title="Add Friend"/>
+                                                        <state key="normal" title="Add Friend" image="add-friend"/>
                                                         <connections>
                                                             <action selector="addFriendButtonTapped:" destination="zGe-Na-vQM" eventType="touchUpInside" id="NeD-WP-qM0"/>
                                                         </connections>
@@ -1718,7 +1756,7 @@
                                                 <constraints>
                                                     <constraint firstItem="F9z-jg-Dkr" firstAttribute="centerY" secondItem="cAm-WI-vAd" secondAttribute="centerY" id="AyN-6n-lna"/>
                                                     <constraint firstAttribute="height" constant="57" id="Plo-Hr-7sn"/>
-                                                    <constraint firstAttribute="trailing" secondItem="mh4-xS-Vx0" secondAttribute="trailing" constant="27" id="VuP-3Q-J3k"/>
+                                                    <constraint firstAttribute="trailing" secondItem="mh4-xS-Vx0" secondAttribute="trailing" constant="28" id="VuP-3Q-J3k"/>
                                                     <constraint firstItem="mh4-xS-Vx0" firstAttribute="centerY" secondItem="cAm-WI-vAd" secondAttribute="centerY" id="a8U-zS-7lC"/>
                                                     <constraint firstItem="jVv-YC-Lb1" firstAttribute="centerY" secondItem="cAm-WI-vAd" secondAttribute="centerY" id="fuC-Sq-e3x"/>
                                                     <constraint firstItem="jVv-YC-Lb1" firstAttribute="leading" secondItem="F9z-jg-Dkr" secondAttribute="trailing" constant="13" id="mqO-9O-FPd"/>
@@ -1797,13 +1835,13 @@
                                                                     <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AW-vO-Rj0">
-                                                                    <rect key="frame" x="490" y="15" width="90" height="30"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AW-vO-Rj0">
+                                                                    <rect key="frame" x="526" y="15" width="54" height="30"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="90" id="HB9-Ai-4gE"/>
+                                                                        <constraint firstAttribute="width" constant="54" id="HB9-Ai-4gE"/>
                                                                         <constraint firstAttribute="height" constant="30" id="Zfe-St-2b8"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Add to Board"/>
+                                                                    <state key="normal" title="Add to Board" image="add-friend"/>
                                                                     <connections>
                                                                         <action selector="addUserToBoardButtonTapped:" destination="zGe-Na-vQM" eventType="touchUpInside" id="Byi-Ue-Xp7"/>
                                                                     </connections>
@@ -1851,13 +1889,13 @@
                                                                     <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yks-FV-T61">
-                                                                    <rect key="frame" x="525" y="15" width="55" height="30"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yks-FV-T61">
+                                                                    <rect key="frame" x="526" y="15" width="54" height="30"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="55" id="bHS-xP-FKN"/>
+                                                                        <constraint firstAttribute="width" constant="54" id="bHS-xP-FKN"/>
                                                                         <constraint firstAttribute="height" constant="30" id="o1v-9R-CBo"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Remove"/>
+                                                                    <state key="normal" title="Remove" image="added-friend"/>
                                                                     <connections>
                                                                         <action selector="removeUserFromBoardButtonTapped:" destination="zGe-Na-vQM" eventType="touchUpInside" id="6Sb-Md-5n3"/>
                                                                     </connections>
@@ -1882,6 +1920,9 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <sections/>
+                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="-4" y="224" width="400" height="122"/>
+                                                </variation>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No friends found with username X" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NR0-P6-PUO" userLabel="No Users Found Label">
                                                 <rect key="frame" x="220" y="156" width="160" height="60"/>
@@ -1949,6 +1990,9 @@
                                             <constraint firstItem="8VO-Ra-9pS" firstAttribute="top" secondItem="PPz-XN-WGG" secondAttribute="top" constant="40" id="yee-FY-ZJ7"/>
                                             <constraint firstItem="Hk0-jh-KMh" firstAttribute="width" secondItem="PPz-XN-WGG" secondAttribute="width" id="zGf-O9-btZ"/>
                                         </constraints>
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="-24" y="20" width="400" height="480"/>
+                                        </variation>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.95278283779999995" blue="0.99595249699999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -2075,6 +2119,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add-friend" width="217" height="120"/>
+        <image name="added-friend" width="217" height="120"/>
+        <image name="btn-border" width="230" height="64"/>
         <image name="group3" width="200" height="200"/>
     </resources>
 </document>
