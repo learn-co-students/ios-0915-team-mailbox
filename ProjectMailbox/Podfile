@@ -6,6 +6,7 @@ use_frameworks!
 target 'ProjectMailbox' do
 
 pod 'Parse'
+pod 'ParseUI'
 pod 'MMDrawerController', '~> 0.5.7'
 pod 'JSQMessagesViewController'
 pod 'FBSDKCoreKit'

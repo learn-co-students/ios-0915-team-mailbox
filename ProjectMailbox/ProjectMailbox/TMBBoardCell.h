@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParseUI/ParseUI.h"
+
+@interface TMBBoardCell : PFCollectionViewCell
 
 
-@interface TMBBoardCell : UICollectionViewCell
-
-
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet PFImageView *boardImageView;
 
 
 @end
