@@ -626,7 +626,6 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="boardImageView" destination="hUI-nu-DFz" id="WHB-yl-16M"/>
-                                    <outlet property="imageView" destination="hUI-nu-DFz" id="URz-PD-uFG"/>
                                     <segue destination="tcj-97-xQZ" kind="presentation" identifier="CommentSegue" id="Jcv-MR-dPW"/>
                                 </connections>
                             </collectionViewCell>
@@ -666,7 +665,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1q-U6-bKL" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-R8-W4Q">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-R8-W4Q" customClass="PFImageView">
                                         <rect key="frame" x="0.0" y="43" width="600" height="288"/>
                                         <color key="backgroundColor" red="0.87846298649999999" green="0.89614583810000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
@@ -831,7 +830,7 @@
                     <connections>
                         <outlet property="commentField" destination="wfT-bH-djy" id="IKJ-pf-PCS"/>
                         <outlet property="commentViewBottomConstraint" destination="LEK-hX-6Wc" id="UUG-Qh-SuO"/>
-                        <outlet property="commentedPhoto" destination="xgb-R8-W4Q" id="HHe-jU-At8"/>
+                        <outlet property="commentedPhoto" destination="xgb-R8-W4Q" id="5nc-S0-Ea5"/>
                         <outlet property="commentsTableView" destination="mw3-QT-xXD" id="sfS-GC-SGV"/>
                         <outlet property="currentUserNameLabel" destination="Art-fY-T4k" id="9D5-8w-TZs"/>
                         <outlet property="sendButton" destination="MPc-8K-RKZ" id="rPt-dn-8du"/>

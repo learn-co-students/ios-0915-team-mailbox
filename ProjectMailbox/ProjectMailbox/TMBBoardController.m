@@ -76,20 +76,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [self buildThemeColorsArray];
     [self buildEmptyCollection];
     
-    [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success){
-        
-        if (success)  {
-            
-            NSLog(@"\n\n EVERYTHING IS COOL! \n\n");
-        }
-        
-    }];
-    
-//    [self queryParseForInitialView:self.boardID queryContentBlock:^(BOOL success) {
-//        if (success) {
-//            [self.boardContent removeAllObjects];
-//        }
-//    }];
+    [self queryParseForContent:self.boardID];
     
 }
 
@@ -106,29 +93,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
     return kNumberOfSections;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    NSUInteger totalItems;
-    
-    if (self.boardContent.count != 0) {
-        
-        if ((self.boardContent.count % kItemsPerPage) != 0) {
-            
-            totalItems = self.boardContent.count + (kItemsPerPage - (self.boardContent.count % kItemsPerPage));
-            
-        } else {
-            
-            totalItems = self.boardContent.count;
-        }
-        
-    } else {
-        
-        totalItems = self.collection.count;
-        
-    }
-    
-//    NSLog(@"\n\n\n\nself.boardContent.count: %li\nself.collection.count: %li\ntotalItemsForSection: %li\n\n\n\n",self.boardContent.count,self.collection.count,totalItems);
-    
-    return totalItems;
+
+    return self.collection.count;
     
 }
 
@@ -136,7 +102,29 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     TMBBoardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    cell.imageView.image = self.collection[indexPath.row];
+    if ([self.collection[indexPath.row] isKindOfClass:[UIImage class]]) {
+        
+        cell.boardImageView.image = self.collection[indexPath.row];
+        
+    } else if ([self.collection[indexPath.row] isKindOfClass:[PFFile class]]) {
+        
+        cell.boardImageView.image = [UIImage imageNamed:@"placeholderForBoardCell"];
+        cell.boardImageView.file = (PFFile *)self.collection[indexPath.row];
+        [cell.boardImageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+            
+            if (!error) {
+                cell.boardImageView.alpha = 0.0;
+                [UIView beginAnimations:@"fade in" context:nil];
+                [UIView setAnimationDuration:1.0];
+                cell.boardImageView.alpha = 1.0;
+                [UIView commitAnimations];
+            }
+            
+            
+        }];
+        
+    }
+    
     cell.backgroundColor = [self colorForDummyCellAtRow:indexPath.row];
     
     return cell;
@@ -306,12 +294,12 @@ static NSString * const reuseIdentifier = @"MediaCell";
     TMBCommentViewController *destVC = segue.destinationViewController;
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
     NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
-    self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
+//    self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
     PFObject *selectedOBJ = self.pfObjects[selectedIndexPath.row];
     
     destVC.parseObjSelected = selectedOBJ;
     
-    destVC.selectedImage = self.imageSelectedForOtherView;
+    destVC.selectedFile = self.collection[selectedIndexPath.row];
 }
 
 
@@ -321,340 +309,69 @@ static NSString * const reuseIdentifier = @"MediaCell";
 {
     NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-    [self queryParseToUpdateCollection:boardID successBlock:^(BOOL success) {
-        if (!success) {
-            // error updating collection
-        }
-    }];
+    [self queryParseForContent:boardID];
 }
 
 -(void)doodleViewController:(TMBDoodleViewController *)viewController passBoardIDforQuery:(NSString *)boardID
 {
     NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-    [self queryParseToUpdateCollection:boardID successBlock:^(BOOL success) {
-        if (!success) {
-            // error updating collection
-        }
-    }];
+    [self queryParseForContent:boardID];
 }
 
--(void)queryParseToUpdateCollection:(NSString *)boardID successBlock:(void (^)(BOOL success))completionBlock
-{
+- (void)queryParseForContent:(NSString *)boardID {
     
-    NSLog(@"\n\n\nQuery parse started\n\n\n");
-    
-    if ([self.boardID length] == 0) {
-        
-//        [self queryForCurrentUserBoards:^(BOOL success) {
-//            if (success) {
-//                
-//                [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success){ }];
-//                
-//            } else {
-//                
-//                // user has no boards or error occurred
-//                completionBlock(NO);
-//            }
-//        }];
-        
-        return;
-        
-    } else {
-        
-        PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-        [boardQuery whereKey:@"objectId" equalTo:self.boardID];
-        
-        PFQuery *contentQuery = [PFQuery queryWithClassName:@"Photo"];
-        [contentQuery whereKey:@"board" matchesQuery:boardQuery];
-        [contentQuery orderByDescending:@"updatedAt"];
-        [contentQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
-            
-
-            if (number == 0) {
-                return;
-            } else {
-                [contentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-                    
-                    NSLog(@"\n\n\nContent query parse started\n\n\n");
-                    
-                    if (self.pfObjects.count > 0) {
-                        [self.pfObjects removeAllObjects];
-                    }
-                    
-                    if (!error) {
-                        for (PFObject *object in objects) {
-                            
-                            PFFile *imageFile = object[@"thumbnail"];
-
-                            if (imageFile) {
-                                [self.boardContent addObject:imageFile];
-                                [self.pfObjects addObject:object];
-                            }
-                            
-                            
-
-                        }
-                        
-                        NSLog(@"\n\n\nself.boardContent.count: %li\n\n\n",self.boardContent.count);
-                        
-                        if (self.boardContent.count > kItemsPerPage && self.boardContent.count > self.collection.count) {
-                            
-                            NSUInteger totalItems;
-                            NSUInteger numberOfDummyItemsForUpdate;
-                            
-                            if ((self.boardContent.count % 20) == 0) {
-                                totalItems = self.boardContent.count;
-                            } else {
-                                totalItems = self.boardContent.count + (kItemsPerPage - (self.boardContent.count % kItemsPerPage));
-                            }
-                            numberOfDummyItemsForUpdate = totalItems - self.collection.count;
-                            
-                           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                            
-                                NSLog(@"\n\n\n\nmainQueue pre build self.collection.count: %li\n\n\n\n",self.collection.count);
-
-                                    for (int i = 0; i < numberOfDummyItemsForUpdate; i++) {
-                                        [self.collection addObject:[UIImage imageNamed:@"placeholderForBoardCell"]];
-                                    }
-                                    [self.collectionView reloadData];
-
-                               NSLog(@"\n\n\n\nmainQueue self.collection.count: %li\n\n\n\n",self.collection.count);
-                                
-                            }];
-                        
-                        }
-                        
-                        NSOperationQueue *dataQueue = [[NSOperationQueue alloc] init];
-                        [dataQueue addOperationWithBlock:^{
-                            
-                            for (PFFile *imageFile in self.boardContent) {
-                                
-                                NSData *data = [imageFile getData];
-                                UIImage *image = [UIImage imageWithData:data];
-                                NSUInteger pfFileIndex = [self.boardContent indexOfObject:imageFile];
-                                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                    
-                                    [self.collection replaceObjectAtIndex:pfFileIndex withObject:image];
-                                    
-                                    if (pfFileIndex == 0){
-                                    
-                                        [self.collectionView reloadData];
-                                        
-                                    } else if (pfFileIndex < kItemsPerPage) {
-                                        
-                                        NSIndexPath *ip = [NSIndexPath indexPathForItem:pfFileIndex inSection:0];
-                                        [self.collectionView reloadItemsAtIndexPaths:@[ip]];
-                                        
-                                    } else if (self.boardContent.count == pfFileIndex + 1) {
-                                        
-                                        
-                                        [self.collectionView reloadData];
-                                        
-                                        completionBlock(YES);
-                                        
-                                    }
-                                    
-                                }];
-                            }
-                            [self.boardContent removeAllObjects];
-                            
-                        }];
-                        
-                        
-                    } else {
-                        
-                        completionBlock(NO);
-                        NSLog(@"Error: %@ %@", error, [error userInfo]);
-                    }
-                }];
-            }
-        }];
-    }
-}
-
--(void)queryParseForInitialView:(NSString *)boardID queryContentBlock:(void (^)(BOOL success))completionBlock
-{
-    
-    [self queryParseForBoardCount:^(NSUInteger count, BOOL success) {
-        
-        if (success && count > 0) {
-            
-            if (self.pfObjects > 0) [self.pfObjects removeAllObjects];
-            
-            // continue query
-            NSUInteger skip = 0;
-            for (NSUInteger i = 0; i < count; i++) {
-                
-                PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-                [boardQuery whereKey:@"objectId" equalTo:self.boardID];
-                
-                PFQuery *contentQuery = [PFQuery queryWithClassName:@"Photo"];
-                [contentQuery whereKey:@"board" matchesQuery:boardQuery];
-                [contentQuery orderByDescending:@"updatedAt"];
-                if (skip > 0) contentQuery.skip = skip;
-                [contentQuery getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                    
-                    if (!error) {
-                        
-                        PFFile *imageFile = object[@"thumbnail"];
-                        if (imageFile) {
-                            [self.boardContent addObject:imageFile];
-                            [self.pfObjects addObject:object];
-                        }
-                        
-                        [self updateTotalItemsForBoard];
-                        
-                        NSOperationQueue *dataQueue = [[NSOperationQueue alloc] init];
-                        [dataQueue addOperationWithBlock:^{
-                        
-                            NSData *data = [imageFile getData];
-                            UIImage *image = [UIImage imageWithData:data];
-                            NSUInteger pfFileIndex = [self.boardContent indexOfObject:imageFile];
-                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                
-                                [self.collection replaceObjectAtIndex:pfFileIndex withObject:image];
-                                
-                                NSIndexPath *ip = [NSIndexPath indexPathForItem:pfFileIndex inSection:0];
-                                [self.collectionView reloadItemsAtIndexPaths:@[ip]];
-                                
-                            }];
-                            
-                        }];
-                        
-                    } else {
-                        
-                        NSLog(@"Error: %@ %@", error, [error userInfo]);
-                        
-                    }
-                    
-                    
-                    
-                }];
-                
-                // increment limit and skip
-                skip++;
-            }
-            completionBlock(YES);
-        
-        } else {
-            
-            // error
-            completionBlock(NO);
-        }
-        
-    }];
-    
-    
-    
-}
-
--(void)queryParseForBoardCount:(void (^)(NSUInteger count, BOOL success))countAndCompletion
-{
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-    [boardQuery whereKey:@"objectId" equalTo:self.boardID];
+    [boardQuery whereKey:@"objectId" equalTo:boardID];
     
     PFQuery *contentQuery = [PFQuery queryWithClassName:@"Photo"];
     [contentQuery whereKey:@"board" matchesQuery:boardQuery];
     [contentQuery orderByDescending:@"updatedAt"];
-    [contentQuery countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+    [contentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         
-        if (!error) {
-            
-            countAndCompletion(number, YES);
-            
-        } else {
-            
-            countAndCompletion(number, NO);
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        
+        if (self.pfObjects.count > 0) {
+            [self.pfObjects removeAllObjects];
         }
         
-     
-    }];
-}
-
--(void)updateTotalItemsForBoard
-{
-    
-    if (self.boardContent.count > kItemsPerPage && self.boardContent.count > self.collection.count) {
-        
-        NSUInteger totalItems;
-        NSUInteger numberOfDummyItemsForUpdate;
-        
-        if ((self.boardContent.count % 20) == 0) {
-            totalItems = self.boardContent.count;
-        } else {
-            totalItems = self.boardContent.count + (kItemsPerPage - (self.boardContent.count % kItemsPerPage));
-        }
-        numberOfDummyItemsForUpdate = totalItems - self.collection.count;
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (objects.count > kItemsPerPage) {
             
-            NSLog(@"\n\n\n\nmainQueue pre build self.collection.count: %li\n\n\n\n",self.collection.count);
+            NSUInteger totalItems;
+            NSUInteger numberOfDummyItemsForUpdate;
+            
+            if ((objects.count % 20) == 0) {
+                totalItems = objects.count;
+            } else {
+                totalItems = objects.count + (kItemsPerPage - (objects.count % kItemsPerPage));
+            }
+            numberOfDummyItemsForUpdate = totalItems - self.collection.count;
             
             for (int i = 0; i < numberOfDummyItemsForUpdate; i++) {
                 [self.collection addObject:[UIImage imageNamed:@"placeholderForBoardCell"]];
             }
-            [self.collectionView reloadData];
             
-            NSLog(@"\n\n\n\nmainQueue self.collection.count: %li\n\n\n\n",self.collection.count);
-            
-        }];
+        }
         
-    }
+        NSUInteger objectIndex = 0;
+        for (PFObject *object in objects) {
+            
+            PFFile *imageFile = object[@"thumbnail"];
+            
+            if (imageFile) {
+                [self.collection replaceObjectAtIndex:objectIndex withObject:imageFile];
+                [self.pfObjects addObject:object];
+            }
+            objectIndex++;
+        }
+        
+        [self.collectionView reloadData];
+        
+    }];
+    
+    
     
 }
 
-
--(void)queryForCurrentUserBoards:(void (^)(BOOL success))completionBlock
-{
-    //get all boardIDs for current user
-    PFQuery *boardQueryFromPhotoClass = [PFQuery queryWithClassName:@"Photo"];
-    [boardQueryFromPhotoClass whereKey:@"user" equalTo:PFUser.currentUser];
-    [boardQueryFromPhotoClass selectKeys:@[@"board"]];
-    [boardQueryFromPhotoClass orderByDescending:@"updatedAt"];
-    [boardQueryFromPhotoClass getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        
-        if (!error) {
-            
-            // set boardID singleton for board with most recent photo
-            PFObject *boardObject = object[@"board"];
-            NSString *boardID = [boardObject valueForKey:@"objectId"];
-            [TMBSharedBoardID sharedBoardID].boardID = boardID;
-            self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
-            
-            // get all boards for user and add to board dict singleton
-            PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-            [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
-            [boardQuery selectKeys:@[@"objectId",@"boardName"]];
-            [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-                
-                if (!error) {
-                    
-                    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
-                    for (PFObject *object in objects) {
-                        
-                        NSString *boardID = [object valueForKey:@"objectId"];
-                        [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
-                        
-                    }
-                    
-                } else {
-                    
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-                }
-                
-            }];
-            completionBlock(YES);
-            
-        } else {
-            
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-            completionBlock(NO);
-        }
-        
-    }];
-}
 
 
 

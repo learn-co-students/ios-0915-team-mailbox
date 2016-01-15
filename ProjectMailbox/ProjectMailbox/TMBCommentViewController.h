@@ -17,7 +17,7 @@
 /// The array of PFObjects that is the UITableView data source
 @property (nonatomic, strong) NSMutableArray *activities;
 @property (nonatomic, strong) PFObject *photo;
-@property (strong, nonatomic) UIImage *selectedImage;
+@property (strong, nonatomic) PFFile *selectedFile;
 @property (strong, nonatomic) PFObject *parseObjSelected;
 
 - (id)initWithImage:(UIImage *)aImage;

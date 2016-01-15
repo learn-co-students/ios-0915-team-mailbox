@@ -11,6 +11,7 @@
 #import "PAPCache.h"
 #import "TMBTableViewCommentCellTableViewCell.h"
 #import "TMBSharedBoardID.h"
+#import "ParseUI/ParseUI.h"
 
 @interface TMBCommentViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -29,7 +30,8 @@
 
 //detail view
 @property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
+//@property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
+@property (weak, nonatomic) IBOutlet PFImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 @property (strong, nonatomic) PFFile *userPhotoFile;
 
@@ -48,7 +50,10 @@
     
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
-    self.commentedPhoto.image = self.selectedImage;
+    self.commentedPhoto.image = [UIImage imageNamed:@"placeholderForBoardCell"];
+    self.commentedPhoto.file = (PFFile *)self.selectedFile;
+    [self.commentedPhoto loadInBackground];
+    
     
     NSLog(@"What is this from viewDiDLoad: %@", self.parseObjSelected);
     
