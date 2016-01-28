@@ -65,7 +65,6 @@
 		A46CB1151BFCD40000D35BB3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
 		A46CB1171BFCD40700D35BB3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
 		A47CC6C91C3C304E00530324 /* TMBManageBoardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47CC6C81C3C304E00530324 /* TMBManageBoardsViewController.m */; };
-		A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48A0AF01C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m */; };
 		A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */; };
 		A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */; };
 		A4AC72871C0E890B000F05C8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AC72851C0E890B000F05C8 /* AddressBook.framework */; };
@@ -261,8 +260,6 @@
 		A46CB11F1BFCE1C700D35BB3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "ProjectMailbox/parse-library/Parse.framework"; sourceTree = "<group>"; };
 		A47CC6C71C3C304E00530324 /* TMBManageBoardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBManageBoardsViewController.h; sourceTree = "<group>"; };
 		A47CC6C81C3C304E00530324 /* TMBManageBoardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBManageBoardsViewController.m; sourceTree = "<group>"; };
-		A48A0AEF1C1F989C00BA46F3 /* TMBSideMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSideMenuTableViewCell.h; sourceTree = "<group>"; };
-		A48A0AF01C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSideMenuTableViewCell.m; sourceTree = "<group>"; };
 		A4AC727C1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTableViewCommentCellTableViewCell.h; sourceTree = "<group>"; };
 		A4AC727D1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTableViewCommentCellTableViewCell.m; sourceTree = "<group>"; };
 		A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = phoneContacts.storyboard; sourceTree = "<group>"; };
@@ -439,8 +436,6 @@
 				55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */,
 				5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */,
 				5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */,
-				A48A0AEF1C1F989C00BA46F3 /* TMBSideMenuTableViewCell.h */,
-				A48A0AF01C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m */,
 				5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */,
 				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
 				5D03AF201C187B1600E2CDEB /* TMBConstants.h */,
@@ -953,7 +948,6 @@
 				55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */,
 				5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */,
 				5D03AF171C1785DA00E2CDEB /* TMBBoardCell.m in Sources */,
-				A48A0AF11C1F989C00BA46F3 /* TMBSideMenuTableViewCell.m in Sources */,
 				A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */,
 				A47CC6C91C3C304E00530324 /* TMBManageBoardsViewController.m in Sources */,
 				A45295481C20A8690060E8BC /* TMBBoardTableViewCell.m in Sources */,

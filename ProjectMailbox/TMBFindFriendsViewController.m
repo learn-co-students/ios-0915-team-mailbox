@@ -85,7 +85,6 @@
 }
 
 
-
 - (void)checkInternetConnection {
     
     // if there is no internet...
@@ -106,7 +105,6 @@
 }
 
 
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     // search key was pressed - dismiss keyboard, call on search friend method
@@ -115,7 +113,6 @@
     
     return YES;
 }
-
 
 
 - (IBAction)searchFriendButtonTapped:(UIButton *)sender {
@@ -172,7 +169,6 @@
 }
 
 
-
 -(void)pushDownFriendsTable {
     
     if ((self.foundFriendView.hidden == NO && self.animatedConstraint.constant <= 32) ||
@@ -185,7 +181,6 @@
     }
     
 }
-
 
 
 - (IBAction)addUserToAllFriendsButtonTapped:(UIButton *)sender {
@@ -216,7 +211,6 @@
 }
 
 
-
 -(void)displayAlert {
     
     UIAlertController * alert=   [UIAlertController
@@ -238,7 +232,6 @@
     [self presentViewController:alert animated:YES completion:nil];
     
 }
-
 
 
 - (IBAction)unfollowButtonTapped:(UIButton *)sender {
@@ -269,7 +262,6 @@
 }
 
 
-
 - (void)adjustHeightOfTableview {
     
     CGFloat minHeight = 60;
@@ -298,7 +290,6 @@
 }
 
 
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSUInteger numberOfFriends = self.friendsForCurrentUser.count;
@@ -309,7 +300,6 @@
     return numberOfFriends;
     
 }
-
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -347,13 +337,18 @@
 }
 
 
-
 - (IBAction)backgroundTapped:(id)sender {
     
     [self.view endEditing:YES];
     
 }
 
+
+- (IBAction)closeButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
 
 
 /*****************************
@@ -405,7 +400,6 @@
 }
 
 
-
 - (void)removeUserFromAllFriendsOnParse:(PFUser *)user completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
     
     PFObject *newFriend = user;
@@ -417,11 +411,6 @@
     
 }
 
-- (IBAction)closeButtonTapped:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
-}
 
 
 

@@ -14,6 +14,7 @@
 
 @interface TMBManageBoardsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *internetConnectionLabel;
 @property (strong, nonatomic) NSMutableArray *adminBoards;
 @property (strong, nonatomic) NSMutableArray *adminBoardFriends;
 @property (strong, nonatomic) NSMutableArray *memberBoards;
@@ -21,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *memberTableView;
 @property (strong, nonatomic) NSString *boardID;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *boardsYouManageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *boardsYoureInLabel;
 
 // Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adminTableHeightConstraint;
@@ -46,7 +49,11 @@
     
     [super viewDidLoad];
     
-    // check internet connection
+    self.internetConnectionLabel.hidden = YES;
+    
+    [self checkInternetConnection];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteButtonTappedInCreateBoardVC:) name:@"UserTappedDeleteBoardButton" object:nil];
     
     self.adminTableView.delegate = self;
     self.adminTableView.dataSource = self;
@@ -68,12 +75,6 @@
     
     
     [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
-        
-//        if (!error) {
-//        for (PFUser *eachFriend in boardsCreatedByUser.firstObject[@"boardFriends"]) {
-//            [self.adminBoardFriends addObject:eachFriend];
-//            }
-//        }
         
         if (!error) {
             for (PFObject *object in boardsCreatedByUser) {
@@ -99,26 +100,44 @@
 }
 
 
+-(void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification
+{
+    NSLog(@"WOO I GOT THE MESSAGE: %@", notification);
+    
+    NSIndexPath *selectedIndexPath = self.adminTableView.indexPathForSelectedRow;
+    PFObject *selectedBoard = self.adminBoards[selectedIndexPath.row];
 
-//- (void)checkInternetConnection {
-//    
-//    // if there is no internet...
-//    // hide some views
-//    // display alert
-//    
-//    // check connection to a very small, fast loading site:
-//    NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
-//    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
-//    if (!data) {
-//        self.lookUpFriendsLabel.text = @"No Internet Connection";
-//        self.boardFriendsTableView.hidden = YES;
-//        self.saveBoardButton.hidden = YES;
-//        NSLog(@"Device is not connected to the internet");
-//        
-//    } else {
-//        NSLog(@"Device is connected to the internet");
-//    }
-//}
+    [self.adminBoards removeObject:selectedBoard];
+    
+    [self.adminTableView reloadData];
+    [self adjustHeightOfTableview];
+    
+}
+
+
+
+- (void)checkInternetConnection {
+    
+    // if there is no internet...
+    // hide some views
+    // display alert
+    
+    // check connection to a very small, fast loading site:
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (!data) {
+        self.internetConnectionLabel.hidden = NO;
+        self.internetConnectionLabel.text = @"No Internet Connection";
+        self.boardsYouManageLabel.hidden = YES;
+        self.adminTableView.hidden = YES;
+        self.boardsYoureInLabel.hidden = YES;
+        self.memberTableView.hidden = YES;
+        NSLog(@"Device is not connected to the internet");
+        
+    } else {
+        NSLog(@"Device is connected to the internet");
+    }
+}
 
 
 
@@ -246,6 +265,12 @@
     
 }
 
+
+- (IBAction)closeButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
 
 
 /*****************************

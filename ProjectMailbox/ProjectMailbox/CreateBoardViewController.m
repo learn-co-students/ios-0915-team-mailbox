@@ -108,7 +108,9 @@
     if (self.boardObjectIdFromSelectedBoard) {
         self.boardObjectId = self.boardObjectIdFromSelectedBoard;
         NSLog(@" !!!!!!!!!!!!!!!!!!!!!!!! BOARD OBJ ID IS %@", self.boardObjectId);
-    } else {
+    }
+    
+    else {
         
         [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
             if (!error) {
@@ -498,6 +500,10 @@
         NSString *boardName = self.boardNameField.text;
         self.myNewBoard[@"boardName"] = boardName;
         
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center postNotificationName:@"UserTappedSaveBoardButton"
+                              object:self.myNewBoard];
+        
         [self.myNewBoard saveEventually];
         [self dismissViewControllerAnimated:YES
                                  completion:nil];
@@ -578,6 +584,12 @@
 }
 
 
+- (IBAction)closeButtonTapped:(UIButton *)sender {
+    
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
+
 
 - (IBAction)backgroundTapped:(id)sender {
     
@@ -595,14 +607,53 @@
 
 
 
-// add Delete Board action, alert, dismiss view
+// add alert
 - (IBAction)deleteBoardButtonTapped:(UIButton *)sender {
     
-    [self.myNewBoard deleteEventually];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
+    [self displayDeletingBoardAlert];
+    
 }
 
+
+-(void)displayDeletingBoardAlert {
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Are you sure?"
+                                  message:@"This board will be deleted"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* okButton = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //Handle OK button action here
+                                   NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                                   [center postNotificationName:@"UserTappedDeleteBoardButton"
+                                                         object:self.myNewBoard];
+                                   
+                                   [self.myNewBoard deleteEventually];
+                                   [self dismissViewControllerAnimated:YES
+                                                            completion:nil];
+
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                               }];
+    
+    UIAlertAction* cancelButton = [UIAlertAction
+                               actionWithTitle:@"Cancel"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   //Handle OK button action here
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                               }];
+
+    [alert addAction:cancelButton];
+    [alert addAction:okButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
 
 
 /*****************************
