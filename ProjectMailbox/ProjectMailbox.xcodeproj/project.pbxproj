@@ -82,7 +82,6 @@
 		A4C03FF71C03BC5C00F0F368 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */; };
 		EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */; };
 		EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */; };
-		EA2A26BD1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */; };
 		EA712A6F1C0E7AF000F096B4 /* SpotifyTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */; };
 		EA712A721C0E7B0D00F096B4 /* SpotifyTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */; };
 		EA712A731C0F907600F096B4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
@@ -289,7 +288,6 @@
 		EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBoardViewController.m; path = ProjectMailbox/CreateBoardViewController.m; sourceTree = "<group>"; };
 		EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBFriendsTableViewCell.h; path = ProjectMailbox/TMBFriendsTableViewCell.h; sourceTree = "<group>"; };
 		EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMBFriendsTableViewCell.m; path = ProjectMailbox/TMBFriendsTableViewCell.m; sourceTree = "<group>"; };
-		EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddNewBoardStoryboard.storyboard; path = ProjectMailbox/AddNewBoardStoryboard.storyboard; sourceTree = "<group>"; };
 		EA712A6D1C0E7AF000F096B4 /* SpotifyTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackView.h; sourceTree = "<group>"; };
 		EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackView.m; sourceTree = "<group>"; };
 		EA712A701C0E7B0C00F096B4 /* SpotifyTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrack.h; sourceTree = "<group>"; };
@@ -610,7 +608,6 @@
 				EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */,
 				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
 				EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */,
-				EA2A26BC1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard */,
 			);
 			name = "Create New Board";
 			path = ..;
@@ -847,7 +844,6 @@
 				A4AC72811C0E7FF9000F05C8 /* phoneContacts.storyboard in Resources */,
 				55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */,
 				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
-				EA2A26BD1C1783020038F2D5 /* AddNewBoardStoryboard.storyboard in Resources */,
 				5D8E30431C21EE3D00610042 /* signupScreen.storyboard in Resources */,
 				5D8E303C1C1F1E3A00610042 /* ImageCard.storyboard in Resources */,
 				EA712A881C0F941B00F096B4 /* SpotifyFeature.storyboard in Resources */,
