@@ -16,7 +16,6 @@
 		5508F4C01BFB972300D02E15 /* ProjectMailboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4BF1BFB972300D02E15 /* ProjectMailboxTests.m */; };
 		5508F4CB1BFB972300D02E15 /* ProjectMailboxUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4CA1BFB972300D02E15 /* ProjectMailboxUITests.m */; };
 		5508F4D91BFB976F00D02E15 /* parse-library in Resources */ = {isa = PBXBuildFile; fileRef = 5508F4D81BFB976F00D02E15 /* parse-library */; };
-		5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4DD1BFBC22300D02E15 /* TMBUser.m */; };
 		5508F4E71BFBC25300D02E15 /* TMBTextCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4E61BFBC25300D02E15 /* TMBTextCard.m */; };
 		5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */; };
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
@@ -82,8 +81,6 @@
 		A4C03FF71C03BC5C00F0F368 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */; };
 		EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */; };
 		EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */; };
-		EA712A6F1C0E7AF000F096B4 /* SpotifyTrackView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */; };
-		EA712A721C0E7B0D00F096B4 /* SpotifyTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */; };
 		EA712A731C0F907600F096B4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
 		EA712A741C0F908100F096B4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */; };
 		EA712A751C0F908D00F096B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */; };
@@ -95,19 +92,9 @@
 		EA712A7C1C0F912100F096B4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
 		EA712A7D1C0F912E00F096B4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
 		EA712A7E1C0F913900F096B4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
-		EA712A801C0F920400F096B4 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A7F1C0F920400F096B4 /* ParseUI.framework */; };
 		EA712A821C0F922E00F096B4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A811C0F922E00F096B4 /* Parse.framework */; };
 		EA712A841C0F923600F096B4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A831C0F923600F096B4 /* Bolts.framework */; };
-		EA712A881C0F941B00F096B4 /* SpotifyFeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA712A871C0F941B00F096B4 /* SpotifyFeature.storyboard */; };
-		EAB7236D1C03C33F0086E421 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7236C1C03C33F0086E421 /* ShareViewController.m */; };
-		EAB723701C03C33F0086E421 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAB7236E1C03C33F0086E421 /* MainInterface.storyboard */; };
 		EAB723741C03C33F0086E421 /* TMBSpotifyShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		EAB7237B1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */; };
-		EAB7237C1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */; };
-		EACDA5CB1C161E440031268F /* SpotifyTrack2.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA5CA1C161E440031268F /* SpotifyTrack2.m */; };
-		EACDA5CE1C1620F60031268F /* SpotifyTrackView2.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA5CD1C1620F60031268F /* SpotifyTrackView2.m */; };
-		EACDA5D11C175E6C0031268F /* SpotifyPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA5D01C175E6C0031268F /* SpotifyPlayerManager.m */; };
-		EAD1EABD1C051556003BA462 /* TMBSpotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */; };
 		EAD1EAE81C05189D003BA462 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD1EAE71C05189D003BA462 /* Spotify.framework */; };
 		EAD1EAE91C051A42003BA462 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEC1C03BC5C00F0F368 /* ParseCrashReporting.framework */; };
 /* End PBXBuildFile section */
@@ -169,16 +156,14 @@
 		5508F4CA1BFB972300D02E15 /* ProjectMailboxUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectMailboxUITests.m; sourceTree = "<group>"; };
 		5508F4CC1BFB972300D02E15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5508F4D81BFB976F00D02E15 /* parse-library */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "parse-library"; sourceTree = "<group>"; };
-		5508F4DC1BFBC22300D02E15 /* TMBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBUser.h; sourceTree = "<group>"; };
-		5508F4DD1BFBC22300D02E15 /* TMBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBUser.m; sourceTree = "<group>"; };
 		5508F4E51BFBC25300D02E15 /* TMBTextCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBTextCard.h; sourceTree = "<group>"; };
 		5508F4E61BFBC25300D02E15 /* TMBTextCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBTextCard.m; sourceTree = "<group>"; };
 		5508F4EB1BFBDD4100D02E15 /* TMBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSignUpViewController.h; sourceTree = "<group>"; };
 		5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSignUpViewController.m; sourceTree = "<group>"; };
 		5508F4EE1BFC12A500D02E15 /* TMBFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFirstPageViewController.h; sourceTree = "<group>"; };
 		5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFirstPageViewController.m; sourceTree = "<group>"; };
-		5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSideMenuViewController.h; sourceTree = "<group>"; };
-		5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSideMenuViewController.m; sourceTree = "<group>"; };
+		5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBSideMenuViewController.h; path = ProjectMailbox/TMBSideMenuViewController.h; sourceTree = "<group>"; };
+		5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMBSideMenuViewController.m; path = ProjectMailbox/TMBSideMenuViewController.m; sourceTree = "<group>"; };
 		5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageContentViewController.h; sourceTree = "<group>"; };
 		5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMainPageContentViewController.m; sourceTree = "<group>"; };
 		552687CD1C1A1DA9008D94DE /* TMBFullImageModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFullImageModalViewController.h; sourceTree = "<group>"; };
@@ -205,7 +190,6 @@
 		55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProjectMailbox-Bridging-Header.h"; sourceTree = "<group>"; };
 		55C6AE1D1C1B2DED00FD8A73 /* TMBCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBCommentViewController.h; sourceTree = "<group>"; };
 		55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBCommentViewController.m; sourceTree = "<group>"; };
-		55D3EB101C17416C0044BEFD /* TMBSpotifyShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TMBSpotifyShareExtension.entitlements; sourceTree = "<group>"; };
 		55D3EB111C1745E30044BEFD /* TMBBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBBoard.h; sourceTree = "<group>"; };
 		55D3EB121C1745E30044BEFD /* TMBBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBBoard.m; sourceTree = "<group>"; };
 		55EE00711C0BB94B00C46162 /* TMBMainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageViewController.h; sourceTree = "<group>"; };
@@ -288,31 +272,10 @@
 		EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBoardViewController.m; path = ProjectMailbox/CreateBoardViewController.m; sourceTree = "<group>"; };
 		EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBFriendsTableViewCell.h; path = ProjectMailbox/TMBFriendsTableViewCell.h; sourceTree = "<group>"; };
 		EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMBFriendsTableViewCell.m; path = ProjectMailbox/TMBFriendsTableViewCell.m; sourceTree = "<group>"; };
-		EA712A6D1C0E7AF000F096B4 /* SpotifyTrackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackView.h; sourceTree = "<group>"; };
-		EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackView.m; sourceTree = "<group>"; };
-		EA712A701C0E7B0C00F096B4 /* SpotifyTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrack.h; sourceTree = "<group>"; };
-		EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrack.m; sourceTree = "<group>"; };
 		EA712A781C0F90BA00F096B4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		EA712A7F1C0F920400F096B4 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		EA712A811C0F922E00F096B4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		EA712A831C0F923600F096B4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
-		EA712A851C0F929300F096B4 /* TMBSpotifyShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TMBSpotifyShareExtension.entitlements; sourceTree = "<group>"; };
-		EA712A871C0F941B00F096B4 /* SpotifyFeature.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SpotifyFeature.storyboard; sourceTree = "<group>"; };
 		EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TMBSpotifyShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAB7236B1C03C33F0086E421 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
-		EAB7236C1C03C33F0086E421 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
-		EAB7236F1C03C33F0086E421 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		EAB723711C03C33F0086E421 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EAB723791C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSpotifyShareExtensionAPIClient.h; sourceTree = "<group>"; };
-		EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSpotifyShareExtensionAPIClient.m; sourceTree = "<group>"; };
-		EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBSpotifyViewController.h; path = ProjectMailbox/TMBSpotifyViewController.h; sourceTree = "<group>"; };
-		EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMBSpotifyViewController.m; path = ProjectMailbox/TMBSpotifyViewController.m; sourceTree = "<group>"; };
-		EACDA5C91C161E440031268F /* SpotifyTrack2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrack2.h; sourceTree = "<group>"; };
-		EACDA5CA1C161E440031268F /* SpotifyTrack2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrack2.m; sourceTree = "<group>"; };
-		EACDA5CC1C1620F60031268F /* SpotifyTrackView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyTrackView2.h; sourceTree = "<group>"; };
-		EACDA5CD1C1620F60031268F /* SpotifyTrackView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyTrackView2.m; sourceTree = "<group>"; };
-		EACDA5CF1C175E6C0031268F /* SpotifyPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotifyPlayerManager.h; sourceTree = "<group>"; };
-		EACDA5D01C175E6C0031268F /* SpotifyPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotifyPlayerManager.m; sourceTree = "<group>"; };
 		EAD1EAE71C05189D003BA462 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -376,7 +339,6 @@
 				EA712A7B1C0F90F800F096B4 /* libz.tbd in Frameworks */,
 				EA712A7A1C0F90E300F096B4 /* SystemConfiguration.framework in Frameworks */,
 				EA712A791C0F90BB00F096B4 /* StoreKit.framework in Frameworks */,
-				EA712A801C0F920400F096B4 /* ParseUI.framework in Frameworks */,
 				EA712A771C0F90A500F096B4 /* Security.framework in Frameworks */,
 				EA712A761C0F909700F096B4 /* QuartzCore.framework in Frameworks */,
 				EA712A751C0F908D00F096B4 /* CoreGraphics.framework in Frameworks */,
@@ -391,9 +353,7 @@
 		5508F4961BFB972300D02E15 = {
 			isa = PBXGroup;
 			children = (
-				EA712A6A1C0E7A1A00F096B4 /* Spotify Feature */,
 				5508F4A11BFB972300D02E15 /* ProjectMailbox */,
-				EAB7236A1C03C33F0086E421 /* TMBSpotifyShareExtension */,
 				5508F4BE1BFB972300D02E15 /* ProjectMailboxTests */,
 				5508F4C91BFB972300D02E15 /* ProjectMailboxUITests */,
 				5508F4A01BFB972300D02E15 /* Products */,
@@ -416,49 +376,31 @@
 		5508F4A11BFB972300D02E15 /* ProjectMailbox */ = {
 			isa = PBXGroup;
 			children = (
-				55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */,
 				559300061C0F958F0027195D /* ProjectMailbox.entitlements */,
-				5508F4B61BFB972300D02E15 /* Info.plist */,
-				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
-				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
-				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
-				5D8E303B1C1F1E3A00610042 /* ImageCard.storyboard */,
-				5D8E30421C21EE3D00610042 /* signupScreen.storyboard */,
-				A445152C1C039D2300BDD502 /* PAPCache.h */,
-				A445152D1C039D2300BDD502 /* PAPCache.m */,
-				A4AC729C1C1606D1000F05C8 /* PAPUtility.h */,
-				A4AC729D1C1606D1000F05C8 /* PAPUtility.m */,
+				6E670A981C614FD400153B68 /* Storyboards */,
 				5508F4A51BFB972300D02E15 /* AppDelegate.h */,
 				5508F4A61BFB972300D02E15 /* AppDelegate.m */,
+				5508F4A81BFB972300D02E15 /* ViewController.h */,
+				5508F4A91BFB972300D02E15 /* ViewController.m */,
 				55EE00711C0BB94B00C46162 /* TMBMainPageViewController.h */,
 				55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */,
-				5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */,
-				5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */,
 				5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */,
 				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
-				5D03AF201C187B1600E2CDEB /* TMBConstants.h */,
-				5D03AF211C187B1600E2CDEB /* TMBConstants.m */,
 				55C6AE1D1C1B2DED00FD8A73 /* TMBCommentViewController.h */,
 				55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */,
 				5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */,
-				5D03AF1A1C18610600E2CDEB /* TMBSharedBoardID.m */,
 				5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */,
-				5508F4A81BFB972300D02E15 /* ViewController.h */,
-				5508F4A91BFB972300D02E15 /* ViewController.m */,
+				55EE00751C0BDE4900C46162 /* Login */,
+				A42EB5D51C18C9E8009A241B /* Drawer View Controllers */,
 				5D03AF1C1C18610A00E2CDEB /* BoardID */,
 				5D03AF181C1785DF00E2CDEB /* Board */,
-				55D3EB111C1745E30044BEFD /* TMBBoard.h */,
-				55D3EB121C1745E30044BEFD /* TMBBoard.m */,
-				5508F4DC1BFBC22300D02E15 /* TMBUser.h */,
-				5508F4DD1BFBC22300D02E15 /* TMBUser.m */,
-				A42EB5D51C18C9E8009A241B /* Create New Board */,
-				A4AC727F1C0E7F9F000F05C8 /* Phone Contacts */,
-				55EE00751C0BDE4900C46162 /* Login */,
+				55EE00741C0BDE1600C46162 /* Doodle */,
 				A445151E1BFFA66900BDD502 /* Post Image */,
 				A445151F1BFFA67E00BDD502 /* Post Comment */,
-				55EE00741C0BDE1600C46162 /* Doodle */,
-				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
 				5508F4A21BFB972300D02E15 /* Supporting Files */,
+				A4AC727F1C0E7F9F000F05C8 /* Phone Contacts */,
+				5508F4B11BFB972300D02E15 /* Assets.xcassets */,
+				5508F4AE1BFB972300D02E15 /* ProjectMailbox.xcdatamodeld */,
 			);
 			path = ProjectMailbox;
 			sourceTree = "<group>";
@@ -466,6 +408,14 @@
 		5508F4A21BFB972300D02E15 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */,
+				5D03AF201C187B1600E2CDEB /* TMBConstants.h */,
+				5D03AF211C187B1600E2CDEB /* TMBConstants.m */,
+				A445152C1C039D2300BDD502 /* PAPCache.h */,
+				A445152D1C039D2300BDD502 /* PAPCache.m */,
+				A4AC729C1C1606D1000F05C8 /* PAPUtility.h */,
+				A4AC729D1C1606D1000F05C8 /* PAPUtility.m */,
+				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4D81BFB976F00D02E15 /* parse-library */,
 				5508F4A31BFB972300D02E15 /* main.m */,
 			);
@@ -529,6 +479,8 @@
 		5D03AF181C1785DF00E2CDEB /* Board */ = {
 			isa = PBXGroup;
 			children = (
+				55D3EB111C1745E30044BEFD /* TMBBoard.h */,
+				55D3EB121C1745E30044BEFD /* TMBBoard.m */,
 				5D8E30381C1DE8EF00610042 /* TMBCustomNavigationBar.h */,
 				5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */,
 				5D03AF0F1C1785DA00E2CDEB /* TMBBoardController.h */,
@@ -545,8 +497,20 @@
 			isa = PBXGroup;
 			children = (
 				5D03AF191C18610600E2CDEB /* TMBSharedBoardID.h */,
+				5D03AF1A1C18610600E2CDEB /* TMBSharedBoardID.m */,
 			);
 			name = BoardID;
+			sourceTree = "<group>";
+		};
+		6E670A981C614FD400153B68 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5508F4B31BFB972300D02E15 /* LaunchScreen.storyboard */,
+				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
+				5D8E30421C21EE3D00610042 /* signupScreen.storyboard */,
+				5D8E303B1C1F1E3A00610042 /* ImageCard.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		86D70CF3ABAD046EB944CC19 /* Frameworks */ = {
@@ -595,9 +559,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A42EB5D51C18C9E8009A241B /* Create New Board */ = {
+		A42EB5D51C18C9E8009A241B /* Drawer View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */,
+				5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */,
 				A47CC6C71C3C304E00530324 /* TMBManageBoardsViewController.h */,
 				A47CC6C81C3C304E00530324 /* TMBManageBoardsViewController.m */,
 				A45295461C20A8690060E8BC /* TMBBoardTableViewCell.h */,
@@ -609,7 +575,7 @@
 				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
 				EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */,
 			);
-			name = "Create New Board";
+			name = "Drawer View Controllers";
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -653,42 +619,6 @@
 				A4AC72801C0E7FF9000F05C8 /* phoneContacts.storyboard */,
 			);
 			name = "Phone Contacts";
-			sourceTree = "<group>";
-		};
-		EA712A6A1C0E7A1A00F096B4 /* Spotify Feature */ = {
-			isa = PBXGroup;
-			children = (
-				EA712A871C0F941B00F096B4 /* SpotifyFeature.storyboard */,
-				EAB723801C03D0480086E421 /* TMBSpotifyViewController.h */,
-				EAB723811C03D0480086E421 /* TMBSpotifyViewController.m */,
-				EA712A6D1C0E7AF000F096B4 /* SpotifyTrackView.h */,
-				EA712A6E1C0E7AF000F096B4 /* SpotifyTrackView.m */,
-				EACDA5CC1C1620F60031268F /* SpotifyTrackView2.h */,
-				EACDA5CD1C1620F60031268F /* SpotifyTrackView2.m */,
-				EACDA5C91C161E440031268F /* SpotifyTrack2.h */,
-				EACDA5CA1C161E440031268F /* SpotifyTrack2.m */,
-				EA712A701C0E7B0C00F096B4 /* SpotifyTrack.h */,
-				EA712A711C0E7B0C00F096B4 /* SpotifyTrack.m */,
-				EACDA5CF1C175E6C0031268F /* SpotifyPlayerManager.h */,
-				EACDA5D01C175E6C0031268F /* SpotifyPlayerManager.m */,
-			);
-			name = "Spotify Feature";
-			sourceTree = "<group>";
-		};
-		EAB7236A1C03C33F0086E421 /* TMBSpotifyShareExtension */ = {
-			isa = PBXGroup;
-			children = (
-				EA712A851C0F929300F096B4 /* TMBSpotifyShareExtension.entitlements */,
-				EA712A7F1C0F920400F096B4 /* ParseUI.framework */,
-				55D3EB101C17416C0044BEFD /* TMBSpotifyShareExtension.entitlements */,
-				EAB723791C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.h */,
-				EAB7237A1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m */,
-				EAB7236B1C03C33F0086E421 /* ShareViewController.h */,
-				EAB7236C1C03C33F0086E421 /* ShareViewController.m */,
-				EAB7236E1C03C33F0086E421 /* MainInterface.storyboard */,
-				EAB723711C03C33F0086E421 /* Info.plist */,
-			);
-			path = TMBSpotifyShareExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -846,7 +776,6 @@
 				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
 				5D8E30431C21EE3D00610042 /* signupScreen.storyboard in Resources */,
 				5D8E303C1C1F1E3A00610042 /* ImageCard.storyboard in Resources */,
-				EA712A881C0F941B00F096B4 /* SpotifyFeature.storyboard in Resources */,
 				A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */,
 				A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */,
 				5508F4B51BFB972300D02E15 /* LaunchScreen.storyboard in Resources */,
@@ -873,7 +802,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAB723701C03C33F0086E421 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,7 +864,6 @@
 				5D03AF241C187E3900E2CDEB /* TMBMainPageViewController.m in Sources */,
 				5D03AF231C187DCC00E2CDEB /* TMBConstants.m in Sources */,
 				A42EB5D81C19D234009A241B /* TMBFindFriendsViewController.m in Sources */,
-				EACDA5CE1C1620F60031268F /* SpotifyTrackView2.m in Sources */,
 				5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */,
 				5508F4AA1BFB972300D02E15 /* ViewController.m in Sources */,
 				EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */,
@@ -950,21 +877,17 @@
 				EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */,
 				5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */,
 				55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */,
-				EAB7237B1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */,
 				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
 				A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */,
 				A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */,
-				EAD1EABD1C051556003BA462 /* TMBSpotifyViewController.m in Sources */,
 				A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */,
 				5D03AF1B1C18610600E2CDEB /* TMBSharedBoardID.m in Sources */,
 				5D03AF151C1785DA00E2CDEB /* TMBBoardController.m in Sources */,
 				5D03AF161C1785DA00E2CDEB /* TMBBoardLayout.m in Sources */,
-				EA712A6F1C0E7AF000F096B4 /* SpotifyTrackView.m in Sources */,
 				5585F65F1C14D6E5003478C6 /* ChangePasswordViewController.swift in Sources */,
 				55D3EB131C1745E30044BEFD /* TMBBoard.m in Sources */,
 				A4AC72921C0F9225000F05C8 /* Contact.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
-				5508F4DE1BFBC22300D02E15 /* TMBUser.m in Sources */,
 				5D03AF261C187F8400E2CDEB /* PAPCache.m in Sources */,
 				A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */,
 				552687CF1C1A1DA9008D94DE /* TMBFullImageModalViewController.m in Sources */,
@@ -972,12 +895,9 @@
 				A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */,
 				5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */,
 				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
-				EA712A721C0E7B0D00F096B4 /* SpotifyTrack.m in Sources */,
 				55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */,
 				5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */,
-				EACDA5D11C175E6C0031268F /* SpotifyPlayerManager.m in Sources */,
 				5508F4A41BFB972300D02E15 /* main.m in Sources */,
-				EACDA5CB1C161E440031268F /* SpotifyTrack2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,8 +921,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAB7237C1C03C4990086E421 /* TMBSpotifyShareExtensionAPIClient.m in Sources */,
-				EAB7236D1C03C33F0086E421 /* ShareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,14 +951,6 @@
 				5508F4B41BFB972300D02E15 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		EAB7236E1C03C33F0086E421 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EAB7236F1C03C33F0086E421 /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
