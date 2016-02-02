@@ -184,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QzF-Io-XgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5018" y="-342"/>
+            <point key="canvasLocation" x="5018" y="-330"/>
         </scene>
         <!--Text Card View Controller-->
         <scene sceneID="qUb-Fp-5Yf">
@@ -896,7 +896,7 @@
                                                                     <color key="textColor" red="0.35686274509999999" green="0.51764705879999995" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group3" translatesAutoresizingMaskIntoConstraints="NO" id="fId-ed-KV0">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group" translatesAutoresizingMaskIntoConstraints="NO" id="fId-ed-KV0">
                                                                     <rect key="frame" x="18" y="10" width="50" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="50" id="hf1-Pt-yj2"/>
@@ -1867,7 +1867,7 @@
                                                             <color key="textColor" red="0.35686274509999999" green="0.51764705879999995" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group3" translatesAutoresizingMaskIntoConstraints="NO" id="B7Y-da-bAf">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group" translatesAutoresizingMaskIntoConstraints="NO" id="B7Y-da-bAf">
                                                             <rect key="frame" x="18" y="10" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="Cnp-tG-AYl"/>
@@ -1913,7 +1913,7 @@
                                                             <color key="textColor" red="0.35686274509999999" green="0.51764705879999995" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group3" translatesAutoresizingMaskIntoConstraints="NO" id="1s9-k8-xHC">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group" translatesAutoresizingMaskIntoConstraints="NO" id="1s9-k8-xHC">
                                                             <rect key="frame" x="18" y="10" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="f7M-kW-DP7"/>
@@ -2967,7 +2967,7 @@
         <image name="close-btn" width="28" height="28"/>
         <image name="commentImageCloseButton" width="14" height="14"/>
         <image name="commentImageScreen" width="1242" height="2208"/>
-        <image name="group3" width="200" height="200"/>
+        <image name="group" width="200" height="200"/>
         <image name="sideMenuScreen" width="410" height="729"/>
         <image name="signInScreenRevamp" width="410" height="729"/>
         <image name="signUpChoosePhotoButton" width="305" height="25"/>
