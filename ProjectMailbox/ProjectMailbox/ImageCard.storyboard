@@ -40,18 +40,20 @@
                                         <rect key="frame" x="345" y="0.0" width="51" height="14"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yO6-1S-WsU">
-                                        <rect key="frame" x="345" y="0.0" width="51" height="14"/>
+                                        <rect key="frame" x="345" y="-5" width="51" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="cQw-FR-vH6"/>
+                                            <constraint firstAttribute="width" constant="51" id="vFr-Pt-KPV"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="postButtonTapped:" destination="pbY-mX-lZy" eventType="touchUpInside" id="kYo-01-ShC"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="yO6-1S-WsU" firstAttribute="top" secondItem="o5h-VB-XTY" secondAttribute="top" id="2HT-hP-Fv2"/>
+                                    <constraint firstItem="yO6-1S-WsU" firstAttribute="top" secondItem="o5h-VB-XTY" secondAttribute="top" constant="-5" id="2HT-hP-Fv2"/>
                                     <constraint firstItem="Qkr-Mb-NbX" firstAttribute="top" secondItem="o5h-VB-XTY" secondAttribute="top" id="46P-KU-EOH"/>
                                     <constraint firstItem="ocb-Gi-cht" firstAttribute="centerY" secondItem="o5h-VB-XTY" secondAttribute="centerY" id="Cuq-J8-dDw"/>
-                                    <constraint firstItem="yO6-1S-WsU" firstAttribute="height" secondItem="o5h-VB-XTY" secondAttribute="height" id="EB8-rQ-2lx"/>
-                                    <constraint firstItem="yO6-1S-WsU" firstAttribute="width" secondItem="o5h-VB-XTY" secondAttribute="width" multiplier="0.1288" id="FMh-s0-bNJ"/>
                                     <constraint firstItem="gkG-A8-vhT" firstAttribute="height" secondItem="o5h-VB-XTY" secondAttribute="height" id="JE1-rL-cM5"/>
                                     <constraint firstItem="Qkr-Mb-NbX" firstAttribute="centerY" secondItem="o5h-VB-XTY" secondAttribute="centerY" id="L4U-QD-Stn"/>
                                     <constraint firstItem="gkG-A8-vhT" firstAttribute="width" secondItem="o5h-VB-XTY" secondAttribute="width" multiplier="0.0353" id="Rg1-bs-VoH"/>
@@ -69,11 +71,6 @@
                                     <constraint firstItem="yO6-1S-WsU" firstAttribute="centerY" secondItem="o5h-VB-XTY" secondAttribute="centerY" id="zGs-n7-lDd"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="iFK-PZ-1UR">
-                                <rect key="frame" x="9" y="42" width="396" height="105"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKo-D4-bZ6" userLabel="Bottom Buttons">
                                 <rect key="frame" x="2" y="511" width="410" height="225"/>
                                 <subviews>
@@ -111,6 +108,11 @@
                                 <rect key="frame" x="0.0" y="157" width="414" height="352"/>
                                 <gestureRecognizers/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="iFK-PZ-1UR">
+                                <rect key="frame" x="9" y="44" width="396" height="105"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

@@ -30,7 +30,6 @@
 
 //detail view
 @property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
-//@property (weak, nonatomic) IBOutlet UIImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet PFImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 @property (strong, nonatomic) PFFile *userPhotoFile;

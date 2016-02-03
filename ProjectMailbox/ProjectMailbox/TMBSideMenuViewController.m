@@ -78,8 +78,9 @@
     [self.boardsTableView setBackgroundView:nil];
     [self.boardsTableView setBackgroundColor:[UIColor clearColor]];
 
-    
-    self.usernameField.text = [[PFUser currentUser] objectForKey:@"First_Name"];
+    NSString *userFirstName = [[PFUser currentUser] objectForKey:@"First_Name"];
+    NSString *userLastName = [[PFUser currentUser] objectForKey:@"Last_Name"];    
+    self.usernameField.text = [NSString stringWithFormat:@"%@ %@", userFirstName, userLastName];
     
     PFFile *profilePictureObject = [[PFUser currentUser] objectForKey:@"profileImage"];
     
@@ -156,8 +157,8 @@
     TMBBoardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"boardMemberCell" forIndexPath:indexPath];
     
     PFObject *board = self.userBoards[indexPath.row];
-    
-    cell.boardNameLabel.text = board[@"boardName"];
+
+    cell.boardNameLabel.text = [board[@"boardName"] uppercaseString];
     cell.backgroundColor = [UIColor clearColor];
     
     self.boardID = board.objectId;
@@ -251,7 +252,7 @@
     
     [UIView animateWithDuration:0.25 animations:^{
         self.boardsTableViewHeightConstraint.constant = height;
-        self.scrollView.contentSize = CGSizeMake(320, scrollViewHeight) ;
+        self.scrollView.contentSize = CGSizeMake(280, scrollViewHeight) ;
         [self.view setNeedsUpdateConstraints];
     }];
     

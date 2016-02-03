@@ -391,7 +391,7 @@
 				5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */,
 				5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */,
 				55EE00751C0BDE4900C46162 /* Login */,
-				A42EB5D51C18C9E8009A241B /* Drawer View Controllers */,
+				A42EB5D51C18C9E8009A241B /* Drawer */,
 				5D03AF1C1C18610A00E2CDEB /* BoardID */,
 				5D03AF181C1785DF00E2CDEB /* Board */,
 				55EE00741C0BDE1600C46162 /* Doodle */,
@@ -559,7 +559,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A42EB5D51C18C9E8009A241B /* Drawer View Controllers */ = {
+		A42EB5D51C18C9E8009A241B /* Drawer */ = {
 			isa = PBXGroup;
 			children = (
 				5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */,
@@ -575,7 +575,7 @@
 				EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */,
 				EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */,
 			);
-			name = "Drawer View Controllers";
+			name = Drawer;
 			path = ..;
 			sourceTree = "<group>";
 		};

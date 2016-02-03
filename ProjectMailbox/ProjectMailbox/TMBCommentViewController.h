@@ -22,9 +22,4 @@
 
 - (id)initWithImage:(UIImage *)aImage;
 
-//@property (nonatomic, weak) id<TMBImageCardViewControllerDelegate> delegate;
-//-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size;
-//-(UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
-
-
 @end
