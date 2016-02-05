@@ -58,16 +58,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteButtonTappedInCreateBoardVC:) name:@"UserTappedDeleteBoardButton" object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveButtonTappedInCreateBoardVC:) name:@"UserTappedSaveBoardButton" object:nil];
-
-    
-    // loging in this app as Inga for now
-    
-    if (![PFUser currentUser]){
-        [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-        }];
-    }
-    
     
     self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
@@ -77,6 +67,7 @@
     self.boardsTableView.dataSource = self;
     [self.boardsTableView setBackgroundView:nil];
     [self.boardsTableView setBackgroundColor:[UIColor clearColor]];
+    self.boardsTableView.separatorColor = [UIColor clearColor];
 
     NSString *userFirstName = [[PFUser currentUser] objectForKey:@"First_Name"];
     NSString *userLastName = [[PFUser currentUser] objectForKey:@"Last_Name"];    
@@ -238,7 +229,7 @@
 
 - (void)adjustHeightOfTableview {
     
-    CGFloat minHeight = 60;
+    CGFloat minHeight = 40;
     CGFloat height = self.boardsTableView.contentSize.height - 1;
     
     if (height < minHeight)
