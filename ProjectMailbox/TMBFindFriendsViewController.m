@@ -85,6 +85,11 @@
 }
 
 
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
+
 - (void)checkInternetConnection {
     
     // if there is no internet...
