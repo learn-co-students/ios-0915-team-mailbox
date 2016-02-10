@@ -81,20 +81,6 @@
 		A4C03FF71C03BC5C00F0F368 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FF01C03BC5C00F0F368 /* ParseUI.framework */; };
 		EA2A26B81C1782D70038F2D5 /* CreateBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */; };
 		EA2A26BB1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */; };
-		EA712A731C0F907600F096B4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1001BFCD39100D35BB3 /* AudioToolbox.framework */; };
-		EA712A741C0F908100F096B4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1021BFCD39A00D35BB3 /* CFNetwork.framework */; };
-		EA712A751C0F908D00F096B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1041BFCD3A400D35BB3 /* CoreGraphics.framework */; };
-		EA712A761C0F909700F096B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1081BFCD3B800D35BB3 /* QuartzCore.framework */; };
-		EA712A771C0F90A500F096B4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10A1BFCD3C100D35BB3 /* Security.framework */; };
-		EA712A791C0F90BB00F096B4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A781C0F90BA00F096B4 /* StoreKit.framework */; };
-		EA712A7A1C0F90E300F096B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB10E1BFCD3D400D35BB3 /* SystemConfiguration.framework */; };
-		EA712A7B1C0F90F800F096B4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1101BFCD3E300D35BB3 /* libz.tbd */; };
-		EA712A7C1C0F912100F096B4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1121BFCD3EF00D35BB3 /* libsqlite3.tbd */; };
-		EA712A7D1C0F912E00F096B4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1161BFCD40700D35BB3 /* Accounts.framework */; };
-		EA712A7E1C0F913900F096B4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46CB1141BFCD40000D35BB3 /* Social.framework */; };
-		EA712A821C0F922E00F096B4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A811C0F922E00F096B4 /* Parse.framework */; };
-		EA712A841C0F923600F096B4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA712A831C0F923600F096B4 /* Bolts.framework */; };
-		EAB723741C03C33F0086E421 /* TMBSpotifyShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EAD1EAE81C05189D003BA462 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD1EAE71C05189D003BA462 /* Spotify.framework */; };
 		EAD1EAE91C051A42003BA462 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEC1C03BC5C00F0F368 /* ParseCrashReporting.framework */; };
 /* End PBXBuildFile section */
@@ -114,13 +100,6 @@
 			remoteGlobalIDString = 5508F49E1BFB972300D02E15;
 			remoteInfo = ProjectMailbox;
 		};
-		EAB723721C03C33F0086E421 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5508F4971BFB972300D02E15 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EAB723681C03C33F0086E421;
-			remoteInfo = TMBSpotifyShareExtension;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -130,7 +109,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				EAB723741C03C33F0086E421 /* TMBSpotifyShareExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,10 +250,6 @@
 		EA2A26B71C1782D70038F2D5 /* CreateBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBoardViewController.m; path = ProjectMailbox/CreateBoardViewController.m; sourceTree = "<group>"; };
 		EA2A26B91C1782EF0038F2D5 /* TMBFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBFriendsTableViewCell.h; path = ProjectMailbox/TMBFriendsTableViewCell.h; sourceTree = "<group>"; };
 		EA2A26BA1C1782EF0038F2D5 /* TMBFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMBFriendsTableViewCell.m; path = ProjectMailbox/TMBFriendsTableViewCell.m; sourceTree = "<group>"; };
-		EA712A781C0F90BA00F096B4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		EA712A811C0F922E00F096B4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
-		EA712A831C0F923600F096B4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts.framework"; sourceTree = "<group>"; };
-		EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TMBSpotifyShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD1EAE71C05189D003BA462 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -327,26 +301,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EAB723661C03C33F0086E421 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA712A841C0F923600F096B4 /* Bolts.framework in Frameworks */,
-				EA712A821C0F922E00F096B4 /* Parse.framework in Frameworks */,
-				EA712A7E1C0F913900F096B4 /* Social.framework in Frameworks */,
-				EA712A7D1C0F912E00F096B4 /* Accounts.framework in Frameworks */,
-				EA712A7C1C0F912100F096B4 /* libsqlite3.tbd in Frameworks */,
-				EA712A7B1C0F90F800F096B4 /* libz.tbd in Frameworks */,
-				EA712A7A1C0F90E300F096B4 /* SystemConfiguration.framework in Frameworks */,
-				EA712A791C0F90BB00F096B4 /* StoreKit.framework in Frameworks */,
-				EA712A771C0F90A500F096B4 /* Security.framework in Frameworks */,
-				EA712A761C0F909700F096B4 /* QuartzCore.framework in Frameworks */,
-				EA712A751C0F908D00F096B4 /* CoreGraphics.framework in Frameworks */,
-				EA712A741C0F908100F096B4 /* CFNetwork.framework in Frameworks */,
-				EA712A731C0F907600F096B4 /* AudioToolbox.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -368,7 +322,6 @@
 				5508F49F1BFB972300D02E15 /* ProjectMailbox.app */,
 				5508F4BB1BFB972300D02E15 /* ProjectMailboxTests.xctest */,
 				5508F4C61BFB972300D02E15 /* ProjectMailboxUITests.xctest */,
-				EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -639,7 +592,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				EAB723731C03C33F0086E421 /* PBXTargetDependency */,
 			);
 			name = ProjectMailbox;
 			productName = ProjectMailbox;
@@ -682,23 +634,6 @@
 			productReference = 5508F4C61BFB972300D02E15 /* ProjectMailboxUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		EAB723681C03C33F0086E421 /* TMBSpotifyShareExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EAB723771C03C3400086E421 /* Build configuration list for PBXNativeTarget "TMBSpotifyShareExtension" */;
-			buildPhases = (
-				EAB723651C03C33F0086E421 /* Sources */,
-				EAB723661C03C33F0086E421 /* Frameworks */,
-				EAB723671C03C33F0086E421 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TMBSpotifyShareExtension;
-			productName = TMBSpotifyShareExtension;
-			productReference = EAB723691C03C33F0086E421 /* TMBSpotifyShareExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -731,18 +666,6 @@
 						CreatedOnToolsVersion = 7.1.1;
 						TestTargetID = 5508F49E1BFB972300D02E15;
 					};
-					EAB723681C03C33F0086E421 = {
-						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = KXY9EDFTF5;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-							com.apple.Keychain = {
-								enabled = 1;
-							};
-						};
-					};
 				};
 			};
 			buildConfigurationList = 5508F49A1BFB972300D02E15 /* Build configuration list for PBXProject "ProjectMailbox" */;
@@ -761,7 +684,6 @@
 				5508F49E1BFB972300D02E15 /* ProjectMailbox */,
 				5508F4BA1BFB972300D02E15 /* ProjectMailboxTests */,
 				5508F4C51BFB972300D02E15 /* ProjectMailboxUITests */,
-				EAB723681C03C33F0086E421 /* TMBSpotifyShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -792,13 +714,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5508F4C41BFB972300D02E15 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EAB723671C03C33F0086E421 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -917,13 +832,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EAB723651C03C33F0086E421 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -936,11 +844,6 @@
 			isa = PBXTargetDependency;
 			target = 5508F49E1BFB972300D02E15 /* ProjectMailbox */;
 			targetProxy = 5508F4C71BFB972300D02E15 /* PBXContainerItemProxy */;
-		};
-		EAB723731C03C33F0086E421 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EAB723681C03C33F0086E421 /* TMBSpotifyShareExtension */;
-			targetProxy = EAB723721C03C33F0086E421 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -973,6 +876,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -993,11 +897,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1020,6 +925,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1034,9 +940,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1051,8 +958,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ProjectMailbox/ProjectMailbox.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1060,7 +967,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1106,8 +1013,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ProjectMailbox/ProjectMailbox.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1115,7 +1022,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = ProjectMailbox/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1173,48 +1080,6 @@
 			};
 			name = Release;
 		};
-		EAB723751C03C3400086E421 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = TMBSpotifyShareExtension/TMBSpotifyShareExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/TMBSpotifyShareExtension",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
-				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic.TMBSpotifyShareExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		EAB723761C03C3400086E421 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = TMBSpotifyShareExtension/TMBSpotifyShareExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/TMBSpotifyShareExtension",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
-				INFOPLIST_FILE = TMBSpotifyShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatironschool.mosaic.TMBSpotifyShareExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1250,15 +1115,6 @@
 			buildConfigurations = (
 				5508F4D61BFB972300D02E15 /* Debug */,
 				5508F4D71BFB972300D02E15 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EAB723771C03C3400086E421 /* Build configuration list for PBXNativeTarget "TMBSpotifyShareExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EAB723751C03C3400086E421 /* Debug */,
-				EAB723761C03C3400086E421 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

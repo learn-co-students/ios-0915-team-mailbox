@@ -218,12 +218,12 @@
 
 -(void)displayAlert {
     
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"You are already part of this board"
-                                  message:nil
+    UIAlertController *alert=   [UIAlertController
+                                  alertControllerWithTitle:@"This is You!"
+                                  message:@"You are the admin of this account."
                                   preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* okButton = [UIAlertAction
+    UIAlertAction *okButton = [UIAlertAction
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
