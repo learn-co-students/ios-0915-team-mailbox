@@ -49,6 +49,8 @@
     
     [super viewDidLoad];
     
+    [self prefersStatusBarHidden];
+    
     self.internetConnectionLabel.hidden = YES;
     
     [self checkInternetConnection];
@@ -67,11 +69,11 @@
     
     // loging in this app as Inga for now
     
-    if (![PFUser currentUser]){
-        [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-        }];
-    }
+//    if (![PFUser currentUser]){
+//        [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+//            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
+//        }];
+//    }
     
     
     [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
@@ -97,6 +99,11 @@
         }
     }];
     
+}
+
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 
