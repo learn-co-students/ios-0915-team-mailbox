@@ -13,17 +13,15 @@
 #import "TMBImageCardViewController.h"
 #import "TMBSharedBoardID.h"
 #import "TMBDoodleViewController.h"
-
-//#import "TMBSharedBoard.h" joel copy over - singleton not set up
-
-// drawer controller
 #import <MMDrawerController/MMDrawerVisualState.h>
 #import <MMDrawerController/UIViewController+MMDrawerController.h>
 #import <MMDrawerController/MMDrawerController.h>
 #import <MMDrawerController/MMDrawerBarButtonItem.h>
 
+
 static NSInteger const kNumberOfSections = 1;
 static NSInteger const kItemsPerPage = 20;
+
 
 @interface TMBBoardController () <TMBImageCardViewControllerDelegate, TMBDoodleViewControllerDelegate>
 
@@ -32,7 +30,6 @@ static NSInteger const kItemsPerPage = 20;
 @property (nonatomic, strong) NSString *queriedBoardID;
 @property (nonatomic, strong) NSMutableArray *collection;
 @property (nonatomic) NSUInteger queryCount;
-
 @property (nonatomic, strong) NSString *boardID;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) UIImage *imageSelectedForOtherView;
@@ -40,17 +37,18 @@ static NSInteger const kItemsPerPage = 20;
 
 @end
 
+
 @implementation TMBBoardController
 
 static NSString * const reuseIdentifier = @"MediaCell";
 
+
 #pragma mark - view did load
+
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    
     
     UINavigationBar* navigationBar = self.navigationController.navigationBar;
     [navigationBar setBarTintColor:[UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0]];
@@ -59,12 +57,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
-    
-//    self.refreshControl = [[UIRefreshControl alloc] init];
-//    self.refreshControl.tintColor = [UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0];
-//    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-//    [self.collectionView addSubview:self.refreshControl];
-//    self.collectionView.alwaysBounceVertical = YES;
     
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
@@ -81,22 +73,39 @@ static NSString * const reuseIdentifier = @"MediaCell";
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetButtonTappedInCreateBoardVC:) name:@"UserTappedResetBoardButton" object:nil];
+}
+
+
+- (void)resetButtonTappedInCreateBoardVC:(NSNotification *)notification {
+    
+    NSLog(@"WOO I GOT THE MESSAGE, RESET!: %@", notification);
+    [self queryParseForContent:self.boardID];
+    NSLog(@" !!!!!!!!! board id in view vill appear board controller is %@", self.boardID);
     
 }
 
+
+
 #pragma mark <UICollectionViewDataSource>
+
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
     return kNumberOfSections;
 }
+
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
     return self.collection.count;
     
 }
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -140,11 +149,15 @@ static NSString * const reuseIdentifier = @"MediaCell";
     }
     
 }
+
+
 -(UIColor *)colorForDummyCellAtRow:(NSUInteger)row
 {
     NSUInteger colorIndex = row % self.colors.count;
     return self.colors[colorIndex];
 }
+
+
 -(void)buildThemeColorsArray
 {
     
@@ -158,39 +171,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
 }
 
-#pragma mark - refresh collection
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-  
-    
-//    if (scrollView.contentOffset.x < -50 && ![self.refreshControl isRefreshing]) {
-//        NSLog(@"\n\n\n\nscrollview offset\n\n\n\n");
-//                [self.refreshControl beginRefreshing];
-//                [self.collection removeAllObjects];
-//                NSLog(@"\n\n\n\n\nself.collection:\n%@\n\n\n\n\n",self.collection);
-//                [self refresh];
-//    }
-
-}
-
-- (void)refresh
-{
-    NSLog(@"entered refresh");
-    
-//    [self.refreshControl endRefreshing];
-    
-//    [self queryParseToUpdateCollection:self.boardID successBlock:^(BOOL success) {
-//        
-//        if (success) {
-//            
-//            [self.refreshControl endRefreshing];
-//        }
-//        
-//    }];
-    
-}
 
 
 #pragma mark - side menu selection
@@ -201,9 +181,11 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton];
 }
 
+
 - (void)leftDrawerButtonPress:(id)leftDrawerButtonPress {
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
+
 
 
 #pragma mark - alert and segue
@@ -229,18 +211,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                   
                               }];
     
-    UIAlertAction* text = [UIAlertAction
-                           actionWithTitle:@"Text"
-                           style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action)
-                           {
-                               UIViewController *textVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBTextCardViewController"];
-                               
-                               [self presentViewController:textVC animated:YES completion:nil];
-                               
-                               [view dismissViewControllerAnimated:YES completion:nil];
-                               
-                           }];
     
     UIAlertAction* doodle = [UIAlertAction
                              actionWithTitle:@"Doodle"
@@ -267,15 +237,14 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     
     [view addAction:picture];
-//    [view addAction:text];
     [view addAction:doodle];
     [view addAction:cancel];
     [self presentViewController:view animated:YES completion:nil];
     
 }
 
+
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    
 
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
     NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
@@ -294,7 +263,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
     TMBCommentViewController *destVC = segue.destinationViewController;
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
     NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
-//    self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
     PFObject *selectedOBJ = self.pfObjects[selectedIndexPath.row];
     
     destVC.parseObjSelected = selectedOBJ;
@@ -303,7 +271,9 @@ static NSString * const reuseIdentifier = @"MediaCell";
 }
 
 
+
 #pragma mark - queries
+
 
 -(void)imageCardViewController:(TMBImageCardViewController *)viewController passBoardIDforQuery:(NSString *)boardID
 {
@@ -312,12 +282,14 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [self queryParseForContent:boardID];
 }
 
+
 -(void)doodleViewController:(TMBDoodleViewController *)viewController passBoardIDforQuery:(NSString *)boardID
 {
     NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
     [self queryParseForContent:boardID];
 }
+
 
 - (void)queryParseForContent:(NSString *)boardID {
     
@@ -369,10 +341,11 @@ static NSString * const reuseIdentifier = @"MediaCell";
     }];
     
     
-    
 }
 
 
 
 
 @end
+
+

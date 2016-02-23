@@ -923,6 +923,9 @@
                             <constraint firstItem="KvT-j0-7lz" firstAttribute="centerX" secondItem="64V-kf-Tsn" secondAttribute="centerX" id="sp7-b6-UzG"/>
                             <constraint firstItem="P0E-UI-fe2" firstAttribute="top" secondItem="Yf0-eQ-C45" secondAttribute="bottom" constant="-20" id="vvf-Jj-sR3"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3bc-XS-d3y" appends="YES" id="mrU-aO-RBI"/>
+                        </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -950,6 +953,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U9A-X2-Uqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3bc-XS-d3y">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="9WQ-8b-gba" id="V2C-GX-BK8"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3282" y="1162"/>
         </scene>
@@ -1317,7 +1325,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5t-Gw-Bn9" userLabel="ButtonEditProfile">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5t-Gw-Bn9" userLabel="Edit Profile Button">
                                                 <rect key="frame" x="15" y="60" width="548" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="50R-vC-FGA"/>
@@ -1374,39 +1382,6 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8v-FV-c58">
-                                                <rect key="frame" x="0.0" y="323" width="600" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="SNi-Ux-P3f"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <state key="normal" backgroundImage="nav-btn-transparent-black">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="GSS-ta-yds" kind="presentation" id="qjC-P3-vOa"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPP-f2-fTq">
-                                                <rect key="frame" x="0.0" y="413" width="600" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="rW1-LD-Xx2"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <state key="normal" backgroundImage="nav-btn-transparent-black">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="PtO-Kt-LrW" kind="presentation" id="YND-IG-zcz"/>
-                                                </connections>
-                                            </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-logout" translatesAutoresizingMaskIntoConstraints="NO" id="bN4-RB-aOO">
-                                                <rect key="frame" x="71" y="478" width="19" height="16"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="K9P-Yr-TGg"/>
-                                                    <constraint firstAttribute="width" constant="19" id="xVv-Vy-9Rr"/>
-                                                </constraints>
-                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttA-JJ-Zip">
                                                 <rect key="frame" x="30" y="467" width="200" height="40"/>
                                                 <constraints>
@@ -1421,6 +1396,13 @@
                                                     <action selector="logoutButtonTapped:" destination="BIQ-4I-i4K" eventType="touchUpInside" id="0fS-Hm-rTN"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-logout" translatesAutoresizingMaskIntoConstraints="NO" id="bN4-RB-aOO">
+                                                <rect key="frame" x="71" y="478" width="19" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="K9P-Yr-TGg"/>
+                                                    <constraint firstAttribute="width" constant="19" id="xVv-Vy-9Rr"/>
+                                                </constraints>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking Internet Connection..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaC-5E-VVm">
                                                 <rect key="frame" x="220" y="270" width="160" height="60"/>
                                                 <constraints>
@@ -1447,13 +1429,19 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-manage-boards" translatesAutoresizingMaskIntoConstraints="NO" id="BkQ-83-LoA">
-                                                <rect key="frame" x="69" y="426" width="19" height="16"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPP-f2-fTq">
+                                                <rect key="frame" x="0.0" y="413" width="600" height="44"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="19" id="5bL-0p-oVR"/>
-                                                    <constraint firstAttribute="height" constant="16" id="NjD-UD-qhw"/>
+                                                    <constraint firstAttribute="height" constant="44" id="rW1-LD-Xx2"/>
                                                 </constraints>
-                                            </imageView>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <state key="normal" backgroundImage="nav-btn-transparent-black">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="PtO-Kt-LrW" kind="presentation" id="YND-IG-zcz"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qED-eK-ZKo">
                                                 <rect key="frame" x="101" y="413" width="200" height="44"/>
                                                 <constraints>
@@ -1468,20 +1456,26 @@
                                                     <segue destination="PtO-Kt-LrW" kind="presentation" id="c2N-kr-xZj"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-create-board" translatesAutoresizingMaskIntoConstraints="NO" id="dmC-tj-ZO9">
-                                                <rect key="frame" x="69" y="381" width="19" height="16"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-manage-boards" translatesAutoresizingMaskIntoConstraints="NO" id="BkQ-83-LoA">
+                                                <rect key="frame" x="69" y="426" width="19" height="16"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="t5g-VO-blt"/>
-                                                    <constraint firstAttribute="width" constant="19" id="tq4-VX-58U"/>
+                                                    <constraint firstAttribute="width" constant="19" id="5bL-0p-oVR"/>
+                                                    <constraint firstAttribute="height" constant="16" id="NjD-UD-qhw"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-find-friends" translatesAutoresizingMaskIntoConstraints="NO" id="qVu-h5-5Et">
-                                                <rect key="frame" x="71" y="337" width="19" height="16"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8v-FV-c58">
+                                                <rect key="frame" x="0.0" y="323" width="600" height="44"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="WuT-Io-OV9"/>
-                                                    <constraint firstAttribute="width" constant="19" id="ZZt-6N-px8"/>
+                                                    <constraint firstAttribute="height" constant="44" id="SNi-Ux-P3f"/>
                                                 </constraints>
-                                            </imageView>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <state key="normal" backgroundImage="nav-btn-transparent-black">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="GSS-ta-yds" kind="presentation" id="qjC-P3-vOa"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enw-ZF-l3a">
                                                 <rect key="frame" x="100" y="323" width="200" height="44"/>
                                                 <constraints>
@@ -1494,6 +1488,26 @@
                                                 </state>
                                                 <connections>
                                                     <segue destination="GSS-ta-yds" kind="presentation" id="ndr-va-05a"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-find-friends" translatesAutoresizingMaskIntoConstraints="NO" id="qVu-h5-5Et">
+                                                <rect key="frame" x="71" y="337" width="19" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="WuT-Io-OV9"/>
+                                                    <constraint firstAttribute="width" constant="19" id="ZZt-6N-px8"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkI-eF-Uoq">
+                                                <rect key="frame" x="0.0" y="368" width="600" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="4wl-Ih-Gc8"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <state key="normal" backgroundImage="nav-btn-transparent-black">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="9WQ-8b-gba" kind="presentation" id="Xag-RI-ObQ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d54-FO-FNI">
@@ -1510,19 +1524,13 @@
                                                     <segue destination="9WQ-8b-gba" kind="presentation" id="L6t-BH-Y3x"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkI-eF-Uoq">
-                                                <rect key="frame" x="0.0" y="368" width="600" height="44"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-create-board" translatesAutoresizingMaskIntoConstraints="NO" id="dmC-tj-ZO9">
+                                                <rect key="frame" x="69" y="381" width="19" height="16"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="4wl-Ih-Gc8"/>
+                                                    <constraint firstAttribute="height" constant="16" id="t5g-VO-blt"/>
+                                                    <constraint firstAttribute="width" constant="19" id="tq4-VX-58U"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                <state key="normal" backgroundImage="nav-btn-transparent-black">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="9WQ-8b-gba" kind="presentation" id="Xag-RI-ObQ"/>
-                                                </connections>
-                                            </button>
+                                            </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="si3-9L-vnV" firstAttribute="top" secondItem="RfL-nq-sMY" secondAttribute="bottom" constant="40" id="1NZ-tx-qaJ"/>
@@ -3119,6 +3127,9 @@
                             <constraint firstItem="8jF-Mb-tUg" firstAttribute="height" secondItem="AeE-Gb-duA" secondAttribute="height" multiplier="0.29" id="fne-GB-Mub"/>
                             <constraint firstItem="gix-u8-MbZ" firstAttribute="top" secondItem="8jF-Mb-tUg" secondAttribute="bottom" id="qTx-uy-JYk"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="UvL-8L-Wsa" appends="YES" id="Hxb-c4-ahD"/>
+                        </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -3146,6 +3157,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eyb-0o-NvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="UvL-8L-Wsa">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="FjS-Ua-wbS" id="yT8-Qx-3cv"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1986" y="1886"/>
         </scene>
@@ -3178,8 +3194,8 @@
         <image name="text-field-line" width="428" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qjC-P3-vOa"/>
         <segue reference="c2N-kr-xZj"/>
-        <segue reference="Xag-RI-ObQ"/>
+        <segue reference="L6t-BH-Y3x"/>
+        <segue reference="ndr-va-05a"/>
     </inferredMetricsTieBreakers>
 </document>

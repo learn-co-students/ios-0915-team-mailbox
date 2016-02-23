@@ -10,6 +10,7 @@
 
 @implementation TMBSharedBoardID
 
+
 + (instancetype)sharedBoardID
 {
     static id sharedBoardID = nil;
@@ -20,10 +21,13 @@
     return sharedBoardID;
 }
 
+
 -(NSString *)boardID
 {
     return _boardID;
 }
+
+
 -(NSMutableDictionary *)boards
 {
     if (!_boards) {

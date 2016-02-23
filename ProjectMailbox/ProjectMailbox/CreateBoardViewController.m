@@ -139,12 +139,12 @@
     
     // loging in this app as Inga for now
     
-        if (![PFUser currentUser]){
-            [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-                NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-                    }];
-        }
-    
+//        if (![PFUser currentUser]){
+//            [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+//                NSLog(@"logged in user: %@ \nwith error: %@", user, error);
+//                    }];
+//        }
+     
     
     [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
         
@@ -608,12 +608,12 @@
 // add Delete Board's contents action, alert, dismiss view
 - (IBAction)deleteBoardContentsButtonTapped:(UIButton *)sender {
     
+    [self displayDeletingContentAlert];
     
 }
 
 
 
-// add alert
 - (IBAction)deleteBoardButtonTapped:(UIButton *)sender {
     
     [self displayDeletingBoardAlert];
@@ -621,17 +621,63 @@
 }
 
 
--(void)displayDeletingBoardAlert {
+
+- (void)displayDeletingContentAlert {
     
-    UIAlertController * alert=   [UIAlertController
+    UIAlertController *alert=   [UIAlertController
+                                 alertControllerWithTitle:@"Are You Sure?"
+                                 message:@"Images and comments for this board will be deleted"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *deleteButton = [UIAlertAction
+                               actionWithTitle:@"Reset Board"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   //Handle button action here
+                                   [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
+                                       
+                                           NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                                           [center postNotificationName:@"UserTappedResetBoardButton"
+                                                                 object:nil];
+                                       
+                                   }];
+                                   
+                                   [self dismissViewControllerAnimated:YES
+                                                            completion:nil];
+                                   
+                                   [alert dismissViewControllerAnimated:YES completion:nil];
+                               }];
+    
+    UIAlertAction *cancelButton = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       //Handle button action here
+                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                   }];
+    
+    [alert addAction:cancelButton];
+    [alert addAction:deleteButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+
+
+- (void)displayDeletingBoardAlert {
+    
+    UIAlertController *alert=   [UIAlertController
                                   alertControllerWithTitle:@"Are you sure?"
                                   message:@"This board will be deleted"
                                   preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* okButton = [UIAlertAction
+    UIAlertAction *okButton = [UIAlertAction
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action)
+                               handler:^(UIAlertAction *action)
                                {
                                    //Handle OK button action here
                                    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
@@ -645,11 +691,11 @@
                                    [alert dismissViewControllerAnimated:YES completion:nil];
                                }];
     
-    UIAlertAction* cancelButton = [UIAlertAction
-                               actionWithTitle:@"Cancel"
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action)
-                               {
+    UIAlertAction *cancelButton = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
                                    //Handle OK button action here
                                    [alert dismissViewControllerAnimated:YES completion:nil];
                                }];
@@ -816,25 +862,53 @@
 
 
 
-//- (void)queryBoardFriendsWithCompletion:(void(^)(NSMutableArray *boardUsers, NSError *error))completionBlock {
-//
-////    PFQuery *query = self.myNewBoard;
-//    PFQuery *query = [PFQuery queryWithClassName:@"Board"];
-// //   [query whereKey:@"boardFriends" equalTo:self.myNewBoard[@"allFriends"]];
-//    [query includeKey:@"boardFriends"];
-//
-//    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-//        if (!error) {
-//            for (PFUser *eachUser in [object objectForKey:@"boardFriends"]) {
-//                [self.boardFriends addObject:eachUser];
-//            }
-//            completionBlock(self.boardFriends, error);
-//        }
-//    }];
-//
-//}
+- (void)queryAndDeleteBoardContentWithCompletion:(void (^)(BOOL success))completionBlock {
+    
+    PFObject *boardPointer = [PFObject objectWithoutDataWithClassName:@"Board" objectId:self.boardObjectId];
+    
+    PFQuery *queryPhoto = [PFQuery queryWithClassName:@"Photo"];
+    [queryPhoto whereKey:@"board" equalTo:boardPointer];
+    [queryPhoto findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"Successfully retrieved %lu board photo objects.", objects.count);
+            [PFObject deleteAllInBackground:objects];
+            completionBlock(YES);
+            
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            completionBlock(NO);
+        }
+        
+        
+    }];
+    
+    
+    PFQuery *queryActivity = [PFQuery queryWithClassName:@"Activity"];
+    [queryActivity whereKey:@"board" equalTo:boardPointer];
+    [queryActivity findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"Successfully retrieved %lu board activity objects.", objects.count);
+            [PFObject deleteAllInBackground:objects];
+            completionBlock(YES);
+            
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            completionBlock(NO);
+        }
+        
+    }];
+
+    
+}
+
 
 
 
 
 @end
+
+
+
+
+
+
