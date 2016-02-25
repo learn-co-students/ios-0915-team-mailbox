@@ -29,12 +29,16 @@
 @property (nonatomic, strong) UIView *overlayView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
-
 @end
+
+
 
 @implementation TMBImageCardViewController
 
+
+
 #pragma mark - views
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,10 +48,12 @@
     
 }
 
+
 -(BOOL)prefersStatusBarHidden
 {
     return YES;
 }
+
 
 -(void)activityLoadView
 {
@@ -72,11 +78,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 - (IBAction)imageTapped:(id)sender {
     
     [self.textView endEditing:YES];
     
 }
+
 
 
 #pragma mark - choose or take photo
@@ -103,6 +111,7 @@
     
 }
 
+
 - (IBAction)chosePhotoButtonTapped:(UIButton *)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -113,6 +122,7 @@
     [self presentViewController:picker animated:YES completion:NULL];
     
 }
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
@@ -125,11 +135,14 @@
     
 }
 
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+
 
 #pragma mark - save to parse
 
@@ -140,15 +153,14 @@
     [self activityLoadView];
     
     // scale image for view in board
-    self.thumb = [self imageWithImage:self.imageView.image scaledToMaxWidth:310.0 maxHeight:132.0];
-    self.image = [self imageWithImage:self.imageView.image scaledToMaxWidth:408.0 maxHeight:352.0];
+    self.thumb = [self imageWithImage:self.imageView.image scaledToMaxWidth:930.0 maxHeight:396.0];
+    self.image = [self imageWithImage:self.imageView.image scaledToMaxWidth:1224.0 maxHeight:1056.0];
     
     // capture text comment
     NSDictionary *userInfo = [NSDictionary dictionary];
     NSString *trimmedComment = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (trimmedComment.length != 0) {
-        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                    trimmedComment,
+        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:trimmedComment,
                     kTMBEditPhotoViewControllerUserInfoCommentKey,
                     nil];
     }
@@ -187,6 +199,7 @@
                     [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
                     [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
                     [comment setObject:commentText forKey:kTMBActivityContentKey];
+                    [comment setObject:self.board forKey:@"board"];
                     
                     PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
                     [ACL setPublicReadAccess:YES];
@@ -200,7 +213,7 @@
             [self.overlayView removeFromSuperview];
             [self dismissViewControllerAnimated:YES completion:nil];
             
-        }else {
+        } else {
             
             NSLog(@"Photo failed to save: %@", error);
             [self.overlayView removeFromSuperview];
@@ -211,8 +224,8 @@
         
     }];
     
-    
 }
+
 
 
 #pragma mark - image scaling
@@ -227,6 +240,7 @@
     
     return newImage;
 }
+
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
     
@@ -243,28 +257,29 @@
 }
 
 
+
 #pragma mark - alert
+
 
 -(void)uploadingErrorAlert
 {
-UIAlertController * alert=   [UIAlertController
+    UIAlertController *alert= [UIAlertController
                               alertControllerWithTitle:@"Network error"
                               message:@"Unable to upload photo"
                               preferredStyle:UIAlertControllerStyleAlert];
 
-UIAlertAction* ok = [UIAlertAction
-                     actionWithTitle:@"OK"
-                     style:UIAlertActionStyleDefault
-                     handler:^(UIAlertAction * action)
-                     {
-                         
-                         [alert dismissViewControllerAnimated:YES completion:nil];
-                         
-                     }];
+    UIAlertAction *ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                         }];
 
-[alert addAction:ok];
+    [alert addAction:ok];
 
-[self presentViewController:alert animated:YES completion:nil];
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 
