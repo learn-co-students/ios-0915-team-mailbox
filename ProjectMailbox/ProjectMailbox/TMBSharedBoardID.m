@@ -22,18 +22,19 @@
 }
 
 
--(NSString *)boardID
+- (NSString *)boardID
 {
     return _boardID;
 }
 
 
--(NSMutableDictionary *)boards
+- (NSMutableDictionary *)boards
 {
     if (!_boards) {
         _boards = [NSMutableDictionary new];
     }
     return _boards;
 }
+
 
 @end

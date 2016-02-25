@@ -109,7 +109,7 @@
         self.boardObjectId = self.boardObjectIdFromSelectedBoard;
         NSLog(@" !!!!!!!!!!!!!!!!!!!!!!!! BOARD OBJ ID IS %@", self.boardObjectId);
     }
-    
+    // end of segue methods
     else {
         
         [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
@@ -120,7 +120,7 @@
             }
         }];
     }
-    // end of segue methods
+    
     
     
     // hiding found/notfound friends views:

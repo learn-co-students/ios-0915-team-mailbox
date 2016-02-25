@@ -510,7 +510,7 @@
         <!--Create New Board-->
         <scene sceneID="bGU-2e-n7K">
             <objects>
-                <viewController id="9WQ-8b-gba" userLabel="Create New Board" customClass="CreateBoardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createBoard" id="9WQ-8b-gba" userLabel="Create New Board" customClass="CreateBoardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yf0-eQ-C45"/>
                         <viewControllerLayoutGuide type="bottom" id="XHJ-gb-LG8"/>
@@ -1714,7 +1714,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZd-mt-v3q" userLabel="email">
                                         <rect key="frame" x="11" y="208" width="392" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                     </textField>
                                 </subviews>
                                 <constraints>

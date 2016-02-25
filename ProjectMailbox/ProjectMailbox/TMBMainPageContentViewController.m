@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    NSLog(@" I'M IN THE VIEW DID LOAD, MAIN PAGE CONTENT VIEW CONTROLLER");
     
 }
 

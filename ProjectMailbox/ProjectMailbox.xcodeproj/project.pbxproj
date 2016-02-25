@@ -26,7 +26,6 @@
 		5585F65F1C14D6E5003478C6 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */; };
 		5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */; };
 		55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A7E67E1C0C93B900D18009 /* Main.storyboard */; };
-		55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */; };
 		55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A7E6861C0E159C00D18009 /* AppViewController.m */; };
 		55C6AE1F1C1B2DED00FD8A73 /* TMBCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */; };
 		55D3EB131C1745E30044BEFD /* TMBBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D3EB121C1745E30044BEFD /* TMBBoard.m */; };
@@ -161,8 +160,6 @@
 		5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		559300061C0F958F0027195D /* ProjectMailbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectMailbox.entitlements; sourceTree = "<group>"; };
 		55A7E67E1C0C93B900D18009 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		55A7E6801C0CC80700D18009 /* TMBInviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBInviteFriendsViewController.h; sourceTree = "<group>"; };
-		55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBInviteFriendsViewController.m; sourceTree = "<group>"; };
 		55A7E6851C0E159C00D18009 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
 		55A7E6861C0E159C00D18009 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
 		55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProjectMailbox-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -412,8 +409,6 @@
 				5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */,
 				5508F4EB1BFBDD4100D02E15 /* TMBSignUpViewController.h */,
 				5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */,
-				55A7E6801C0CC80700D18009 /* TMBInviteFriendsViewController.h */,
-				55A7E6811C0CC80700D18009 /* TMBInviteFriendsViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -810,7 +805,6 @@
 				A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */,
 				5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */,
 				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
-				55A7E6821C0CC80700D18009 /* TMBInviteFriendsViewController.m in Sources */,
 				5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */,
 				5508F4A41BFB972300D02E15 /* main.m in Sources */,
 			);

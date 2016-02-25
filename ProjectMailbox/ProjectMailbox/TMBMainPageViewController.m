@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    NSLog(@" I'M IN THE VIEW DID LOAD, MAIN PAGE VIEW CONTROLLER");
     [self setupLeftMenuButton];
 }
 

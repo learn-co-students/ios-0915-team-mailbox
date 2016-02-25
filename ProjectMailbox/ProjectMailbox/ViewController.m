@@ -16,6 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@" I'M IN THE VIEW DID LOAD, VIEW CONTROLLER");
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

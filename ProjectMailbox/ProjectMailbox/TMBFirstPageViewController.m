@@ -27,12 +27,14 @@
 @implementation TMBFirstPageViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
+    [super viewDidLoad];
+    NSLog(@" I'M IN THE VIEW DID LOAD, FIRST PAGE VIEW CONTROLLER");
 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
     
 }
 
@@ -124,7 +126,7 @@
                         [boardQueryFromPhotoClass whereKey:@"user" equalTo:PFUser.currentUser];
                         [boardQueryFromPhotoClass selectKeys:@[@"board"]];
                         [boardQueryFromPhotoClass orderByDescending:@"updatedAt"];
-                        [boardQueryFromPhotoClass getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                        [boardQueryFromPhotoClass getFirstObjectInBackgroundWithBlock:^(PFObject * object, NSError * error) {
                             
                             if (!error) {
                                 

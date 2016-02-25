@@ -99,9 +99,6 @@
             
             NSString *boardName = object[@"boardName"];
             NSDate *updatedAt = [object updatedAt];
-//            self.boardID = object.objectId;            
-//            NSLog(@"========== BOARD OBJECT IS: %@", object);
-//            NSLog(@"========== BOARD OBJECT IDs ARE: %@", self.boardID);
             NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
@@ -116,8 +113,6 @@
             
             NSString *boardName = object[@"boardName"];
             NSDate *updatedAt = [object updatedAt];
-//            self.boardID = object.objectId;
-//            NSLog(@"========== BOARD OBJECT IDs ARE: %@", self.boardID);
             NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];

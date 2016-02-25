@@ -7,6 +7,7 @@
 //
 
 #import "TMBSignUpViewController.h"
+#import "TMBConstants.h"
 
 @interface TMBSignUpViewController ()
 
@@ -18,15 +19,20 @@
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordField;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-
+@property (strong, nonatomic) PFObject *myNewBoard;
+@property (nonatomic, strong) NSString *boardObjectId;
 
 @end
 
+
 @implementation TMBSignUpViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSLog(@" I'M IN THE VIEW DID LOAD, SIGN UP PAGE VIEW CONTROLLER");
     
     self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
@@ -35,13 +41,13 @@
     
     self.repeatPasswordField.returnKeyType = UIReturnKeyDone;
     
-    
 }
 
--(BOOL)prefersStatusBarHidden
-{
+
+-(BOOL)prefersStatusBarHidden {
     return YES;
 }
+
 
 - (void)textFieldShouldReturn:(UITextField *)textField {
     
@@ -59,6 +65,7 @@
     }
 }
 
+
 - (IBAction)choosePhotoButtonTapped:(id)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -70,6 +77,7 @@
 
 }
 
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
@@ -78,6 +86,7 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
 
 - (IBAction)signUpButtonTapped:(id)sender {
     
@@ -109,17 +118,43 @@
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
+            
+                [self createNewBoardOnParseWithUser:newUser completion:^(NSString *objectId, NSError *error) {
+                    if (!error) {
+                        NSLog(@"NEW BOARD CREATED");
+                        self.boardObjectId = self.myNewBoard.objectId;
+                        NSLog(@"NEW BOARD ID IS: %@", self.boardObjectId);
+                    }
+                }];
+
             [self showSuccessAlert];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidSignUpNotification" object:nil];
         } 
     }];
     
+    
 }
+
+
+- (void)createNewBoardOnParseWithUser:(PFUser *)user completion:(void(^)(NSString *objectId, NSError *error))completionBlock {
+    
+    self.myNewBoard = [PFObject objectWithClassName:@"Board"];
+    [self.myNewBoard setObject:user forKey:kTMBBoardFromUserKey];
+    self.myNewBoard[@"boardName"] = @"My Board";
+    [self.myNewBoard saveEventually:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            completionBlock(self.myNewBoard.objectId, error);
+        }
+    }];
+    
+}
+
 
 - (IBAction)backButtonTapped:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 - (void)showErrorAlert {
     
@@ -131,6 +166,7 @@
     
     [controller addAction:okAction];
 }
+
 
 - (void)showPasswordErrorAlert {
     
@@ -144,6 +180,7 @@
     
     [self presentViewController:controller animated:YES completion:nil];
 }
+
 
 - (void)showSuccessAlert {
     
@@ -161,3 +198,4 @@
 
 
 @end
+

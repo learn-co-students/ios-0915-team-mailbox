@@ -47,7 +47,9 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 
 - (void)viewDidLoad {
-    
+
+    NSLog(@" I'M IN THE VIEW DID LOAD, BOARD CONTROLLER");
+
     [super viewDidLoad];
     
     UINavigationBar* navigationBar = self.navigationController.navigationBar;
@@ -58,7 +60,16 @@ static NSString * const reuseIdentifier = @"MediaCell";
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
     
-    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
+    [self queryFirstCretedBoardByCurrentUserWithCompletion:^(NSArray *boardsContainingCurrentUser, NSError *error) {
+        if (!error) {
+            NSLog(@" I'M IN THE IF STATEMENT FOR QUERY FIRST BOARD, BOARD CONTROLLER. BOARD ARRAY CAME BACK: %@", boardsContainingCurrentUser);
+            PFObject *firstBoard = boardsContainingCurrentUser[0];
+            self.boardID = firstBoard.objectId;
+            [self queryParseForContent:self.boardID];
+        }
+    }];
+    
+//    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
     [self setupLeftMenuButton];
     
@@ -68,16 +79,30 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [self buildThemeColorsArray];
     [self buildEmptyCollection];
     
-    [self queryParseForContent:self.boardID];
+//    [self queryParseForContent:self.boardID];
     
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSLog(@" I'M IN THE VIEW WILL APPEAR, BOARD CONTROLLER");
     
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetButtonTappedInCreateBoardVC:) name:@"UserTappedResetBoardButton" object:nil];
+}
+
+
+- (void)queryFirstCretedBoardByCurrentUserWithCompletion:(void(^)(NSArray *boardsContainingCurrentUser, NSError *error))completionBlock {
+    
+    NSLog(@" I'M IN THE QUERY FIRST BOARD FOR CURRENT USER METHOD, BOARD CONTROLLER");
+
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
+    [boardQuery orderByDescending:@"updatedAt"];
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *boardsContainingCurrentUser, NSError *error) {
+        completionBlock(boardsContainingCurrentUser, error);
+    }];
 }
 
 
@@ -293,6 +318,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 - (void)queryParseForContent:(NSString *)boardID {
     
+    NSLog(@" I'M IN THE QUERY PARSE FOR CONTENT METHOD, BOARD CONTROLLER");
+
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
     [boardQuery whereKey:@"objectId" equalTo:boardID];
     
