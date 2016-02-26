@@ -20,13 +20,20 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         
+        NSLog("I'M IN THE VIEW DID LOAD, EDIT PRFILE VIEW CONTROLLER");
+
         super.viewDidLoad()
         
         imagePicker.delegate = self
         
-        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-        profileImageView.clipsToBounds = true
+//        profileImageView.contentMode = .ScaleAspectFill;
+//        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+//        profileImageView.clipsToBounds = true
         
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
     }
     
     @IBAction func changePhotoButtonTapped(sender: AnyObject) {
@@ -38,9 +45,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            profileImageView.contentMode = .ScaleAspectFit
             profileImageView.image = pickedImage
+//            profileImageView.contentMode = .ScaleAspectFit
+//            profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+//            profileImageView.clipsToBounds = true
         }
         
         dismissViewControllerAnimated(true, completion: nil)

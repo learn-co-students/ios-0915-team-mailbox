@@ -39,16 +39,23 @@
 
 
 
--(void) viewDidAppear:(BOOL)animated  {
+- (void)viewDidAppear:(BOOL)animated  {
+    
     [super viewDidAppear:animated];
+    
+    NSLog(@" I'M IN THE VIEW DID APPEAR, SIDE MENU VIEW CONTROLLER");
+
     [self adjustHeightOfTableview];
-    NSLog(@"viewDidAppear");
+    
 }
 
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
+    NSLog(@" I'M IN THE VIEW DID LOAD, SIDE MENU VIEW CONTROLLER");
+
     [self prefersStatusBarHidden];
     
     self.internetConnectionLabel.hidden = YES;
@@ -78,9 +85,7 @@
     if (profilePictureObject !=nil) {
         [profilePictureObject getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
             if (data != nil) {
-                
-                NSLog(@"WEEEEE OK??!!");
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     self.profileImage.image = [UIImage imageWithData:data];
                 }];
             }
@@ -94,12 +99,13 @@
         for (PFObject *object in boardsCreatedByUser) {
             
             [self.userBoards insertObject:object atIndex:0];
+            NSLog(@" I'M IN THE VIEW DID LOAD, SIDE MENU VIEW CONTROLLER. ALL BOARDS CREATED BY CURRENT USER ARE: %@", self.userBoards);
             [self.boardsTableView reloadData];
             [self adjustHeightOfTableview];
             
-            NSString *boardName = object[@"boardName"];
-            NSDate *updatedAt = [object updatedAt];
-            NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+//            NSString *boardName = object[@"boardName"];
+//            NSDate *updatedAt = [object updatedAt];
+//            NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
     
@@ -108,12 +114,13 @@
         for (PFObject *object in boardsContainingUser) {
             
             [self.userBoards addObject:object];
+             NSLog(@" I'M IN THE VIEW DID LOAD, SIDE MENU VIEW CONTROLLER. ALL BOARDS CONTAINING CURRENT USER ARE: %@", self.userBoards);
             [self.boardsTableView reloadData];
             [self adjustHeightOfTableview];
             
-            NSString *boardName = object[@"boardName"];
-            NSDate *updatedAt = [object updatedAt];
-            NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+//            NSString *boardName = object[@"boardName"];
+//            NSDate *updatedAt = [object updatedAt];
+//            NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
 
@@ -128,18 +135,21 @@
     [PFUser logOut];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogOutNotification"
                                                         object:nil];
-    NSLog(@"User has Logged Out");
+    NSLog(@" User has Logged Out");
     
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    NSLog(@" I'M IN THE TABLE VIEW 1, SIDE MENU VIEW CONTROLLER. USER BOARDS COUNT IS %lu", self.userBoards.count);
+    NSLog(@" I'M IN THE TABLE VIEW 1, SIDE MENU VIEW CONTROLLER. USER BOARDS ARE: %@", self.userBoards);
     return self.userBoards.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     TMBBoardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"boardMemberCell" forIndexPath:indexPath];
     
     PFObject *board = self.userBoards[indexPath.row];
@@ -148,14 +158,14 @@
     cell.backgroundColor = [UIColor clearColor];
     
     self.boardID = board.objectId;
-    NSLog(@"OOOOOOOOOOOOOOBJECT IDS %@", self.boardID);
+    NSLog(@" I'M IN THE TABLE VIEW 2, SIDE MENU VIEW CONTROLLER. BOARD OBJECT ID IS %@", self.boardID);
     
     return cell;
 
 }
 
 
--(void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification {
+- (void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification {
     
     NSLog(@"WOO I GOT THE MESSAGE, DELETED!: %@", notification);
     
@@ -174,14 +184,18 @@
 }
 
 
--(void)saveButtonTappedInCreateBoardVC:(NSNotification *)notification {
+- (void)saveButtonTappedInCreateBoardVC:(NSNotification *)notification {
     
     NSLog(@"WOO I GOT THE MESSAGE, SAVED!: %@", notification);
     
     if ([notification.object isKindOfClass:[PFObject class]]) {
         
         PFObject *savedBoard = [notification object];
-        [self.userBoards insertObject:savedBoard atIndex:0];
+        
+        if (![self.userBoards containsObject:savedBoard]) {
+            [self.userBoards insertObject:savedBoard atIndex:0];
+        }
+        
         [self.boardsTableView reloadData];
         [self adjustHeightOfTableview];
     }
@@ -194,10 +208,6 @@
 
 
 - (void)checkInternetConnection {
-    
-    // if there is no internet...
-    // hide some views
-    // display "YOU ARE NOT CONNECTED TO THE INTERNET"
     
     // check connection to a very small, fast loading site:
     NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
@@ -214,11 +224,12 @@
         self.manageBoardsButton.hidden = YES;
         self.logoutButton.hidden = YES;
         
-        NSLog(@"Device is not connected to the internet");
+        NSLog(@" Device is not connected to the internet");
         
     } else {
-        NSLog(@"Device is connected to the internet");
+        NSLog(@" Device is connected to the internet");
     }
+    
 }
 
 
@@ -234,7 +245,7 @@
     
     CGFloat scrollViewHeight = height + 550;
     
-    NSLog(@"SCROLL VIEW HEIGHT %f", scrollViewHeight);
+//    NSLog(@"SCROLL VIEW HEIGHT %f", scrollViewHeight);
     
     [UIView animateWithDuration:0.25 animations:^{
         self.boardsTableViewHeightConstraint.constant = height;
@@ -250,7 +261,7 @@
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
     [boardQuery whereKey:@"fromUser" equalTo:user];
     
-    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsCreatedByUser, NSError * _Nullable error) {
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *boardsCreatedByUser, NSError *error) {        
         completionBlock(boardsCreatedByUser, error);
     }];
 }
@@ -261,7 +272,7 @@
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
     [boardQuery whereKey:@"boardFriends" equalTo:PFUser.currentUser];
     
-    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable boardsContainingUser, NSError * _Nullable error) {
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *boardsContainingUser, NSError *error) {
         completionBlock(boardsContainingUser, error);
     }];
 }
@@ -269,3 +280,5 @@
 
 
 @end
+
+

@@ -23,9 +23,15 @@
 
 @end
 
+
+
 @implementation AppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSLog(@" I'M IN THE APPLICATION DID FINISH LAUNCHING, APP DELEGATE");
+
     // [Optional] Power your app with Local Datastore. For more info, go to
     // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
@@ -53,11 +59,14 @@
     return YES;
 }
 
+
 // Facebook app installs and opens tracking code
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    
     [FBSDKAppEvents activateApp];
 }
+
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -90,14 +99,17 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
+
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
+
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
+
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -105,16 +117,20 @@
     [self saveContext];
 }
 
+
+
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+
 - (NSURL *)applicationDocumentsDirectory {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "ProjectMailbox.ProjectMailbox" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
 
 - (NSManagedObjectModel *)managedObjectModel {
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
@@ -125,6 +141,7 @@
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
+
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
@@ -170,7 +187,10 @@
     return _managedObjectContext;
 }
 
+
+
 #pragma mark - Core Data Saving support
+
 
 - (void)saveContext {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;

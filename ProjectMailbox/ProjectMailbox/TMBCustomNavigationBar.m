@@ -29,6 +29,7 @@
 
 
 -(void)layoutSubviews {
+    
     [super layoutSubviews];
     
     // Make items on navigation bar vertically centered.

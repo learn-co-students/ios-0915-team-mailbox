@@ -8,33 +8,39 @@
 
 #import "TMBSharedBoardID.h"
 
+
 @implementation TMBSharedBoardID
 
 
-+ (instancetype)sharedBoardID
-{
++ (instancetype)sharedBoardID {
+    
+    NSLog(@" I'M IN THE SHARED BOARD ID + METHOD, SHAREDBOARDID.M");
+    
     static id sharedBoardID = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedBoardID = [[self alloc] init];
     });
+    
     return sharedBoardID;
 }
 
 
-- (NSString *)boardID
-{
+- (NSString *)boardID {
+    
     return _boardID;
 }
 
 
-- (NSMutableDictionary *)boards
-{
+- (NSMutableDictionary *)boards {
+    
     if (!_boards) {
         _boards = [NSMutableDictionary new];
     }
+    
     return _boards;
 }
+
 
 
 @end

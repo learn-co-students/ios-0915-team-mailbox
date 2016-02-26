@@ -41,22 +41,24 @@
 
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
     
+    NSLog(@" I'M IN THE VIEW DID LOAD, IMAGE CARD VIEW CONTROLLER. SHARED BOARD ID IS %@", self.boardID);
+    NSLog(@" I'M IN THE VIEW DID LOAD, IMAGE CARD VIEW CONTROLLER. SHARED BOARD OBJECT IS %@", self.board);
+    
 }
 
 
--(BOOL)prefersStatusBarHidden
-{
+- (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
 
--(void)activityLoadView
-{
+- (void)activityLoadView {
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
@@ -95,7 +97,6 @@
     // simulators don't have a camera
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
         NSLog(@"NO CAMERA FOUND");
         
     } else {
@@ -175,6 +176,7 @@
     [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];
     [photo setObject:self.imageFile forKey:kTMBPhotoPictureKey];
     [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
+    NSLog(@" I'M IN THE POST IMAGE METHOD, IMAGE CARD VIEW CONTROLLER. BOARD OBJECT FOR KEY 'BOARD' IS %@", self.board);
     [photo setObject:self.board forKey:@"board"];
     
     PFACL *photoACL = [PFACL ACLWithUser:[PFUser currentUser]];
@@ -231,7 +233,7 @@
 #pragma mark - image scaling
 
 
--(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
     
     UIGraphicsBeginImageContext(size);
     [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
@@ -261,12 +263,11 @@
 #pragma mark - alert
 
 
--(void)uploadingErrorAlert
-{
-    UIAlertController *alert= [UIAlertController
-                              alertControllerWithTitle:@"Network error"
-                              message:@"Unable to upload photo"
-                              preferredStyle:UIAlertControllerStyleAlert];
+- (void)uploadingErrorAlert {
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Network error"
+                                message:@"Unable to upload photo"
+                                preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *ok = [UIAlertAction
                          actionWithTitle:@"OK"
@@ -283,4 +284,7 @@
 }
 
 
+
 @end
+
+

@@ -8,6 +8,7 @@
 
 #import "TMBSignUpViewController.h"
 #import "TMBConstants.h"
+#import "TMBSharedBoardID.h"
 
 @interface TMBSignUpViewController ()
 
@@ -117,13 +118,22 @@
     [newUser setObject:lastName forKey:@"Last_Name"];
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        
         if (succeeded) {
-            
+            NSLog(@" I'M IN SIGN UP BTN TAPPED, SIGN UP PAGE VIEW CONTROLLER. NEW USER IS CREATED. USER OBJECT ID IS %@", newUser.objectId);
+
                 [self createNewBoardOnParseWithUser:newUser completion:^(NSString *objectId, NSError *error) {
+                    
                     if (!error) {
-                        NSLog(@"NEW BOARD CREATED");
-                        self.boardObjectId = self.myNewBoard.objectId;
-                        NSLog(@"NEW BOARD ID IS: %@", self.boardObjectId);
+                        // passing board ID and board object through singleton
+                        [TMBSharedBoardID sharedBoardID].boardID = self.myNewBoard.objectId;
+                        
+                        // passing board object through singleton
+                        NSString *boardID = [self.myNewBoard valueForKey:@"objectId"];
+                        [[TMBSharedBoardID sharedBoardID].boards setObject:self.myNewBoard forKey:boardID];
+                        
+                        NSLog(@" I'M IN SIGN UP BTN TAPPED, SIGN UP PAGE VIEW CONTROLLER. NEW BOARD IS CREATED. NEW/SHARED BOARD ID IS %@", [TMBSharedBoardID sharedBoardID].boardID);
+                        NSLog(@" I'M IN SIGN UP BTN TAPPED, SIGN UP PAGE VIEW CONTROLLER. NEW BOARD IS CREATED. NEW/SHARED BOARD DICTIONARY IS %@", [TMBSharedBoardID sharedBoardID].boards);
                     }
                 }];
 

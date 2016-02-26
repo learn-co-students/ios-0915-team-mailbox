@@ -59,6 +59,8 @@
     
     [super viewDidAppear:animated];
     
+    NSLog(@"I'M IN THE VIEW DID APPEAR, CREATE BOARD VIEW CONTROLLER");
+    
     [self adjustHeightOfTableview];
 
 }
@@ -73,7 +75,7 @@
     
     [self prefersStatusBarHidden];
     
-    NSLog(@"IN VIEW DID LOAD CREATE BOARD VC.........");
+    NSLog(@"I'M IN THE VIEW DID LOAD, CREATE BOARD VIEW CONTROLLER");
     
     self.friendsForCurrentUser = [NSMutableArray new];
     self.boardFriends = [NSMutableArray new];
@@ -114,9 +116,8 @@
         
         [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
             if (!error) {
-                NSLog(@"NEW BOARD CREATED");
+                NSLog(@"NEW BOARD IS CREATED. BOARD ID IS: %@", self.boardObjectId);
                 self.boardObjectId = self.myNewBoard.objectId;
-                NSLog(@"NEW BOARD ID IS: %@", self.boardObjectId);
             }
         }];
     }
@@ -137,15 +138,6 @@
     }];
     
     
-    // loging in this app as Inga for now
-    
-//        if (![PFUser currentUser]){
-//            [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-//                NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-//                    }];
-//        }
-     
-    
     [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
         
         for (PFObject *object in boardsCreatedByUser) {
@@ -155,6 +147,7 @@
             NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
+    
     
     [self queryAllBoardsContainingUser:[PFUser currentUser] completion:^(NSArray *boardsContainingUser, NSError *error) {
         
@@ -169,18 +162,12 @@
 }
 
 
-
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }
 
 
-
 - (void)checkInternetConnection {
-    
-    // if there is no internet...
-    // hide some views
-    // display alert
     
     // check connection to a very small, fast loading site:
     NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
@@ -194,8 +181,8 @@
     } else {
         NSLog(@"Device is connected to the internet");
     }
+    
 }
-
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -214,7 +201,6 @@
     
     return YES;
 }
-
 
 
 - (IBAction)searchFriendsButtonTapped:(UIButton *)sender {
@@ -270,7 +256,6 @@
 }
 
 
-
 - (IBAction)addFriendButtonTapped:(UIButton *)sender {
     
     // add user to all user friends and to board friends simultaneously. unique add.
@@ -310,20 +295,19 @@
 }
 
 
-
 -(void)displayAlert {
     
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"You are already part of this board"
-                                  message:nil
-                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"You are already part of this board"
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* okButton = [UIAlertAction
+    UIAlertAction *okButton = [UIAlertAction
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
                                {
-                                   //Handle OK button action here
+                                   //Handle button action here
                                    [alert dismissViewControllerAnimated:YES completion:nil];
                                }];
     
@@ -332,7 +316,6 @@
     [self presentViewController:alert animated:YES completion:nil];
     
 }
-
 
 
 - (IBAction)addUserToBoardButtonTapped:(UIButton *)sender {
@@ -362,7 +345,6 @@
     [self adjustHeightOfTableview];
     
 }
-
 
 
 - (IBAction)removeUserFromBoardButtonTapped:(UIButton *)sender {
@@ -441,7 +423,6 @@
 }
 
 
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     PFObject *currentFriend;
@@ -491,7 +472,6 @@
 }
 
 
-
 - (IBAction)saveNewBoardTapped:(UIButton *)sender {
     
     // THIS METHOD REALLY UPDATES THE BOARD CREATED IN THE VIEWDIDLOAD
@@ -516,7 +496,6 @@
     }
 
 }
-
 
 
 - (void)flashFieldYellowWithATextField:(UITextField *)textField {
@@ -557,15 +536,14 @@
 }
 
 
-
--(void)displayNoNameAlert {
+- (void)displayNoNameAlert {
     
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Please Give Your Board a Name"
-                                  message:nil
-                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert =  [UIAlertController
+                                alertControllerWithTitle:@"Please Give Your Board a Name"
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* okButton = [UIAlertAction
+    UIAlertAction *okButton = [UIAlertAction
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
@@ -579,7 +557,6 @@
     [self presentViewController:alert animated:YES completion:nil];
     
 }
-
 
 
 - (IBAction)cancelButtonTapped:(UIButton *)sender {
@@ -604,14 +581,11 @@
 }
 
 
-
-// add Delete Board's contents action, alert, dismiss view
 - (IBAction)deleteBoardContentsButtonTapped:(UIButton *)sender {
     
     [self displayDeletingContentAlert];
     
 }
-
 
 
 - (IBAction)deleteBoardButtonTapped:(UIButton *)sender {
@@ -621,13 +595,12 @@
 }
 
 
-
 - (void)displayDeletingContentAlert {
     
-    UIAlertController *alert=   [UIAlertController
-                                 alertControllerWithTitle:@"Are You Sure?"
-                                 message:@"Images and comments for this board will be deleted"
-                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert=  [UIAlertController
+                                alertControllerWithTitle:@"Are You Sure?"
+                                message:@"Images and comments for this board will be deleted"
+                                preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *deleteButton = [UIAlertAction
                                actionWithTitle:@"Reset Board"
@@ -666,13 +639,12 @@
 }
 
 
-
 - (void)displayDeletingBoardAlert {
     
-    UIAlertController *alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Are you sure?"
-                                  message:@"This board will be deleted"
-                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert=  [UIAlertController
+                                alertControllerWithTitle:@"Are you sure?"
+                                message:@"This board will be deleted"
+                                preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okButton = [UIAlertAction
                                actionWithTitle:@"OK"
@@ -708,6 +680,7 @@
 }
 
 
+
 /*****************************
  *         PARSE CALLS       *
  *****************************/
@@ -725,7 +698,6 @@
     }];
     
 }
-
 
 
 - (void)queryCurrentUserFriendsWithCompletion:(void(^)(NSMutableArray *users, NSError *error))completionBlock {
@@ -759,7 +731,6 @@
 }
 
 
-
 // passing a board, getting back an array containing 1 board object
 - (void)queryAllFriendsOnBoard:(NSString *)boardID completion:(void(^)(NSMutableArray *boardFriends, NSError *error))completionBlock {
     
@@ -781,7 +752,6 @@
 }
 
 
-
 - (void)queryAllUsersWithUsername:(NSString *)username completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
     
     PFQuery *query = [PFUser query];
@@ -793,7 +763,6 @@
     }];
     
 }
-
 
 
 - (void)addUserToAllFriendsOnParse:(PFUser *)user completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
@@ -808,7 +777,6 @@
 }
 
 
-
 - (void)removeUserFromAllFriendsOnParse:(PFUser *)user completion:(void(^)(NSArray *allFriends, NSError *error))completionBlock {
     
     PFObject *newFriend = user;
@@ -821,7 +789,6 @@
 }
 
 
-
 - (void)addUserToBoardFriendsOnParse:(PFObject *)user completion:(void(^)(NSError *error))completionBlock {
     
     [self.myNewBoard addUniqueObject:user forKey:@"boardFriends"];
@@ -829,13 +796,11 @@
 }
 
 
-
 - (void)removeUserFromBoardFriendsOnParse:(PFObject *)user completion:(void(^)(NSError *error))completionBlock {
 
     [self.myNewBoard removeObject:user forKey:@"boardFriends"];
     [self.myNewBoard saveInBackground];
 }
-
 
 
 - (void)queryAllBoardsCreatedByUser:(PFUser *)user completion:(void(^)(NSArray *boardsCreatedByUser, NSError *error))completionBlock {
@@ -849,7 +814,6 @@
 }
 
 
-
 - (void)queryAllBoardsContainingUser:(PFUser *)user completion:(void(^)(NSArray *boardsContainingUser, NSError *error))completionBlock {
     
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
@@ -859,7 +823,6 @@
         completionBlock(boardsContainingUser, error);
     }];
 }
-
 
 
 - (void)queryAndDeleteBoardContentWithCompletion:(void (^)(BOOL success))completionBlock {
@@ -898,10 +861,7 @@
         
     }];
 
-    
 }
-
-
 
 
 

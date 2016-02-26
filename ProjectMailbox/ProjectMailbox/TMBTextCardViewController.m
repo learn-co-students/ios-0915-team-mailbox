@@ -16,8 +16,10 @@
 @implementation TMBTextCardViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-
+    
+    NSLog(@" I'M IN THE VIEW DID LOAD, TEXT CARD VIEW CONTROLLER");
 }
 
 - (IBAction)sendButtonTapped:(UIButton *)sender {

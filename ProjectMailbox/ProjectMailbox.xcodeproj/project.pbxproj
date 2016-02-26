@@ -340,7 +340,7 @@
 				55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */,
 				5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */,
 				5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */,
-				55EE00751C0BDE4900C46162 /* Login */,
+				55EE00751C0BDE4900C46162 /* Login - Sign Up */,
 				A42EB5D51C18C9E8009A241B /* Drawer */,
 				5D03AF1C1C18610A00E2CDEB /* BoardID */,
 				5D03AF181C1785DF00E2CDEB /* Board */,
@@ -400,7 +400,7 @@
 			name = Doodle;
 			sourceTree = "<group>";
 		};
-		55EE00751C0BDE4900C46162 /* Login */ = {
+		55EE00751C0BDE4900C46162 /* Login - Sign Up */ = {
 			isa = PBXGroup;
 			children = (
 				55A7E6851C0E159C00D18009 /* AppViewController.h */,
@@ -410,7 +410,7 @@
 				5508F4EB1BFBDD4100D02E15 /* TMBSignUpViewController.h */,
 				5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */,
 			);
-			name = Login;
+			name = "Login - Sign Up";
 			sourceTree = "<group>";
 		};
 		5A255CE89E9811F6D7225B25 /* Pods */ = {

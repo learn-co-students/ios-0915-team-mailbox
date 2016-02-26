@@ -15,6 +15,8 @@ class ChangePasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         
+        NSLog("I'M IN THE VIEW DID LOAD, CHANGE PASSWORD VIEW CONTROLLER");
+
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {

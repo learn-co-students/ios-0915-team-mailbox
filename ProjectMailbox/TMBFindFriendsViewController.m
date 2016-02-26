@@ -45,27 +45,17 @@
     
     [super viewDidLoad];
     
+    NSLog(@"I'M IN THE VIEW DID LOAD, FIND FRIENDS VIEW CONTROLLER");
+    
     [self prefersStatusBarHidden];
     
     [self checkInternetConnection];
-    
-    
-    // loging in this app as Inga for now
-    
-    if (![PFUser currentUser]){
-        [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-        }];
-    }
-    
     
     self.allFriendsTableView.delegate = self;
     self.allFriendsTableView.dataSource = self;
     self.searchField.delegate = self;
     // dismisses the keyboard when the Search key is tapped: (it unhides the noUsersFoundLabel for some reason)
     // [self textFieldShouldReturn:self.searchField];
-    
-    NSLog(@"IN VIEW DID LOAD of FIND FREINDS VC.........");
     
     // hiding found/notfound friends views:
     self.noUsersFoundLabel.hidden = YES;
@@ -92,10 +82,6 @@
 
 - (void)checkInternetConnection {
     
-    // if there is no internet...
-    // hide some views
-    // display "YOU ARE NOT CONNECTED TO THE INTERNET"
-    
     // check connection to a very small, fast loading site:
     NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
     NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
@@ -107,6 +93,7 @@
     } else {
         NSLog(@"Device is connected to the internet");
     }
+    
 }
 
 
@@ -174,7 +161,7 @@
 }
 
 
--(void)pushDownFriendsTable {
+- (void)pushDownFriendsTable {
     
     if ((self.foundFriendView.hidden == NO && self.animatedConstraint.constant <= 32) ||
         (self.noUsersFoundLabel.hidden == NO && self.animatedConstraint.constant <= 32)) {
@@ -216,7 +203,7 @@
 }
 
 
--(void)displayAlert {
+- (void)displayAlert {
     
     UIAlertController *alert=   [UIAlertController
                                   alertControllerWithTitle:@"This is You!"
@@ -309,7 +296,6 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
     NSLog(@"cellForRowAtIndexPath: has been called with an indexPath of %@", indexPath);
     
     TMBFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"allFriendsCell" forIndexPath:indexPath];
@@ -354,6 +340,7 @@
     [self dismissViewControllerAnimated:YES
                              completion:nil];
 }
+
 
 
 /*****************************

@@ -14,7 +14,7 @@
     
     [super viewDidLoad];
     
-    
+    NSLog(@" I'M IN THE VIEW DID LOAD, FULL IMAGE MODAL VIEW CONTROLLER");
     
 }
 

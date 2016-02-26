@@ -47,6 +47,8 @@
     
     [super viewDidLoad];
     
+    NSLog(@" I'M IN THE VIEW DID LOAD, COMMENT VIEW CONTROLLER");
+    
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
     self.commentedPhoto.image = [UIImage imageNamed:@"placeholderForBoardCell"];

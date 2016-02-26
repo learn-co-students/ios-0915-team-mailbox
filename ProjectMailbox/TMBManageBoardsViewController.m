@@ -31,6 +31,7 @@
 
 @end
 
+
 @implementation TMBManageBoardsViewController
 
 
@@ -39,15 +40,18 @@
     
     [super viewDidAppear:animated];
     
+    NSLog(@" I'M IN THE VIEW DID APPEAR, MANAGE BOARDS VIEW CONTROLLER");
+
     [self adjustHeightOfTableview];
     
 }
 
 
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    NSLog(@" I'M IN THE VIEW DID LOAD, MANAGE BOARDS VIEW CONTROLLER");
     
     [self prefersStatusBarHidden];
     
@@ -57,6 +61,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteButtonTappedInCreateBoardVC:) name:@"UserTappedDeleteBoardButton" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveButtonTappedInCreateBoardVC:) name:@"UserTappedSaveBoardButton" object:nil];
+    
     self.adminTableView.delegate = self;
     self.adminTableView.dataSource = self;
     self.memberTableView.delegate = self;
@@ -65,16 +71,6 @@
     self.adminBoards = [NSMutableArray new];
     self.adminBoardFriends = [NSMutableArray new];
     self.memberBoards = [NSMutableArray new];
-    
-    
-    // loging in this app as Inga for now
-    
-//    if (![PFUser currentUser]){
-//        [PFUser logInWithUsernameInBackground:@"ingakyt@yahoo.com" password:@"test" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-//            NSLog(@"logged in user: %@ \nwith error: %@", user, error);
-//        }];
-//    }
-    
     
     [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
         
@@ -107,9 +103,9 @@
 }
 
 
--(void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification
-{
-    NSLog(@"WOO I GOT THE MESSAGE: %@", notification);
+-(void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification {
+
+    NSLog(@" I'M IN THE DELETE BTN TAPPED IN CREATE BOARD VC, MANAGE BOARDS VIEW CONTROLLER%@", notification);
     
     NSIndexPath *selectedIndexPath = self.adminTableView.indexPathForSelectedRow;
     PFObject *selectedBoard = self.adminBoards[selectedIndexPath.row];
@@ -122,12 +118,18 @@
 }
 
 
+- (void)saveButtonTappedInCreateBoardVC:(NSNotification *)notification {
+    
+    NSLog(@" I'M IN THE SAVE BTN TAPPED IN CREATE BOARD VC, MANAGE BOARDS VIEW CONTROLLER%@", notification);
+    
+        [self.adminTableView reloadData];
+        [self.memberTableView reloadData];
+        [self adjustHeightOfTableview];
+    
+}
+
 
 - (void)checkInternetConnection {
-    
-    // if there is no internet...
-    // hide some views
-    // display alert
     
     // check connection to a very small, fast loading site:
     NSURL *scriptUrl = [NSURL URLWithString:@"http://apple.com/contact"];
@@ -144,8 +146,8 @@
     } else {
         NSLog(@"Device is connected to the internet");
     }
+    
 }
-
 
 
 #pragma mark - Table view data source
@@ -160,7 +162,6 @@
     }
     
 }
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -185,7 +186,6 @@
         cell.boardNameLabel.text = board[@"boardName"];
         
     }
-    
     
     return cell;
     
@@ -222,7 +222,6 @@
 }
 
 
-
 - (IBAction)unfollowButtonTapped:(UIButton *)sender {
     
     TMBBoardTableViewCell *tappedCell = (TMBBoardTableViewCell*)[[sender superview] superview];
@@ -239,7 +238,6 @@
     [self adjustHeightOfTableview];
     
 }
-
 
 
 - (void)adjustHeightOfTableview {
@@ -280,6 +278,7 @@
 }
 
 
+
 /*****************************
  *         PARSE CALLS       *
  *****************************/
@@ -297,7 +296,6 @@
 }
 
 
-
 - (void)queryAllBoardsContainingUser:(PFUser *)user completion:(void(^)(NSArray *boardsContainingUser, NSError *error))completionBlock {
     
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
@@ -307,7 +305,6 @@
         completionBlock(boardsContainingUser, error);
     }];
 }
-
 
 
 - (void)removeUser:(PFObject *)user fromBoard:(PFObject *)board {

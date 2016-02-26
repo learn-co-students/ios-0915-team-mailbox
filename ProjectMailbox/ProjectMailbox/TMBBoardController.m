@@ -60,16 +60,19 @@ static NSString * const reuseIdentifier = @"MediaCell";
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
     
-    [self queryFirstCretedBoardByCurrentUserWithCompletion:^(NSArray *boardsContainingCurrentUser, NSError *error) {
-        if (!error) {
-            NSLog(@" I'M IN THE IF STATEMENT FOR QUERY FIRST BOARD, BOARD CONTROLLER. BOARD ARRAY CAME BACK: %@", boardsContainingCurrentUser);
-            PFObject *firstBoard = boardsContainingCurrentUser[0];
-            self.boardID = firstBoard.objectId;
-            [self queryParseForContent:self.boardID];
-        }
-    }];
+//    [self queryFirstCretedBoardByCurrentUserWithCompletion:^(NSArray *boardsContainingCurrentUser, NSError *error) {
+//        
+//        if (!error) {
+//            NSLog(@" I'M IN THE IF STATEMENT FOR QUERY FIRST BOARD, BOARD CONTROLLER. BOARD ARRAY CAME BACK: %@", boardsContainingCurrentUser);
+//            
+//            PFObject *firstBoard = boardsContainingCurrentUser[0];
+//            self.boardID = firstBoard.objectId;
+//            self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
+//            [self queryParseForContent:self.boardID];
+//        }
+//    }];
     
-//    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
+    self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
     [self setupLeftMenuButton];
     
@@ -79,31 +82,32 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [self buildThemeColorsArray];
     [self buildEmptyCollection];
     
-//    [self queryParseForContent:self.boardID];
+    [self queryParseForContent:self.boardID];
     
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@" I'M IN THE VIEW WILL APPEAR, BOARD CONTROLLER");
     
     [super viewWillAppear:animated];
     
+    NSLog(@" I'M IN THE VIEW WILL APPEAR, BOARD CONTROLLER");
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetButtonTappedInCreateBoardVC:) name:@"UserTappedResetBoardButton" object:nil];
 }
 
 
-- (void)queryFirstCretedBoardByCurrentUserWithCompletion:(void(^)(NSArray *boardsContainingCurrentUser, NSError *error))completionBlock {
-    
-    NSLog(@" I'M IN THE QUERY FIRST BOARD FOR CURRENT USER METHOD, BOARD CONTROLLER");
-
-    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
-    [boardQuery orderByDescending:@"updatedAt"];
-    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *boardsContainingCurrentUser, NSError *error) {
-        completionBlock(boardsContainingCurrentUser, error);
-    }];
-}
+//- (void)queryFirstCretedBoardByCurrentUserWithCompletion:(void(^)(NSArray *boardsContainingCurrentUser, NSError *error))completionBlock {
+//    
+//    NSLog(@" I'M IN THE QUERY FIRST BOARD FOR CURRENT USER METHOD, BOARD CONTROLLER");
+//
+//    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+//    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
+//    [boardQuery orderByDescending:@"updatedAt"];
+//    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *boardsContainingCurrentUser, NSError *error) {
+//        completionBlock(boardsContainingCurrentUser, error);
+//    }];
+//}
 
 
 - (void)resetButtonTappedInCreateBoardVC:(NSNotification *)notification {
