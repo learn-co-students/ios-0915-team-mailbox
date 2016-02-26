@@ -60,18 +60,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
     
-//    [self queryFirstCretedBoardByCurrentUserWithCompletion:^(NSArray *boardsContainingCurrentUser, NSError *error) {
-//        
-//        if (!error) {
-//            NSLog(@" I'M IN THE IF STATEMENT FOR QUERY FIRST BOARD, BOARD CONTROLLER. BOARD ARRAY CAME BACK: %@", boardsContainingCurrentUser);
-//            
-//            PFObject *firstBoard = boardsContainingCurrentUser[0];
-//            self.boardID = firstBoard.objectId;
-//            self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
-//            [self queryParseForContent:self.boardID];
-//        }
-//    }];
-    
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     
     [self setupLeftMenuButton];
@@ -83,6 +71,26 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [self buildEmptyCollection];
     
     [self queryParseForContent:self.boardID];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardSelectedInSideMenu:) name:@"UserSelectedABoard" object:nil];
+    
+}
+
+
+- (void)boardSelectedInSideMenu:(NSNotification *)notification {
+    
+    NSLog(@" WOO I GOT THE MESSAGE! I'M IN THE boardSelectedInSideMenu METHOD, BOARD CONTROLLER. NOTIFICATION: %@", notification);
+    
+    if ([notification.object isKindOfClass:[PFObject class]]) {
+        PFObject *passedBoard = [notification object];
+        [TMBSharedBoardID sharedBoardID].boardID = passedBoard.objectId;
+        [self queryParseForContent:passedBoard.objectId];
+        NSLog(@" WOO I GOT THE MESSAGE! SWITCHED OUT BOARD! BOARD OBJ ID IS: %@. BOARD NAME IS: %@", notification, passedBoard[@"boardName"]);
+    }
+    
+    else {
+        NSLog(@"Error, object not recognised.");
+    }
     
 }
 
@@ -97,25 +105,11 @@ static NSString * const reuseIdentifier = @"MediaCell";
 }
 
 
-//- (void)queryFirstCretedBoardByCurrentUserWithCompletion:(void(^)(NSArray *boardsContainingCurrentUser, NSError *error))completionBlock {
-//    
-//    NSLog(@" I'M IN THE QUERY FIRST BOARD FOR CURRENT USER METHOD, BOARD CONTROLLER");
-//
-//    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-//    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
-//    [boardQuery orderByDescending:@"updatedAt"];
-//    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *boardsContainingCurrentUser, NSError *error) {
-//        completionBlock(boardsContainingCurrentUser, error);
-//    }];
-//}
-
-
 - (void)resetButtonTappedInCreateBoardVC:(NSNotification *)notification {
     
-    NSLog(@"WOO I GOT THE MESSAGE, RESET!: %@", notification);
+    NSLog(@" WOO I GOT THE MESSAGE, RESET! I'M IN THE resetButtonTappedInCreateBoardVC, BOARD CONTROLLER. NOTIFICATION: %@", notification);
     [self queryParseForContent:self.boardID];
-    NSLog(@" !!!!!!!!! board id in view vill appear board controller is %@", self.boardID);
-    
+    NSLog(@" I'M IN THE resetButtonTappedInCreateBoardVC, BOARD CONTROLLER. BOARD ID IS: %@", self.boardID);
 }
 
 
@@ -125,19 +119,22 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
+    NSLog(@" I'M IN THE numberOfSectionsInCollectionView, BOARD CONTROLLER. NUMBER OF SECTIONS: %lu", kNumberOfSections);
     return kNumberOfSections;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
-    return self.collection.count;
     
+    NSLog(@" I'M IN THE collectionView, BOARD CONTROLLER. COLLECTION COUNT: %lu", self.collection.count);
+    return self.collection.count;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSLog(@" I'M IN THE collectionView cellForItemAtIndexPath, BOARD CONTROLLER.");
+
     TMBBoardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     if ([self.collection[indexPath.row] isKindOfClass:[UIImage class]]) {
@@ -148,7 +145,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
         
         cell.boardImageView.image = [UIImage imageNamed:@"placeholderForBoardCell"];
         cell.boardImageView.file = (PFFile *)self.collection[indexPath.row];
-        [cell.boardImageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        [cell.boardImageView loadInBackground:^(UIImage *image, NSError *error) {
             
             if (!error) {
                 cell.boardImageView.alpha = 0.0;
@@ -157,7 +154,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
                 cell.boardImageView.alpha = 1.0;
                 [UIView commitAnimations];
             }
-            
             
         }];
         
@@ -169,8 +165,10 @@ static NSString * const reuseIdentifier = @"MediaCell";
 }
 
 
--(void)buildEmptyCollection
-{
+- (void)buildEmptyCollection {
+    
+    NSLog(@" I'M IN THE buildEmptyCollection, BOARD CONTROLLER.");
+
     if (self.collection.count == 0) {
         for (int i = 0; i < kItemsPerPage; i++) {
             [self.collection addObject:[UIImage imageNamed:@"placeholderForBoardCell"]];
@@ -180,15 +178,18 @@ static NSString * const reuseIdentifier = @"MediaCell";
 }
 
 
--(UIColor *)colorForDummyCellAtRow:(NSUInteger)row
-{
+- (UIColor *)colorForDummyCellAtRow:(NSUInteger)row {
+    
+    NSLog(@" I'M IN THE colorForDummyCellAtRow, BOARD CONTROLLER.");
+
     NSUInteger colorIndex = row % self.colors.count;
     return self.colors[colorIndex];
 }
 
 
--(void)buildThemeColorsArray
-{
+- (void)buildThemeColorsArray {
+    
+    NSLog(@" I'M IN THE buildThemeColorsArray, BOARD CONTROLLER.");
     
     UIColor *c1 = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:1.0];
     UIColor *c2 = [UIColor colorWithRed:189/255.0 green:189/255.0 blue:189/255.0 alpha:1.0];
@@ -206,12 +207,18 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 
 - (void)setupLeftMenuButton {
+    
+    NSLog(@" I'M IN THE setupLeftMenuButton, BOARD CONTROLLER.");
+
     MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton];
 }
 
 
 - (void)leftDrawerButtonPress:(id)leftDrawerButtonPress {
+    
+    NSLog(@" I'M IN THE leftDrawerButtonPress, BOARD CONTROLLER.");
+
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
@@ -222,12 +229,12 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 - (IBAction)addButtonTapped:(id)sender {
     
-    UIAlertController * view=   [UIAlertController
-                                 alertControllerWithTitle:@"Add to your Mosaic"
-                                 message:@"Select your choice"
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *view = [UIAlertController
+                               alertControllerWithTitle:@"Add to your Mosaic"
+                               message:@"Select your choice"
+                               preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction* picture = [UIAlertAction
+    UIAlertAction *picture = [UIAlertAction
                               actionWithTitle:@"Picture"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
@@ -237,33 +244,26 @@ static NSString * const reuseIdentifier = @"MediaCell";
                                   pictureVC.delegate = self;
                                   [self presentViewController:pictureVC animated:YES completion:nil];
                                   [view dismissViewControllerAnimated:YES completion:nil];
-                                  
                               }];
     
-    
-    UIAlertAction* doodle = [UIAlertAction
+    UIAlertAction *doodle = [UIAlertAction
                              actionWithTitle:@"Doodle"
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 
                                  TMBDoodleViewController *doodleVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBDoodleViewController"];
                                  doodleVC.delegate = self;
                                  [self presentViewController:doodleVC animated:YES completion:nil];
-                                 
                                  [view dismissViewControllerAnimated:YES completion:nil];
-                                 
                              }];
     
-    UIAlertAction* cancel = [UIAlertAction
+    UIAlertAction *cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleCancel
                              handler:^(UIAlertAction * action)
                              {
                                  [view dismissViewControllerAnimated:YES completion:nil];
-                                 
                              }];
-    
     
     [view addAction:picture];
     [view addAction:doodle];
@@ -273,30 +273,35 @@ static NSString * const reuseIdentifier = @"MediaCell";
 }
 
 
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+
+    NSLog(@" I'M IN THE shouldPerformSegueWithIdentifier, BOARD CONTROLLER.");
 
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
     NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
     self.imageSelectedForOtherView = self.collection[selectedIndexPath.row];
+    
     if (selectedIndexPath.row < self.pfObjects.count){
         return YES;
-    }else{
-
+        
+    } else {
         return NO;
     }
 }
 
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-        
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    NSLog(@" I'M IN THE prepareForSegue, BOARD CONTROLLER.");
+
     TMBCommentViewController *destVC = segue.destinationViewController;
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
     NSIndexPath *selectedIndexPath = indexPathsOfSelectedCell.firstObject;
     PFObject *selectedOBJ = self.pfObjects[selectedIndexPath.row];
     
     destVC.parseObjSelected = selectedOBJ;
-    
     destVC.selectedFile = self.collection[selectedIndexPath.row];
+    
 }
 
 
@@ -304,16 +309,18 @@ static NSString * const reuseIdentifier = @"MediaCell";
 #pragma mark - queries
 
 
--(void)imageCardViewController:(TMBImageCardViewController *)viewController passBoardIDforQuery:(NSString *)boardID
-{
+- (void)imageCardViewController:(TMBImageCardViewController *)viewController passBoardIDforQuery:(NSString *)boardID {
+    
+    NSLog(@" I'M IN THE imageCardViewController, BOARD CONTROLLER.");
+
     NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
     [self queryParseForContent:boardID];
 }
 
 
--(void)doodleViewController:(TMBDoodleViewController *)viewController passBoardIDforQuery:(NSString *)boardID
-{
+- (void)doodleViewController:(TMBDoodleViewController *)viewController passBoardIDforQuery:(NSString *)boardID {
+    
     NSIndexPath *ip = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
     [self queryParseForContent:boardID];
@@ -331,7 +338,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [contentQuery whereKey:@"board" matchesQuery:boardQuery];
     [contentQuery orderByDescending:@"updatedAt"];
     [contentQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        
         
         if (self.pfObjects.count > 0) {
             [self.pfObjects removeAllObjects];

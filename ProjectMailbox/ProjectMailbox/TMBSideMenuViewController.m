@@ -105,7 +105,7 @@
             
 //            NSString *boardName = object[@"boardName"];
 //            NSDate *updatedAt = [object updatedAt];
-//            NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
+//            NSLog(@"=========== BOARDS CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
     
@@ -117,25 +117,9 @@
              NSLog(@" I'M IN THE VIEW DID LOAD, SIDE MENU VIEW CONTROLLER. ALL BOARDS CONTAINING CURRENT USER ARE: %@", self.userBoards);
             [self.boardsTableView reloadData];
             [self adjustHeightOfTableview];
-            
-//            NSString *boardName = object[@"boardName"];
-//            NSDate *updatedAt = [object updatedAt];
-//            NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
 
-    
-}
-
-
-- (IBAction)logoutButtonTapped:(id)sender {
-    
-    [TMBSharedBoardID sharedBoardID].boardID = @"";
-    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
-    [PFUser logOut];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogOutNotification"
-                                                        object:nil];
-    NSLog(@" User has Logged Out");
     
 }
 
@@ -159,6 +143,13 @@
     
     self.boardID = board.objectId;
     NSLog(@" I'M IN THE TABLE VIEW 2, SIDE MENU VIEW CONTROLLER. BOARD OBJECT ID IS %@", self.boardID);
+    
+    NSIndexPath *selectedIndexPath = tableView.indexPathForSelectedRow;
+    PFObject *selectedBoard = self.userBoards[selectedIndexPath.row];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center postNotificationName:@"UserSelectedABoard" object:selectedBoard];
+
     
     return cell;
 
@@ -203,6 +194,18 @@
     else {
         NSLog(@"Error, object not recognised.");
     }
+    
+}
+
+
+- (IBAction)logoutButtonTapped:(id)sender {
+    
+    [TMBSharedBoardID sharedBoardID].boardID = @"";
+    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
+    [PFUser logOut];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogOutNotification"
+                                                        object:nil];
+    NSLog(@" User has Logged Out");
     
 }
 

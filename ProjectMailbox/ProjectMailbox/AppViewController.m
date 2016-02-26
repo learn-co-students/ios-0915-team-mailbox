@@ -19,6 +19,7 @@
 @implementation AppViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     NSLog(@" I'M IN THE VIEW DID LOAD, APP VIEW CONTROLLER");
@@ -28,22 +29,23 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithBoards:) name:@"UserDidLogInWithBoardsNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithoutBoards:) name:@"UserDidLogInWithoutBoardsNotification" object:nil];
     
-    
-    
     if ([PFUser currentUser]) {
         [self showMainPage];
+        
     } else if (![PFUser currentUser]) {
         [self showFirstPage];
     }
     
 }
 
--(BOOL)prefersStatusBarHidden{
+
+- (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
--(void)showMainPage
-{
+
+- (void)showMainPage {
+    
     UINavigationController *homeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainPageNav"];
     
     // create / Set Up MMDrawer
@@ -61,57 +63,56 @@
     
 }
 
--(void)showFirstPage
-{
-    UIViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstPage"];
+
+- (void)showFirstPage {
     
+    UIViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstPage"];
     [self setEmbeddedViewController:loginVC];
 }
 
--(void)showCreateBoardPage
-{
+
+- (void)showCreateBoardPage {
     
     UIViewController *createBoardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"createBoard"];
-    
     [self setEmbeddedViewController:createBoardVC];
-    
 }
 
--(void)handleUserDidLogOut:(NSNotification *)notification
-{
-    [PFUser logOut];
+
+- (void)handleUserDidLogOut:(NSNotification *)notification {
     
+    [PFUser logOut];
     // switch back to the login VC
     [TMBSharedBoardID sharedBoardID].boardID = @"";
     [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
     [self showFirstPage];
 }
 
--(void)handleUserDidLogInWithBoards:(NSNotification *)notification
-{
-    [PFUser currentUser];
+
+- (void)handleUserDidLogInWithBoards:(NSNotification *)notification {
     
+    [PFUser currentUser];
     // switch to the home VC
     [self showMainPage];
 }
 
--(void)handleUserDidLogInWithoutBoards:(NSNotification *)notification
-{
-    [PFUser currentUser];
+
+- (void)handleUserDidLogInWithoutBoards:(NSNotification *)notification {
     
+    [PFUser currentUser];
     // switch to the home VC
     [self showCreateBoardPage];
 }
 
+
 - (void)handleUserDidSignUp:(NSNotification *)notification {
     
     [PFUser currentUser];
-    
     [self showMainPage];
 }
 
--(void)setEmbeddedViewController:(UIViewController *)controller
-{
+
+- (void)setEmbeddedViewController:(UIViewController *)controller {
+    
     if([self.childViewControllers containsObject:controller]) {
         return;
     }
@@ -135,7 +136,13 @@
     [controller.view mas_updateConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0);
     }];
+    
     [controller didMoveToParentViewController:self];
+    
 }
 
+
+
 @end
+
+
