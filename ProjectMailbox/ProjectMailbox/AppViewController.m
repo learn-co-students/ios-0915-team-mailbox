@@ -46,6 +46,8 @@
 
 - (void)showMainPage {
     
+    NSLog(@" I'M IN THE showMainPage, APP VIEW CONTROLLER");
+    
     UINavigationController *homeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainPageNav"];
     
     // create / Set Up MMDrawer
@@ -66,6 +68,8 @@
 
 - (void)showFirstPage {
     
+    NSLog(@" I'M IN THE showFirstPage, APP VIEW CONTROLLER");
+    
     UIViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstPage"];
     [self setEmbeddedViewController:loginVC];
 }
@@ -73,12 +77,16 @@
 
 - (void)showCreateBoardPage {
     
+    NSLog(@" I'M IN THE showCreateBoardPage, APP VIEW CONTROLLER");
+    
     UIViewController *createBoardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"createBoard"];
     [self setEmbeddedViewController:createBoardVC];
 }
 
 
 - (void)handleUserDidLogOut:(NSNotification *)notification {
+    
+    NSLog(@" I'M IN THE handleUserDidLogOut, APP VIEW CONTROLLER");
     
     [PFUser logOut];
     // switch back to the login VC
@@ -90,6 +98,8 @@
 
 - (void)handleUserDidLogInWithBoards:(NSNotification *)notification {
     
+    NSLog(@" I'M IN THE handleUserDidLogInWithBoards, APP VIEW CONTROLLER");
+    
     [PFUser currentUser];
     // switch to the home VC
     [self showMainPage];
@@ -97,6 +107,8 @@
 
 
 - (void)handleUserDidLogInWithoutBoards:(NSNotification *)notification {
+    
+    NSLog(@" I'M IN THE handleUserDidLogInWithoutBoards, APP VIEW CONTROLLER");
     
     [PFUser currentUser];
     // switch to the home VC
@@ -106,12 +118,16 @@
 
 - (void)handleUserDidSignUp:(NSNotification *)notification {
     
+    NSLog(@" I'M IN THE handleUserDidSignUp, APP VIEW CONTROLLER");
+    
     [PFUser currentUser];
     [self showMainPage];
 }
 
 
 - (void)setEmbeddedViewController:(UIViewController *)controller {
+    
+    NSLog(@" I'M IN THE setEmbeddedViewController, APP VIEW CONTROLLER");
     
     if([self.childViewControllers containsObject:controller]) {
         return;

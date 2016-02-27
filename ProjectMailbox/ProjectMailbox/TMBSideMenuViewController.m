@@ -10,6 +10,8 @@
 #import "TMBBoard.h"
 #import "TMBSharedBoardID.h"
 #import "TMBBoardTableViewCell.h"
+#import "TMBBoardController.h"
+#import "AppViewController.h"
 
 
 @interface TMBSideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -126,8 +128,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    NSLog(@" I'M IN THE TABLE VIEW 1, SIDE MENU VIEW CONTROLLER. USER BOARDS COUNT IS %lu", self.userBoards.count);
-    NSLog(@" I'M IN THE TABLE VIEW 1, SIDE MENU VIEW CONTROLLER. USER BOARDS ARE: %@", self.userBoards);
+    NSLog(@" I'M IN THE TABLE VIEW NUMBER OF ROWS, SIDE MENU VIEW CONTROLLER. USER BOARDS COUNT IS %lu", self.userBoards.count);
+    NSLog(@" I'M IN THE TABLE VIEW NUMBER OF ROWS, SIDE MENU VIEW CONTROLLER. USER BOARDS ARE: %@", self.userBoards);
     return self.userBoards.count;
 }
 
@@ -141,24 +143,52 @@
     cell.boardNameLabel.text = [board[@"boardName"] uppercaseString];
     cell.backgroundColor = [UIColor clearColor];
     
-    self.boardID = board.objectId;
-    NSLog(@" I'M IN THE TABLE VIEW 2, SIDE MENU VIEW CONTROLLER. BOARD OBJECT ID IS %@", self.boardID);
+    //self.boardID = board.objectId;
+//    [TMBSharedBoardID sharedBoardID].boardID = board.objectId;
+//    [[TMBSharedBoardID sharedBoardID].boards objectForKey:board];
+//    NSLog(@" I'M IN THE TABLE VIEW CELL FOR ROW, SIDE MENU VIEW CONTROLLER. SHARED BOARD OBJECT ID IS %@", [TMBSharedBoardID sharedBoardID].boardID);
+//    
+//    NSIndexPath *selectedIndexPath = tableView.indexPathForSelectedRow;
+//    PFObject *selectedBoard = self.userBoards[selectedIndexPath.row];
+//    
+//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//    [center postNotificationName:@"UserSelectedABoard" object:selectedBoard];
+//    
+//    NSLog(@" I'M IN THE TABLE VIEW CELL FOR ROW, SIDE MENU VIEW CONTROLLER. CELL WAS TAPPED. SELECTED BOARD IS %@", selectedBoard);
     
-    NSIndexPath *selectedIndexPath = tableView.indexPathForSelectedRow;
+    return cell;
+    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    AppViewController *destinationVC = segue.destinationViewController;
+    
+    // when you tap a row...
+    NSIndexPath *selectedIndexPath = self.boardsTableView.indexPathForSelectedRow;
     PFObject *selectedBoard = self.userBoards[selectedIndexPath.row];
+    NSString *selecedBoardObjectId = selectedBoard.objectId;
+    
+    NSLog(@" I'M IN THE PREPARE FOR SEGUE, SIDE MENU VIEW CONTROLLER. CELL WAS TAPPED. SELECTED BOARD IS: %@", selecedBoardObjectId);
+
+    [TMBSharedBoardID sharedBoardID].boardID = selectedBoard.objectId;
+    
+    NSString *boardID = [selectedBoard valueForKey:@"objectId"];
+    [[TMBSharedBoardID sharedBoardID].boards setObject:selectedBoard forKey:boardID];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center postNotificationName:@"UserSelectedABoard" object:selectedBoard];
 
+    //connects to destination VC. acts only as a link. the property is empty
+//    destinationVC.boardID = selecedBoardObjectId;
     
-    return cell;
-
 }
 
 
 - (void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification {
     
-    NSLog(@"WOO I GOT THE MESSAGE, DELETED!: %@", notification);
+    NSLog(@" WOO I GOT THE MESSAGE, DELETED!: %@", notification);
     
     if ([notification.object isKindOfClass:[PFObject class]]) {
         
@@ -177,7 +207,7 @@
 
 - (void)saveButtonTappedInCreateBoardVC:(NSNotification *)notification {
     
-    NSLog(@"WOO I GOT THE MESSAGE, SAVED!: %@", notification);
+    NSLog(@" WOO I GOT THE MESSAGE, SAVED!: %@", notification);
     
     if ([notification.object isKindOfClass:[PFObject class]]) {
         

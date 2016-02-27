@@ -37,6 +37,8 @@
 
 - (void)presentMainPage {
     
+    NSLog(@" I'M IN THE presentMainPage, FIRST PAGE VIEW CONTROLLER");
+    
     UIViewController *mainPage = [self.storyboard instantiateViewControllerWithIdentifier:@"MainPage"];
     
     mainPage.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -47,6 +49,8 @@
 
 
 - (void)activityLoadView {
+    
+    NSLog(@" I'M IN THE activityLoadView, FIRST PAGE VIEW CONTROLLER");
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:0.7];
@@ -60,6 +64,8 @@
 
 
 - (IBAction)signInButtonTapped:(id)sender {
+    
+    NSLog(@" I'M IN THE signInButtonTapped, FIRST PAGE VIEW CONTROLLER");
     
     [self.view endEditing:YES];
     

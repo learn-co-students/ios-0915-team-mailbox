@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fp-BQ-Guc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5162" y="1191"/>
+            <point key="canvasLocation" x="5974" y="1191"/>
         </scene>
         <!--Doodle View Controller-->
         <scene sceneID="8nx-kz-7JT">
@@ -960,7 +960,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3282" y="1162"/>
+            <point key="canvasLocation" x="3282" y="1252"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="XfX-Xh-eg6">
@@ -1345,22 +1345,22 @@
                                                 </constraints>
                                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="boardMemberCell" id="kFf-Ws-LzM" customClass="TMBBoardTableViewCell">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="boardMemberCell" id="kFf-Ws-LzM" customClass="TMBBoardTableViewCell">
                                                         <rect key="frame" x="0.0" y="28" width="220" height="40"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kFf-Ws-LzM" id="2eF-IX-RG6">
                                                             <rect key="frame" x="0.0" y="0.0" width="220" height="39"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nav-icon-board" translatesAutoresizingMaskIntoConstraints="NO" id="fId-ed-KV0">
-                                                                    <rect key="frame" x="18" y="27" width="19" height="16"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-board" translatesAutoresizingMaskIntoConstraints="NO" id="fId-ed-KV0">
+                                                                    <rect key="frame" x="18" y="12" width="19" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="19" id="hf1-Pt-yj2"/>
                                                                         <constraint firstAttribute="height" constant="16" id="hmy-Op-2rN"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Board name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6r-Ki-47S">
-                                                                    <rect key="frame" x="45" y="24" width="168" height="21"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Board name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6r-Ki-47S">
+                                                                    <rect key="frame" x="45" y="9" width="168" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="168" id="GxS-vi-0o8"/>
                                                                         <constraint firstAttribute="height" constant="21" id="naQ-Gt-FVI"/>
@@ -1377,8 +1377,12 @@
                                                                 <constraint firstItem="a6r-Ki-47S" firstAttribute="leading" secondItem="fId-ed-KV0" secondAttribute="trailing" constant="8" id="wiC-5S-7Fl"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <accessibility key="accessibilityConfiguration">
+                                                            <accessibilityTraits key="traits" button="YES"/>
+                                                        </accessibility>
                                                         <connections>
                                                             <outlet property="boardNameLabel" destination="a6r-Ki-47S" id="KjK-u6-8Dh"/>
+                                                            <segue destination="t6V-2z-Cyb" kind="show" id="kid-ZK-pcb"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -1440,7 +1444,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="PtO-Kt-LrW" kind="presentation" id="YND-IG-zcz"/>
+                                                    <segue destination="PR0-tu-Y0J" kind="presentation" id="YND-IG-zcz"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qED-eK-ZKo">
@@ -1454,7 +1458,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="PtO-Kt-LrW" kind="presentation" id="c2N-kr-xZj"/>
+                                                    <segue destination="PR0-tu-Y0J" kind="presentation" id="c2N-kr-xZj"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-manage-boards" translatesAutoresizingMaskIntoConstraints="NO" id="BkQ-83-LoA">
@@ -1620,7 +1624,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sZH-vk-bjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2612" y="416"/>
+            <point key="canvasLocation" x="2612" y="390"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="egu-uH-dEh">
@@ -2410,7 +2414,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2612" y="1162"/>
+            <point key="canvasLocation" x="2612" y="1252"/>
         </scene>
         <!--Manage Boards View Controller-->
         <scene sceneID="axA-9g-KRS">
@@ -2424,7 +2428,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mBV-zQ-dFZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mBV-zQ-dFZ">
                                 <rect key="frame" x="0.0" y="20" width="600" height="600"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vQ6-gl-OzJ" userLabel="SCROLL VIEW">
@@ -2471,7 +2475,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="boardNameLabel" destination="Igb-fg-NG1" id="1TQ-ox-GYp"/>
-                                                    <segue destination="FjS-Ua-wbS" kind="show" identifier="selectedBoard" id="Rn0-S8-Bbc"/>
+                                                    <segue destination="FjS-Ua-wbS" kind="push" identifier="selectedBoard" id="Rn0-S8-Bbc"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -2605,7 +2609,7 @@
                                     <rect key="frame" x="0.0" y="20" width="400" height="580"/>
                                 </variation>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking Internet Connection..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIy-j2-PtT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Checking Internet Connection..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIy-j2-PtT">
                                 <rect key="frame" x="224" y="280" width="160" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="ARg-7X-ayw"/>
@@ -2647,6 +2651,10 @@
                             <constraint firstItem="wIy-j2-PtT" firstAttribute="centerY" secondItem="vQ6-gl-OzJ" secondAttribute="centerY" id="zQL-Xa-xXD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="arX-Zv-BdM"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="adminTableHeightConstraint" destination="swT-pw-31x" id="ipi-Ta-XrY"/>
                         <outlet property="adminTableView" destination="oac-vh-Yx4" id="0c5-2o-2DU"/>
@@ -2660,7 +2668,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7NV-vc-l5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1986" y="1162"/>
+            <point key="canvasLocation" x="1986" y="1482"/>
         </scene>
         <!--Create New Board-->
         <scene sceneID="VN3-ii-gEb">
@@ -3031,8 +3039,8 @@
                                                     </mask>
                                                 </variation>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Board Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ned-r1-GPc">
-                                                <rect key="frame" x="187" y="69" width="227" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Board Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ned-r1-GPc">
+                                                <rect key="frame" x="187" y="63" width="227" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="227" id="m22-Q2-ewB"/>
                                                     <constraint firstAttribute="height" constant="21" id="yiO-pf-A2b"/>
@@ -3041,8 +3049,8 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text-field-line" translatesAutoresizingMaskIntoConstraints="NO" id="Ism-47-7NN" userLabel="Text Field Line">
-                                                <rect key="frame" x="201" y="142" width="198" height="1"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="text-field-line" translatesAutoresizingMaskIntoConstraints="NO" id="Ism-47-7NN" userLabel="Text Field Line">
+                                                <rect key="frame" x="201" y="136" width="198" height="1"/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="lGa-Id-woD"/>
@@ -3132,8 +3140,7 @@
                             <outletCollection property="gestureRecognizers" destination="UvL-8L-Wsa" appends="YES" id="Hxb-c4-ahD"/>
                         </connections>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" id="cb9-HV-wnz"/>
                     <connections>
                         <outlet property="boardFriendsTableView" destination="Ntq-Us-qBb" id="dpJ-7V-1R8"/>
                         <outlet property="boardNameField" destination="xoO-vN-T8m" id="8rv-MJ-BEC"/>
@@ -3164,7 +3171,26 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1986" y="1886"/>
+            <point key="canvasLocation" x="1986" y="2214"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gn4-mk-tq4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="PR0-tu-Y0J" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hg3-HP-yYY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PtO-Kt-LrW" kind="relationship" relationship="rootViewController" id="l7W-MV-jhg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zNZ-1h-o4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1986" y="769"/>
         </scene>
     </scenes>
     <resources>
@@ -3195,8 +3221,8 @@
         <image name="text-field-line" width="428" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c2N-kr-xZj"/>
         <segue reference="L6t-BH-Y3x"/>
         <segue reference="ndr-va-05a"/>
+        <segue reference="c2N-kr-xZj"/>
     </inferredMetricsTieBreakers>
 </document>

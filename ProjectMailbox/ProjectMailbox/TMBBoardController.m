@@ -30,7 +30,6 @@ static NSInteger const kItemsPerPage = 20;
 @property (nonatomic, strong) NSString *queriedBoardID;
 @property (nonatomic, strong) NSMutableArray *collection;
 @property (nonatomic) NSUInteger queryCount;
-@property (nonatomic, strong) NSString *boardID;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) UIImage *imageSelectedForOtherView;
 @property (nonatomic, strong) NSMutableArray *pfObjects;
@@ -83,7 +82,10 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     if ([notification.object isKindOfClass:[PFObject class]]) {
         PFObject *passedBoard = [notification object];
+        NSString *boardID = [passedBoard valueForKey:@"objectId"];
+        
         [TMBSharedBoardID sharedBoardID].boardID = passedBoard.objectId;
+        [[TMBSharedBoardID sharedBoardID].boards setObject:passedBoard forKey:boardID];
         [self queryParseForContent:passedBoard.objectId];
         NSLog(@" WOO I GOT THE MESSAGE! SWITCHED OUT BOARD! BOARD OBJ ID IS: %@. BOARD NAME IS: %@", notification, passedBoard[@"boardName"]);
     }

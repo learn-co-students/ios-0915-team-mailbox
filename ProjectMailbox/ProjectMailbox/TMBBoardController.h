@@ -12,5 +12,6 @@
 
 @interface TMBBoardController : UICollectionViewController
 
+@property (nonatomic, strong) NSString *boardID;
 
 @end
