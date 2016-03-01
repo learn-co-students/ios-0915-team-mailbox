@@ -28,6 +28,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidSignUpNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithBoards:) name:@"UserDidLogInWithBoardsNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithoutBoards:) name:@"UserDidLogInWithoutBoardsNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidEditProfileNotification" object:nil];
     
     if ([PFUser currentUser]) {
         [self showMainPage];

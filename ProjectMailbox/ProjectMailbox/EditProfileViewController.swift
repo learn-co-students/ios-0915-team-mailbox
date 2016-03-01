@@ -79,6 +79,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 currentUser.setObject(profileImageObject!, forKey: "profileImage")
                 currentUser.saveInBackground()
             }
+            
+            let nc = NSNotificationCenter.defaultCenter()
+            nc.postNotificationName("UserDidEditProfileNotification", object: nil)
+            
         }
         
         let userDetailsChangedAlert = UIAlertController(title: "You've successfully changed your profile", message: "", preferredStyle: .Alert)

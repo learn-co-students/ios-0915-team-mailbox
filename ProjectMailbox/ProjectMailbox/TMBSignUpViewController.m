@@ -30,8 +30,8 @@
 
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     NSLog(@" I'M IN THE VIEW DID LOAD, SIGN UP PAGE VIEW CONTROLLER");
     
@@ -45,7 +45,7 @@
 }
 
 
--(BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
@@ -89,6 +89,7 @@
 }
 
 
+// check if passwords match for entered user name. if no - alert
 - (IBAction)signUpButtonTapped:(id)sender {
     
     [self.view endEditing:YES];
@@ -99,7 +100,8 @@
     NSString *email = self.emailField.text;
     NSString *password = self.passwordField.text;
     
-    if (self.usernameTextField.text.length == 0 || self.firstNameField.text.length == 0 || self.lastNameField.text.length == 0 || self.emailField.text.length == 0 || self.passwordField.text.length == 0 || self.repeatPasswordField.text.length == 0) {
+    // this error check doesn't work. it signs up
+    if ([self.usernameTextField.text isEqual: @""] || [self.firstNameField.text isEqual: @""] || [self.lastNameField.text isEqual: @""] || [self.emailField.text isEqual: @""] || [self.passwordField.text isEqual: @""] || [self.repeatPasswordField.text isEqual: @""]) {
         
         [self showErrorAlert];
     }
@@ -109,15 +111,34 @@
         [self showPasswordErrorAlert];
     }
     
-    PFUser *newUser = [[PFUser alloc]init];
     
+    PFUser *newUser = [[PFUser alloc]init];
     newUser.username = userName;
     newUser.password = password;
     newUser.email = email;
+
     [newUser setObject:firstName forKey:@"First_Name"];
     [newUser setObject:lastName forKey:@"Last_Name"];
     
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+    if (self.profileImage.image == nil) {
+        
+        NSData *profilePictureData = UIImageJPEGRepresentation([UIImage imageNamed:@"profilePlaceholder"], 0.6f);
+        PFFile *profileFileObject = [PFFile fileWithData:profilePictureData];
+        [newUser setObject:profileFileObject forKey:@"profileImage"];
+    };
+    
+    if (self.profileImage.image != nil) {
+        
+        NSData *profilePictureData = UIImageJPEGRepresentation(self.profileImage.image, 0.6f);
+        PFFile *profileFileObject = [PFFile fileWithData:profilePictureData];
+        [newUser setObject:profileFileObject forKey:@"profileImage"];
+    }
+        
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (error && error.code == 202) {
+            [self showUsernameAlreadyExistsAlert];
+        };
         
         if (succeeded) {
             NSLog(@" I'M IN SIGN UP BTN TAPPED, SIGN UP PAGE VIEW CONTROLLER. NEW USER IS CREATED. USER OBJECT ID IS %@", newUser.objectId);
@@ -139,9 +160,24 @@
 
             [self showSuccessAlert];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidSignUpNotification" object:nil];
-        } 
+        
+        }
+        
     }];
     
+    
+}
+
+
+- (void)queryUsernames:(NSString *)username completion:(void(^)(NSArray *users, NSError *error))completionBlock {
+
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" equalTo:username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        completionBlock(objects, error);
+        
+    }];
     
 }
 
@@ -166,11 +202,26 @@
 }
 
 
+- (void)showUsernameAlreadyExistsAlert {
+    
+    UIAlertController *action = [UIAlertController alertControllerWithTitle:@"Username already exists." message:@"Please choose a different one." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [action addAction:ok];
+    
+    [self presentViewController:action animated:YES completion:nil];
+}
+
+
 - (void)showErrorAlert {
     
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert" message:@"All fields are required" preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
@@ -178,6 +229,7 @@
 }
 
 
+// it still creates an account
 - (void)showPasswordErrorAlert {
     
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Password fields do not match" preferredStyle:UIAlertControllerStyleAlert];
@@ -205,6 +257,7 @@
     
     [self presentViewController:successAction animated:YES completion:nil];
 }
+
 
 
 @end
