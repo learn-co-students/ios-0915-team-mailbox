@@ -13,17 +13,16 @@
 #import "TMBSharedBoardID.h"
 #import "ParseUI/ParseUI.h"
 
+
 @interface TMBCommentViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIImage *thumbnail;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, strong) PFFile *photoFile;
 @property (nonatomic, strong) PFFile *thumbFile;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier commentPostBackgroundTaskId;
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottomConstraint;
@@ -38,10 +37,11 @@
 @property (nonatomic, strong) NSString *boardID;
 @property (strong, nonatomic) PFObject *testing;
 
-
 @end
 
+
 @implementation TMBCommentViewController
+
 
 - (void)viewDidLoad {
     
@@ -55,9 +55,6 @@
     self.commentedPhoto.file = (PFFile *)self.selectedFile;
     [self.commentedPhoto loadInBackground];
     
-    
-    NSLog(@"What is this from viewDiDLoad: %@", self.parseObjSelected);
-    
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
     
@@ -69,24 +66,20 @@
 
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
+
+-(void)viewDidAppear:(BOOL)animated {
+    
     [super viewDidAppear:animated];
     [self.commentsTableView reloadData];
 }
 
+
 - (BOOL)prefersStatusBarHidden {
-    
     return YES;
 }
 
+
 - (void)loadDataFromParse {
-    
-    /*****************************
-     *        PARSE QUERY        *
-     *****************************/
-    
-    // goal: get comments related to that image & display them in a table view
     
     PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
     [query includeKey:kTMBActivityPhotoKey];
@@ -118,7 +111,6 @@
         PFObject *fromUserProfilePhoto = aFromUser[@"fromUser"];
         self.userPhotoFile = fromUserProfilePhoto[@"profileImage"];
         
-        
         // setting the image view to photo obj above
         [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
             if (!error) {
@@ -132,6 +124,7 @@
 
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
@@ -141,6 +134,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
     
 }
+
 
 - (void)keyboardWillShowOrHide:(NSNotification *)notification {
     
@@ -157,7 +151,9 @@
         self.commentViewBottomConstraint.constant = finalFrame.size.height + 0;
         [self.view layoutIfNeeded];
     }];
+    
 }
+
 
 - (IBAction)closeButtonTapped:(id)sender {
     
@@ -165,16 +161,18 @@
 }
 
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSUInteger numberOfComments = self.activities.count;
     NSLog(@"numberOfRows getting called: %lu", self.activities.count);
     
     return numberOfComments;
+    
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     TMBTableViewCommentCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
     
@@ -209,11 +207,13 @@
     }];
 
     return cell;
+    
 }
+
 
 - (IBAction)sendButtonTapped:(id)sender {
     
-    NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
+//    NSData *imageData = UIImagePNGRepresentation(self.commentedPhoto.image);
 
     if (self.commentField.text != 0) {
         PFObject* newCommentObject = [PFObject objectWithClassName:@"Activity"];
@@ -241,6 +241,7 @@
     }
 }
 
+
 - (IBAction)topViewTapped:(id)sender {
     
     [self.commentField resignFirstResponder];
@@ -250,3 +251,4 @@
 
 
 @end
+

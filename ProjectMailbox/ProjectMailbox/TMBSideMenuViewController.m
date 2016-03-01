@@ -163,7 +163,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    AppViewController *destinationVC = segue.destinationViewController;
+//    AppViewController *destinationVC = segue.destinationViewController;
     
     // when you tap a row...
     NSIndexPath *selectedIndexPath = self.boardsTableView.indexPathForSelectedRow;

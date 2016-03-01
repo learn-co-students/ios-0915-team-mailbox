@@ -36,10 +36,11 @@
 		5D03AF231C187DCC00E2CDEB /* TMBConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D03AF211C187B1600E2CDEB /* TMBConstants.m */; };
 		5D03AF241C187E3900E2CDEB /* TMBMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */; };
 		5D03AF251C187E5C00E2CDEB /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; };
-		5D03AF261C187F8400E2CDEB /* PAPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A445152D1C039D2300BDD502 /* PAPCache.m */; };
 		5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */; };
 		5D8E303C1C1F1E3A00610042 /* ImageCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E303B1C1F1E3A00610042 /* ImageCard.storyboard */; };
 		5D8E30431C21EE3D00610042 /* signupScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E30421C21EE3D00610042 /* signupScreen.storyboard */; };
+		6E60F2DE1C85280800959A84 /* PAPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E60F2DD1C85280800959A84 /* PAPCache.m */; };
+		6E60F2E11C8528D500959A84 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E60F2E01C8528D500959A84 /* PAPUtility.m */; };
 		916A15FAAC6AF8C9D052011B /* Pods_ProjectMailbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4E1DEEA7F262100F1222E1 /* Pods_ProjectMailbox.framework */; };
 		A42EB5D81C19D234009A241B /* TMBFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42EB5D71C19D234009A241B /* TMBFindFriendsViewController.m */; };
 		A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A445150F1BFE521400BDD502 /* TMBTextCardViewController.m */; };
@@ -72,7 +73,6 @@
 		A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC728E1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m */; };
 		A4AC72921C0F9225000F05C8 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72911C0F9225000F05C8 /* Contact.m */; };
 		A4AC72951C1098E2000F05C8 /* TMBSelectedFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */; };
-		A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC729D1C1606D1000F05C8 /* PAPUtility.m */; };
 		A4C03FF11C03BC5C00F0F368 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */; };
 		A4C03FF21C03BC5C00F0F368 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEB1C03BC5C00F0F368 /* Parse.framework */; };
 		A4C03FF51C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C03FEE1C03BC5C00F0F368 /* ParseFacebookUtilsV4.framework */; };
@@ -183,6 +183,10 @@
 		5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBCustomNavigationBar.m; sourceTree = "<group>"; };
 		5D8E303B1C1F1E3A00610042 /* ImageCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageCard.storyboard; sourceTree = "<group>"; };
 		5D8E30421C21EE3D00610042 /* signupScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = signupScreen.storyboard; sourceTree = "<group>"; };
+		6E60F2DC1C85280800959A84 /* PAPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPCache.h; sourceTree = "<group>"; };
+		6E60F2DD1C85280800959A84 /* PAPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPCache.m; sourceTree = "<group>"; };
+		6E60F2DF1C8528D500959A84 /* PAPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPUtility.h; sourceTree = "<group>"; };
+		6E60F2E01C8528D500959A84 /* PAPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPUtility.m; sourceTree = "<group>"; };
 		774B83E0D48C8871F9362E29 /* Pods-ProjectMailbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.release.xcconfig"; sourceTree = "<group>"; };
 		A35519930F35CF33D321AA4E /* Pods-ProjectMailbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectMailbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectMailbox/Pods-ProjectMailbox.debug.xcconfig"; sourceTree = "<group>"; };
 		A42EB5D61C19D234009A241B /* TMBFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBFindFriendsViewController.h; sourceTree = "<group>"; };
@@ -195,8 +199,6 @@
 		A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DoodleStoryboard.storyboard; sourceTree = "<group>"; };
 		A44515191BFE6D7800BDD502 /* TMBDoodleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBDoodleViewController.h; sourceTree = "<group>"; };
 		A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBDoodleViewController.m; sourceTree = "<group>"; };
-		A445152C1C039D2300BDD502 /* PAPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPCache.h; sourceTree = "<group>"; };
-		A445152D1C039D2300BDD502 /* PAPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPCache.m; sourceTree = "<group>"; };
 		A45295461C20A8690060E8BC /* TMBBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBBoardTableViewCell.h; sourceTree = "<group>"; };
 		A45295471C20A8690060E8BC /* TMBBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBBoardTableViewCell.m; sourceTree = "<group>"; };
 		A46CB0FB1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewStoryboard.storyboard; sourceTree = "<group>"; };
@@ -231,8 +233,6 @@
 		A4AC72911C0F9225000F05C8 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		A4AC72931C1098E2000F05C8 /* TMBSelectedFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBSelectedFriendViewController.h; sourceTree = "<group>"; };
 		A4AC72941C1098E2000F05C8 /* TMBSelectedFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBSelectedFriendViewController.m; sourceTree = "<group>"; };
-		A4AC729C1C1606D1000F05C8 /* PAPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPUtility.h; sourceTree = "<group>"; };
-		A4AC729D1C1606D1000F05C8 /* PAPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPUtility.m; sourceTree = "<group>"; };
 		A4C03FE81C03BC3300F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "Pods/../build/Debug-iphoneos/Parse.framework"; sourceTree = "<group>"; };
 		A4C03FEA1C03BC5C00F0F368 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.9.1/Bolts.framework"; sourceTree = "<group>"; };
 		A4C03FEB1C03BC5C00F0F368 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.9.1/Parse.framework"; sourceTree = "<group>"; };
@@ -361,10 +361,10 @@
 				55B682AB1C122A750054699A /* ProjectMailbox-Bridging-Header.h */,
 				5D03AF201C187B1600E2CDEB /* TMBConstants.h */,
 				5D03AF211C187B1600E2CDEB /* TMBConstants.m */,
-				A445152C1C039D2300BDD502 /* PAPCache.h */,
-				A445152D1C039D2300BDD502 /* PAPCache.m */,
-				A4AC729C1C1606D1000F05C8 /* PAPUtility.h */,
-				A4AC729D1C1606D1000F05C8 /* PAPUtility.m */,
+				6E60F2DF1C8528D500959A84 /* PAPUtility.h */,
+				6E60F2E01C8528D500959A84 /* PAPUtility.m */,
+				6E60F2DC1C85280800959A84 /* PAPCache.h */,
+				6E60F2DD1C85280800959A84 /* PAPCache.m */,
 				5508F4B61BFB972300D02E15 /* Info.plist */,
 				5508F4D81BFB976F00D02E15 /* parse-library */,
 				5508F4A31BFB972300D02E15 /* main.m */,
@@ -788,9 +788,10 @@
 				5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */,
 				55A7E6871C0E159C00D18009 /* AppViewController.m in Sources */,
 				5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */,
+				6E60F2DE1C85280800959A84 /* PAPCache.m in Sources */,
 				A445151B1BFE6D7800BDD502 /* TMBDoodleViewController.m in Sources */,
-				A4AC729E1C1606D1000F05C8 /* PAPUtility.m in Sources */,
 				A44515101BFE521400BDD502 /* TMBTextCardViewController.m in Sources */,
+				6E60F2E11C8528D500959A84 /* PAPUtility.m in Sources */,
 				5D03AF1B1C18610600E2CDEB /* TMBSharedBoardID.m in Sources */,
 				5D03AF151C1785DA00E2CDEB /* TMBBoardController.m in Sources */,
 				5D03AF161C1785DA00E2CDEB /* TMBBoardLayout.m in Sources */,
@@ -798,7 +799,6 @@
 				55D3EB131C1745E30044BEFD /* TMBBoard.m in Sources */,
 				A4AC72921C0F9225000F05C8 /* Contact.m in Sources */,
 				5508F4A71BFB972300D02E15 /* AppDelegate.m in Sources */,
-				5D03AF261C187F8400E2CDEB /* PAPCache.m in Sources */,
 				A4AC727E1C0E2730000F05C8 /* TMBTableViewCommentCellTableViewCell.m in Sources */,
 				552687CF1C1A1DA9008D94DE /* TMBFullImageModalViewController.m in Sources */,
 				5508F4B01BFB972300D02E15 /* ProjectMailbox.xcdatamodeld in Sources */,

@@ -20,6 +20,4 @@
 @property (strong, nonatomic) PFFile *selectedFile;
 @property (strong, nonatomic) PFObject *parseObjSelected;
 
-- (id)initWithImage:(UIImage *)aImage;
-
 @end

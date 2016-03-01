@@ -250,8 +250,8 @@
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(saveImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     
-    NSData* data = UIImageJPEGRepresentation(self.bottomImageView.image, 0.5f);
-    PFFile *imageFile = [PFFile fileWithData:data];
+//    NSData* data = UIImageJPEGRepresentation(self.bottomImageView.image, 0.5f);
+//    PFFile *imageFile = [PFFile fileWithData:data];
     
     // Save the image to Parse
     

@@ -51,8 +51,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
     [super viewDidLoad];
     
-    UINavigationBar* navigationBar = self.navigationController.navigationBar;
-    [navigationBar setBarTintColor:[UIColor colorWithRed:28/255.0 green:78/255.0 blue:157/255.0 alpha:1.0]];
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    [navigationBar setBarTintColor:[UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:1.0]];
     [navigationBar setTintColor:[UIColor whiteColor]];
     navigationBar.translucent = NO;
     
@@ -193,13 +193,13 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     NSLog(@" I'M IN THE buildThemeColorsArray, BOARD CONTROLLER.");
     
-    UIColor *c1 = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:1.0];
-    UIColor *c2 = [UIColor colorWithRed:189/255.0 green:189/255.0 blue:189/255.0 alpha:1.0];
-    UIColor *c3 = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1.0];
-    UIColor *c4 = [UIColor colorWithRed:231/255.0 green:231/255.0 blue:231/255.0 alpha:1.0];
-    UIColor *c5 = [UIColor colorWithRed:213/255.0 green:213/255.0 blue:213/255.0 alpha:1.0];
+    UIColor *c1 = [UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:0.03];
+    UIColor *c2 = [UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:0.06];
+    UIColor *c3 = [UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:0.12];
+    UIColor *c4 = [UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:0.18];
+    UIColor *c5 = [UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:0.21];
     
-    self.colors = @[c1, c2, c3, c4, c5, c3, c3, c2, c5, c2];
+    self.colors = @[c1, c2, c3, c4, c5, c4, c3, c5, c1, c3];
     
 }
 
