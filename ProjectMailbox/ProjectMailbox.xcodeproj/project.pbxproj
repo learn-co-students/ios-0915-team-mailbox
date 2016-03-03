@@ -36,7 +36,6 @@
 		5D03AF241C187E3900E2CDEB /* TMBMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */; };
 		5D03AF251C187E5C00E2CDEB /* TMBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46CB11B1BFCDDA300D35BB3 /* TMBImageView.m */; };
 		5D8E303A1C1DE8EF00610042 /* TMBCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */; };
-		5D8E303C1C1F1E3A00610042 /* ImageCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E303B1C1F1E3A00610042 /* ImageCard.storyboard */; };
 		6E60F2DE1C85280800959A84 /* PAPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E60F2DD1C85280800959A84 /* PAPCache.m */; };
 		6E60F2E11C8528D500959A84 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E60F2E01C8528D500959A84 /* PAPUtility.m */; };
 		6ECC9D461C865C1A00259DB4 /* LaunchScreenNew.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ECC9D451C865C1900259DB4 /* LaunchScreenNew.storyboard */; };
@@ -179,7 +178,6 @@
 		5D03AF211C187B1600E2CDEB /* TMBConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBConstants.m; sourceTree = "<group>"; };
 		5D8E30381C1DE8EF00610042 /* TMBCustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBCustomNavigationBar.h; sourceTree = "<group>"; };
 		5D8E30391C1DE8EF00610042 /* TMBCustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBCustomNavigationBar.m; sourceTree = "<group>"; };
-		5D8E303B1C1F1E3A00610042 /* ImageCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageCard.storyboard; sourceTree = "<group>"; };
 		6E60F2DC1C85280800959A84 /* PAPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPCache.h; sourceTree = "<group>"; };
 		6E60F2DD1C85280800959A84 /* PAPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPCache.m; sourceTree = "<group>"; };
 		6E60F2DF1C8528D500959A84 /* PAPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPUtility.h; sourceTree = "<group>"; };
@@ -453,7 +451,6 @@
 			children = (
 				6ECC9D451C865C1900259DB4 /* LaunchScreenNew.storyboard */,
 				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
-				5D8E303B1C1F1E3A00610042 /* ImageCard.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -689,7 +686,6 @@
 				6ECC9D461C865C1A00259DB4 /* LaunchScreenNew.storyboard in Resources */,
 				55A7E67F1C0C93B900D18009 /* Main.storyboard in Resources */,
 				A44515121BFE525A00BDD502 /* TextCardStoryboard.storyboard in Resources */,
-				5D8E303C1C1F1E3A00610042 /* ImageCard.storyboard in Resources */,
 				A44515181BFE6D4000BDD502 /* DoodleStoryboard.storyboard in Resources */,
 				A46CB0FC1BFC973A00D35BB3 /* ImageViewStoryboard.storyboard in Resources */,
 				5508F4B21BFB972300D02E15 /* Assets.xcassets in Resources */,

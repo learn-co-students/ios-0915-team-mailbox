@@ -40,81 +40,6 @@
             </objects>
             <point key="canvasLocation" x="561" y="478"/>
         </scene>
-        <!--Image Card View Controller-->
-        <scene sceneID="dnj-QP-HTr">
-            <objects>
-                <viewController storyboardIdentifier="TMBImageCardViewController" id="tly-0G-WiV" customClass="TMBImageCardViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cNm-5H-dbH"/>
-                        <viewControllerLayoutGuide type="bottom" id="Luv-eN-oTH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rnJ-Go-YVB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awv-yr-vsQ">
-                                <rect key="frame" x="20" y="28" width="335" height="75"/>
-                                <color key="backgroundColor" red="0.81978553610000005" green="1" blue="0.83447385060000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
-                                <state key="normal" title="Take Photo">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="takePhotoButtonTapped:" destination="tly-0G-WiV" eventType="touchUpInside" id="oeE-nz-6Px"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBo-4U-zOR">
-                                <rect key="frame" x="20" y="126" width="335" height="75"/>
-                                <color key="backgroundColor" red="0.86268759579999998" green="1" blue="0.85729236630000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
-                                <state key="normal" title="Chose Photo">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="chosePhotoButtonTapped:" destination="tly-0G-WiV" eventType="touchUpInside" id="0p4-WP-XT1"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Comment" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="M1S-OQ-sRx">
-                                <rect key="frame" x="20" y="223" width="335" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Med-yF-VPW">
-                                <rect key="frame" x="0.0" y="394" width="375" height="273"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24J-VO-5hE">
-                                <rect key="frame" x="85" y="269" width="204" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.38962998539999999" blue="0.1204777955" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Post Image &amp; Comment">
-                                    <color key="titleColor" red="1" green="0.97656930180000001" blue="0.95549457510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="postButtonTapped:" destination="tly-0G-WiV" eventType="touchUpInside" id="duK-rF-9e3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMo-gF-OMu">
-                                <rect key="frame" x="20" y="20" width="45" height="45"/>
-                                <state key="normal" image="close-btn"/>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="tly-0G-WiV" eventType="touchUpInside" id="vGO-J9-Ew8"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="F6t-IZ-wdp"/>
-                    <connections>
-                        <outlet property="backButton" destination="OMo-gF-OMu" id="smQ-CQ-oYj"/>
-                        <outlet property="imageView" destination="Med-yF-VPW" id="FhC-QL-vL9"/>
-                        <outlet property="textField" destination="M1S-OQ-sRx" id="huw-bd-Gbl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5fp-BQ-Guc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5974" y="1191"/>
-        </scene>
         <!--Doodle View Controller-->
         <scene sceneID="8nx-kz-7JT">
             <objects>
@@ -186,59 +111,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QzF-Io-XgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5018" y="-330"/>
-        </scene>
-        <!--Text Card View Controller-->
-        <scene sceneID="qUb-Fp-5Yf">
-            <objects>
-                <viewController storyboardIdentifier="TMBTextCardViewController" id="H9J-RU-FPU" customClass="TMBTextCardViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="H3M-Zi-HWe"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ccs-0a-g5i"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="O0s-Ls-wNm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jrX-9t-kNw">
-                                <rect key="frame" x="20" y="169" width="335" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What's up!?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfE-eD-uXc">
-                                <rect key="frame" x="121" y="96" width="173" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDd-6B-3aN">
-                                <rect key="frame" x="20" y="20" width="45" height="45"/>
-                                <state key="normal" image="close-btn"/>
-                                <connections>
-                                    <action selector="backButtonTapped:" destination="H9J-RU-FPU" eventType="touchUpInside" id="wJN-jJ-Sjt"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOh-yf-qxj">
-                                <rect key="frame" x="20" y="262" width="335" height="84"/>
-                                <color key="backgroundColor" red="1" green="0.93669348919999995" blue="0.2247637338" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Send your message to Parse!">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendButtonTapped:" destination="H9J-RU-FPU" eventType="touchUpInside" id="Zet-Bh-1vJ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="textField" destination="jrX-9t-kNw" id="Kxo-T6-G12"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z77-wu-5IQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5130.5" y="444.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="L5m-hn-OYM">
@@ -3255,6 +3127,133 @@
             </objects>
             <point key="canvasLocation" x="1986" y="769"/>
         </scene>
+        <!--Image Card View Controller-->
+        <scene sceneID="kne-sx-3dF">
+            <objects>
+                <viewController storyboardIdentifier="TMBImageCardViewController" id="6VE-hs-GXh" customClass="TMBImageCardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FCn-nY-ZOL"/>
+                        <viewControllerLayoutGuide type="bottom" id="Brp-iw-Rlo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sE6-id-217" userLabel="CONTENT VIEW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rnc-yp-dNA">
+                                <rect key="frame" x="150" y="90" width="300" height="270"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="270" id="4Db-sl-NjZ"/>
+                                    <constraint firstAttribute="width" constant="300" id="Gdd-TS-cQa"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yv-Tw-juH" userLabel="Choose Image Button">
+                                <rect key="frame" x="175" y="422" width="251" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="251" id="LUp-RR-jxJ"/>
+                                    <constraint firstAttribute="height" constant="46" id="SFY-S7-pRt"/>
+                                </constraints>
+                                <state key="normal" image="btn-choose-image-3x">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="100" y="540" width="200" height="40"/>
+                                </variation>
+                                <connections>
+                                    <action selector="choseImageButtonTapped:" destination="6VE-hs-GXh" eventType="touchUpInside" id="W0W-KZ-Wvj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksA-pa-TUT" userLabel="Take Photo Button">
+                                <rect key="frame" x="175" y="488" width="251" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="Bay-IY-oHR"/>
+                                    <constraint firstAttribute="width" constant="251" id="FYz-x2-Dwj"/>
+                                </constraints>
+                                <state key="normal" image="btn-take-photo-3x">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="100" y="540" width="200" height="40"/>
+                                </variation>
+                                <connections>
+                                    <action selector="takePhotoButtonTapped:" destination="6VE-hs-GXh" eventType="touchUpInside" id="uVa-A3-XIV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEa-7b-blw" userLabel="Post Button">
+                                <rect key="frame" x="175" y="554" width="251" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="251" id="bRl-4t-LiT"/>
+                                    <constraint firstAttribute="height" constant="46" id="co4-yo-8AW"/>
+                                </constraints>
+                                <state key="normal" image="btn-post-3x">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="100" y="540" width="200" height="40"/>
+                                </variation>
+                                <connections>
+                                    <action selector="postButtonTapped:" destination="6VE-hs-GXh" eventType="touchUpInside" id="yO2-nH-hYs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NY9-EU-bVG" userLabel="Close Button">
+                                <rect key="frame" x="520" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Wdx-3B-ZE5"/>
+                                    <constraint firstAttribute="height" constant="60" id="uN1-AE-t0l"/>
+                                </constraints>
+                                <state key="normal" image="btn-close-blue"/>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="6VE-hs-GXh" eventType="touchUpInside" id="tum-oT-DWF"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lxx-FL-QAW">
+                                <rect key="frame" x="150" y="372" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Otk-om-uYC"/>
+                                    <constraint firstAttribute="height" constant="30" id="fqx-aE-9Am"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="6yv-Tw-juH" firstAttribute="top" secondItem="lxx-FL-QAW" secondAttribute="bottom" constant="20" id="3Dm-o7-Ecj"/>
+                            <constraint firstItem="CEa-7b-blw" firstAttribute="centerX" secondItem="sE6-id-217" secondAttribute="centerX" id="6sE-wC-e8g"/>
+                            <constraint firstItem="lxx-FL-QAW" firstAttribute="centerX" secondItem="sE6-id-217" secondAttribute="centerX" id="8nH-uo-fgZ"/>
+                            <constraint firstItem="ksA-pa-TUT" firstAttribute="centerX" secondItem="sE6-id-217" secondAttribute="centerX" id="EmW-00-NjX"/>
+                            <constraint firstItem="Rnc-yp-dNA" firstAttribute="centerX" secondItem="sE6-id-217" secondAttribute="centerX" id="JnO-a6-uMa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NY9-EU-bVG" secondAttribute="trailing" id="ZEr-QQ-GBn"/>
+                            <constraint firstItem="NY9-EU-bVG" firstAttribute="top" secondItem="FCn-nY-ZOL" secondAttribute="bottom" id="d6B-s6-dVN"/>
+                            <constraint firstItem="Rnc-yp-dNA" firstAttribute="top" secondItem="FCn-nY-ZOL" secondAttribute="bottom" constant="70" id="eX3-2W-YQf"/>
+                            <constraint firstItem="ksA-pa-TUT" firstAttribute="top" secondItem="6yv-Tw-juH" secondAttribute="bottom" constant="20" id="fBl-vh-nZx"/>
+                            <constraint firstItem="CEa-7b-blw" firstAttribute="top" secondItem="ksA-pa-TUT" secondAttribute="bottom" constant="20" id="gDc-Ar-mGj"/>
+                            <constraint firstItem="lxx-FL-QAW" firstAttribute="top" secondItem="Rnc-yp-dNA" secondAttribute="bottom" constant="12" id="iTP-YA-Qhx"/>
+                            <constraint firstItem="6yv-Tw-juH" firstAttribute="centerX" secondItem="sE6-id-217" secondAttribute="centerX" id="wee-7r-fE2"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="8m4-uq-vTG" appends="YES" id="Pub-qe-7kd"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="Rnc-yp-dNA" id="7SB-Uq-HaJ"/>
+                        <outlet property="textField" destination="lxx-FL-QAW" id="5L5-GK-cjG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xex-uj-pHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8m4-uq-vTG">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="6VE-hs-GXh" id="EeO-cE-sHt"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3994" y="-360"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add-friend" width="217" height="120"/>
@@ -3262,12 +3261,15 @@
         <image name="background-sea-dark-blue" width="375" height="667"/>
         <image name="background-sky-one-third" width="320" height="188"/>
         <image name="btn-border" width="230" height="64"/>
+        <image name="btn-choose-image-3x" width="502" height="92"/>
         <image name="btn-close-blue" width="29" height="29"/>
         <image name="btn-icon-search" width="38" height="32"/>
+        <image name="btn-post-3x" width="502" height="92"/>
         <image name="btn-reset-board" width="502" height="92"/>
         <image name="btn-save-board" width="502" height="92"/>
         <image name="btn-save-changes-3x" width="502" height="92"/>
         <image name="btn-send-request-3x" width="502" height="92"/>
+        <image name="btn-take-photo-3x" width="502" height="92"/>
         <image name="btn-update-image-3x" width="502" height="92"/>
         <image name="close-btn" width="28" height="28"/>
         <image name="commentImageCloseButton" width="14" height="14"/>

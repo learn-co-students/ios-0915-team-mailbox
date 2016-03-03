@@ -238,8 +238,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * action)
                               {
-                                  UIStoryboard *imageCardStoryboard = [UIStoryboard storyboardWithName:@"ImageCard" bundle:nil];
-                                  TMBImageCardViewController *pictureVC = [imageCardStoryboard instantiateViewControllerWithIdentifier:@"TMBImageCardViewController"];
+                                  TMBImageCardViewController *pictureVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TMBImageCardViewController"];
                                   pictureVC.delegate = self;
                                   [self presentViewController:pictureVC animated:YES completion:nil];
                                   [view dismissViewControllerAnimated:YES completion:nil];
