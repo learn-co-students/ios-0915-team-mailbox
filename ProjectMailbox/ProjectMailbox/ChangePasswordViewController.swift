@@ -9,21 +9,29 @@
 import UIKit
 import Parse
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     
     @IBOutlet weak var emailTextField: UITextField!
 
+    
     override func viewDidLoad() {
         
-        NSLog("I'M IN THE VIEW DID LOAD, CHANGE PASSWORD VIEW CONTROLLER");
-
+        NSLog(" I'M IN THE VIEW DID LOAD, CHANGE PASSWORD VIEW CONTROLLER");
     }
+    
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true;
+    }
+    
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    
     @IBAction func saveButtonTapped(sender: AnyObject) {
         
         let emailAddress = emailTextField.text
@@ -66,7 +74,11 @@ class ChangePasswordViewController: UIViewController {
         
     }
     
+    
     func dismissViewControllerHandler(alert: UIAlertAction!) {
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
 }
+

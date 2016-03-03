@@ -31,7 +31,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     NSLog(@" I'M IN THE APPLICATION DID FINISH LAUNCHING, APP DELEGATE");
-
+    
+    // delays launch screen for 2 seconds
+    [NSThread sleepForTimeInterval:2.0];
+    
     // [Optional] Power your app with Local Datastore. For more info, go to
     // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
