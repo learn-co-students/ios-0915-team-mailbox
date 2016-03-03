@@ -47,55 +47,91 @@
                         <viewControllerLayoutGuide type="top" id="Ngl-E1-unt"/>
                         <viewControllerLayoutGuide type="bottom" id="WEH-2P-c6F"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7bk-af-dWg">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="7bk-af-dWg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="agz-hQ-YBr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="agz-hQ-YBr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-03-wAX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-03-wAX">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRh-CT-eFN">
-                                <rect key="frame" x="20" y="20" width="45" height="45"/>
-                                <state key="normal" image="close-btn"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRh-CT-eFN">
+                                <rect key="frame" x="530" y="30" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Xrz-sU-Dvn"/>
+                                    <constraint firstAttribute="height" constant="60" id="dip-Hx-9LA"/>
+                                </constraints>
+                                <state key="normal" image="btn-close-blue"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="Z5K-oe-k9g" eventType="touchUpInside" id="TAd-O4-ef9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1e-oF-vyb">
-                                <rect key="frame" x="295" y="28" width="34" height="30"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveButtonPressed:" destination="Z5K-oe-k9g" eventType="touchUpInside" id="cpJ-6S-57b"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdM-bJ-88r">
-                                <rect key="frame" x="155" y="28" width="41" height="30"/>
-                                <state key="normal" title="Photo"/>
-                                <connections>
-                                    <action selector="photoButtonPressed:" destination="Z5K-oe-k9g" eventType="touchUpInside" id="fvK-TV-q0R"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGN-Om-PrL">
-                                <rect key="frame" x="226" y="28" width="39" height="30"/>
-                                <state key="normal" title="Reset"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGN-Om-PrL">
+                                <rect key="frame" x="416" y="45" width="84" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2VK-8D-xVx"/>
+                                    <constraint firstAttribute="width" constant="84" id="Gx1-YH-OFv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Reset" backgroundImage="btn-border">
+                                    <color key="titleColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="resetButtonPressed:" destination="Z5K-oe-k9g" eventType="touchUpInside" id="COJ-Pf-2fy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szb-bu-5FI" userLabel="Post Button">
+                                <rect key="frame" x="175" y="524" width="251" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="251" id="4KD-wc-2Bc"/>
+                                    <constraint firstAttribute="height" constant="46" id="T1q-ta-MLe"/>
+                                </constraints>
+                                <state key="normal" image="btn-post-3x">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="100" y="540" width="200" height="40"/>
+                                </variation>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="Z5K-oe-k9g" eventType="touchUpInside" id="6jV-8Q-UYj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdM-bJ-88r">
+                                <rect key="frame" x="313" y="45" width="84" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ShQ-vI-FNB"/>
+                                    <constraint firstAttribute="width" constant="84" id="pC3-85-rQD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Photo" backgroundImage="btn-border">
+                                    <color key="titleColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoButtonPressed:" destination="Z5K-oe-k9g" eventType="touchUpInside" id="fvK-TV-q0R"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="agz-hQ-YBr" firstAttribute="width" secondItem="7bk-af-dWg" secondAttribute="width" id="0Dv-36-GXT"/>
+                            <constraint firstItem="IRh-CT-eFN" firstAttribute="top" secondItem="Ngl-E1-unt" secondAttribute="bottom" constant="10" id="230-aY-lpC"/>
                             <constraint firstItem="t4f-03-wAX" firstAttribute="centerX" secondItem="7bk-af-dWg" secondAttribute="centerX" id="3H4-uB-yfV"/>
                             <constraint firstItem="t4f-03-wAX" firstAttribute="width" secondItem="7bk-af-dWg" secondAttribute="width" id="4gA-hH-On0"/>
+                            <constraint firstItem="WEH-2P-c6F" firstAttribute="top" secondItem="szb-bu-5FI" secondAttribute="bottom" constant="30" id="CYF-Ue-S93"/>
+                            <constraint firstItem="IRh-CT-eFN" firstAttribute="leading" secondItem="kGN-Om-PrL" secondAttribute="trailing" constant="30" id="IRV-Sz-MhT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IRh-CT-eFN" secondAttribute="trailing" constant="-10" id="VgV-Ui-8xb"/>
                             <constraint firstItem="agz-hQ-YBr" firstAttribute="height" secondItem="7bk-af-dWg" secondAttribute="height" id="W01-ea-Uk3"/>
+                            <constraint firstItem="DdM-bJ-88r" firstAttribute="top" secondItem="Ngl-E1-unt" secondAttribute="bottom" constant="25" id="ZhW-Dh-CfD"/>
+                            <constraint firstItem="szb-bu-5FI" firstAttribute="centerX" secondItem="7bk-af-dWg" secondAttribute="centerX" id="e49-Ln-uif"/>
+                            <constraint firstItem="kGN-Om-PrL" firstAttribute="top" secondItem="Ngl-E1-unt" secondAttribute="bottom" constant="25" id="gJj-rQ-bnP"/>
                             <constraint firstItem="t4f-03-wAX" firstAttribute="centerY" secondItem="7bk-af-dWg" secondAttribute="centerY" id="hWW-uY-Yxf"/>
                             <constraint firstItem="t4f-03-wAX" firstAttribute="height" secondItem="7bk-af-dWg" secondAttribute="height" id="pbK-6w-Ad7"/>
                             <constraint firstItem="agz-hQ-YBr" firstAttribute="centerX" secondItem="7bk-af-dWg" secondAttribute="centerX" id="qW4-Ym-ely"/>
                             <constraint firstItem="agz-hQ-YBr" firstAttribute="centerY" secondItem="7bk-af-dWg" secondAttribute="centerY" id="vOT-QQ-zUA"/>
+                            <constraint firstItem="kGN-Om-PrL" firstAttribute="leading" secondItem="DdM-bJ-88r" secondAttribute="trailing" constant="19" id="yD9-SB-xKW"/>
                         </constraints>
                     </view>
                     <connections>
@@ -103,13 +139,13 @@
                         <outlet property="bottomImageView" destination="agz-hQ-YBr" id="IN0-mn-TRL"/>
                         <outlet property="photoButton" destination="DdM-bJ-88r" id="5Kh-0H-kWr"/>
                         <outlet property="resetButton" destination="kGN-Om-PrL" id="h8d-HJ-KJB"/>
-                        <outlet property="saveButton" destination="X1e-oF-vyb" id="g43-e0-7NP"/>
+                        <outlet property="saveButton" destination="szb-bu-5FI" id="eYy-MA-Zxj"/>
                         <outlet property="topImageView" destination="t4f-03-wAX" id="4aH-Vq-pXi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QzF-Io-XgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5018" y="-330"/>
+            <point key="canvasLocation" x="4662" y="411"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="L5m-hn-OYM">

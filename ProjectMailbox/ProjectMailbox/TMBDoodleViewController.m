@@ -14,10 +14,10 @@
 #define FEEDBACK_VIEW_WIDTH 200
 #define FEEDBACK_VIEW_HEIGHT 200
 
-#define COLOR_PICKER_MARGIN_TOP 20
-#define COLOR_PICKER_MARGIN_RIGHT 10
-#define COLOR_PICKER_WIDTH 20
-#define COLOR_PICKER_HEIGHT 150
+#define COLOR_PICKER_MARGIN_TOP 190
+#define COLOR_PICKER_MARGIN_RIGHT 0
+#define COLOR_PICKER_WIDTH 36
+#define COLOR_PICKER_HEIGHT 250
 
 @interface TMBDoodleViewController ()
 
@@ -48,14 +48,18 @@
 @property (nonatomic, strong) UIView *overlayView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
-
 @end
 
+
 @implementation TMBDoodleViewController
+
+
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    [self prefersStatusBarHidden];
     
     red = 0.0/255.0;
     green = 0.0/225.0;
@@ -70,6 +74,12 @@
     
 }
 
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+
 - (void)setUpSimpleColorPicker {
     
     CGRect simpleColorPickerRect = CGRectZero;
@@ -77,14 +87,15 @@
     simpleColorPickerRect.size = CGSizeMake(COLOR_PICKER_WIDTH, COLOR_PICKER_HEIGHT);
     
     self.simpleColorPickerView = [[SimpleColorPickerView alloc] initWithFrame:simpleColorPickerRect withDidPickColorBlock:^(UIColor *color) {
-//        [self.topImageView setBackgroundColor:color];
         NSLog(@"%@", color);
         self.chosenColor = color;
         
     }];
     
     [self.view addSubview:self.simpleColorPickerView];
+    
 }
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
@@ -95,6 +106,7 @@
     lastPoint = [touch locationInView:self.view];
     
 }
+
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
@@ -109,7 +121,6 @@
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
     CGContextSetLineWidth(UIGraphicsGetCurrentContext(), brush);
     CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [self.chosenColor CGColor]);
-//    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), red, green, blue, 1.0);
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeNormal);
     
     CGContextStrokePath(UIGraphicsGetCurrentContext());
@@ -118,7 +129,9 @@
     UIGraphicsEndImageContext();
     
     lastPoint = currentPoint;
+    
 }
+
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
@@ -144,6 +157,7 @@
 
 }
 
+
 - (IBAction)photoButtonPressed:(id)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -155,6 +169,7 @@
     
 }
 
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
@@ -163,8 +178,8 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
--(void)activityLoadView
-{
+
+- (void)activityLoadView {
     
     self.overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
@@ -187,19 +202,21 @@
     return newImage;
 }
 
+
 - (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
     
     CGFloat oldWidth = image.size.width;
     CGFloat oldHeight = image.size.height;
     
     CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
-    
     CGFloat newHeight = oldHeight * scaleFactor;
     CGFloat newWidth = oldWidth * scaleFactor;
     CGSize newSize = CGSizeMake(newWidth, newHeight);
     
     return [self imageWithImage:image scaledToSize:newSize];
+    
 }
+
 
 - (BOOL)shouldUploadImage:(UIImage *)anImage {
     
@@ -236,13 +253,14 @@
     NSLog(@"IN SHOULD UPLOAD IMAGE BOOL .........");
     
     return YES;
+    
 }
 
 
 - (IBAction)saveButtonPressed:(id)sender {
     
     UIGraphicsBeginImageContextWithOptions(self.bottomImageView.bounds.size, NO, 0.0);
-    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, 204.0, 176.0)];
+    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, 408.0, 352.0)];
     
     UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -263,7 +281,7 @@
     self.thumbFile = [PFFile fileWithData:thumbData];
     
     PFObject *photo = [PFObject objectWithClassName:kTMBPhotoClassKey];
-    [photo setObject:[PFUser currentUser] forKey:kTMBPhotoUserKey];
+    [photo setObject:[PFUser currentUser] forKey:@"user"];
     [photo setObject:self.photoFile forKey:kTMBPhotoPictureKey];
     [photo setObject:self.thumbFile forKey:kTMBPhotoThumbnailKey];
     [photo setObject:self.board forKey:@"board"];
@@ -276,6 +294,7 @@
     
     // Save the Photo PFObject
     [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
         if (succeeded) {
             
             [self.delegate doodleViewController:self passBoardIDforQuery:self.boardID];
@@ -283,28 +302,6 @@
             NSLog(@"Doodle uploaded");
             
             [[PAPCache sharedCache] setAttributesForPhoto:photo likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
-            
-            // userInfo might contain any caption which might have been posted by the uploader
-//            if (userInfo) {
-//                NSString *commentText = [userInfo objectForKey:kTMBEditPhotoViewControllerUserInfoCommentKey];
-//                
-//                if (commentText && commentText.length != 0) {
-//                    // create and save photo caption
-//                    PFObject *comment = [PFObject objectWithClassName:kTMBActivityClassKey];
-//                    [comment setObject:kTMBActivityTypeComment forKey:kTMBActivityTypeKey];
-//                    [comment setObject:photo forKey:kTMBActivityPhotoKey];
-//                    [comment setObject:[PFUser currentUser] forKey:kTMBActivityFromUserKey];
-//                    [comment setObject:[PFUser currentUser] forKey:kTMBActivityToUserKey];
-//                    [comment setObject:commentText forKey:kTMBActivityContentKey];
-//                    
-//                    PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-//                    [ACL setPublicReadAccess:YES];
-//                    comment.ACL = ACL;
-//                    
-//                    [comment saveEventually];
-//                    [[PAPCache sharedCache] incrementCommentCountForPhoto:photo];
-//                }
-//            }
             
         } else {
             
@@ -319,16 +316,18 @@
     
 }
 
+
 - (IBAction)resetButtonPressed:(id)sender {
     
     self.bottomImageView.image = nil;
-    
 }
+
 
 - (IBAction)backButtonPressed:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     
@@ -359,6 +358,11 @@
         [self presentViewController:successAction animated:YES completion:nil];
     
     }
+    
 }
 
+
+
 @end
+
+

@@ -38,7 +38,6 @@
 //board ID
 @property (nonatomic, strong) NSString *boardID;
 @property (strong, nonatomic) PFObject *board;
-//@property (strong, nonatomic) PFObject *testing;
 
 @end
 
@@ -67,7 +66,11 @@
     self.commentsTableView.allowsSelection = NO;
     self.commentsTableView.estimatedRowHeight = 75;
     self.commentsTableView.rowHeight = UITableViewAutomaticDimension;
-
+    
+    PFUser *fromUser = self.parseObjSelected[@"user"];
+    NSString *fromUserFirstName = fromUser[@"First_Name"];
+    self.currentUserNameLabel.text = [NSString stringWithFormat:@"Posted by %@", fromUserFirstName];
+    
 }
 
 
@@ -87,10 +90,11 @@
 - (void)loadDataFromParse {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
-    [query includeKey:kTMBActivityPhotoKey];
-    [query whereKey:kTMBActivityPhotoKey equalTo:self.parseObjSelected];
-    [query includeKey:kTMBActivityFromUserKey];
+    [query includeKey:@"photo"];
+    [query whereKey:@"photo" equalTo:self.parseObjSelected]; 
+    [query includeKey:@"fromUser"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
         if (error) {
             // handle error in the future
         }
@@ -100,24 +104,22 @@
         
         // set datastore to objects array
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
             self.activities = [objects mutableCopy];
             [self.commentsTableView reloadData];
             [self adjustHeightOfTableview];
         }];
         
-        // getting photo obj
+        // getting photo object
         PFObject *anActivitysPhoto = anActivity[@"photo"];
         PFFile *imageFile = anActivitysPhoto[@"image"];
         
-        // test: user's first name set to label
         PFObject *aFromUser = anActivity[@"fromUser"];
-        NSString *firstName = aFromUser[@"First_Name"];
-        self.currentUserNameLabel.text = [NSString stringWithFormat:@"Posted by %@", firstName];
         PFObject *fromUserProfilePhoto = aFromUser[@"fromUser"];
+        
+        // setting user profile photo
         self.userPhotoFile = fromUserProfilePhoto[@"profileImage"];
         
-        // setting the image view to photo obj above
+        // setting the image view to photo object above
         [imageFile getDataInBackgroundWithBlock:^(NSData *result, NSError *error) {
             if (!error) {
                 UIImage *image = [UIImage imageWithData:result];
