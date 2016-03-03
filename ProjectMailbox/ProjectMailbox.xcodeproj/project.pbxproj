@@ -389,7 +389,6 @@
 		55EE00741C0BDE1600C46162 /* Doodle */ = {
 			isa = PBXGroup;
 			children = (
-				A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */,
 				A44515191BFE6D7800BDD502 /* TMBDoodleViewController.h */,
 				A445151A1BFE6D7800BDD502 /* TMBDoodleViewController.m */,
 			);
@@ -450,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				6ECC9D451C865C1900259DB4 /* LaunchScreenNew.storyboard */,
+				A44515171BFE6D4000BDD502 /* DoodleStoryboard.storyboard */,
 				55A7E67E1C0C93B900D18009 /* Main.storyboard */,
 			);
 			name = Storyboards;

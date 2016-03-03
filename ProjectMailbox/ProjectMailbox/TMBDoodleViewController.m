@@ -244,31 +244,17 @@
     UIGraphicsBeginImageContextWithOptions(self.bottomImageView.bounds.size, NO, 0.0);
     [self.bottomImageView.image drawInRect:CGRectMake(0, 0, 204.0, 176.0)];
     
-//    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.frame.size.width, self.bottomImageView.frame.size.height)];
-    
     UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(saveImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    
-//    NSData* data = UIImageJPEGRepresentation(self.bottomImageView.image, 0.5f);
-//    PFFile *imageFile = [PFFile fileWithData:data];
     
     // Save the image to Parse
     
     [self activityLoadView];
     
-    self.thumbnail = [self imageWithImage:self.bottomImageView.image scaledToMaxWidth:204.0 maxHeight:176.0];
+    self.thumbnail = [self imageWithImage:self.bottomImageView.image scaledToMaxWidth:408.0 maxHeight:352.0];
     
     [self shouldUploadImage:self.image];
-    
-//    NSDictionary *userInfo = [NSDictionary dictionary];
-//    NSString *trimmedComment = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//    if (trimmedComment.length != 0) {
-//        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//                    trimmedComment,
-//                    kTMBEditPhotoViewControllerUserInfoCommentKey,
-//                    nil];
-//    }
     
     NSData *imageData = UIImagePNGRepresentation(self.bottomImageView.image);
     NSData *thumbData = UIImagePNGRepresentation(self.thumbnail);

@@ -26,11 +26,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *commentField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 //detail view
 @property (weak, nonatomic) IBOutlet UILabel *currentUserNameLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *commentedPhoto;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentsTableViewHeight;
 @property (strong, nonatomic) PFFile *userPhotoFile;
 
 //board ID
@@ -73,6 +75,7 @@
     
     [super viewDidAppear:animated];
     [self.commentsTableView reloadData];
+    [self adjustHeightOfTableview];
 }
 
 
@@ -100,6 +103,7 @@
             
             self.activities = [objects mutableCopy];
             [self.commentsTableView reloadData];
+            [self adjustHeightOfTableview];
         }];
         
         // getting photo obj
@@ -244,11 +248,27 @@
 }
 
 
-//- (IBAction)topViewTapped:(id)sender {
-//    
-//    [self.commentField resignFirstResponder];
-//}
-
+- (void)adjustHeightOfTableview {
+    
+    CGFloat minHeight = 60;
+    CGFloat height = self.commentsTableView.contentSize.height - 1;
+    
+    if (height < minHeight)
+        height = minHeight;
+    
+    // set the height constraint
+    
+    CGFloat scrollViewHeight = 500 + height;
+    
+    NSLog(@"SCROLL VIEW HEIGHT %f", scrollViewHeight);
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.commentsTableViewHeight.constant = height;
+        self.scrollView.contentSize = CGSizeMake(320, scrollViewHeight) ;
+        [self.view setNeedsUpdateConstraints];
+    }];
+    
+}
 
 
 - (IBAction)backgroundTapped:(id)sender {
