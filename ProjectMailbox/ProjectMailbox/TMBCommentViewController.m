@@ -14,7 +14,7 @@
 #import "ParseUI/ParseUI.h"
 
 
-@interface TMBCommentViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TMBCommentViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIImage *thumbnail;
@@ -36,7 +36,7 @@
 //board ID
 @property (nonatomic, strong) NSString *boardID;
 @property (strong, nonatomic) PFObject *board;
-@property (strong, nonatomic) PFObject *testing;
+//@property (strong, nonatomic) PFObject *testing;
 
 @end
 
@@ -56,6 +56,7 @@
     self.commentedPhoto.file = (PFFile *)self.selectedFile;
     [self.commentedPhoto loadInBackground];
     
+    self.commentField.delegate = self;
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
     
@@ -243,13 +244,31 @@
 }
 
 
-- (IBAction)topViewTapped:(id)sender {
+//- (IBAction)topViewTapped:(id)sender {
+//    
+//    [self.commentField resignFirstResponder];
+//}
+
+
+
+- (IBAction)backgroundTapped:(id)sender {
     
-    [self.commentField resignFirstResponder];
+    [self.commentField endEditing:YES];
+    
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    // done key was pressed - dismiss keyboard
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 
 
-
 @end
+
+
 
