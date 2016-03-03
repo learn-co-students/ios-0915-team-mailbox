@@ -10,7 +10,7 @@
 #import "TMBConstants.h"
 #import "TMBSharedBoardID.h"
 
-@interface TMBImageCardViewController ()
+@interface TMBImageCardViewController () <UITextFieldDelegate>
 
 //photo handling
 @property (nonatomic, strong) UIImage *image;
@@ -18,7 +18,7 @@
 @property (nonatomic, strong) PFFile *imageFile;
 @property (nonatomic, strong) PFFile *thumbFile;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 
 //board ID
@@ -43,6 +43,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.textField.delegate = self;
     
     self.boardID = [TMBSharedBoardID sharedBoardID].boardID;
     self.board = [[TMBSharedBoardID sharedBoardID].boards objectForKey:self.boardID];
@@ -81,10 +83,19 @@
 }
 
 
-- (IBAction)imageTapped:(id)sender {
+- (IBAction)backgroundTapped:(id)sender {
     
-    [self.textView endEditing:YES];
+    [self.textField endEditing:YES];
     
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    // done key was pressed - dismiss keyboard
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 
@@ -113,7 +124,7 @@
 }
 
 
-- (IBAction)chosePhotoButtonTapped:(UIButton *)sender {
+- (IBAction)choseImageButtonTapped:(UIButton *)sender {
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
@@ -159,7 +170,7 @@
     
     // capture text comment
     NSDictionary *userInfo = [NSDictionary dictionary];
-    NSString *trimmedComment = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *trimmedComment = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (trimmedComment.length != 0) {
         userInfo = [NSDictionary dictionaryWithObjectsAndKeys:trimmedComment,
                     kTMBEditPhotoViewControllerUserInfoCommentKey,

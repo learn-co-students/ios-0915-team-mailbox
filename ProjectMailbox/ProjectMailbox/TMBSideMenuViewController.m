@@ -175,6 +175,7 @@
     [TMBSharedBoardID sharedBoardID].boardID = selectedBoard.objectId;
     
     NSString *boardID = [selectedBoard valueForKey:@"objectId"];
+    
     [[TMBSharedBoardID sharedBoardID].boards setObject:selectedBoard forKey:boardID];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];

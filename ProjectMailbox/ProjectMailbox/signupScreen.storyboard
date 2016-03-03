@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="J8u-3Z-bW1">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -18,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="signUpScreenRevamp" translatesAutoresizingMaskIntoConstraints="NO" id="m3N-vI-5oY">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="bg-signup-screen" translatesAutoresizingMaskIntoConstraints="NO" id="m3N-vI-5oY">
                                 <rect key="frame" x="0.0" y="-1" width="414" height="737"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXH-2d-rXN" userLabel="top section">
@@ -27,8 +26,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C98-F5-1Ot" userLabel="spacer view">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsu-Qg-qtL" userLabel="Close">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsu-Qg-qtL" userLabel="Close">
+                                        <rect key="frame" x="344" y="11" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="TEW-hz-imY"/>
+                                            <constraint firstAttribute="width" constant="60" id="nQG-Jx-ckv"/>
+                                        </constraints>
+                                        <state key="normal" image="btn-close-blue"/>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3AX-wH-s9X">
                                         <rect key="frame" x="162" y="20" width="90" height="90"/>
@@ -38,10 +42,9 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="rsu-Qg-qtL" firstAttribute="width" secondItem="OXH-2d-rXN" secondAttribute="width" multiplier="0.116" id="1NU-eC-nsp"/>
-                                    <constraint firstItem="rsu-Qg-qtL" firstAttribute="top" secondItem="OXH-2d-rXN" secondAttribute="top" id="2tG-Px-JCZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="rsu-Qg-qtL" secondAttribute="trailing" constant="10" id="0kc-2p-qkW"/>
+                                    <constraint firstItem="rsu-Qg-qtL" firstAttribute="top" secondItem="OXH-2d-rXN" secondAttribute="top" constant="10" id="2tG-Px-JCZ"/>
                                     <constraint firstItem="C98-F5-1Ot" firstAttribute="width" secondItem="OXH-2d-rXN" secondAttribute="width" id="5d9-pU-VIw"/>
-                                    <constraint firstItem="3AX-wH-s9X" firstAttribute="top" secondItem="OXH-2d-rXN" secondAttribute="top" id="7lZ-Rk-Kbc"/>
                                     <constraint firstItem="Rx4-9I-BAz" firstAttribute="centerX" secondItem="OXH-2d-rXN" secondAttribute="centerX" id="HX7-uE-cmW"/>
                                     <constraint firstItem="C98-F5-1Ot" firstAttribute="centerX" secondItem="OXH-2d-rXN" secondAttribute="centerX" id="Hrk-sI-Sh1"/>
                                     <constraint firstItem="Rx4-9I-BAz" firstAttribute="top" secondItem="3AX-wH-s9X" secondAttribute="bottom" id="KYf-Hu-kaW"/>
@@ -50,17 +53,10 @@
                                     <constraint firstItem="Rx4-9I-BAz" firstAttribute="width" secondItem="OXH-2d-rXN" secondAttribute="width" multiplier="0.3865" id="X8P-Gb-s6G"/>
                                     <constraint firstItem="3AX-wH-s9X" firstAttribute="height" secondItem="OXH-2d-rXN" secondAttribute="height" multiplier="0.5844" id="XM2-16-lNo"/>
                                     <constraint firstItem="Rx4-9I-BAz" firstAttribute="height" secondItem="OXH-2d-rXN" secondAttribute="height" multiplier="0.2857" id="Zqq-rQ-8fK"/>
-                                    <constraint firstItem="rsu-Qg-qtL" firstAttribute="leading" secondItem="OXH-2d-rXN" secondAttribute="leading" id="jcU-FN-myz"/>
-                                    <constraint firstItem="rsu-Qg-qtL" firstAttribute="height" secondItem="OXH-2d-rXN" secondAttribute="height" multiplier="0.3117" id="kFS-A8-R7d"/>
                                     <constraint firstItem="C98-F5-1Ot" firstAttribute="height" secondItem="OXH-2d-rXN" secondAttribute="height" multiplier="0.1299" id="qqH-UY-W7A"/>
                                     <constraint firstItem="3AX-wH-s9X" firstAttribute="top" secondItem="C98-F5-1Ot" secondAttribute="bottom" id="sBf-P9-WDJ"/>
                                     <constraint firstItem="C98-F5-1Ot" firstAttribute="top" secondItem="OXH-2d-rXN" secondAttribute="top" id="yCa-nI-xwq"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="7lZ-Rk-Kbc"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzX-lj-VdM" userLabel="text fields">
                                 <rect key="frame" x="0.0" y="154" width="414" height="260"/>
@@ -175,10 +171,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjO-M6-YkB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518" y="353"/>
+            <point key="canvasLocation" x="511" y="389"/>
         </scene>
     </scenes>
     <resources>
-        <image name="signUpScreenRevamp" width="410" height="729"/>
+        <image name="bg-signup-screen" width="640" height="1138"/>
+        <image name="btn-close-blue" width="29" height="29"/>
     </resources>
 </document>

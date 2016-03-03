@@ -54,8 +54,6 @@
     self.allFriendsTableView.delegate = self;
     self.allFriendsTableView.dataSource = self;
     self.searchField.delegate = self;
-    // dismisses the keyboard when the Search key is tapped: (it unhides the noUsersFoundLabel for some reason)
-    // [self textFieldShouldReturn:self.searchField];
     
     // hiding found/notfound friends views:
     self.noUsersFoundLabel.hidden = YES;

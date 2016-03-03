@@ -114,6 +114,7 @@
                             
                             if (count == 0) {
                                 [TMBSharedBoardID sharedBoardID].boardID = boardID;
+                                [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
                             }
                             
                             [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
@@ -130,7 +131,10 @@
                                 // set boardID singleton from board with most recent photo
                                 PFObject *boardObject = object[@"board"];
                                 NSString *boardID = [boardObject valueForKey:@"objectId"];
+                                
                                 [TMBSharedBoardID sharedBoardID].boardID = boardID;
+                                [[TMBSharedBoardID sharedBoardID].boards setObject:boardObject forKey:boardID];
+                                
                                 NSLog(@"\n\n\n\nboardID: %@\n\n\n\n",boardID);
                                 [self.overlayView removeFromSuperview];
                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];

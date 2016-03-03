@@ -35,6 +35,7 @@
 
 //board ID
 @property (nonatomic, strong) NSString *boardID;
+@property (strong, nonatomic) PFObject *board;
 @property (strong, nonatomic) PFObject *testing;
 
 @end

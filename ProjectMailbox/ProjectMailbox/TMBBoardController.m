@@ -42,7 +42,14 @@ static NSInteger const kItemsPerPage = 20;
 static NSString * const reuseIdentifier = @"MediaCell";
 
 
-#pragma mark - view did load
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    NSLog(@" I'M IN THE VIEW WILL APPEAR, BOARD CONTROLLER");
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetButtonTappedInCreateBoardVC:) name:@"UserTappedResetBoardButton" object:nil];
+}
 
 
 - (void)viewDidLoad {
@@ -94,16 +101,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
         NSLog(@"Error, object not recognised.");
     }
     
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    NSLog(@" I'M IN THE VIEW WILL APPEAR, BOARD CONTROLLER");
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetButtonTappedInCreateBoardVC:) name:@"UserTappedResetBoardButton" object:nil];
 }
 
 
@@ -293,8 +290,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    NSLog(@" I'M IN THE prepareForSegue, BOARD CONTROLLER.");
 
     TMBCommentViewController *destVC = segue.destinationViewController;
     NSArray *indexPathsOfSelectedCell = self.collectionView.indexPathsForSelectedItems;
@@ -303,6 +298,9 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     destVC.parseObjSelected = selectedOBJ;
     destVC.selectedFile = self.collection[selectedIndexPath.row];
+    
+    NSLog(@" I'M IN THE prepareForSegue, BOARD CONTROLLER. SELECTED OBJECT IS: %@", selectedOBJ);
+    NSLog(@" I'M IN THE prepareForSegue, BOARD CONTROLLER. SELECTED FILE IS: %@", self.collection[selectedIndexPath.row]);
     
 }
 
