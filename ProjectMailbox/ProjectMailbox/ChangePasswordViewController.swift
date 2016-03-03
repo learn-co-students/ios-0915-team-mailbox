@@ -26,6 +26,12 @@ class ChangePasswordViewController: UIViewController, UIImagePickerControllerDel
     }
     
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
+    
+    
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         
         self.dismissViewControllerAnimated(true, completion: nil)

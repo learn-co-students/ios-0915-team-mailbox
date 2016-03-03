@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameField: UITextField!
@@ -25,6 +25,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
         
         imagePicker.delegate = self
+        firstNameField.delegate = self
+        lastNameField.delegate = self
+        emailField.delegate = self
         
 //        profileImageView.contentMode = .ScaleAspectFill;
 //        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
@@ -35,6 +38,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func prefersStatusBarHidden() -> Bool {
         return true;
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     
     @IBAction func changePhotoButtonTapped(sender: AnyObject) {
         
