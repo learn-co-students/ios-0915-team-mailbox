@@ -19,7 +19,7 @@
 #define COLOR_PICKER_WIDTH 36
 #define COLOR_PICKER_HEIGHT 250
 
-@interface TMBDoodleViewController ()
+@interface TMBDoodleViewController () <UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bottomImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *topImageView;
@@ -59,6 +59,8 @@
     
     [super viewDidLoad];
     
+    NSLog(@" I'M IN THE VIEW DID LOAD, DOODLE VIEW CONTROLLER");
+    
     [self prefersStatusBarHidden];
     
     red = 0.0/255.0;
@@ -92,6 +94,8 @@
         
     }];
     
+    NSLog(@" I'M IN THE setUpSimpleColorPicker, DOODLE VIEW CONTROLLER");
+    
     [self.view addSubview:self.simpleColorPickerView];
     
 }
@@ -105,6 +109,8 @@
     
     lastPoint = [touch locationInView:self.view];
     
+    NSLog(@" I'M IN THE touchesBegan, DOODLE VIEW CONTROLLER");
+    
 }
 
 
@@ -115,7 +121,9 @@
     CGPoint currentPoint = [touch locationInView:self.view];
     
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [self.topImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    [self.topImageView.image drawInRect:CGRectMake(0, 0, self.topImageView.image.size.width, self.topImageView.image.size.height)];
+    
     CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
     CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
@@ -129,6 +137,8 @@
     UIGraphicsEndImageContext();
     
     lastPoint = currentPoint;
+    
+    NSLog(@" I'M IN THE touchesMoved, DOODLE VIEW CONTROLLER topImageView.image width:%f height:%f", self.topImageView.image.size.width, self.topImageView.image.size.height);
     
 }
 
@@ -146,12 +156,17 @@
         CGContextStrokePath(UIGraphicsGetCurrentContext());
         self.topImageView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
+        
+        NSLog(@" I'M IN THE touchesEnded !mouseSwiped, DOODLE VIEW CONTROLLER topImageView.image width:%f height:%f", self.view.frame.size.width, self.view.frame.size.height);
     }
     
     UIGraphicsBeginImageContext(self.bottomImageView.frame.size);
-    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
-    [self.topImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) blendMode:kCGBlendModeNormal alpha:opacity];
+    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.image.size.width, self.bottomImageView.image.size.height) blendMode:kCGBlendModeNormal alpha:1.0]; // changed this from view.frame
+    NSLog(@" I'M IN THE touchesEnded BOTTOM IMAGE WIDTH:%f HEIGHT:%f", self.bottomImageView.image.size.width, self.bottomImageView.image.size.height);
+    [self.topImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.image.size.width, self.bottomImageView.image.size.height) blendMode:kCGBlendModeNormal alpha:opacity]; // changed this from view.frame
+    NSLog(@" I'M IN THE touchesEnded TOP IMAGE WIDTH:%f HEIGHT:%f", self.bottomImageView.image.size.width, self.bottomImageView.image.size.height);
     self.bottomImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    NSLog(@" I'M IN THE touchesEnded BOTTOM IMAGE VIEW IMAGE IS %@", self.bottomImageView.image);
     self.topImageView.image = nil;
     UIGraphicsEndImageContext();
 
@@ -167,6 +182,7 @@
     
     [self presentViewController:picker animated:YES completion:NULL];
     
+    NSLog(@" I'M IN THE photoButtonPressed, DOODLE VIEW CONTROLLER");
 }
 
 
@@ -174,6 +190,8 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.bottomImageView.image = chosenImage;
+    
+    NSLog(@" I'M IN THE imagePickerController, DOODLE VIEW CONTROLLER. self.bottomImageView.image / CHOSEN IMAGE WIDTH:%f HEIGHT:%f", chosenImage.size.width, chosenImage.size.height);
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -189,6 +207,8 @@
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.overlayView];
     
+    NSLog(@" I'M IN THE activityLoadView, DOODLE VIEW CONTROLLER");
+    
 }
 
 
@@ -199,6 +219,8 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
+    NSLog(@" I'M IN THE imageWithImage scaledToSize, DOODLE VIEW CONTROLLER. newImage is %@", newImage);
+    
     return newImage;
 }
 
@@ -208,10 +230,15 @@
     CGFloat oldWidth = image.size.width;
     CGFloat oldHeight = image.size.height;
     
-    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
-    CGFloat newHeight = oldHeight * scaleFactor;
-    CGFloat newWidth = oldWidth * scaleFactor;
+//    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+//    CGFloat newHeight = oldHeight * scaleFactor;
+//    CGFloat newWidth = oldWidth * scaleFactor;
+    CGFloat newHeight = oldHeight * 1;
+    CGFloat newWidth = oldWidth * 1;
+
     CGSize newSize = CGSizeMake(newWidth, newHeight);
+    
+    NSLog(@" I'M IN THE imageWithImage scaledToMaxWidth, DOODLE VIEW CONTROLLER. newSize width: %f height:%f", newWidth, newHeight);
     
     return [self imageWithImage:image scaledToSize:newSize];
     
@@ -260,7 +287,7 @@
 - (IBAction)saveButtonPressed:(id)sender {
     
     UIGraphicsBeginImageContextWithOptions(self.bottomImageView.bounds.size, NO, 0.0);
-    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, 408.0, 352.0)];
+    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.image.size.width, self.bottomImageView.image.size.height)];
     
     UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -270,7 +297,7 @@
     
     [self activityLoadView];
     
-    self.thumbnail = [self imageWithImage:self.bottomImageView.image scaledToMaxWidth:408.0 maxHeight:352.0];
+    self.thumbnail = [self imageWithImage:self.bottomImageView.image scaledToMaxWidth:self.bottomImageView.image.size.width maxHeight:self.bottomImageView.image.size.height];
     
     [self shouldUploadImage:self.image];
     
@@ -335,7 +362,7 @@
         
         UIAlertController *errorAction = [UIAlertController alertControllerWithTitle:@"Error" message:@"Image could not be saved. Please try again" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *error = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *error = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
@@ -348,7 +375,7 @@
         
         UIAlertController *successAction = [UIAlertController alertControllerWithTitle:@"Success" message:@"Image was successfully saved in the photo album" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *success = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *success = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
