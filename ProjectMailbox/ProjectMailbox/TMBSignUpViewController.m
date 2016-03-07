@@ -89,60 +89,63 @@
 }
 
 
-// check if passwords match for entered user name. if no - alert
 - (IBAction)signUpButtonTapped:(id)sender {
     
+    NSLog(@" I'M IN THE signUpButtonTapped, FIRST PAGE VIEW CONTROLLER");
+
     [self.view endEditing:YES];
     
-    NSString *userName = self.usernameTextField.text;
-    NSString *firstName = self.firstNameField.text;
-    NSString *lastName = self.lastNameField.text;
-    NSString *email = self.emailField.text;
-    NSString *password = self.passwordField.text;
-    
-    // this error check doesn't work. it signs up
-    if ([self.usernameTextField.text isEqual: @""] || [self.firstNameField.text isEqual: @""] || [self.lastNameField.text isEqual: @""] || [self.emailField.text isEqual: @""] || [self.passwordField.text isEqual: @""] || [self.repeatPasswordField.text isEqual: @""]) {
-        
-        [self showErrorAlert];
+    if (self.usernameTextField.text.length == 0 || self.firstNameField.text.length == 0 || self.lastNameField.text.length == 0 || self.emailField.text.length == 0 || self.passwordField.text.length == 0 || self.repeatPasswordField.text.length == 0) {
+        [self showBlankFieldAlert];
     }
     
-    if (self.passwordField.text != self.repeatPasswordField.text) {
-        
+    if (![self isConfirmedPassword]) {
         [self showPasswordErrorAlert];
     }
     
-    
-    PFUser *newUser = [[PFUser alloc]init];
-    newUser.username = userName;
-    newUser.password = password;
-    newUser.email = email;
-
-    [newUser setObject:firstName forKey:@"First_Name"];
-    [newUser setObject:lastName forKey:@"Last_Name"];
-    
-    if (self.profileImage.image == nil) {
-        
-        NSData *profilePictureData = UIImageJPEGRepresentation([UIImage imageNamed:@"profilePlaceholder"], 0.6f);
-        PFFile *profileFileObject = [PFFile fileWithData:profilePictureData];
-        [newUser setObject:profileFileObject forKey:@"profileImage"];
-    };
-    
-    if (self.profileImage.image != nil) {
-        
-        NSData *profilePictureData = UIImageJPEGRepresentation(self.profileImage.image, 0.6f);
-        PFFile *profileFileObject = [PFFile fileWithData:profilePictureData];
-        [newUser setObject:profileFileObject forKey:@"profileImage"];
+    if (![self isValidEmailAddress]) {
+        [self showInvalidEmailAlert];
     }
+    
+    
+    
+
+    
+    if ([self allFieldsAreValid]) {
         
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        PFUser *newUser = [[PFUser alloc]init];
+        newUser.username = self.usernameTextField.text;
+        newUser.password = self.passwordField.text;
+        newUser.email = self.emailField.text;
         
-        if (error && error.code == 202) {
-            [self showUsernameAlreadyExistsAlert];
+        [newUser setObject:self.firstNameField.text forKey:@"First_Name"];
+        [newUser setObject:self.lastNameField.text forKey:@"Last_Name"];
+        
+        if (self.profileImage.image == nil) {
+            
+            NSData *profilePictureData = UIImageJPEGRepresentation([UIImage imageNamed:@"profilePlaceholder"], 0.6f);
+            PFFile *profileFileObject = [PFFile fileWithData:profilePictureData];
+            [newUser setObject:profileFileObject forKey:@"profileImage"];
         };
         
-        if (succeeded) {
-            NSLog(@" I'M IN SIGN UP BTN TAPPED, SIGN UP PAGE VIEW CONTROLLER. NEW USER IS CREATED. USER OBJECT ID IS %@", newUser.objectId);
+        if (self.profileImage.image != nil) {
+            
+            NSData *profilePictureData = UIImageJPEGRepresentation(self.profileImage.image, 0.6f);
+            PFFile *profileFileObject = [PFFile fileWithData:profilePictureData];
+            [newUser setObject:profileFileObject forKey:@"profileImage"];
+        }
 
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            // code 125 invalid email address
+            // code 200 missing username
+            // code 202 username already exists
+            
+            if (error && error.code == 202) {
+                [self showUsernameAlreadyExistsAlert];
+            };
+            
+            if (succeeded) {
+                NSLog(@" I'M IN SIGN UP BTN TAPPED, SIGN UP PAGE VIEW CONTROLLER. NEW USER IS CREATED. USER OBJECT ID IS %@", newUser.objectId);
                 [self createNewBoardOnParseWithUser:newUser completion:^(NSString *objectId, NSError *error) {
                     
                     if (!error) {
@@ -157,15 +160,90 @@
                         NSLog(@" I'M IN SIGN UP BTN TAPPED, SIGN UP PAGE VIEW CONTROLLER. NEW BOARD IS CREATED. NEW/SHARED BOARD DICTIONARY IS %@", [TMBSharedBoardID sharedBoardID].boards);
                     }
                 }];
+                
+                [self showSuccessAlert];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidSignUpNotification" object:nil];
+                
+            } else {
+                [self showErrorAlert];
+            }
+            
+        }];
+        
+    };
+    
+    
+}
 
-            [self showSuccessAlert];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidSignUpNotification" object:nil];
-        
-        }
-        
-    }];
+
+-(BOOL)isValidFirstName {
     
+    NSString *empty = @"";
+    if (self.firstNameField.text != empty) {
+        return YES;
+    }
+    return NO;
+}
+
+
+-(BOOL)isValidLastName {
     
+    NSString *empty = @"";
+    if (self.lastNameField.text != empty) {
+        return YES;
+    }
+    return NO;
+}
+
+
+-(BOOL)isValidUsername {
+    
+    NSString *empty = @"";
+    if (self.usernameTextField.text != empty) {
+        return YES;
+    }
+    return NO;
+}
+
+
+-(BOOL)isValidPassword {
+    
+    NSString *empty = @"";
+    if (self.passwordField.text != empty) {
+        return YES;
+    }
+    return NO;
+}
+
+
+-(BOOL)isConfirmedPassword {
+    
+    NSString *empty = @"";
+    if ([self.repeatPasswordField.text isEqualToString:self.passwordField.text] && self.repeatPasswordField.text != empty) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+-(BOOL)isValidEmailAddress {
+    
+    NSString *empty = @"";
+    if ([self.emailField.text containsString:@"."] && [self.emailField.text containsString:@"@"] && self.emailField.text != empty) {
+        return YES;
+    }
+    return NO;
+}
+
+
+-(BOOL)allFieldsAreValid {
+    
+    if ([self isValidFirstName] && [self isValidLastName] && [self isValidUsername] && [self isValidPassword] && [self isConfirmedPassword] && [self isValidEmailAddress]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 
@@ -204,46 +282,71 @@
 
 - (void)showUsernameAlreadyExistsAlert {
     
-    UIAlertController *action = [UIAlertController alertControllerWithTitle:@"Username already exists." message:@"Please choose a different username." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"This username already exists." message:@"Please choose a different username." preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [controller dismissViewControllerAnimated:YES completion:nil];
     }];
     
-    [action addAction:ok];
+    [controller addAction:okAction];
     
-    [self presentViewController:action animated:YES completion:nil];
+    [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+
+- (void)showBlankFieldAlert {
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Oh-oh!" message:@"Failed to sign up. All fields are required." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [controller dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [controller addAction:okAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+
+- (void)showInvalidEmailAlert {
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Oh-oh!" message:@"Failed to sign up. The email is invalid." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [controller dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [controller addAction:okAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+    
 }
 
 
 - (void)showErrorAlert {
     
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Oh-oh!"
-                                                                        message:@"All fields are required for sign up."
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Oh-oh!" message:@"Failed to sign up. Please try again" preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action) {
-                                                            [self dismissViewControllerAnimated:YES completion:nil];
-                                                     }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [controller dismissViewControllerAnimated:YES completion:nil];
+    }];
     
     [controller addAction:okAction];
+    
+    [self presentViewController:controller animated:YES completion:nil];
+    
 }
 
 
-// it still creates an account
 - (void)showPasswordErrorAlert {
     
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert"
-                                                                        message:@"Password fields do not match"
-                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Oh-oh!" message:@"Failed to sign up. Password fields do not match." preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
-                                                            [self dismissViewControllerAnimated:YES completion:nil];
-                                                     }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [controller dismissViewControllerAnimated:YES completion:nil];
+    }];
     
     [controller addAction:okAction];
     

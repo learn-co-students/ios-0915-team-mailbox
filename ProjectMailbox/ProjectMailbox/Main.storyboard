@@ -1591,7 +1591,7 @@
                         <viewControllerLayoutGuide type="top" id="0Rh-36-sed"/>
                         <viewControllerLayoutGuide type="bottom" id="akq-Jq-VMO"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6Y0-QA-4Ui">
+                    <view key="view" contentMode="scaleToFill" id="6Y0-QA-4Ui" userLabel="CONTENT VIEW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1616,25 +1616,27 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yus-ux-Xpb">
-                                        <rect key="frame" x="162" y="20" width="90" height="90"/>
+                                        <rect key="frame" x="182" y="50" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="5d6-me-jfR"/>
+                                            <constraint firstAttribute="height" constant="50" id="d6e-TY-3s9"/>
+                                        </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AV-Eo-8t7" userLabel="Profile Image Button">
-                                        <rect key="frame" x="162" y="20" width="90" height="90"/>
+                                        <rect key="frame" x="182" y="50" width="50" height="50"/>
                                         <connections>
                                             <action selector="choosePhotoButtonTapped:" destination="2U4-D6-MTV" eventType="touchUpInside" id="9W8-nU-tzk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHK-R8-VK9" userLabel="Choose image">
-                                        <rect key="frame" x="127" y="110" width="160" height="44"/>
+                                        <rect key="frame" x="127" y="100" width="160" height="44"/>
                                         <connections>
                                             <action selector="choosePhotoButtonTapped:" destination="2U4-D6-MTV" eventType="touchUpInside" id="T1B-5Z-mQt"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Yus-ux-Xpb" firstAttribute="top" secondItem="1wK-pE-u8i" secondAttribute="bottom" id="2F3-kT-ge6"/>
-                                    <constraint firstItem="Yus-ux-Xpb" firstAttribute="width" secondItem="ci7-gi-92C" secondAttribute="width" multiplier="0.2174" id="5I4-9T-pe7"/>
-                                    <constraint firstItem="Yus-ux-Xpb" firstAttribute="height" secondItem="ci7-gi-92C" secondAttribute="height" multiplier="0.5844" id="BUU-0n-qg5"/>
+                                    <constraint firstItem="Yus-ux-Xpb" firstAttribute="top" secondItem="1wK-pE-u8i" secondAttribute="bottom" constant="30" id="2F3-kT-ge6"/>
                                     <constraint firstItem="zHK-R8-VK9" firstAttribute="width" secondItem="ci7-gi-92C" secondAttribute="width" multiplier="0.3865" id="EIx-8j-E7c"/>
                                     <constraint firstItem="Yus-ux-Xpb" firstAttribute="centerX" secondItem="ci7-gi-92C" secondAttribute="centerX" id="H49-sW-VP7"/>
                                     <constraint firstItem="zHK-R8-VK9" firstAttribute="height" secondItem="ci7-gi-92C" secondAttribute="height" multiplier="0.2857" id="MTo-m4-cFJ"/>
@@ -1655,32 +1657,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="imm-3m-SRP" userLabel="text fields">
                                 <rect key="frame" x="0.0" y="154" width="414" height="260"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="first name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="png-2B-42i" userLabel="first">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="first name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="png-2B-42i" userLabel="first">
                                         <rect key="frame" x="11" y="0.0" width="188" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="last name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UWM-nd-hU1" userLabel="last">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="last name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UWM-nd-hU1" userLabel="last">
                                         <rect key="frame" x="215" y="0.0" width="188" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TcC-rX-I5c" userLabel="username">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TcC-rX-I5c" userLabel="username">
                                         <rect key="frame" x="11" y="52" width="392" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vq6-eJ-ZJb" userLabel="password">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Vq6-eJ-ZJb" userLabel="password">
                                         <rect key="frame" x="11" y="104" width="392" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="re-enter password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2B-cb-03S" userLabel="reenter password">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="re-enter password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="a2B-cb-03S" userLabel="reenter password">
                                         <rect key="frame" x="11" y="156" width="392" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZd-mt-v3q" userLabel="email">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jZd-mt-v3q" userLabel="email">
                                         <rect key="frame" x="11" y="208" width="392" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
