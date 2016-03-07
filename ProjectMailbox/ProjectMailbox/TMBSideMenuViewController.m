@@ -236,7 +236,7 @@
     [PFUser logOut];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogOutNotification"
                                                         object:nil];
-    NSLog(@" User has Logged Out");
+    NSLog(@" I'M IN THE logoutButtonTapped, SIDE MENU VIEW CONTROLLER. USER HAS LOGGED OUT");
     
 }
 

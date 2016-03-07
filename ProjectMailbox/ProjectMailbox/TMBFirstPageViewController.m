@@ -62,19 +62,21 @@
     NSString *password = self.passwordTextField.text;
     
     if (self.usernameTextField.text.length == 0 || self.passwordTextField.text.length == 0) {
-        return;
+        [self showErrorAlert];
     }
     
     [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser *user, NSError *error) {
+    
+        user = [PFUser currentUser];
         
-        if (userName != nil) {
-            // PFUser currentUser
+        if (user) {
+
             NSUserDefaults *usernameDefault = [NSUserDefaults standardUserDefaults];
             
             [usernameDefault setValue:userName forKey:@"user_name"];
             [usernameDefault synchronize];
             
-            NSLog(@"\n\n\nUser has Logged in\n\n\n");
+            NSLog(@" I'M IN THE signInButtonTapped, FIRST PAGE VIEW CONTROLLER. USER HAS LOGGED IN. USERNAME: %@ \n\n", user.username);
             
             // get all boards for user and add to board dict singleton
             PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
@@ -83,10 +85,8 @@
             [boardQuery orderByDescending:@"updatedAt"];
             [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 
-            NSLog(@"\n\n\nlogin board query\n\n\n");
-                
                 if (!error) {
-                    NSLog(@"\n\n\nobjects: %@\n\n\n",objects);
+                    NSLog(@" I'M IN THE signInButtonTapped, FIRST PAGE VIEW CONTROLLER. BOARD OBJECTS: %@ \n\n", objects);
                     
                     if (objects.count == 0) {
                         [self.overlayView removeFromSuperview];
@@ -122,7 +122,7 @@
                                 [TMBSharedBoardID sharedBoardID].boardID = boardID;
                                 [[TMBSharedBoardID sharedBoardID].boards setObject:boardObject forKey:boardID];
                                 
-                                NSLog(@"\n\n\n\nboardID: %@\n\n\n\n",boardID);
+                                NSLog(@" I'M IN THE signInButtonTapped, FIRST PAGE VIEW CONTROLLER. SHARED BOARD ID: %@ \n\n",boardID);
                                 [self.overlayView removeFromSuperview];
                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
                                 
@@ -165,7 +165,7 @@
 
 - (void)showErrorAlert {
     
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Invalid login. Please try again" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Oh-oh!" message:@"Login Failed. Please try again" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self dismissViewControllerAnimated:YES completion:nil];

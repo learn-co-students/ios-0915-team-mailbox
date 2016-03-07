@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "TMBSharedBoardID.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
@@ -35,6 +36,8 @@
     // delays launch screen for 2 seconds
     [NSThread sleepForTimeInterval:2.0];
     
+    
+    
     // [Optional] Power your app with Local Datastore. For more info, go to
     // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
@@ -49,12 +52,12 @@
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
     //spotify auth setup 
-    [[SPTAuth defaultInstance] setClientID: SPOTIFY_CLIENT_ID];
-    [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString: SPOTIFY_REDIRECT_URL]];
-    [[SPTAuth defaultInstance] setRequestedScopes:@[SPTAuthStreamingScope]];
-    [SPTAuth defaultInstance].tokenSwapURL = [NSURL URLWithString: SPOTIFY_TOKEN_SWAP_URL];
-    [SPTAuth defaultInstance].tokenRefreshURL = [NSURL URLWithString: SPOTIFY_TOKEN_REFRESH_URL];
-    [SPTAuth defaultInstance].sessionUserDefaultsKey = @"SpotifySession";
+//    [[SPTAuth defaultInstance] setClientID: SPOTIFY_CLIENT_ID];
+//    [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString: SPOTIFY_REDIRECT_URL]];
+//    [[SPTAuth defaultInstance] setRequestedScopes:@[SPTAuthStreamingScope]];
+//    [SPTAuth defaultInstance].tokenSwapURL = [NSURL URLWithString: SPOTIFY_TOKEN_SWAP_URL];
+//    [SPTAuth defaultInstance].tokenRefreshURL = [NSURL URLWithString: SPOTIFY_TOKEN_REFRESH_URL];
+//    [SPTAuth defaultInstance].sessionUserDefaultsKey = @"SpotifySession";
     
     //shared boardID singleton
     [TMBSharedBoardID sharedBoardID];
@@ -67,6 +70,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
+    NSLog(@" I'M IN THE applicationDidBecomeActive, APP DELEGATE");
+    
     [FBSDKAppEvents activateApp];
 }
 
@@ -76,20 +81,24 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     
-    if ([[SPTAuth defaultInstance] canHandleURL:url]) {
-        [[SPTAuth defaultInstance] handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
-            
-            NSLog(@"In applicationOpenURLSourceApplicationAnnotation: %@", url);
-            
-            if (error != nil) {
-                NSLog(@"*** Auth error: %@", error);
-                return;
-            }
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"SpotifyLoggedIn" object:nil];
-        }];
-        return YES;
-    }
+    NSLog(@" I'M IN THE application: open URL, APP DELEGATE");
+    
+    // SPOTIFY
+    
+//    if ([[SPTAuth defaultInstance] canHandleURL:url]) {
+//        [[SPTAuth defaultInstance] handleAuthCallbackWithTriggeredAuthURL:url callback:^(NSError *error, SPTSession *session) {
+//            
+//            NSLog(@"In applicationOpenURLSourceApplicationAnnotation: %@", url);
+//            
+//            if (error != nil) {
+//                NSLog(@"*** Auth error: %@", error);
+//                return;
+//            }
+//            
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"SpotifyLoggedIn" object:nil];
+//        }];
+//        return YES;
+//    }
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                           openURL:url
                                                 sourceApplication:sourceApplication
@@ -98,26 +107,50 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    
+    NSLog(@" I'M IN THE applicationWillResignActive, APP DELEGATE. APPLICATION LOGED OUT USER AND RESET SHARED BOARD");
+    
+    [PFUser logOut];
+
+    [TMBSharedBoardID sharedBoardID].boardID = @"";
+    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
+
+
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    
+    NSLog(@" I'M IN THE applicationDidEnterBackground, APP DELEGATE");
+
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    
+    NSLog(@" I'M IN THE applicationWillEnterForeground, APP DELEGATE");
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    
+    NSLog(@" I'M IN THE applicationWillTerminate, APP DELEGATE. APPLICATION SAVED CONTEXT, LOGED OUT USER AND RESET SHARED BOARD");
+    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+    
+    [PFUser logOut];
+    
+    [TMBSharedBoardID sharedBoardID].boardID = @"";
+    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
+    
 }
 
 
@@ -130,12 +163,18 @@
 
 
 - (NSURL *)applicationDocumentsDirectory {
+    
+    NSLog(@" I'M IN THE applicationDocumentsDirectory, APP DELEGATE");
+
     // The directory the application uses to store the Core Data store file. This code uses a directory named "ProjectMailbox.ProjectMailbox" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 
 - (NSManagedObjectModel *)managedObjectModel {
+    
+    NSLog(@" I'M IN THE managedObjectModel, APP DELEGATE");
+
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
@@ -147,6 +186,9 @@
 
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    
+    NSLog(@" I'M IN THE persistentStoreCoordinator, APP DELEGATE");
+
     // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
@@ -176,6 +218,9 @@
 
 
 - (NSManagedObjectContext *)managedObjectContext {
+    
+    NSLog(@" I'M IN THE managedObjectContext, APP DELEGATE");
+
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
@@ -196,6 +241,9 @@
 
 
 - (void)saveContext {
+    
+    NSLog(@" I'M IN THE saveContext, APP DELEGATE");
+
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         NSError *error = nil;
@@ -208,4 +256,7 @@
     }
 }
 
+
 @end
+
+

@@ -31,6 +31,8 @@
 
 - (void)setupLeftMenuButton {
     
+    NSLog(@" I'M IN THE setupLeftMenuButton, MAIN PAGE VIEW CONTROLLER");
+    
     MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
     [self.navigationItem setLeftBarButtonItem:leftDrawerButton];
 }
@@ -38,11 +40,15 @@
 
 - (void)leftDrawerButtonPress:(id)leftDrawerButtonPress {
     
+    NSLog(@" I'M IN THE leftDrawerButtonPress, MAIN PAGE VIEW CONTROLLER");
+    
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 
 - (IBAction)addButtonTapped:(id)sender {
+    
+    NSLog(@" I'M IN THE addButtonTapped, MAIN PAGE VIEW CONTROLLER");
     
     UIAlertController *view = [UIAlertController
                                alertControllerWithTitle:@"Add to your Mosaic"

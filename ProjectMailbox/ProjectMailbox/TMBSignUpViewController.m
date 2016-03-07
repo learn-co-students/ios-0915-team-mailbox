@@ -204,7 +204,7 @@
 
 - (void)showUsernameAlreadyExistsAlert {
     
-    UIAlertController *action = [UIAlertController alertControllerWithTitle:@"Username already exists." message:@"Please choose a different one." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *action = [UIAlertController alertControllerWithTitle:@"Username already exists." message:@"Please choose a different username." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -219,11 +219,14 @@
 
 - (void)showErrorAlert {
     
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert" message:@"All fields are required" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Oh-oh!"
+                                                                        message:@"All fields are required for sign up."
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                            [self dismissViewControllerAnimated:YES completion:nil];
+                                                     }];
     
     [controller addAction:okAction];
 }
@@ -232,30 +235,39 @@
 // it still creates an account
 - (void)showPasswordErrorAlert {
     
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Password fields do not match" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Alert"
+                                                                        message:@"Password fields do not match"
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                            [self dismissViewControllerAnimated:YES completion:nil];
+                                                     }];
     
     [controller addAction:okAction];
     
     [self presentViewController:controller animated:YES completion:nil];
+    
 }
 
 
 - (void)showSuccessAlert {
     
-    UIAlertController *successAction = [UIAlertController alertControllerWithTitle:@"Success!" message:@"You've successfully signed up!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *successAction = [UIAlertController alertControllerWithTitle:@"Success!"
+                                                                           message:@"You've successfully signed up!"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *success = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+    UIAlertAction *success = [UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction * _Nonnull action) {
+                                                            [self dismissViewControllerAnimated:YES completion:nil];
+                                                    }];
     
     [successAction addAction:success];
     
     [self presentViewController:successAction animated:YES completion:nil];
+    
 }
 
 
