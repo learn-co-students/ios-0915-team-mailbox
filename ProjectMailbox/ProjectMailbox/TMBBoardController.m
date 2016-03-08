@@ -33,6 +33,8 @@ static NSInteger const kItemsPerPage = 20;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) UIImage *imageSelectedForOtherView;
 @property (nonatomic, strong) NSMutableArray *pfObjects;
+@property (nonatomic, strong) NSString *boardName;
+@property (nonatomic, strong) UINavigationBar *navigationBar;
 
 @end
 
@@ -58,16 +60,16 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
     [super viewDidLoad];
     
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    [navigationBar setBarTintColor:[UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:1.0]];
-    [navigationBar setTintColor:[UIColor whiteColor]];
-    navigationBar.translucent = NO;
-    navigationBar.topItem.title = @"Testing Title";
-    [navigationBar setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar = self.navigationController.navigationBar;
+    [self.navigationBar setBarTintColor:[UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:1.0]];
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
+    self.navigationBar.translucent = NO;
   
     NSDictionary *titleAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                                 NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:14.0]};
-    [navigationBar setTitleTextAttributes:titleAttributes];
+                                                 NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:15.0]};
+    [self.navigationBar setTitleTextAttributes:titleAttributes];
+    [self.navigationBar setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.topItem.title = @"";
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
@@ -84,6 +86,8 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     [self queryParseForContent:self.boardID];
     
+    [self queryAndSetBoardNameForNavigationTitle:self.boardID];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardSelectedInSideMenu:) name:@"UserSelectedABoard" object:nil];
     
 }
@@ -101,9 +105,6 @@ static NSString * const reuseIdentifier = @"MediaCell";
         [[TMBSharedBoardID sharedBoardID].boards setObject:passedBoard forKey:boardID];
         [self queryParseForContent:passedBoard.objectId];
         
-//        UINavigationBar *navigationBar = self.navigationController.navigationBar;
-//        navigationBar.topItem.title = boardID;
-
         NSLog(@" WOO I GOT THE MESSAGE! SWITCHED OUT BOARD! BOARD OBJ ID IS: %@. BOARD NAME IS: %@", notification, passedBoard[@"boardName"]);
     }
     
@@ -336,12 +337,45 @@ static NSString * const reuseIdentifier = @"MediaCell";
 }
 
 
+- (void)queryAndSetBoardNameForNavigationTitle:(NSString *)boardID {
+    
+    NSLog(@" I'M IN THE queryAndSetBoardNameWithID");
+    
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"objectId" equalTo:boardID];
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (error) {
+            NSLog(@" I'M IN THE queryAndSetBoardNameWithID findObjectsInBackgroundWithBlock, ERROR: %@", error);
+        }
+        
+        if (!objects) {
+            NSLog(@" I'M IN THE queryAndSetBoardNameWithID findObjectsInBackgroundWithBlock NO OBJECTS CAME BACK");
+        }
+        
+        if (objects) {
+            NSLog(@" I'M IN THE queryAndSetBoardNameWithID findObjectsInBackgroundWithBlock OBJECTS CAME BACK: %@", objects);
+            for (PFObject *board in objects) {
+                NSString *returnedBoardName = [board valueForKey:@"boardName"];
+                self.navigationBar.topItem.title = returnedBoardName;
+                
+                NSLog(@" I'M IN THE queryAndSetBoardNameWithID findObjectsInBackgroundWithBlock, BOARD CONTROLLER. BOARD OBJ: %@", board);
+                NSLog(@" I'M IN THE queryAndSetBoardNameWithID findObjectsInBackgroundWithBlock, BOARD CONTROLLER. BOARD TITLE: %@", returnedBoardName);
+                NSLog(@" I'M IN THE queryAndSetBoardNameWithID findObjectsInBackgroundWithBlock, BOARD CONTROLLER. NAV TITLE: %@", self.navigationBar.topItem.title);
+            }
+        }
+    }];
+    
+}
+
+
 - (void)queryParseForContent:(NSString *)boardID {
     
     NSLog(@" I'M IN THE QUERY PARSE FOR CONTENT METHOD, BOARD CONTROLLER");
 
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
     [boardQuery whereKey:@"objectId" equalTo:boardID];
+    [boardQuery includeKey:@"boardName"];
     
     PFQuery *contentQuery = [PFQuery queryWithClassName:@"Photo"];
     [contentQuery whereKey:@"board" matchesQuery:boardQuery];
