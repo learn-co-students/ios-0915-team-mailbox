@@ -112,8 +112,12 @@
     NSLog(@" I'M IN THE handleUserDidLogInWithoutBoards, APP VIEW CONTROLLER");
     
     [PFUser currentUser];
+    
     // switch to the home VC
     [self showCreateBoardPage];
+    
+    // switch to side nav
+//    [self showMainPage];
 }
 
 
@@ -158,6 +162,24 @@
     
 }
 
+
+- (void)showCreateBoardAlert {
+    
+    UIAlertController *successAction = [UIAlertController alertControllerWithTitle:@"You have no boards!"
+                                                                           message:@"Create a new board to start."
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *success = [UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction * _Nonnull action) {
+                                                        [successAction dismissViewControllerAnimated:YES completion:nil];
+                                                    }];
+    
+    [successAction addAction:success];
+    
+    [self presentViewController:successAction animated:YES completion:nil];
+    
+}
 
 
 @end

@@ -23,7 +23,7 @@
     CGRect rec = self.frame;
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     rec.size.width = screenRect.size.width;
-    rec.size.height = 26;
+    rec.size.height = 32;
     return rec.size;
 }
 

@@ -62,6 +62,12 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [navigationBar setBarTintColor:[UIColor colorWithRed:40/255.0 green:58/255.0 blue:103/255.0 alpha:1.0]];
     [navigationBar setTintColor:[UIColor whiteColor]];
     navigationBar.translucent = NO;
+    navigationBar.topItem.title = @"Testing Title";
+    [navigationBar setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+  
+    NSDictionary *titleAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],
+                                                 NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:14.0]};
+    [navigationBar setTitleTextAttributes:titleAttributes];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInset = UIEdgeInsetsMake(1.0, 1.0, 1.0, 1.0);
@@ -94,6 +100,10 @@ static NSString * const reuseIdentifier = @"MediaCell";
         [TMBSharedBoardID sharedBoardID].boardID = passedBoard.objectId;
         [[TMBSharedBoardID sharedBoardID].boards setObject:passedBoard forKey:boardID];
         [self queryParseForContent:passedBoard.objectId];
+        
+//        UINavigationBar *navigationBar = self.navigationController.navigationBar;
+//        navigationBar.topItem.title = boardID;
+
         NSLog(@" WOO I GOT THE MESSAGE! SWITCHED OUT BOARD! BOARD OBJ ID IS: %@. BOARD NAME IS: %@", notification, passedBoard[@"boardName"]);
     }
     

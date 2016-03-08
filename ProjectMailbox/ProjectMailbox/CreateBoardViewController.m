@@ -12,6 +12,7 @@
 #import "TMBFriendsTableViewCell.h"
 #import "TMBSideMenuViewController.h"
 #import "TMBManageBoardsViewController.h"
+#import "TMBSharedBoardID.h"
 
 
 @interface CreateBoardViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
@@ -59,7 +60,7 @@
     
     [super viewDidAppear:animated];
     
-    NSLog(@"I'M IN THE VIEW DID APPEAR, CREATE BOARD VIEW CONTROLLER");
+    NSLog(@" I'M IN THE VIEW DID APPEAR, CREATE BOARD VIEW CONTROLLER");
     
     [self adjustHeightOfTableview];
 
@@ -75,7 +76,7 @@
     
     [self prefersStatusBarHidden];
     
-    NSLog(@"I'M IN THE VIEW DID LOAD, CREATE BOARD VIEW CONTROLLER");
+    NSLog(@" I'M IN THE VIEW DID LOAD, CREATE BOARD VIEW CONTROLLER");
     
     self.friendsForCurrentUser = [NSMutableArray new];
     self.boardFriends = [NSMutableArray new];
@@ -116,7 +117,7 @@
         
         [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
             if (!error) {
-                NSLog(@"NEW BOARD IS CREATED. BOARD ID IS: %@", self.boardObjectId);
+                NSLog(@" NEW BOARD IS CREATED. BOARD ID IS: %@", self.boardObjectId);
                 self.boardObjectId = self.myNewBoard.objectId;
             }
         }];
@@ -478,7 +479,6 @@
     // check if they named the board, if not - error message, if yes - dismiss view
     
     if ([self.boardNameField.text isEqualToString:@""]) {
-        [self flashFieldYellowWithATextField:self.boardNameField];
         [self displayNoNameAlert];
         
     } else {
@@ -498,47 +498,9 @@
 }
 
 
-- (void)flashFieldYellowWithATextField:(UITextField *)textField {
-    
-    [UIView animateKeyframesWithDuration:1 delay:0 options:0 animations:^{
-        // fill this up with calls to +[UIView addKeyframe...]
-        
-        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.2 animations:^{
-            textField.backgroundColor = [UIColor yellowColor];
-            textField.frame = CGRectMake(textField.frame.origin.x-2,
-                                         textField.frame.origin.y-2,
-                                         textField.frame.size.width+4,
-                                         textField.frame.size.height+4);
-            
-            //can also use transforms 1.1 = 110%
-            // self.emailTextField.transform = CGAffineTransformMakeScale(1.1, 1.1);
-            //can rotate
-            // self.emailTextField.transform = CGAffineTransformMakeRotation(M_PI_2);
-            
-        }];
-        
-        [UIView addKeyframeWithRelativeStartTime:0.2 relativeDuration:0.2 animations:^{
-            textField.backgroundColor = [UIColor whiteColor];
-        }];
-        [UIView addKeyframeWithRelativeStartTime:0.4 relativeDuration:0.2 animations:^{
-            textField.backgroundColor = [UIColor yellowColor];
-            textField.frame = CGRectMake(textField.frame.origin.x+2,
-                                         textField.frame.origin.y+2,
-                                         textField.frame.size.width-4,
-                                         textField.frame.size.height-4);
-        }];
-        [UIView addKeyframeWithRelativeStartTime:0.6 relativeDuration:0.1 animations:^{
-            textField.backgroundColor = [UIColor whiteColor];
-        }];
-        
-    } completion:nil];
-    
-}
-
-
 - (void)displayNoNameAlert {
     
-    UIAlertController *alert =  [UIAlertController
+    UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Please Give Your Board a Name"
                                 message:nil
                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -548,7 +510,7 @@
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action)
                                {
-                                   //Handle OK button action here
+                                   //Handle button action here
                                    [alert dismissViewControllerAnimated:YES completion:nil];
                                }];
     
@@ -597,7 +559,7 @@
 
 - (void)displayDeletingContentAlert {
     
-    UIAlertController *alert=  [UIAlertController
+    UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Are You Sure?"
                                 message:@"Images and comments for this board will be deleted"
                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -641,7 +603,7 @@
 
 - (void)displayDeletingBoardAlert {
     
-    UIAlertController *alert=  [UIAlertController
+    UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Are you sure?"
                                 message:@"This board will be deleted"
                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -656,10 +618,24 @@
                                    [center postNotificationName:@"UserTappedDeleteBoardButton"
                                                          object:self.myNewBoard];
                                    
+                                   [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
+                                       if (success) {
+                                           NSLog(@" I'M IN THE displayDeletingBoardAlert queryAndDeleteBoardContentWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARD CONTENT HAS BEEN DELETED");
+                                       };
+                                   }];
+                                   
+                                   [self queryBoardsForCurrentUserAndUpdateSharedBoardSingleton:^(BOOL success) {
+                                       if (success) {
+                                           NSLog(@" SUCESSFULLY CHANGED BOARD OBJECT ID AFTER DELETION");
+                                       } else {
+                                           NSLog(@" OH NO! COULD NOT CHANGE THE BOARD ID AFTER BOARD DELETION");
+                                       };
+                                       
+                                   }];
+                                   
                                    [self.myNewBoard deleteEventually];
-                                   [self dismissViewControllerAnimated:YES
-                                                            completion:nil];
-
+                                   
+                                   [self dismissViewControllerAnimated:YES completion:nil];
                                    [alert dismissViewControllerAnimated:YES completion:nil];
                                }];
     
@@ -861,6 +837,60 @@
         
     }];
 
+}
+
+
+- (void)queryBoardsForCurrentUserAndUpdateSharedBoardSingleton:(void (^)(BOOL success))completionBlock {
+    
+    // get all boards for user and add to board dict singleton
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
+    [boardQuery selectKeys:@[@"objectId",@"boardName"]];
+    [boardQuery orderByDescending:@"updatedAt"];
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            NSLog(@" I'M IN THE queryBoardsForCurrentUserWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARD OBJECTS: %@ \n\n", objects);
+            
+            if (!objects) {
+                
+                [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
+                    // if no error - set shared board to obj id
+                    if (!error) {
+                        [TMBSharedBoardID sharedBoardID].boardID = objectId;
+                        [[TMBSharedBoardID sharedBoardID].boards setObject:self.myNewBoard forKey:objectId];
+                    }
+                }];
+                
+            } else {
+                
+                NSUInteger count = 0;
+                for (PFObject *object in objects) {
+                    
+                    NSString *boardID = [object valueForKey:@"objectId"];
+                    //                            NSString *boardName = [object valueForKey:@"boardName"];
+                    
+                    if (count == 0) {
+                        [TMBSharedBoardID sharedBoardID].boardID = boardID;
+                        [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
+                    }
+                    
+                    [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
+                    count++;
+                    
+                    completionBlock(YES);
+                }
+                
+            }
+            
+            
+        } else {
+            completionBlock(NO);
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        
+    }];
+    
 }
 
 
