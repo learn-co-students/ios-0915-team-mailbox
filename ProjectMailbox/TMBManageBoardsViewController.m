@@ -60,8 +60,8 @@
     [self checkInternetConnection];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteButtonTappedInCreateBoardVC:) name:@"UserTappedDeleteBoardButton" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveButtonTappedInCreateBoardVC:) name:@"UserTappedSaveBoardButton" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newBoardCreatedInCreateBoardVC:) name:@"NewBoardCreatedInCreateBoardVC" object:nil];
     
     self.adminTableView.delegate = self;
     self.adminTableView.dataSource = self;
@@ -81,37 +81,35 @@
             [self adjustHeightOfTableview];
             }
         }
-
     }];
     
     
     [self queryAllBoardsContainingUser:[PFUser currentUser] completion:^(NSArray *boardsContainingUser, NSError *error) {
         
-        for (PFObject *object in boardsContainingUser) {
-            
+        if (!error) {
+            for (PFObject *object in boardsContainingUser) {
             [self.memberBoards insertObject:object atIndex:0];
             [self.memberTableView reloadData];
             [self adjustHeightOfTableview];
+            }
         }
     }];
     
 }
 
 
--(BOOL)prefersStatusBarHidden{
+- (BOOL)prefersStatusBarHidden{
     return YES;
 }
 
 
--(void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification {
+- (void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification {
 
     NSLog(@" I'M IN THE DELETE BTN TAPPED IN CREATE BOARD VC, MANAGE BOARDS VIEW CONTROLLER%@", notification);
     
-    NSIndexPath *selectedIndexPath = self.adminTableView.indexPathForSelectedRow;
-    PFObject *selectedBoard = self.adminBoards[selectedIndexPath.row];
+    PFObject *deletedBoard = [notification object];
 
-    [self.adminBoards removeObject:selectedBoard];
-    
+    [self.adminBoards removeObject:deletedBoard];
     [self.adminTableView reloadData];
     [self adjustHeightOfTableview];
     
@@ -278,6 +276,18 @@
                              completion:nil];
 }
 
+
+- (void)newBoardCreatedInCreateBoardVC:(NSNotification *)notification {
+    
+    NSLog(@" WOO I GOT THE MESSAGE, NEW BOARD CREATED, MANAGE BOARDS VC TABLE RELOADED!: %@", notification);
+    
+    PFObject *createdBoard = [notification object];
+    [self.adminBoards removeAllObjects];
+    [self.adminBoards addObject:createdBoard];
+    [self.adminTableView reloadData];
+    [self adjustHeightOfTableview];
+    
+}
 
 
 /*****************************

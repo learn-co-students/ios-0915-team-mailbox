@@ -113,6 +113,7 @@
         NSLog(@" !!!!!!!!!!!!!!!!!!!!!!!! BOARD OBJ ID IS %@", self.boardObjectId);
     }
     // end of segue methods
+    
     else {
         
         [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
@@ -136,28 +137,6 @@
         NSLog(@"%@", users);
         [self.boardFriendsTableView reloadData];
         [self adjustHeightOfTableview];
-    }];
-    
-    
-    [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
-        
-        for (PFObject *object in boardsCreatedByUser) {
-            
-            NSString *boardName = object[@"boardName"];
-            NSDate *updatedAt = [object updatedAt];
-            NSLog(@"=========== 1st CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
-        }
-    }];
-    
-    
-    [self queryAllBoardsContainingUser:[PFUser currentUser] completion:^(NSArray *boardsContainingUser, NSError *error) {
-        
-        for (PFObject *object in boardsContainingUser) {
-    
-            NSString *boardName = object[@"boardName"];
-            NSDate *updatedAt = [object updatedAt];
-            NSLog(@"=========== 2nd CONTAINS USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
-        }
     }];
     
 }
@@ -613,27 +592,13 @@
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action)
                                {
-                                   //Handle OK button action here
-                                   NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-                                   [center postNotificationName:@"UserTappedDeleteBoardButton"
-                                                         object:self.myNewBoard];
-                                   
-                                   [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
+                                   //Handle button action here
+                                
+                                   [self deleteBoardContentWithCompletion:^(BOOL success) {
                                        if (success) {
-                                           NSLog(@" I'M IN THE displayDeletingBoardAlert queryAndDeleteBoardContentWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARD CONTENT HAS BEEN DELETED");
-                                       };
+                                           NSLog(@"\n\n SUCCESS!! selected board deleted in create board VC \n\n");
+                                       }
                                    }];
-                                   
-                                   [self queryBoardsForCurrentUserAndUpdateSharedBoardSingleton:^(BOOL success) {
-                                       if (success) {
-                                           NSLog(@" SUCESSFULLY CHANGED BOARD OBJECT ID AFTER DELETION");
-                                       } else {
-                                           NSLog(@" OH NO! COULD NOT CHANGE THE BOARD ID AFTER BOARD DELETION");
-                                       };
-                                       
-                                   }];
-                                   
-                                   [self.myNewBoard deleteEventually];
                                    
                                    [self dismissViewControllerAnimated:YES completion:nil];
                                    [alert dismissViewControllerAnimated:YES completion:nil];
@@ -707,7 +672,6 @@
 }
 
 
-// passing a board, getting back an array containing 1 board object
 - (void)queryAllFriendsOnBoard:(NSString *)boardID completion:(void(^)(NSMutableArray *boardFriends, NSError *error))completionBlock {
     
     PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
@@ -801,10 +765,91 @@
 }
 
 
+- (void)deleteBoardContentWithCompletion:(void (^)(BOOL success))completionBlock {
+    
+    
+    [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
+        
+        if (boardsCreatedByUser) {
+            
+            NSUInteger boardCount = 0;
+            boardCount = boardCount + boardsCreatedByUser.count;
+            
+            [self queryAllBoardsContainingUser:[PFUser currentUser] completion:^(NSArray *boardsContainingUser, NSError *error) {
+                if (boardsContainingUser) {
+                    
+                    
+                    NSUInteger totalBoardCount = boardCount;
+                    totalBoardCount = boardCount + boardsContainingUser.count;
+                    
+                    
+                    if (totalBoardCount <= 1) {
+                        // create new board
+                        [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
+                            if (!error) {
+                                // set new board id sigleton
+                                [TMBSharedBoardID sharedBoardID].boardID = objectId;
+                                [[TMBSharedBoardID sharedBoardID].boards setObject:self.myNewBoard forKey:objectId];
+                                
+                                NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                                [center postNotificationName:@"NewBoardCreatedInCreateBoardVC"
+                                                      object:self.myNewBoard];
+                                
+                                // update side nav with new board
+                                completionBlock(YES);
+                                
+                                // delete contents
+                                [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
+                                    NSLog(@"\n\n I'M IN THE deleteBoardContentWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARDS <= 1. \n NEW BOARD CREATED. CONTENTS DELETED. NEW SHARED BOARD ID: %@ \n\n",[TMBSharedBoardID sharedBoardID].boardID);
+                                    
+                                // delete board
+                                [self.selectedBoard deleteEventually];
+                                    
+                                NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                                [center postNotificationName:@"UserTappedDeleteBoardButton"
+                                                      object:self.selectedBoard];
+                                    
+                                NSLog(@" I'M IN THE createNewBoardOnParseWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARDS <= 1. CONTENTS DELETED. BOARD %@ DELETED", self.selectedBoard);
+                                }];
+                                
+                            }
+                        }];
+                        
+                        
+                        
+                    } else {
+                        // delete contents
+                        [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
+                            if (success) {
+                                
+                                // delete board
+                                [self.selectedBoard deleteEventually];
+                                
+                                NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                                [center postNotificationName:@"UserTappedDeleteBoardButton"
+                                                      object:self.selectedBoard];
+                                
+                                completionBlock(YES);
+                                NSLog(@" I'M IN THE deleteBoardContentWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARDS > 1. CONTENTS DELETED. BOARD %@ DELETED", self.selectedBoard);
+                            }
+                        }];
+                    }
+                    
+                    
+                }
+                
+            }];
+        }
+        
+    }];
+    
+    
+}
+
+
 - (void)queryAndDeleteBoardContentWithCompletion:(void (^)(BOOL success))completionBlock {
     
     PFObject *boardPointer = [PFObject objectWithoutDataWithClassName:@"Board" objectId:self.boardObjectId];
-    
     PFQuery *queryPhoto = [PFQuery queryWithClassName:@"Photo"];
     [queryPhoto whereKey:@"board" equalTo:boardPointer];
     [queryPhoto findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -817,7 +862,6 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
             completionBlock(NO);
         }
-        
         
     }];
     
@@ -836,69 +880,10 @@
         }
         
     }];
-
-}
-
-
-- (void)queryBoardsForCurrentUserAndUpdateSharedBoardSingleton:(void (^)(BOOL success))completionBlock {
-    
-    // get all boards for user and add to board dict singleton
-    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
-    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
-    [boardQuery selectKeys:@[@"objectId",@"boardName"]];
-    [boardQuery orderByDescending:@"updatedAt"];
-    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        if (!error) {
-            NSLog(@" I'M IN THE queryBoardsForCurrentUserWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARD OBJECTS: %@ \n\n", objects);
-            
-            if (!objects) {
-                
-                [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
-                    // if no error - set shared board to obj id
-                    if (!error) {
-                        [TMBSharedBoardID sharedBoardID].boardID = objectId;
-                        [[TMBSharedBoardID sharedBoardID].boards setObject:self.myNewBoard forKey:objectId];
-                    }
-                }];
-                
-            } else {
-                
-                NSUInteger count = 0;
-                for (PFObject *object in objects) {
-                    
-                    NSString *boardID = [object valueForKey:@"objectId"];
-                    //                            NSString *boardName = [object valueForKey:@"boardName"];
-                    
-                    if (count == 0) {
-                        [TMBSharedBoardID sharedBoardID].boardID = boardID;
-                        [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
-                    }
-                    
-                    [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
-                    count++;
-                    
-                    completionBlock(YES);
-                }
-                
-            }
-            
-            
-        } else {
-            completionBlock(NO);
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-        
-    }];
     
 }
-
 
 
 @end
-
-
-
-
 
 

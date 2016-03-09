@@ -65,9 +65,9 @@
     [self checkInternetConnection];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteButtonTappedInCreateBoardVC:) name:@"UserTappedDeleteBoardButton" object:nil];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveButtonTappedInCreateBoardVC:) name:@"UserTappedSaveBoardButton" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newBoardCreatedInCreateBoardVC:) name:@"NewBoardCreatedInCreateBoardVC" object:nil];
+
     self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
     self.profileImage.clipsToBounds = YES;
@@ -104,10 +104,6 @@
             NSLog(@" I'M IN THE VIEW DID LOAD, SIDE MENU VIEW CONTROLLER. ALL BOARDS CREATED BY CURRENT USER ARE: %@", self.userBoards);
             [self.boardsTableView reloadData];
             [self adjustHeightOfTableview];
-            
-//            NSString *boardName = object[@"boardName"];
-//            NSDate *updatedAt = [object updatedAt];
-//            NSLog(@"=========== BOARDS CREATED BY USER - BOARD NAMES ARE: %@ updated at %@", boardName, updatedAt);
         }
     }];
     
@@ -142,20 +138,7 @@
 
     cell.boardNameLabel.text = [board[@"boardName"] uppercaseString];
     cell.backgroundColor = [UIColor clearColor];
-    
-    //self.boardID = board.objectId;
-//    [TMBSharedBoardID sharedBoardID].boardID = board.objectId;
-//    [[TMBSharedBoardID sharedBoardID].boards objectForKey:board];
-//    NSLog(@" I'M IN THE TABLE VIEW CELL FOR ROW, SIDE MENU VIEW CONTROLLER. SHARED BOARD OBJECT ID IS %@", [TMBSharedBoardID sharedBoardID].boardID);
-//    
-//    NSIndexPath *selectedIndexPath = tableView.indexPathForSelectedRow;
-//    PFObject *selectedBoard = self.userBoards[selectedIndexPath.row];
-//    
-//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//    [center postNotificationName:@"UserSelectedABoard" object:selectedBoard];
-//    
-//    NSLog(@" I'M IN THE TABLE VIEW CELL FOR ROW, SIDE MENU VIEW CONTROLLER. CELL WAS TAPPED. SELECTED BOARD IS %@", selectedBoard);
-    
+        
     return cell;
     
 }
@@ -189,7 +172,7 @@
 
 - (void)deleteButtonTappedInCreateBoardVC:(NSNotification *)notification {
     
-    NSLog(@" WOO I GOT THE MESSAGE, DELETED!: %@", notification);
+    NSLog(@" WOO I GOT THE MESSAGE, SELECTED BOARD WAS DELETED, SIDE NAV RELOADED!: %@", notification);
     
     if ([notification.object isKindOfClass:[PFObject class]]) {
         
@@ -208,7 +191,7 @@
 
 - (void)saveButtonTappedInCreateBoardVC:(NSNotification *)notification {
     
-    NSLog(@" WOO I GOT THE MESSAGE, SAVED!: %@", notification);
+    NSLog(@" WOO I GOT THE MESSAGE, SAVED, SIDE NAV RELOADED!: %@", notification);
     
     if ([notification.object isKindOfClass:[PFObject class]]) {
         
@@ -225,6 +208,18 @@
     else {
         NSLog(@"Error, object not recognised.");
     }
+    
+}
+
+
+- (void)newBoardCreatedInCreateBoardVC:(NSNotification *)notification {
+    
+    NSLog(@" WOO I GOT THE MESSAGE, NEW BOARD CREATED, SIDE NAV RELOADED!: %@", notification);
+    
+    PFObject *createdBoard = [notification object];
+    [self.userBoards addObject:createdBoard];
+    [self.boardsTableView reloadData];
+    [self adjustHeightOfTableview];
     
 }
 
