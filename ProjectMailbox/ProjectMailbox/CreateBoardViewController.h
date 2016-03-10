@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateBoardViewController : ViewController
+
 @property (strong, nonatomic) PFObject *selectedBoard;
 @property (nonatomic, strong) NSString *boardObjectIdFromSelectedBoard;
 @property (nonatomic, strong) NSString *boardNameToDisplay;

@@ -3260,6 +3260,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FBO-D4-rtf" userLabel="Image Button">
+                                <rect key="frame" x="150" y="90" width="300" height="270"/>
+                                <connections>
+                                    <action selector="choseImageButtonTapped:" destination="6VE-hs-GXh" eventType="touchUpInside" id="aiW-qR-S24"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -3269,6 +3275,10 @@
                             <constraint firstItem="lxx-FL-QAW" firstAttribute="centerX" secondItem="sE6-id-217" secondAttribute="centerX" id="8nH-uo-fgZ"/>
                             <constraint firstItem="ksA-pa-TUT" firstAttribute="centerX" secondItem="sE6-id-217" secondAttribute="centerX" id="EmW-00-NjX"/>
                             <constraint firstItem="Rnc-yp-dNA" firstAttribute="centerX" secondItem="sE6-id-217" secondAttribute="centerX" id="JnO-a6-uMa"/>
+                            <constraint firstItem="FBO-D4-rtf" firstAttribute="centerX" secondItem="Rnc-yp-dNA" secondAttribute="centerX" id="KTa-dz-eQJ"/>
+                            <constraint firstItem="FBO-D4-rtf" firstAttribute="height" secondItem="Rnc-yp-dNA" secondAttribute="height" id="P9o-YB-FVR"/>
+                            <constraint firstItem="FBO-D4-rtf" firstAttribute="width" secondItem="Rnc-yp-dNA" secondAttribute="width" id="Pby-aU-xjO"/>
+                            <constraint firstItem="FBO-D4-rtf" firstAttribute="centerY" secondItem="Rnc-yp-dNA" secondAttribute="centerY" id="U6n-ub-eXA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NY9-EU-bVG" secondAttribute="trailing" id="ZEr-QQ-GBn"/>
                             <constraint firstItem="NY9-EU-bVG" firstAttribute="top" secondItem="FCn-nY-ZOL" secondAttribute="bottom" id="d6B-s6-dVN"/>
                             <constraint firstItem="Rnc-yp-dNA" firstAttribute="top" secondItem="FCn-nY-ZOL" secondAttribute="bottom" constant="70" id="eX3-2W-YQf"/>

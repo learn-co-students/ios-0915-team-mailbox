@@ -550,11 +550,13 @@
                                {
                                    //Handle button action here
                                    [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
-                                       
+                                       if (success) {
                                            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
                                            [center postNotificationName:@"UserTappedResetBoardButton"
-                                                                 object:nil];
-                                       
+                                                                 object:self.selectedBoard];
+                                           
+                                           NSLog(@"\n\n\n SUCCESS! RESET BAORD NOTIFICATION FIRED!! \n\n\n");
+                                       }
                                    }];
                                    
                                    [self dismissViewControllerAnimated:YES
@@ -594,7 +596,7 @@
                                {
                                    //Handle button action here
                                 
-                                   [self deleteBoardContentWithCompletion:^(BOOL success) {
+                                   [self deleteBoardAndContentWithCompletion:^(BOOL success) {
                                        if (success) {
                                            NSLog(@"\n\n SUCCESS!! selected board deleted in create board VC \n\n");
                                        }
@@ -765,7 +767,7 @@
 }
 
 
-- (void)deleteBoardContentWithCompletion:(void (^)(BOOL success))completionBlock {
+- (void)deleteBoardAndContentWithCompletion:(void (^)(BOOL success))completionBlock {
     
     
     [self queryAllBoardsCreatedByUser:[PFUser currentUser] completion:^(NSArray *boardsCreatedByUser, NSError *error) {
@@ -849,33 +851,38 @@
 
 - (void)queryAndDeleteBoardContentWithCompletion:(void (^)(BOOL success))completionBlock {
     
-    PFObject *boardPointer = [PFObject objectWithoutDataWithClassName:@"Board" objectId:self.boardObjectId];
+    PFObject *boardPointer = [PFObject objectWithoutDataWithClassName:@"Board" objectId:self.selectedBoard.objectId];
     PFQuery *queryPhoto = [PFQuery queryWithClassName:@"Photo"];
     [queryPhoto whereKey:@"board" equalTo:boardPointer];
     [queryPhoto findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            NSLog(@"Successfully retrieved %lu board photo objects.", objects.count);
-            [PFObject deleteAllInBackground:objects];
-            completionBlock(YES);
-            
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-            completionBlock(NO);
-        }
         
-    }];
-    
-    
-    PFQuery *queryActivity = [PFQuery queryWithClassName:@"Activity"];
-    [queryActivity whereKey:@"board" equalTo:boardPointer];
-    [queryActivity findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"Successfully retrieved %lu board activity objects.", objects.count);
-            [PFObject deleteAllInBackground:objects];
-            completionBlock(YES);
+            NSLog(@"Successfully retrieved and deleted %lu board photo objects.", objects.count);
+            [PFObject deleteAllInBackground:objects block:^(BOOL succeeded, NSError * _Nullable error) {
+                
+                if (succeeded) {
+                    completionBlock(YES);
+                }
+                
+                PFQuery *queryActivity = [PFQuery queryWithClassName:@"Activity"];
+                [queryActivity whereKey:@"board" equalTo:boardPointer];
+                [queryActivity findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    if (!error) {
+                        NSLog(@"Successfully retrieved and deleted %lu board activity objects.", objects.count);
+                        [PFObject deleteAllInBackground:objects];
+                        
+                        
+                    } else {
+                        NSLog(@"Error in queryAndDeleteBoardContentWithCompletion ACTIVITY QUERY: %@ %@", error, [error userInfo]);
+                        completionBlock(NO);
+                    }
+                }];
+                
+            }];
+            
             
         } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            NSLog(@"Error in queryAndDeleteBoardContentWithCompletion PHOTO QUERY: %@ %@", error, [error userInfo]);
             completionBlock(NO);
         }
         

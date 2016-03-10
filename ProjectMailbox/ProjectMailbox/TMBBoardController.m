@@ -89,10 +89,38 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [self queryAndSetBoardNameForNavigationTitle:self.boardID];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardSelectedInSideMenu:) name:@"UserSelectedABoard" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newBoardCretedInCreateBoardVC:) name:@"NewBoardCreatedInCreateBoardVC" object:nil];
     
 }
 
 
+- (void)newBoardCretedInCreateBoardVC:(NSNotification *)notification {
+ 
+    if ([notification.object isKindOfClass:[PFObject class]]) {
+
+    PFObject *newBoard = [notification object];
+    NSString *boardID = [newBoard valueForKey:@"objectId"];
+        
+    [TMBSharedBoardID sharedBoardID].boardID = newBoard.objectId;
+    [[TMBSharedBoardID sharedBoardID].boards setObject:newBoard forKey:boardID];
+        
+    [self.collection removeAllObjects];
+    [self buildThemeColorsArray];
+    [self buildEmptyCollection];
+
+    [self queryParseForContent:newBoard.objectId];
+        
+    NSLog(@" WOO I GOT THE MESSAGE! SWITCHED OUT BOARD! BOARD OBJ ID IS: %@. BOARD NAME IS: %@", notification, newBoard[@"boardName"]);
+    }
+    
+    else {
+        NSLog(@"Error, object not recognised.");
+
+    }
+
+}
+
+    
 - (void)boardSelectedInSideMenu:(NSNotification *)notification {
     
     NSLog(@" WOO I GOT THE MESSAGE! I'M IN THE boardSelectedInSideMenu METHOD, BOARD CONTROLLER. NOTIFICATION: %@", notification);
@@ -117,9 +145,14 @@ static NSString * const reuseIdentifier = @"MediaCell";
 
 - (void)resetButtonTappedInCreateBoardVC:(NSNotification *)notification {
     
-    NSLog(@" WOO I GOT THE MESSAGE, RESET! I'M IN THE resetButtonTappedInCreateBoardVC, BOARD CONTROLLER. NOTIFICATION: %@", notification);
-    [self queryParseForContent:self.boardID];
-    NSLog(@" I'M IN THE resetButtonTappedInCreateBoardVC, BOARD CONTROLLER. BOARD ID IS: %@", self.boardID);
+    [self.collection removeAllObjects];
+    [self buildThemeColorsArray];
+    [self buildEmptyCollection];
+    
+    PFObject *resetBoard = [notification object];
+    [self queryParseForContent:resetBoard.objectId];
+    
+    NSLog(@" I'M IN THE resetButtonTappedInCreateBoardVC, BOARD CONTROLLER. BOARD ID IS: %@", resetBoard.objectId);
 }
 
 
