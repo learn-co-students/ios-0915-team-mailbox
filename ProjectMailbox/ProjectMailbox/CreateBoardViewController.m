@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lookUpFriendsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *saveBoardButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) NSTimer *boardTimer;
 
 // Found a Friend View
 @property (weak, nonatomic) IBOutlet UIImageView *foundFriendImage;
@@ -118,8 +119,24 @@
         
         [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
             if (!error) {
-                NSLog(@" NEW BOARD IS CREATED. BOARD ID IS: %@", self.boardObjectId);
-                self.boardObjectId = self.myNewBoard.objectId;
+
+                self.boardObjectId = objectId;
+                self.selectedBoard = self.myNewBoard;
+                
+                // setting timer to delete content
+                NSDate *date = [NSDate dateWithTimeIntervalSinceNow: 60.0]; // timer starts after 1 min. 604800 seconds in a week
+                NSTimer *timer = [[NSTimer alloc] initWithFireDate: date
+                                                      interval: 60.0 // timer repeats itself every 1 min
+                                                        target: self
+                                                      selector:@selector(onTimerDeleteBoardConent:)
+                                                      userInfo:nil repeats:YES];
+                
+                self.boardTimer = timer;
+                NSRunLoop *runner = [NSRunLoop currentRunLoop];
+                [runner addTimer:timer forMode: NSDefaultRunLoopMode];
+                
+                NSLog(@"\n\n\n TIMER STARTED! BOARD WAS CREATED! BOARD ID IS: %@ \n\n\n", objectId);
+                
             }
         }];
     }
@@ -138,6 +155,28 @@
         [self.boardFriendsTableView reloadData];
         [self adjustHeightOfTableview];
     }];
+    
+}
+
+
+-(void)onTimerDeleteBoardConent:(NSTimer *)timer {
+    
+    // delete board conent
+    [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
+        if (success) {
+            NSLog(@"\n\n\n TIMER FIRED! BOARD CONTENTS DELETED! \n\n\n");
+            
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            [center postNotificationName:@"UserTappedResetBoardButton"
+                                  object:self.selectedBoard];
+        }
+    }];
+    
+    
+    // invalidate timer later ... when the board gets deleted. make a ponter to the timer
+//    [myTimer invalidate];
+//    myTimer = nil;
+    // subclass NSTimer with board id, then invalidate them from an array by the board id 
     
 }
 
@@ -805,13 +844,44 @@
                                     NSLog(@"\n\n I'M IN THE deleteBoardContentWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARDS <= 1. \n NEW BOARD CREATED. CONTENTS DELETED. NEW SHARED BOARD ID: %@ \n\n",[TMBSharedBoardID sharedBoardID].boardID);
                                     
                                 // delete board
-                                [self.selectedBoard deleteEventually];
+                                [self.selectedBoard deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                    if (succeeded) {
+                                            
+                                        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                                        [center postNotificationName:@"UserTappedDeleteBoardButton"
+                                                              object:self.selectedBoard];
+                                            
+                                        completionBlock(YES);
+                                    }
+                                        
+                                }];
+                                    
+                                    
+//                                // invalidate timer
+//                                [self.boardTimer invalidate];
+//                                self.boardTimer = nil;
+
                                     
                                 NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
                                 [center postNotificationName:@"UserTappedDeleteBoardButton"
                                                       object:self.selectedBoard];
                                     
                                 NSLog(@" I'M IN THE createNewBoardOnParseWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARDS <= 1. CONTENTS DELETED. BOARD %@ DELETED", self.selectedBoard);
+                                    
+                                // setting timer to delete content
+                                NSDate *date = [NSDate dateWithTimeIntervalSinceNow: 60.0]; // timer starts after 1 min. 604800 seconds in a week
+                                NSTimer *timer = [[NSTimer alloc] initWithFireDate: date
+                                                                            interval: 60.0 // timer repeats itself every 1 min
+                                                                            target: self
+                                                                            selector:@selector(onTimerDeleteBoardConent:)
+                                                                            userInfo:nil repeats:YES];
+                                
+                                self.boardTimer = timer;
+                                NSRunLoop *runner = [NSRunLoop currentRunLoop];
+                                [runner addTimer:timer forMode: NSDefaultRunLoopMode];
+                                    
+                                NSLog(@"\n\n\n TIMER STARTED! BOARD WAS CREATED AFTER LAST BOARD WAS DELETED! BOARD ID IS: %@ \n\n\n", objectId);
+
                                 }];
                                 
                             }
@@ -825,13 +895,25 @@
                             if (success) {
                                 
                                 // delete board
-                                [self.selectedBoard deleteEventually];
+                                [self.selectedBoard deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                    if (succeeded) {
+                                        
+                                        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+                                        [center postNotificationName:@"UserTappedDeleteBoardButton"
+                                                              object:self.selectedBoard];
+                                        
+                                        completionBlock(YES);
+                                    }
+                                    
+                                }];
                                 
-                                NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-                                [center postNotificationName:@"UserTappedDeleteBoardButton"
-                                                      object:self.selectedBoard];
                                 
-                                completionBlock(YES);
+//                                // invalidate timer
+//                                [self.boardTimer invalidate];
+//                                self.boardTimer = nil;
+                                
+
+                                
                                 NSLog(@" I'M IN THE deleteBoardContentWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARDS > 1. CONTENTS DELETED. BOARD %@ DELETED", self.selectedBoard);
                             }
                         }];

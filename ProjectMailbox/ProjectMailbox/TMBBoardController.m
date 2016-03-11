@@ -49,9 +49,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [super viewWillAppear:animated];
     
     NSLog(@" I'M IN THE VIEW WILL APPEAR, BOARD CONTROLLER");
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetButtonTappedInCreateBoardVC:) name:@"UserTappedResetBoardButton" object:nil];
-}
+    }
 
 
 - (void)viewDidLoad {
@@ -88,76 +86,12 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     [self queryAndSetBoardNameForNavigationTitle:self.boardID];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardSelectedInSideMenu:) name:@"UserSelectedABoard" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newBoardCretedInCreateBoardVC:) name:@"NewBoardCreatedInCreateBoardVC" object:nil];
-    
-}
-
-
-- (void)newBoardCretedInCreateBoardVC:(NSNotification *)notification {
- 
-    if ([notification.object isKindOfClass:[PFObject class]]) {
-
-    PFObject *newBoard = [notification object];
-    NSString *boardID = [newBoard valueForKey:@"objectId"];
-        
-    [TMBSharedBoardID sharedBoardID].boardID = newBoard.objectId;
-    [[TMBSharedBoardID sharedBoardID].boards setObject:newBoard forKey:boardID];
-        
-    [self.collection removeAllObjects];
-    [self buildThemeColorsArray];
-    [self buildEmptyCollection];
-
-    [self queryParseForContent:newBoard.objectId];
-        
-    NSLog(@" WOO I GOT THE MESSAGE! SWITCHED OUT BOARD! BOARD OBJ ID IS: %@. BOARD NAME IS: %@", notification, newBoard[@"boardName"]);
-    }
-    
-    else {
-        NSLog(@"Error, object not recognised.");
-
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWasUpdatedInOtherViews:) name:@"UserSelectedABoard" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWasUpdatedInOtherViews:) name:@"NewBoardCreatedInCreateBoardVC" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWasUpdatedInOtherViews:) name:@"UserTappedSaveBoardButton" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWasUpdatedInOtherViews:) name:@"UserTappedResetBoardButton" object:nil];
 
 }
-
-    
-- (void)boardSelectedInSideMenu:(NSNotification *)notification {
-    
-    NSLog(@" WOO I GOT THE MESSAGE! I'M IN THE boardSelectedInSideMenu METHOD, BOARD CONTROLLER. NOTIFICATION: %@", notification);
-    
-    if ([notification.object isKindOfClass:[PFObject class]]) {
-        PFObject *passedBoard = [notification object];
-        NSString *boardID = [passedBoard valueForKey:@"objectId"];
-        
-        [TMBSharedBoardID sharedBoardID].boardID = passedBoard.objectId;
-        [[TMBSharedBoardID sharedBoardID].boards setObject:passedBoard forKey:boardID];
-        [self queryParseForContent:passedBoard.objectId];
-        
-        NSLog(@" WOO I GOT THE MESSAGE! SWITCHED OUT BOARD! BOARD OBJ ID IS: %@. BOARD NAME IS: %@", notification, passedBoard[@"boardName"]);
-    }
-    
-    else {
-        NSLog(@"Error, object not recognised.");
-    }
-    
-}
-
-
-- (void)resetButtonTappedInCreateBoardVC:(NSNotification *)notification {
-    
-    [self.collection removeAllObjects];
-    [self buildThemeColorsArray];
-    [self buildEmptyCollection];
-    
-    PFObject *resetBoard = [notification object];
-    [self queryParseForContent:resetBoard.objectId];
-    
-    NSLog(@" I'M IN THE resetButtonTappedInCreateBoardVC, BOARD CONTROLLER. BOARD ID IS: %@", resetBoard.objectId);
-}
-
-
-
-#pragma mark <UICollectionViewDataSource>
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -344,6 +278,35 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     NSLog(@" I'M IN THE prepareForSegue, BOARD CONTROLLER. SELECTED OBJECT IS: %@", selectedOBJ);
     NSLog(@" I'M IN THE prepareForSegue, BOARD CONTROLLER. SELECTED FILE IS: %@", self.collection[selectedIndexPath.row]);
+    
+}
+
+
+- (void)boardWasUpdatedInOtherViews:(NSNotification *)notification {
+    
+    if ([notification.object isKindOfClass:[PFObject class]]) {
+        
+        PFObject *updatedBoard = [notification object];
+        NSString *boardID = [updatedBoard valueForKey:@"objectId"];
+        
+        self.navigationBar.topItem.title = updatedBoard[@"boardName"];
+        
+        [TMBSharedBoardID sharedBoardID].boardID = updatedBoard.objectId;
+        [[TMBSharedBoardID sharedBoardID].boards setObject:updatedBoard forKey:boardID];
+        
+        [self.collection removeAllObjects];
+        [self buildThemeColorsArray];
+        [self buildEmptyCollection];
+        
+        [self queryParseForContent:updatedBoard.objectId];
+        
+        NSLog(@" WOO I GOT THE MESSAGE! UPDATED BOARD. OBJ ID IS: %@. BOARD NAME IS: %@", updatedBoard.objectId, updatedBoard[@"boardName"]);
+    }
+    
+    else {
+        NSLog(@"Error, object not recognised.");
+        
+    }
     
 }
 

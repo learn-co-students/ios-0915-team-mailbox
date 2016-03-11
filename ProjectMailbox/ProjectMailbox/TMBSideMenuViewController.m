@@ -31,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *internetConnectionLabel;
 
 // Constraints
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *boardsTableViewHeightConstraint;
 
 @end

@@ -161,13 +161,18 @@
     }
     
     UIGraphicsBeginImageContext(self.bottomImageView.frame.size);
-    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.image.size.width, self.bottomImageView.image.size.height) blendMode:kCGBlendModeNormal alpha:1.0]; // changed this from view.frame
-    NSLog(@" I'M IN THE touchesEnded BOTTOM IMAGE WIDTH:%f HEIGHT:%f", self.bottomImageView.image.size.width, self.bottomImageView.image.size.height);
-    [self.topImageView.image drawInRect:CGRectMake(0, 0, self.bottomImageView.image.size.width, self.bottomImageView.image.size.height) blendMode:kCGBlendModeNormal alpha:opacity]; // changed this from view.frame
-    NSLog(@" I'M IN THE touchesEnded TOP IMAGE WIDTH:%f HEIGHT:%f", self.bottomImageView.image.size.width, self.bottomImageView.image.size.height);
+    
+    [self.bottomImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+    NSLog(@" I'M IN THE touchesEnded BOTTOM IMAGE WIDTH:%f HEIGHT:%f", self.view.frame.size.width, self.view.frame.size.height);
+    
+    [self.topImageView.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) blendMode:kCGBlendModeNormal alpha:opacity];
+    NSLog(@" I'M IN THE touchesEnded TOP IMAGE WIDTH:%f HEIGHT:%f", self.view.frame.size.width, self.view.frame.size.height);
+    
     self.bottomImageView.image = UIGraphicsGetImageFromCurrentImageContext();
     NSLog(@" I'M IN THE touchesEnded BOTTOM IMAGE VIEW IMAGE IS %@", self.bottomImageView.image);
+    
     self.topImageView.image = nil;
+    
     UIGraphicsEndImageContext();
 
 }
@@ -225,24 +230,42 @@
 }
 
 
+//- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+//    
+//    CGFloat oldWidth = image.size.width;
+//    CGFloat oldHeight = image.size.height;
+//    
+////    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+////    CGFloat newHeight = oldHeight * scaleFactor;
+////    CGFloat newWidth = oldWidth * scaleFactor;
+//    CGFloat newHeight = oldHeight * 1;
+//    CGFloat newWidth = oldWidth * 1;
+//
+//    CGSize newSize = CGSizeMake(newWidth, newHeight);
+//    
+//    NSLog(@" I'M IN THE imageWithImage scaledToMaxWidth, DOODLE VIEW CONTROLLER. newSize width: %f height:%f", newWidth, newHeight);
+//    
+//    return [self imageWithImage:image scaledToSize:newSize];
+//    
+//}
+
+
 - (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
     
     CGFloat oldWidth = image.size.width;
     CGFloat oldHeight = image.size.height;
     
-//    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
-//    CGFloat newHeight = oldHeight * scaleFactor;
-//    CGFloat newWidth = oldWidth * scaleFactor;
-    CGFloat newHeight = oldHeight * 1;
-    CGFloat newWidth = oldWidth * 1;
-
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+    
+    CGFloat newHeight = oldHeight * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
     CGSize newSize = CGSizeMake(newWidth, newHeight);
     
-    NSLog(@" I'M IN THE imageWithImage scaledToMaxWidth, DOODLE VIEW CONTROLLER. newSize width: %f height:%f", newWidth, newHeight);
-    
     return [self imageWithImage:image scaledToSize:newSize];
-    
 }
+
+
+
 
 
 - (BOOL)shouldUploadImage:(UIImage *)anImage {
