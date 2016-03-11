@@ -13,6 +13,7 @@
 
 @property (nonatomic, copy) NSString *boardID;
 @property (nonatomic, copy) NSMutableDictionary *boards;
+@property (nonatomic, copy) NSMutableArray *timers;
 
 + (instancetype)sharedBoardID;
 

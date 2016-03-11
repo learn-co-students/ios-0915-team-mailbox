@@ -42,5 +42,15 @@
 }
 
 
+- (NSMutableArray *)timers {
+    
+    if (!_timers) {
+        _timers = [NSMutableArray new];
+    }
+    
+    return _timers;
+}
+
+
 
 @end

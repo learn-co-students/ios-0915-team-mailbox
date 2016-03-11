@@ -27,7 +27,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogOut:) name:@"UserDidLogOutNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidSignUpNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithBoards:) name:@"UserDidLogInWithBoardsNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidLogInWithoutBoards:) name:@"UserDidLogInWithoutBoardsNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserDidSignUp:) name:@"UserDidEditProfileNotification" object:nil];
     
     if ([PFUser currentUser]) {
@@ -59,7 +58,7 @@
     [drawerController setMaximumRightDrawerWidth:150.0];
     [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    [drawerController setShowsShadow:NO];
+    [drawerController setShowsShadow:YES];
     [drawerController setStatusBarViewBackgroundColor: [UIColor clearColor]];
     
     [self setEmbeddedViewController:drawerController];
@@ -104,20 +103,6 @@
     [PFUser currentUser];
     // switch to the home VC
     [self showMainPage];
-}
-
-
-- (void)handleUserDidLogInWithoutBoards:(NSNotification *)notification {
-    
-    NSLog(@" I'M IN THE handleUserDidLogInWithoutBoards, APP VIEW CONTROLLER");
-    
-    [PFUser currentUser];
-    
-    // switch to the home VC
-    [self showCreateBoardPage];
-    
-    // switch to side nav
-//    [self showMainPage];
 }
 
 

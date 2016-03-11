@@ -19,7 +19,6 @@
 		5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EC1BFBDD4100D02E15 /* TMBSignUpViewController.m */; };
 		5508F4F01BFC12A500D02E15 /* TMBFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */; };
 		5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */; };
-		5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */; };
 		5585F65D1C14C7E3003478C6 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5585F65C1C14C7E3003478C6 /* libstdc++.6.0.9.tbd */; };
 		5585F65F1C14D6E5003478C6 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F65E1C14D6E5003478C6 /* ChangePasswordViewController.swift */; };
 		5585F6611C14E1FC003478C6 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */; };
@@ -134,8 +133,6 @@
 		5508F4EF1BFC12A500D02E15 /* TMBFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBFirstPageViewController.m; sourceTree = "<group>"; };
 		5518E25C1C0E2B670035418D /* TMBSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMBSideMenuViewController.h; path = ProjectMailbox/TMBSideMenuViewController.h; sourceTree = "<group>"; };
 		5518E25D1C0E2B670035418D /* TMBSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMBSideMenuViewController.m; path = ProjectMailbox/TMBSideMenuViewController.m; sourceTree = "<group>"; };
-		5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMBMainPageContentViewController.h; sourceTree = "<group>"; };
-		5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMBMainPageContentViewController.m; sourceTree = "<group>"; };
 		5585F6481C14C563003478C6 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		5585F64A1C14C5B6003478C6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		5585F64C1C14C5BE003478C6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -320,8 +317,6 @@
 				5508F4A91BFB972300D02E15 /* ViewController.m */,
 				55EE00711C0BB94B00C46162 /* TMBMainPageViewController.h */,
 				55EE00721C0BB94B00C46162 /* TMBMainPageViewController.m */,
-				5518E25F1C0E32170035418D /* TMBMainPageContentViewController.h */,
-				5518E2601C0E32170035418D /* TMBMainPageContentViewController.m */,
 				55C6AE1D1C1B2DED00FD8A73 /* TMBCommentViewController.h */,
 				55C6AE1E1C1B2DED00FD8A73 /* TMBCommentViewController.m */,
 				5585F6601C14E1FC003478C6 /* EditProfileViewController.swift */,
@@ -761,7 +756,6 @@
 				A4AC728F1C0E97DA000F05C8 /* TMBPhoneContactsViewController.m in Sources */,
 				5518E25E1C0E2B670035418D /* TMBSideMenuViewController.m in Sources */,
 				5508F4ED1BFBDD4100D02E15 /* TMBSignUpViewController.m in Sources */,
-				5518E2611C0E32170035418D /* TMBMainPageContentViewController.m in Sources */,
 				5508F4A41BFB972300D02E15 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

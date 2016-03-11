@@ -52,6 +52,11 @@
 
 - (IBAction)signInButtonTapped:(id)sender {
     
+    
+    // FIRE TIMERS!!!!
+    
+    
+    
     NSLog(@" I'M IN THE signInButtonTapped, FIRST PAGE VIEW CONTROLLER");
     
     [self.view endEditing:YES];
@@ -88,16 +93,12 @@
                 if (!error) {
                     NSLog(@" I'M IN THE signInButtonTapped, FIRST PAGE VIEW CONTROLLER. BOARD OBJECTS: %@ \n\n", objects);
                     
-                    if (objects.count == 0) {
-                        [self.overlayView removeFromSuperview];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithoutBoardsNotification" object:nil];
-                        
-                    } else {
+                    if (objects) {
                         NSUInteger count = 0;
                         for (PFObject *object in objects) {
                             
                             NSString *boardID = [object valueForKey:@"objectId"];
-//                            NSString *boardName = [object valueForKey:@"boardName"];
+                            // NSString *boardName = [object valueForKey:@"boardName"];
                             
                             if (count == 0) {
                                 [TMBSharedBoardID sharedBoardID].boardID = boardID;
@@ -176,19 +177,6 @@
     [self presentViewController:controller animated:YES completion:nil];
     
 }
-
-
-//- (void)presentMainPage {
-//
-//    NSLog(@" I'M IN THE presentMainPage, FIRST PAGE VIEW CONTROLLER");
-//
-//    UIViewController *mainPage = [self.storyboard instantiateViewControllerWithIdentifier:@"MainPage"];
-//
-//    mainPage.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//
-//    [self presentViewController:mainPage animated:YES completion:nil];
-//
-//}
 
 
 //- (void)loginWithFacebook {

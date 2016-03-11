@@ -49,7 +49,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [super viewWillAppear:animated];
     
     NSLog(@" I'M IN THE VIEW WILL APPEAR, BOARD CONTROLLER");
-    }
+}
 
 
 - (void)viewDidLoad {
