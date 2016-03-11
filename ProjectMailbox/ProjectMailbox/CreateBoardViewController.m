@@ -135,7 +135,7 @@
                 NSRunLoop *runner = [NSRunLoop currentRunLoop];
                 [runner addTimer:timer forMode: NSDefaultRunLoopMode];
                 
-                NSLog(@"\n\n\n TIMER STARTED! BOARD WAS CREATED! BOARD ID IS: %@ \n\n\n", objectId);
+                NSLog(@"\n\n\n BOARD WAS CREATED -->> TIMER STARTED! BOARD ID IS: %@ \n\n\n", objectId);
                 
             }
         }];

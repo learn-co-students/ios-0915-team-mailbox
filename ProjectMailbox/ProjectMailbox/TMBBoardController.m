@@ -90,6 +90,7 @@ static NSString * const reuseIdentifier = @"MediaCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWasUpdatedInOtherViews:) name:@"NewBoardCreatedInCreateBoardVC" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWasUpdatedInOtherViews:) name:@"UserTappedSaveBoardButton" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWasUpdatedInOtherViews:) name:@"UserTappedResetBoardButton" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(boardWasDeletedInOtherView:) name:@"UserTappedDeleteBoardButton" object:nil];
 
 }
 
@@ -278,6 +279,38 @@ static NSString * const reuseIdentifier = @"MediaCell";
     
     NSLog(@" I'M IN THE prepareForSegue, BOARD CONTROLLER. SELECTED OBJECT IS: %@", selectedOBJ);
     NSLog(@" I'M IN THE prepareForSegue, BOARD CONTROLLER. SELECTED FILE IS: %@", self.collection[selectedIndexPath.row]);
+    
+}
+
+
+- (void)boardWasDeletedInOtherView:(NSNotification *)notification {
+    
+    // reset board before it really updates
+    [self.collection removeAllObjects];
+    [self buildThemeColorsArray];
+    [self buildEmptyCollection];
+    
+    // get all boards for user and add to board dict singleton
+    PFQuery *boardQuery = [PFQuery queryWithClassName:@"Board"];
+    [boardQuery whereKey:@"fromUser" equalTo:PFUser.currentUser];
+    [boardQuery selectKeys:@[@"objectId",@"boardName"]];
+    [boardQuery orderByDescending:@"updatedAt"];
+    [boardQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (objects) {
+            
+            PFObject *mostUpdatedBoard = objects[0];
+            NSString *boardID = [mostUpdatedBoard valueForKey:@"objectId"];
+            self.navigationBar.topItem.title = mostUpdatedBoard[@"boardName"];
+            
+            [TMBSharedBoardID sharedBoardID].boardID = boardID;
+            [[TMBSharedBoardID sharedBoardID].boards setObject:mostUpdatedBoard forKey:boardID];
+            
+            NSLog(@"\n\n I'M IN THE boardWasDeletedInOtherView, BOARD CONTROLLER. NEXT BOARD NAME IS: %@ \n\n", mostUpdatedBoard[@"boardName"]);
+
+            [self queryParseForContent:mostUpdatedBoard.objectId];
+        }
+    }];
     
 }
 
