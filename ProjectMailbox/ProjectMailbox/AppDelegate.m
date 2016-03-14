@@ -33,9 +33,8 @@
     
     NSLog(@" I'M IN THE APPLICATION DID FINISH LAUNCHING, APP DELEGATE");
     
-    // delays launch screen for 2 seconds
-    [NSThread sleepForTimeInterval:2.0];
-    
+    // delays launch screen for 1.5 seconds
+    [NSThread sleepForTimeInterval:1.5];
     
     // [Optional] Power your app with Local Datastore. For more info, go to
     // https://parse.com/docs/ios_guide#localdatastore/iOS
@@ -65,7 +64,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
     NSLog(@" I'M IN THE applicationDidBecomeActive, APP DELEGATE");
-    
+        
     [FBSDKAppEvents activateApp];
 }
 
@@ -236,6 +235,11 @@
 }
 
 
+
+
+
 @end
+
+
 
 

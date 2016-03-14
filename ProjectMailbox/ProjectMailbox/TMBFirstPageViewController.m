@@ -113,6 +113,7 @@
                         [boardQueryFromPhotoClass orderByDescending:@"updatedAt"];
                         [boardQueryFromPhotoClass getFirstObjectInBackgroundWithBlock:^(PFObject * object, NSError * error) {
                             
+
                             if (!error) {
                                 // set boardID singleton from board with most recent photo
                                 PFObject *boardObject = object[@"board"];
@@ -126,12 +127,6 @@
                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
                                 
                             } else {
-                                
-                                if (error.code == 101) {
-                                    NSLog(@"\n\n\n\nboardqueryphotoclass error.code: %li\n\n\n",error.code);
-                                    [self.overlayView removeFromSuperview];
-                                    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
-                                }
                                 
                                 [self.overlayView removeFromSuperview];
                                 NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -153,8 +148,18 @@
             
         } else {
             
-            [self.overlayView removeFromSuperview];
-            [self showErrorAlert];
+            if (error && error.code == 100) {
+                NSLog(@"\n\n\n\n boardqueryphotoclass error.code: %li\n\n\n",(long)error.code);
+                [self.overlayView removeFromSuperview];
+                [self showNoInternetErrorAlert];
+            }
+            
+            if (error.code == 101) {
+                NSLog(@"\n\n\n\nboardqueryphotoclass error.code: %li\n\n\n",(long)error.code);
+                [self.overlayView removeFromSuperview];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
+            }
+
         }
         
     }];
@@ -172,6 +177,22 @@
     
     [controller addAction:okAction];
     
+    [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+
+- (void)showNoInternetErrorAlert {
+    
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Oh-oh! You are offline." message:@"Please check your connection and try again." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [controller addAction:okAction];
+    
+    [self.overlayView removeFromSuperview];
     [self presentViewController:controller animated:YES completion:nil];
     
 }
