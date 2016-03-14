@@ -176,11 +176,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Lbh-PU-mGP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="d1L-3u-SBm" userLabel="CONTENT VIEW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We'll send you an email to reset your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSh-Y0-xNw">
-                                <rect key="frame" x="165" y="120" width="270" height="60"/>
+                                <rect key="frame" x="72" y="120" width="270" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="nfM-fe-HhX"/>
                                     <constraint firstAttribute="width" constant="270" id="sZd-SR-TEB"/>
@@ -190,7 +190,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2py-6m-w1y" userLabel="Close Button">
-                                <rect key="frame" x="520" y="40" width="60" height="60"/>
+                                <rect key="frame" x="334" y="40" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Ech-Vc-iHv"/>
                                     <constraint firstAttribute="height" constant="60" id="eLs-mW-GHI"/>
@@ -202,7 +202,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qh-Ws-npp">
-                                <rect key="frame" x="175" y="320" width="251" height="46"/>
+                                <rect key="frame" x="82" y="320" width="251" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="WaB-z5-5jc"/>
                                     <constraint firstAttribute="width" constant="251" id="hn5-CV-Oj0"/>
@@ -215,7 +215,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text-field-line" translatesAutoresizingMaskIntoConstraints="NO" id="ugx-1j-yNq" userLabel="Text Field Line">
-                                <rect key="frame" x="150" y="260" width="300" height="1"/>
+                                <rect key="frame" x="57" y="260" width="300" height="1"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Chf-Eu-TIk"/>
@@ -223,7 +223,7 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email Address" textAlignment="center" minimumFontSize="17" background="signUpTextField" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RdV-d3-Pie">
-                                <rect key="frame" x="45" y="220" width="510" height="40"/>
+                                <rect key="frame" x="31" y="220" width="352" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gbR-k7-DhS"/>
                                 </constraints>
@@ -301,7 +301,7 @@
                                     <constraint firstAttribute="width" constant="100" id="Lh0-Tl-V4H"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="center" minimumFontSize="17" background="signUpTextField" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lII-Af-fOY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lII-Af-fOY">
                                 <rect key="frame" x="45" y="210" width="510" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="oc9-O2-Jpt"/>
@@ -309,15 +309,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="center" minimumFontSize="17" background="signUpTextField" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Jw8-lw-tGd">
-                                <rect key="frame" x="45" y="260" width="510" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="KKl-aW-anb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" background="signUpTextField" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="akk-2f-aF3">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="akk-2f-aF3">
                                 <rect key="frame" x="45" y="310" width="510" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6zp-3U-Sfd"/>
@@ -393,6 +385,14 @@
                                     <segue destination="hr3-Xd-hEC" kind="presentation" id="czK-AY-rzM"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Jw8-lw-tGd">
+                                <rect key="frame" x="45" y="260" width="510" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KKl-aW-anb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -765,6 +765,16 @@
                                                     </mask>
                                                 </variation>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="* images will be deleted every 7 days." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgr-Mr-vgo" userLabel="disclaimer">
+                                                <rect key="frame" x="123" y="452" width="354" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="4LH-v3-lrk"/>
+                                                    <constraint firstAttribute="width" constant="354" id="ecs-Tw-733"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.3578182198" green="0.51936676530000003" blue="0.81368371210000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
@@ -772,6 +782,7 @@
                                             <constraint firstItem="jJ0-T3-YaC" firstAttribute="top" secondItem="aWl-na-ayI" secondAttribute="top" constant="40" id="4SQ-rR-S3G"/>
                                             <constraint firstItem="Omj-ew-Bez" firstAttribute="top" secondItem="vSV-OU-Eez" secondAttribute="bottom" constant="2" id="4uF-4n-q5k"/>
                                             <constraint firstItem="xw1-8y-asj" firstAttribute="centerX" secondItem="aWl-na-ayI" secondAttribute="centerX" id="5eh-g5-yYY"/>
+                                            <constraint firstItem="zgr-Mr-vgo" firstAttribute="top" secondItem="1U0-1X-Wa0" secondAttribute="bottom" constant="10" id="6BP-A1-J6m"/>
                                             <constraint firstItem="jJ0-T3-YaC" firstAttribute="centerX" secondItem="aWl-na-ayI" secondAttribute="centerX" id="DQ0-BA-bwQ"/>
                                             <constraint firstItem="vSV-OU-Eez" firstAttribute="top" secondItem="jJ0-T3-YaC" secondAttribute="bottom" constant="15" id="GdV-U9-NSM"/>
                                             <constraint firstItem="Omj-ew-Bez" firstAttribute="centerX" secondItem="aWl-na-ayI" secondAttribute="centerX" id="Hrs-xf-RUe"/>
@@ -780,6 +791,7 @@
                                             <constraint firstItem="vSV-OU-Eez" firstAttribute="width" secondItem="aWl-na-ayI" secondAttribute="width" id="S1W-LV-C2m"/>
                                             <constraint firstAttribute="trailing" secondItem="1Jr-XL-w8x" secondAttribute="trailing" id="SRB-KN-AU5"/>
                                             <constraint firstItem="Omj-ew-Bez" firstAttribute="width" secondItem="aWl-na-ayI" secondAttribute="width" id="W2u-Vc-pdD"/>
+                                            <constraint firstItem="zgr-Mr-vgo" firstAttribute="centerX" secondItem="aWl-na-ayI" secondAttribute="centerX" id="WMC-sV-Sei"/>
                                             <constraint firstItem="1Jr-XL-w8x" firstAttribute="leading" secondItem="aWl-na-ayI" secondAttribute="leading" constant="-8" id="iAu-qw-LRx"/>
                                             <constraint firstItem="1Jr-XL-w8x" firstAttribute="top" secondItem="vSV-OU-Eez" secondAttribute="bottom" constant="78" id="iMo-H8-bdP"/>
                                             <constraint firstItem="vSV-OU-Eez" firstAttribute="centerX" secondItem="aWl-na-ayI" secondAttribute="centerX" id="nhL-on-1ML"/>
@@ -1495,7 +1507,7 @@
                                                     <segue destination="9WQ-8b-gba" kind="presentation" id="L6t-BH-Y3x"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-create-board" translatesAutoresizingMaskIntoConstraints="NO" id="dmC-tj-ZO9">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-icon-add-board" translatesAutoresizingMaskIntoConstraints="NO" id="dmC-tj-ZO9">
                                                 <rect key="frame" x="69" y="339" width="19" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="t5g-VO-blt"/>
@@ -3324,8 +3336,8 @@
         <image name="btn-update-image-3x" width="502" height="92"/>
         <image name="close-btn" width="28" height="28"/>
         <image name="nav-btn-transparent-black" width="400" height="40"/>
+        <image name="nav-icon-add-board" width="38" height="32"/>
         <image name="nav-icon-board" width="38" height="32"/>
-        <image name="nav-icon-create-board" width="38" height="32"/>
         <image name="nav-icon-find-friends" width="38" height="32"/>
         <image name="nav-icon-logout" width="38" height="32"/>
         <image name="nav-icon-manage-boards" width="38" height="32"/>
@@ -3336,9 +3348,9 @@
         <image name="text-field-line" width="428" height="2"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ndr-va-05a"/>
         <segue reference="c2N-kr-xZj"/>
-        <segue reference="L6t-BH-Y3x"/>
-        <segue reference="czK-AY-rzM"/>
+        <segue reference="ndr-va-05a"/>
+        <segue reference="Xag-RI-ObQ"/>
+        <segue reference="fqk-lx-P8u"/>
     </inferredMetricsTieBreakers>
 </document>
