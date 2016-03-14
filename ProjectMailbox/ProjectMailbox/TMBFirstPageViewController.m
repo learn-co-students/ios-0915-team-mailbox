@@ -52,11 +52,6 @@
 
 - (IBAction)signInButtonTapped:(id)sender {
     
-    
-    // FIRE TIMERS!!!!
-    
-    
-    
     NSLog(@" I'M IN THE signInButtonTapped, FIRST PAGE VIEW CONTROLLER");
     
     [self.view endEditing:YES];
@@ -94,11 +89,12 @@
                     NSLog(@" I'M IN THE signInButtonTapped, FIRST PAGE VIEW CONTROLLER. BOARD OBJECTS: %@ \n\n", objects);
                     
                     if (objects) {
+                        
                         NSUInteger count = 0;
+                        
                         for (PFObject *object in objects) {
                             
                             NSString *boardID = [object valueForKey:@"objectId"];
-                            // NSString *boardName = [object valueForKey:@"boardName"];
                             
                             if (count == 0) {
                                 [TMBSharedBoardID sharedBoardID].boardID = boardID;
@@ -107,7 +103,9 @@
                             
                             [[TMBSharedBoardID sharedBoardID].boards setObject:object forKey:boardID];
                             count++;
+                            
                         }
+                        
                         
                         PFQuery *boardQueryFromPhotoClass = [PFQuery queryWithClassName:@"Photo"];
                         [boardQueryFromPhotoClass whereKey:@"user" equalTo:PFUser.currentUser];

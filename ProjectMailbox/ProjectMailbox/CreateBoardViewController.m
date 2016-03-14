@@ -122,27 +122,6 @@
                 self.boardObjectId = objectId;
                 self.selectedBoard = self.myNewBoard;
                 
-                // setting timer to delete content
-                NSMutableDictionary *timerDetails = [[NSMutableDictionary alloc] init];
-                [timerDetails setObject:objectId forKey:@"boardID"];
-                
-                NSDate *date = [NSDate dateWithTimeIntervalSinceNow: 60.0]; // timer starts after 1 min. 604800 seconds in a week
-                NSTimer *timer = [[NSTimer alloc] initWithFireDate: date
-                                                          interval: 60.0 // timer repeats itself every 1 min
-                                                            target: self
-                                                          selector:@selector(onTimerDeleteBoardConent:)
-                                                          userInfo:timerDetails
-                                                           repeats:YES];
-                
-                NSRunLoop *runner = [NSRunLoop currentRunLoop];
-                [runner addTimer:timer forMode: NSDefaultRunLoopMode];
-                
-                // adding timer to the shared array
-                [[TMBSharedBoardID sharedBoardID].timers addObject:timer];
-                
-                NSLog(@"\n\n\n BOARD WAS CREATED -->> TIMER ADDED TO ARRAYS! BOARD ID IS: %@ \n SHARED TIMER ARRAY IS: %@ \n\n\n", objectId, [TMBSharedBoardID sharedBoardID].timers);
-                NSLog(@"\n\n TIMER USER INFO: %@ \n\n", timer.userInfo);
-                
             }
         }];
     }
@@ -161,28 +140,6 @@
         [self.boardFriendsTableView reloadData];
         [self adjustHeightOfTableview];
     }];
-    
-}
-
-
--(void)onTimerDeleteBoardConent:(NSTimer *)timer {
-    
-    // delete board conent
-    [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
-        if (success) {
-            NSLog(@"\n\n\n TIMER FIRED! BOARD CONTENTS DELETED! \n\n\n");
-            
-            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-            [center postNotificationName:@"UserTappedResetBoardButton"
-                                  object:self.selectedBoard];
-        }
-    }];
-    
-    
-    // invalidate timer later ... when the board gets deleted. make a ponter to the timer
-//    [myTimer invalidate];
-//    myTimer = nil;
-    // subclass NSTimer with board id, then invalidate them from an array by the board id 
     
 }
 
@@ -833,6 +790,7 @@
                     if (totalBoardCount <= 1) {
                         // create new board
                         [self createNewBoardOnParseWithCompletion:^(NSString *objectId, NSError *error) {
+                            
                             if (!error) {
                                 // set new board id sigleton
                                 [TMBSharedBoardID sharedBoardID].boardID = objectId;
@@ -843,13 +801,7 @@
                                                       object:self.myNewBoard];
                                 
                                 
-                                
-                                // START TIMER HERE!
-
-                                
-                                
-                                
-                                // update side nav with new board
+                                 // update side nav with new board
                                 completionBlock(YES);
                                 
                                 // delete contents
@@ -863,27 +815,7 @@
                                         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
                                         [center postNotificationName:@"UserTappedDeleteBoardButton"
                                                               object:self.selectedBoard];
-                                        
-                                        
-                                        // INVALIDATE TIMER HERE!
-                                        
-                                        for (NSDictionary *timerToInvalidate in [TMBSharedBoardID sharedBoardID].timers) {
-                                            if (timerToInvalidate[@"boardID"] == self.selectedBoard.objectId) {
-                                                
-                                                NSLog(@"\n\n WHAT'S IN timerToInvalidate:%@\n\n", timerToInvalidate);
-                                                
-                                                // invalidate timer
-                                                // [self.boardTimer invalidate];
-
-                                                // set timer to nil
-                                                // self.boardTimer = nil;
-                                                
-                                                // delete timer from shared timers array
-                                            }
-                                        }
-
-                                    
-                                        
+                                       
                                         completionBlock(YES);
                                     }
                                         
@@ -904,6 +836,8 @@
                         
                         
                     } else {
+                        
+                        
                         // delete contents
                         [self queryAndDeleteBoardContentWithCompletion:^(BOOL success) {
                             if (success) {
@@ -911,6 +845,7 @@
                                 // delete board
                                 [self.selectedBoard deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                     if (succeeded) {
+                                        
                                         
                                         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
                                         [center postNotificationName:@"UserTappedDeleteBoardButton"
@@ -921,12 +856,6 @@
                                     
                                 }];
                                 
-                                
-//                                // invalidate timer
-//                                [self.boardTimer invalidate];
-//                                self.boardTimer = nil;
-                                
-
                                 
                                 NSLog(@" I'M IN THE deleteBoardContentWithCompletion, CREATE BOARD VIEW CONTROLLER. BOARDS > 1. CONTENTS DELETED. BOARD %@ DELETED", self.selectedBoard);
                             }

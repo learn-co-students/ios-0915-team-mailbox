@@ -108,12 +108,12 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     
-    NSLog(@" I'M IN THE applicationWillResignActive, APP DELEGATE. APPLICATION LOGED OUT USER AND RESET SHARED BOARD");
+    NSLog(@" I'M IN THE applicationWillResignActive, APP DELEGATE.");
     
-    [PFUser logOut];
-
-    [TMBSharedBoardID sharedBoardID].boardID = @"";
-    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
+//    [PFUser logOut];
+//
+//    [TMBSharedBoardID sharedBoardID].boardID = @"";
+//    [[TMBSharedBoardID sharedBoardID].boards removeAllObjects];
 
 
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
