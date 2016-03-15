@@ -73,7 +73,9 @@ static NSInteger const kItemsPerPattern = 10;
 
 -(void)prepareLayout
 {
-
+    [self.layoutInformation removeAllObjects];
+    NSLog(@"REMOVED ALL OBJECTS IN prepareLayout, TMB BOARAD LAYOUT");
+    
     NSInteger itemsCount = [self.collectionView numberOfItemsInSection:kSectionNumber];
     
     self.smallCellSizeWidth = self.width / 4;

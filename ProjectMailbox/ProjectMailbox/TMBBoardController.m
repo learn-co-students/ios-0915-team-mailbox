@@ -79,6 +79,10 @@ static NSString * const reuseIdentifier = @"MediaCell";
     self.pfObjects = [NSMutableArray new];
     self.collection = [NSMutableArray new];
     self.boardContent = [NSMutableArray new];
+    
+    [self.collection removeAllObjects];
+    NSLog(@" I'M IN THE VIEW DID LOAD, BOARD CONTROLLER. COLLECTION OBJECT COUNT: %lu", self.collection.count);
+    
     [self buildThemeColorsArray];
     [self buildEmptyCollection];
     
