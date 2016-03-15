@@ -128,7 +128,14 @@
                                 
                             } else {
                                 
+                                if (error.code == 101) {
+                                    NSLog(@"\n\n\n\nboardqueryphotoclass error.code: %li\n\n\n",(long)error.code);
+                                    [self.overlayView removeFromSuperview];
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidLogInWithBoardsNotification" object:nil];
+                                }
+
                                 [self.overlayView removeFromSuperview];
+                                [self showErrorAlert];
                                 NSLog(@"Error: %@ %@", error, [error userInfo]);
                             }
                             
@@ -139,6 +146,7 @@
                     
                 } else {
                     [self.overlayView removeFromSuperview];
+                    [self showErrorAlert];
                     NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }
                 
