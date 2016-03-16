@@ -10,4 +10,7 @@
 
 @interface TMBCustomNavigationBar : UINavigationBar
 
+- (CGSize)sizeThatFits:(CGSize)size;
+- (void)layoutSubviews;
+
 @end

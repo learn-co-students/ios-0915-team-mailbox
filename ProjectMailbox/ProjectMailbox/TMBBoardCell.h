@@ -11,8 +11,6 @@
 
 @interface TMBBoardCell : PFCollectionViewCell
 
-
 @property (weak, nonatomic) IBOutlet PFImageView *boardImageView;
-
 
 @end

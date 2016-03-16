@@ -8,9 +8,6 @@
 
 #import "TMBBoardCell.h"
 
-
-
 @implementation TMBBoardCell
-
 
 @end

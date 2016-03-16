@@ -8,33 +8,11 @@
 //
 
 #import "TMBBoardController.h"
-#import "TMBBoardCell.h"
-#import "Parse/Parse.h"
-#import "TMBImageCardViewController.h"
-#import "TMBSharedBoardID.h"
-#import "TMBDoodleViewController.h"
-#import <MMDrawerController/MMDrawerVisualState.h>
-#import <MMDrawerController/UIViewController+MMDrawerController.h>
-#import <MMDrawerController/MMDrawerController.h>
-#import <MMDrawerController/MMDrawerBarButtonItem.h>
-
 
 static NSInteger const kNumberOfSections = 1;
 static NSInteger const kItemsPerPage = 20;
 
-
 @interface TMBBoardController () <TMBImageCardViewControllerDelegate, TMBDoodleViewControllerDelegate>
-
-@property (nonatomic, strong) NSMutableArray *boardContent;
-@property (nonatomic, strong) NSArray *colors;
-@property (nonatomic, strong) NSString *queriedBoardID;
-@property (nonatomic, strong) NSMutableArray *collection;
-@property (nonatomic) NSUInteger queryCount;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) UIImage *imageSelectedForOtherView;
-@property (nonatomic, strong) NSMutableArray *pfObjects;
-@property (nonatomic, strong) NSString *boardName;
-@property (nonatomic, strong) UINavigationBar *navigationBar;
 
 @end
 

@@ -8,8 +8,6 @@
 
 #import "TMBFindFriendsViewController.h"
 #import "TMBConstants.h"
-#import "PAPUtility.h"
-#import "TMBFriendsTableViewCell.h"
 
 @interface TMBFindFriendsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
@@ -18,9 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIView *foundFriendView;
 @property (weak, nonatomic) IBOutlet UITableView *allFriendsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
-@property (nonatomic, strong) PFUser *foundFriend;
-@property (nonatomic, strong) PFUser *currentUser;
-@property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
 @property (weak, nonatomic) IBOutlet UILabel *noUsersFoundLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *yourFriendsLabel;
@@ -73,7 +68,7 @@
 }
 
 
--(BOOL)prefersStatusBarHidden{
+- (BOOL)prefersStatusBarHidden {
     return YES;
 }
 

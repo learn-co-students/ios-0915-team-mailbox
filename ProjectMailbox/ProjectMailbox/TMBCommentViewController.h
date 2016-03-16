@@ -11,6 +11,11 @@
 
 @interface TMBCommentViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *thumbnail;
+@property (nonatomic, strong) PFFile *photoFile;
+@property (nonatomic, strong) PFFile *thumbFile;
+
 /// The class of the PFObject this table will use as a datasource
 @property (nonatomic, retain) NSString *className;
 
@@ -19,5 +24,10 @@
 @property (nonatomic, strong) PFObject *photo;
 @property (strong, nonatomic) PFFile *selectedFile;
 @property (strong, nonatomic) PFObject *parseObjSelected;
+
+
+- (void)loadDataFromParse;
+- (void)keyboardWillShowOrHide:(NSNotification *)notification;
+- (void)adjustHeightOfTableview;
 
 @end

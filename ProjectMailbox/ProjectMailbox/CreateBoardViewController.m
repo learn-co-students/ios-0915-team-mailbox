@@ -8,10 +8,6 @@
 
 #import "CreateBoardViewController.h"
 #import "TMBConstants.h"
-#import "PAPUtility.h"
-#import "TMBFriendsTableViewCell.h"
-#import "TMBSideMenuViewController.h"
-#import "TMBManageBoardsViewController.h"
 #import "TMBSharedBoardID.h"
 
 
@@ -19,15 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *boardNameField;
 @property (weak, nonatomic) IBOutlet UILabel *boardNameLabel;
-@property (strong, nonatomic) PFObject *myNewBoard;
-@property (nonatomic, strong) NSString *boardObjectId;
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 @property (weak, nonatomic) IBOutlet UITableView *boardFriendsTableView;
-@property (nonatomic, strong) NSMutableArray *friendsForCurrentUser;
-@property (nonatomic, strong) NSMutableArray *boardFriends;
-@property (nonatomic, strong) NSMutableArray *duplicateFriends;
-@property (nonatomic, strong) PFUser *foundFriend;
-@property (nonatomic, strong) PFUser *currentUser;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *lookUpFriendsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *saveBoardButton;

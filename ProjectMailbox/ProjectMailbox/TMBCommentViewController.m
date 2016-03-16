@@ -16,10 +16,6 @@
 
 @interface TMBCommentViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) UIImage *thumbnail;
-@property (nonatomic, strong) PFFile *photoFile;
-@property (nonatomic, strong) PFFile *thumbFile;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier photoPostBackgroundTaskId;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier commentPostBackgroundTaskId;
