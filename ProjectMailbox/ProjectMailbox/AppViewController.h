@@ -15,5 +15,13 @@
 
 @interface AppViewController : ViewController
 
+- (BOOL)prefersStatusBarHidden;
+- (void)showMainPage;
+- (void)showFirstPage;
+- (void)showCreateBoardPage;
+- (void)handleUserDidLogOut:(NSNotification *)notification;
+- (void)handleUserDidLogInWithBoards:(NSNotification *)notification;
+- (void)handleUserDidSignUp:(NSNotification *)notification;
+- (void)setEmbeddedViewController:(UIViewController *)controller;
 
 @end

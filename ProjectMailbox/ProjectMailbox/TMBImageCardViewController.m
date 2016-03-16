@@ -13,25 +13,11 @@
 @interface TMBImageCardViewController () <UITextFieldDelegate>
 
 //photo handling
-@property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) UIImage *thumb;
-@property (nonatomic, strong) PFFile *imageFile;
-@property (nonatomic, strong) PFFile *thumbFile;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier fileUploadBackgroundTaskId;
 
-//board ID
-@property (nonatomic, strong) NSString *boardID;
-@property (nonatomic, strong) PFObject *board;
-
-//loading view
-@property (nonatomic, strong) UIView *overlayView;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
-
 @end
-
-
 
 @implementation TMBImageCardViewController
 

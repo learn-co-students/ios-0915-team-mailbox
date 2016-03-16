@@ -19,10 +19,28 @@
 
 @end
 
+
 @interface TMBImageCardViewController : ViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *thumb;
+@property (nonatomic, strong) PFFile *imageFile;
+@property (nonatomic, strong) PFFile *thumbFile;
 @property (nonatomic, weak) id<TMBImageCardViewControllerDelegate> delegate;
 
+//board ID
+@property (nonatomic, strong) NSString *boardID;
+@property (nonatomic, strong) PFObject *board;
+
+//loading view
+@property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
+- (BOOL)prefersStatusBarHidden;
+- (void)activityLoadView;
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size;
+- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
+- (void)uploadingErrorAlert;
 
 @end
 

@@ -14,20 +14,6 @@ static NSInteger const kItemsPerPattern = 10;
 
 @interface TMBBoardLayout()
 
-@property (nonatomic, strong) NSMutableDictionary *offsets;
-@property (nonatomic, strong) NSMutableDictionary *layoutInformation;
-@property (nonatomic) CGFloat contentWidth;
-@property (nonatomic, readonly) CGFloat height;
-@property (nonatomic, readonly) CGFloat width;
-@property (nonatomic) CGFloat xOffset;
-@property (nonatomic) CGFloat yOffset;
-@property (nonatomic) CGFloat smallCellSizeWidth;
-@property (nonatomic) CGFloat smallCellSizeHeight;
-@property (nonatomic) CGFloat largeCellSizeWidth;
-@property (nonatomic) CGFloat largeCellSizeHeight;
-@property (nonatomic) UIEdgeInsets insets;
-
-
 @end
 
 
@@ -45,10 +31,11 @@ static NSInteger const kItemsPerPattern = 10;
                        @"yOffset" : [NSNumber numberWithFloat:0.0]
                    }];
         
-        
     }
+    
     return self;
 }
+
 
 // getter convenience methods
 -(CGFloat)width
@@ -56,20 +43,24 @@ static NSInteger const kItemsPerPattern = 10;
     return self.collectionView.bounds.size.width - (self.insets.left + self.insets.right);
 }
 
+
 -(CGFloat)height
 {
     return self.collectionView.bounds.size.height - (self.insets.top + self.insets.bottom);
 }
+
 
 -(UIEdgeInsets)insets
 {
     return self.collectionView.contentInset;
 }
 
+
 -(CGSize)collectionViewContentSize
 {
     return CGSizeMake(self.contentWidth, self.height);
 }
+
 
 -(void)prepareLayout
 {
@@ -108,7 +99,6 @@ static NSInteger const kItemsPerPattern = 10;
 }
 
 
-
 -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
 
@@ -126,14 +116,14 @@ static NSInteger const kItemsPerPattern = 10;
     }
     
     return layoutAttributes;
-    
-    
 }
+
 
 -(BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
     return NO;
 }
+
 
 - (UICollectionViewLayoutAttributes*)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
@@ -144,6 +134,7 @@ static NSInteger const kItemsPerPattern = 10;
     
     return attr;
 }
+
 
 -(void)generateLayoutInfo:(NSInteger)item indexPath:(NSIndexPath *)path
 {

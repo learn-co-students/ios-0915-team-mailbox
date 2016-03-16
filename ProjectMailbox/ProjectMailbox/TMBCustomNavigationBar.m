@@ -28,7 +28,7 @@
 }
 
 
--(void)layoutSubviews {
+- (void)layoutSubviews {
     
     [super layoutSubviews];
     

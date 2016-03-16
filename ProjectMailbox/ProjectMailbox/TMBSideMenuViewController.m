@@ -7,12 +7,6 @@
 //
 
 #import "TMBSideMenuViewController.h"
-#import "TMBBoard.h"
-#import "TMBSharedBoardID.h"
-#import "TMBBoardTableViewCell.h"
-#import "TMBBoardController.h"
-#import "AppViewController.h"
-
 
 @interface TMBSideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -23,9 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameField;
-@property (nonatomic) NSInteger boardCount;
-@property (strong, nonatomic) NSMutableArray *userBoards;
-@property (strong, nonatomic) NSString *boardID;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITableView *boardsTableView;
 @property (weak, nonatomic) IBOutlet UILabel *internetConnectionLabel;

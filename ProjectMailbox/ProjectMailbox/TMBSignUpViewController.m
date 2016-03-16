@@ -20,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *repeatPasswordField;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (strong, nonatomic) PFObject *myNewBoard;
-@property (nonatomic, strong) NSString *boardObjectId;
 
 @end
 

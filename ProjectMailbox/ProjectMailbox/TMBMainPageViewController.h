@@ -11,4 +11,8 @@
 
 @interface TMBMainPageViewController : ViewController
 
+- (void)setupLeftMenuButton;
+- (void)leftDrawerButtonPress:(id)leftDrawerButtonPress;
+
+
 @end

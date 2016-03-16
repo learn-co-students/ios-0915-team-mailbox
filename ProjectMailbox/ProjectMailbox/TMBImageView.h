@@ -11,6 +11,7 @@
 
 @interface TMBImageView : UIImageView
 
-
+@property (nonatomic, strong) PFFile *currentFile;
+@property (nonatomic, strong) NSString *url;
 
 @end

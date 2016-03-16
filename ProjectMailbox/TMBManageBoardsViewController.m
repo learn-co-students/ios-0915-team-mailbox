@@ -7,20 +7,12 @@
 //
 
 #import "TMBManageBoardsViewController.h"
-#import "TMBBoardTableViewCell.h"
-#import <Parse/Parse.h>
-#import "CreateBoardViewController.h"
-
 
 @interface TMBManageBoardsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *internetConnectionLabel;
-@property (strong, nonatomic) NSMutableArray *adminBoards;
-@property (strong, nonatomic) NSMutableArray *adminBoardFriends;
-@property (strong, nonatomic) NSMutableArray *memberBoards;
 @property (weak, nonatomic) IBOutlet UITableView *adminTableView;
 @property (weak, nonatomic) IBOutlet UITableView *memberTableView;
-@property (strong, nonatomic) NSString *boardID;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *boardsYouManageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *boardsYoureInLabel;
@@ -98,7 +90,7 @@
 }
 
 
-- (BOOL)prefersStatusBarHidden{
+- (BOOL)prefersStatusBarHidden {
     return YES;
 }
 

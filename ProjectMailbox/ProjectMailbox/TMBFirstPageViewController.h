@@ -13,4 +13,12 @@
 
 @interface TMBFirstPageViewController : ViewController 
 
+//loading view
+@property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
+- (void)activityLoadView;
+- (void)showErrorAlert;
+- (void)showNoInternetErrorAlert;
+
 @end

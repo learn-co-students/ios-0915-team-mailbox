@@ -11,16 +11,9 @@
 
 @interface TMBImageView ()
 
-@property (nonatomic, strong) PFFile *currentFile;
-@property (nonatomic, strong) NSString *url;
-
 @end
 
-
 @implementation TMBImageView
-
-
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

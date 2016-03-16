@@ -16,9 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-//loading view
-@property (nonatomic, strong) UIView *overlayView;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
