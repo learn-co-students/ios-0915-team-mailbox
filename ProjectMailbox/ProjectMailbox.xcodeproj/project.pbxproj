@@ -913,8 +913,6 @@
 					"-framework",
 					"\"FBSDKLoginKit\"",
 					"-framework",
-					"\"FBSDKShareKit\"",
-					"-framework",
 					"\"JSQMessagesViewController\"",
 					"-framework",
 					"\"JSQSystemSoundPlayer\"",
