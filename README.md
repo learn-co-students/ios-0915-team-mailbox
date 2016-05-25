@@ -1,5 +1,5 @@
 # Mosaic App
-Team: Inga Kytchanova, Joel Bell & Joe Kiley.
+Team: Inga Kytchanova, Joel Bell, Ryan Rosello & Joe Kiley.
 </br></br>
 <b>Description:</b></br>
 This app was designed for sharing moments with your loved ones.
